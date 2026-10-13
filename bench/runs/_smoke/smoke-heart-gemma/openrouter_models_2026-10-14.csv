@@ -1,0 +1,20 @@
+id,name,group,candidate,router,text_only,context,usd_per_m_input,usd_per_m_output,json_output,tools,aa_coding_index,aa_agentic_index
+anthropic/claude-haiku-5.5,Anthropic: Claude Haiku 5.5,selected,True,False,True,1000000,,,True,True,,
+openai/gpt-6-luna,OpenAI: GPT-6 Luna,selected,True,False,True,1050000,,,True,True,,
+thinkingmachines/inkling-small:free,Thinking Machines: Inkling Small (free),free,True,False,True,1048576,0.0,0.0,False,True,52.9,23.5
+thinkingmachines/inkling:free,Thinking Machines: Inkling (free),free,True,False,True,1048576,0.0,0.0,False,True,52.1,22.5
+nvidia/nemotron-3-ultra-550b-a55b:free,NVIDIA: Nemotron 3 Ultra (free),free,True,False,True,1000000,0.0,0.0,False,True,49.3,20.1
+google/gemma-4-31b-it:free,Google: Gemma 4 31B (free),free,True,False,True,262144,0.0,0.0,True,True,43.4,4.2
+google/gemma-4-26b-a4b-it:free,Google: Gemma 4 26B A4B  (free),free,True,False,True,262144,0.0,0.0,True,True,39.3,2.9
+nvidia/nemotron-3-super-120b-a12b:free,NVIDIA: Nemotron 3 Super (free),free,True,False,True,262144,0.0,0.0,True,True,37.7,1.7
+cohere/north-mini-code:free,Cohere: North Mini Code (free),free,True,False,True,256000,0.0,0.0,False,True,36.5,1.1
+nvidia/nemotron-3.5-lightning:free,NVIDIA: Nemotron 3.5 Lightning (free),free,True,False,True,1000000,0.0,0.0,False,True,26.8,3.5
+nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free,NVIDIA: Nemotron 3 Nano Omni (free),free,True,False,True,256000,0.0,0.0,False,True,13.8,
+liquid/lfm-2.5-2.6b:free,LiquidAI: LFM2.5-2.6B (free),free,True,False,True,65536,0.0,0.0,True,True,7.7,
+dots-studio/dots-3-note-preview:free,Dots Studio: Dots3-Note Preview (free),free,True,False,True,512000,0.0,0.0,True,True,,
+nvidia/nemotron-3.5-content-safety:free,NVIDIA: Nemotron 3.5 Content Safety (free),free,True,False,True,128000,0.0,0.0,False,False,,
+poolside/laguna-s-2.1:free,Poolside: Laguna S 2.1 (free),free,True,False,True,262144,0.0,0.0,False,True,,
+poolside/laguna-xs-2.1:free,Poolside: Laguna XS 2.1 (free),free,True,False,True,262144,0.0,0.0,False,True,,
+google/lyria-3-clip-preview,Google: Lyria 3 Clip Preview,free,False,False,False,1048576,0.0,0.0,True,False,,
+google/lyria-3-pro-preview,Google: Lyria 3 Pro Preview,free,False,False,False,1048576,0.0,0.0,True,False,,
+openrouter/free,Free Models Router,free,False,True,True,200000,0.0,0.0,True,True,,

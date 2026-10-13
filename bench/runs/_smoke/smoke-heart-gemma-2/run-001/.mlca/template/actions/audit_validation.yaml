@@ -1,0 +1,22 @@
+# Content v0.2.0 (2026-10-06). Keep it short: see docs/templates.md, 'Writing content'.
+id: audit_validation
+event: validate
+title: Save validation predictions for error analysis
+params: {}
+prompt: |
+  Do: per validation row: row index, outcome, predicted value per candidate model. No other columns.
+  Save: validation_predictions.csv.
+inputs:
+- ref: train
+- ref: val
+- ref: prior_outputs
+outputs:
+- name: validation_predictions.csv
+  kind: table
+  required: true
+fact_candidates: []
+reads_test: false
+timeout_s: 300
+methods_text: Validation predictions were saved for error analysis.
+builtin: null
+role: supporting

@@ -1,0 +1,31 @@
+# Smoke run (not reported): does the AI path complete one study end to end on a real model?
+# Run:   mlca bench run smoke_heart_gemma.yaml --runs 1 --out ../runs/heart_disease/<model-slug>/<date>
+measurement_arm: worker          # the AI writes the analysis code
+guided: true                     # P15 turn loop with autopilot
+data:
+  - /home/prime/Documents/github/mlca-paper-codebases/mlca-revized/benchmarks/datasets/heart_disease_cleveland_uci.csv
+template: tabular_classification
+brief:
+  aim: Predict the recorded outcome using the available covariates
+  target: heart_disease_binary
+  unit: One subject
+  repeated_subjects: "no"
+approval_policy:
+  confirm_subgoals: true         # approves the brief and the validation choice
+  unlock_test: true              # one test exposure
+  note: Smoke-run policy approved before the run (2026-10-13)
+per_run_budget_usd: 1
+total_budget_usd: 1
+max_turns: 100
+config:
+  # Self-contained: bench validates this block on its own, without your saved config.
+  providers:
+    navigator_provider:
+      kind: openrouter
+      base_url: https://openrouter.ai/api/v1
+      api_key_env: MLCA_KEYRING_OPENROUTER_KEY   # your OpenRouter sign-in (keyring); no key in this file
+      structured_outputs: null   # automatic: JSON output only if the model supports it
+      request_cost_bound_usd: 0.01
+  roles:
+    navigator: {provider: navigator_provider, model: google/gemma-4-31b-it:free}
+    worker: {provider: navigator_provider, model: google/gemma-4-31b-it:free}

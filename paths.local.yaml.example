@@ -1,0 +1,3 @@
+# Copy to paths.local.yaml (git-ignored) and set local locations.
+SOURCE_DATA: /path/to/source-data          # cohorts read by bio-bench prepare_data.py scripts
+BENCH_DATASETS: ../mlca-revized/benchmarks/datasets

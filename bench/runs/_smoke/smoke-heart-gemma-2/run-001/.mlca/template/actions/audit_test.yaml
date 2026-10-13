@@ -1,0 +1,23 @@
+# Content v0.2.0 (2026-10-06). Keep it short: see docs/templates.md, 'Writing content'.
+id: audit_test
+event: test
+title: Save test predictions of the frozen model
+params: {}
+prompt: |
+  Do: per test row: row index, outcome, prediction of the frozen model. No other columns.
+  Save: test_predictions.csv.
+inputs:
+- ref: train
+- ref: val
+- ref: prior_outputs
+- ref: test
+outputs:
+- name: test_predictions.csv
+  kind: table
+  required: true
+fact_candidates: []
+reads_test: true
+timeout_s: 300
+methods_text: Test predictions of the frozen model were saved.
+builtin: null
+role: supporting

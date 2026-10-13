@@ -1,0 +1,20 @@
+project_id: 01M4VEMC21N1JFDKJYBNKS4R83
+template_id: tabular_classification
+template_version: 0.3.0
+template_sha256: 3e05fa635f8ea5be67ae4c54d9611e2d47763ba64d846fd99ea2e31882a7d0d7
+config:
+  providers:
+    navigator_provider:
+      kind: openrouter
+      base_url: https://openrouter.ai/api/v1
+      api_key_env: MLCA_KEYRING_OPENROUTER_KEY
+      structured_outputs: null
+      request_cost_bound_usd: 0.01
+  roles:
+    navigator:
+      provider: navigator_provider
+      model: google/gemma-4-31b-it:free
+    worker:
+      provider: navigator_provider
+      model: google/gemma-4-31b-it:free
+  measurement_arm: worker

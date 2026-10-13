@@ -1,0 +1,25 @@
+# Content v0.2.0 (2026-10-06). Keep it short: see docs/templates.md, 'Writing content'.
+id: score_test
+event: test
+title: Score the frozen model on test rows
+params: {}
+prompt: |
+  Do: frozen model = best validation ROC AUC unless the author chose otherwise; ROC AUC with 95% bootstrap CI (1000 resamples, seed), PR AUC, balanced accuracy, sensitivity and specificity at the frozen threshold, Brier score.
+  Save: test_metrics.csv (metric, value, ci_low, ci_high).
+  Record: metric roc_auc on test with ci; fact test_roc_auc (source test_metrics.csv).
+inputs:
+- ref: train
+- ref: val
+- ref: prior_outputs
+- ref: test
+outputs:
+- name: test_metrics.csv
+  kind: table
+  required: true
+fact_candidates:
+- test_roc_auc
+reads_test: true
+timeout_s: 300
+methods_text: The frozen model and threshold were evaluated once on the locked test partition with bootstrap confidence
+  intervals.
+builtin: null

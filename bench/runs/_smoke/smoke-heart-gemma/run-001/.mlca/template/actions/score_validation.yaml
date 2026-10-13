@@ -1,0 +1,24 @@
+# Content v0.2.0 (2026-10-06). Keep it short: see docs/templates.md, 'Writing content'.
+id: score_validation
+event: validate
+title: Score candidates on validation rows
+params: {}
+prompt: |
+  Do: for each saved candidate model: ROC AUC, PR AUC, balanced accuracy, Brier score; threshold = Youden J on validation; sensitivity and specificity at it.
+  Save: validation_metrics.csv (model, metric, value, threshold).
+  Record: metric roc_auc on val for each model; facts best_model, best_val_roc_auc (source validation_metrics.csv).
+inputs:
+- ref: train
+- ref: val
+- ref: prior_outputs
+outputs:
+- name: validation_metrics.csv
+  kind: table
+  required: true
+fact_candidates:
+- best_model
+- best_val_roc_auc
+reads_test: false
+timeout_s: 300
+methods_text: Candidates were compared on validation rows by ROC AUC; the threshold was set by Youden's J on validation.
+builtin: null
