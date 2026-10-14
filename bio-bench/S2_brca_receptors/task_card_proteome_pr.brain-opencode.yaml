@@ -1,0 +1,49 @@
+mode: brain
+measurement_arm: worker
+guided: true
+data:
+- ../../data_prep/S2/proteome_pr.csv
+template: tabular_classification
+brief:
+  aim: Predict the recorded outcome using the declared features
+  target: label
+  unit: One subject
+  repeated_subjects: 'no'
+approval_policy:
+  confirm_subgoals: true
+  unlock_test: true
+  packages: []
+  note: DRAFT policy; author approval required before measured runs
+per_run_budget_usd: 1
+total_budget_usd: 30
+max_turns: 200
+config:
+  providers:
+    router:
+      kind: openrouter
+      api_key_env: OPENROUTER_API_KEY
+      request_cost_bound_usd: 0.01
+  roles:
+    navigator:
+      provider: router
+      model: thinkingmachines/inkling-small:free
+    worker:
+      provider: router
+      model: thinkingmachines/inkling-small:free
+custom_instructions:
+- event: preprocess
+  text: Before imputation, drop features with more than 20 % missing values, with
+    the fraction computed on training rows only.
+  when: before
+- event: model
+  text: Also fit a linear SVM, a random forest and an elastic-net logistic regression
+    on training rows.
+- event: validate
+  text: On training+validation rows only, repeated stratified 5-fold CV (5 repeats)
+    with the full pipeline inside each fold; report mean PR AUC, ROC AUC and Brier
+    per model.
+- event: validate
+  text: "Calibration curve and decision-curve analysis (net benefit vs treat-all/none,\
+    \ thresholds 0.05\u20130.95) on validation rows."
+client: opencode
+model: thinkingmachines/inkling-small:free

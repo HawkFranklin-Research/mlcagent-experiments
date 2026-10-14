@@ -1,0 +1,55 @@
+mode: brain
+measurement_arm: worker
+guided: true
+data:
+- ../../data_prep/S3/tcga_pam50.csv
+- ../../data_prep/S3/cptac_pam50.csv
+template: tabular_classification
+brief:
+  aim: Predict the recorded outcome using the declared features
+  target: PAM50
+  unit: One subject
+  repeated_subjects: 'no'
+approval_policy:
+  confirm_subgoals: true
+  unlock_test: true
+  packages: []
+  note: DRAFT policy; author approval required before measured runs
+per_run_budget_usd: 1
+total_budget_usd: 30
+max_turns: 200
+config:
+  providers:
+    router:
+      kind: openrouter
+      api_key_env: OPENROUTER_API_KEY
+      request_cost_bound_usd: 0.01
+  roles:
+    navigator:
+      provider: router
+      model: thinkingmachines/inkling-small:free
+    worker:
+      provider: router
+      model: thinkingmachines/inkling-small:free
+primary_data: tcga_pam50
+data_roles:
+  cptac_pam50: external
+custom_instructions:
+- event: eda
+  text: PCA of the training-eligible TCGA rows coloured by PAM50.
+- event: preprocess
+  text: per-cohort z-scaling
+  when: before
+- event: preprocess
+  text: ComBat with batch {TCGA, CPTAC}
+  when: before
+- event: model
+  text: Also fit a calibrated linear SVM and a random forest (class-balanced).
+- event: validate
+  text: Macro-F1, macro-AUPRC and per-class PR curves on validation rows.
+- event: test
+  text: 'Score the frozen model once on the external CPTAC cohort: accuracy, macro-F1,
+    balanced accuracy, macro-AUPRC, per-class AUPRC and confusion matrix; repeat for
+    harmonisation variants (b) and (c).'
+client: codex
+model: openai/gpt-6-luna

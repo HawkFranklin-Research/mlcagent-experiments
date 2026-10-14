@@ -1,0 +1,43 @@
+mode: driver
+measurement_arm: worker
+guided: true
+data:
+- ${SOURCE_DATA}/final results/hfr/Anemia/anemia.csv
+template: tabular_classification
+brief:
+  aim: Predict the recorded outcome using the declared features
+  target: Result
+  unit: One subject
+  repeated_subjects: 'no'
+approval_policy:
+  confirm_subgoals: true
+  unlock_test: true
+  packages: []
+  note: DRAFT policy; author approval required before measured runs
+per_run_budget_usd: 1
+total_budget_usd: 30
+max_turns: 200
+config:
+  providers:
+    router:
+      kind: openrouter
+      api_key_env: OPENROUTER_API_KEY
+      request_cost_bound_usd: 0.01
+  roles:
+    navigator:
+      provider: router
+      model: thinkingmachines/inkling-small:free
+    worker:
+      provider: router
+      model: thinkingmachines/inkling-small:free
+custom_instructions:
+- event: eda
+  text: Pairplot of Hemoglobin, MCV, MCH and MCHC coloured by Result; save one figure.
+- event: model
+  text: Also fit random forest, RBF-SVM and extra trees on training rows with the
+    same preprocessing.
+- event: validate
+  text: Calibration curves (10 bins) for all candidates and a learning curve (F1 vs
+    training size, 5 sizes) for logistic regression, on training/validation rows.
+- event: interpret
+  text: SHAP summary (beeswarm) for the frozen model on validation rows.

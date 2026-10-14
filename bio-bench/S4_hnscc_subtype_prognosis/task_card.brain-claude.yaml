@@ -1,0 +1,73 @@
+mode: brain
+measurement_arm: worker
+guided: true
+data:
+- ../../data_prep/S4/tcga_hnscc.csv
+- ../../data_prep/S4/cptac_hnscc.csv
+template: survival
+brief:
+  aim: Predict the recorded outcome using the declared features
+  target: Overall Survival (Months)
+  unit: One subject
+  repeated_subjects: 'no'
+  duration: Overall Survival (Months)
+  event_column: Overall Survival Status
+approval_policy:
+  confirm_subgoals: true
+  unlock_test: true
+  packages: []
+  note: DRAFT policy; author approval required before measured runs
+per_run_budget_usd: 1
+total_budget_usd: 30
+max_turns: 200
+config:
+  providers:
+    router:
+      kind: openrouter
+      api_key_env: OPENROUTER_API_KEY
+      request_cost_bound_usd: 0.01
+  roles:
+    navigator:
+      provider: router
+      model: thinkingmachines/inkling-small:free
+    worker:
+      provider: router
+      model: thinkingmachines/inkling-small:free
+primary_data: tcga_hnscc
+data_roles:
+  cptac_hnscc: external
+custom_instructions:
+- event: model
+  text: "Cluster the training patients' expression with KMeans, agglomerative (Ward)\
+    \ and Gaussian mixture for k = 2\u202610 (seed 42). For each, record silhouette,\
+    \ Calinski\u2013Harabasz, Davies\u2013Bouldin, KMeans inertia and the multi-group\
+    \ log-rank p on training survival. Save the table and the Kaplan\u2013Meier plots."
+- event: model
+  text: Select one configuration by <rule>, refit it, and assign every training patient
+    to a cluster; assign validation and test patients with the fitted model (predict,
+    or nearest centroid for agglomerative). Label the two largest clusters 0/1; others
+    are excluded from classification. Save the assignments.
+- event: model
+  text: "On training patients with labels 0/1: for each feature size in {2, 5, 8,\
+    \ 10, 12, 15, 20} and each classifier (LR, RF, SVM, KNN, GB): repeat N stratified\
+    \ 70/30 splits of the training patients; fit SelectKBest (f_classif) and the classifier\
+    \ on each inner training part only; record ROC AUC on each inner held-out part\
+    \ and the selected genes. Save all runs and a summary (mean \xB1 SD AUC per classifier\
+    \ \xD7 size)."
+- event: model
+  text: "Choose the signature by <rule> (highest mean AUC; ties \u2192 smaller size),\
+    \ refit selector and classifier on all training patients, and save the gene list\
+    \ and the model."
+- event: validate
+  text: "Apply the signature model to validation patients: predicted groups, Kaplan\u2013\
+    Meier, log-rank p, hazard ratio (Cox on the predicted group), and C-index of the\
+    \ predicted probability."
+- event: test
+  text: "Apply the frozen signature once to the TCGA test patients, then to the external\
+    \ CPTAC cohort (genes intersected): Kaplan\u2013Meier, log-rank p, hazard ratio\
+    \ with 95 % CI, group sizes."
+- event: interpret
+  text: "Rank the signature genes by importance; Kaplan\u2013Meier panel of training,\
+    \ validation, test and CPTAC side by side."
+client: claude
+model: anthropic/claude-haiku-5.5

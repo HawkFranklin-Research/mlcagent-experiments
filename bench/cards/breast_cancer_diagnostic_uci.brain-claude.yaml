@@ -1,0 +1,34 @@
+mode: brain
+measurement_arm: worker
+guided: true
+data:
+- ../../../mlca-revized/benchmarks/datasets/breast_cancer_diagnostic_uci.csv
+template: tabular_classification
+brief:
+  aim: Predict the recorded outcome using the declared features
+  target: Diagnosis
+  unit: One subject
+  repeated_subjects: 'no'
+approval_policy:
+  confirm_subgoals: true
+  unlock_test: true
+  packages: []
+  note: DRAFT policy; author approval required before measured runs
+per_run_budget_usd: 1
+total_budget_usd: 30
+max_turns: 200
+config:
+  providers:
+    router:
+      kind: openrouter
+      api_key_env: OPENROUTER_API_KEY
+      request_cost_bound_usd: 0.01
+  roles:
+    navigator:
+      provider: router
+      model: thinkingmachines/inkling-small:free
+    worker:
+      provider: router
+      model: thinkingmachines/inkling-small:free
+client: claude
+model: anthropic/claude-haiku-5.5
