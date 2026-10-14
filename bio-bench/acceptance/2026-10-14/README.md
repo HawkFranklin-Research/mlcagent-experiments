@@ -1,5 +1,7 @@
 # Offline reference acceptance — 14 October 2026
 
+> **Development test only, not an experiment.** The no-AI reference arm was dropped from all comparisons (author, 2026-10-14); these attempts are not reported as results.
+
 Development acceptance for work package 7: S1 and the six S2 receptor/modality cards.
 These are deterministic **no-AI reference-arm** attempts, not measured AI studies, a
 code freeze, or evidence that every submitted-study requirement is achieved.

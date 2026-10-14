@@ -1,21 +1,19 @@
 # DRAFT preregistration — author approval required
 
 This is preparation for evaluation, not an approved measurement protocol. No freeze or measured
-run is established by this file. Smoke and offline reference acceptance remain separate.
+run is established by this file. Smoke runs remain separate. There is no no-AI reference arm.
 
 ## Arms and tasks
 
 - Driver: MLCA Navigator and Worker, the six model IDs in `bench/models/openrouter_models_2026-10-13.csv`.
 - Brain: OpenCode on the same OpenRouter models; Claude Code on the declared Haiku model;
   Codex on the declared Luna model. Client versions, flags and reported actual models retained.
-- Reference: no AI, built-in actions only. Custom instructions not supported are not achieved;
-  their absence cannot be interpreted as an AI failure or silently filled with hand-written code.
 - Six bench tables, no custom instructions. Bio-bench S1, six S2 tasks, S3 and S4 follow STUDY.md.
 - Cards in bench/cards and bio-bench/S*/task_card*.yaml; source checksums in preparation manifests.
 
 ## Settings and repetition
 
-Proposed N=5 independent runs per worker/brain cell; one reference run per task. N remains DRAFT.
+Proposed N=5 independent runs per worker/brain cell. N remains DRAFT.
 Seed 42 for the declared split, 60/20/20; train-fitted preprocessing, validation-only selection
 and thresholds, one test unlock, sealed external cohort. Runtime dependencies and template hashes
 are frozen per project. Final code commit and model catalogue hash must be recorded before runs.

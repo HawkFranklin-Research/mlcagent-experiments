@@ -39,6 +39,4 @@ These go into `results/<model-slug>/run-NNN/`, as laid out in `../README.md`: sc
 
 **Today:** a `mlca bench` card with `guided: true` and the approvals as policy. CI-1–CI-4 need E2 to run unattended; until then, issue them in the TUI and record them.
 
-**Arms:**
-- `worker`: AI-written code, ≥ 5 models;
-- `reference`: the no-AI baseline, 1 run.
+**Arms:** `worker` (AI-written code), ≥ 5 models.

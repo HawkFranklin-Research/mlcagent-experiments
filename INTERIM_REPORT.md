@@ -1,5 +1,7 @@
 # MLCA v2 — interim local acceptance report
 
+> **Superseded** by `bio-bench/acceptance/2026-10-14/README.md`. Development test only; the reference arm is not part of the experiments.
+
 Snapshot: **14 October 2026, 03:26:17 UTC (08:56:17 IST)**. WP7 remains active; the main agent continues the offline acceptance jobs. This report records development evidence and does not establish a code freeze or measured AI-run results.
 
 Completed WP1–6 work is present in local Git history:

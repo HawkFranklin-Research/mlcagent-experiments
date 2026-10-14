@@ -44,6 +44,4 @@ No scaling, filtering or imputation happens here: those are data-dependent and b
 
 **Today:** 6 `mlca bench` cards (one per task); CI-1–CI-4 via TUI until E2 exists.
 
-**Arms:**
-- `worker`: ≥ 5 models;
-- `reference`: 1 run.
+**Arms:** `worker`, ≥ 5 models.

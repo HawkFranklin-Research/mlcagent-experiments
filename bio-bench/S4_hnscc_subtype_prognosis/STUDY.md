@@ -50,4 +50,4 @@ The script joins expression and survival per cohort, writes `tcga_hnscc.csv` (di
 
 ## Runs
 
-Not possible end to end until E1 (and E2 for unattended runs). Part A and B1–B5 can be run today in the TUI as custom instructions. Arms: `worker` ≥ 5 models; there is no `reference` arm for Part B, because the reference scripts cover built-in actions only.
+Not possible end to end until E1 (and E2 for unattended runs). Part A and B1–B5 can be run today in the TUI as custom instructions. Arms: `worker` ≥ 5 models.

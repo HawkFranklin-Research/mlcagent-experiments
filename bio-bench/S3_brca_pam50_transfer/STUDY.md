@@ -41,4 +41,4 @@ The script must:
 
 ## Runs
 
-**Not possible until E1 exists.** Then: `worker` ≥ 5 models; `reference` 1.
+**Not possible until E1 exists.** Then: `worker` ≥ 5 models.
