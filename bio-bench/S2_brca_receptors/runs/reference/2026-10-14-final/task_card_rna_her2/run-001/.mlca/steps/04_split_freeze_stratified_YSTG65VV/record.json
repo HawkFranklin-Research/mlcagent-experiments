@@ -1,0 +1,1 @@
+{"facts":[],"figures":[],"metrics":[],"outputs":[{"caption":"","kind":"report","name":"split.json","path":".mlca/steps/04_split_freeze_stratified_YSTG65VV/outputs/split.json","sha256":"5c50a9c08e50d8cc156d1915c945c1213a6b15022ab575e41babaf07df270320","size":1131}],"step_id":"04_split_freeze_stratified_YSTG65VV","wall_time_s":120.45390787500037}

@@ -1,0 +1,13 @@
+model,metric,value,threshold
+model.pkl,roc_auc,1.0,0.6895498020357214
+model.pkl,pr_auc,1.0,0.6895498020357214
+model.pkl,balanced_accuracy,1.0,0.6895498020357214
+model.pkl,brier,0.0049061717727316954,0.6895498020357214
+model.pkl,sensitivity,1.0,0.6895498020357214
+model.pkl,specificity,1.0,0.6895498020357214
+alternative_model.pkl,roc_auc,1.0,0.5905937938135685
+alternative_model.pkl,pr_auc,1.0,0.5905937938135685
+alternative_model.pkl,balanced_accuracy,1.0,0.5905937938135685
+alternative_model.pkl,brier,0.0070654563772282715,0.5905937938135685
+alternative_model.pkl,sensitivity,1.0,0.5905937938135685
+alternative_model.pkl,specificity,1.0,0.5905937938135685

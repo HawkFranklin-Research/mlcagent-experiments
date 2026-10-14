@@ -1,0 +1,1 @@
+{"facts":[],"figures":[],"metrics":[],"outputs":[{"caption":"","kind":"model","name":"model.pkl","path":".mlca/steps/07_model_train_logistic_8Z1BBQ90/outputs/model.pkl","sha256":"a81f003181c5fcd99d2a815491d09580bc3e65fc8a55b15f6a997c1f8b888d86","size":768991}],"step_id":"07_model_train_logistic_8Z1BBQ90","wall_time_s":6.886230735999561}

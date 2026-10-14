@@ -1,0 +1,1 @@
+{"facts":[],"figures":[],"metrics":[],"outputs":[{"caption":"","kind":"model","name":"alternative_model.pkl","path":".mlca/steps/08_model_train_alternative_H6XVM9DA/outputs/alternative_model.pkl","sha256":"9ed68e90a3590b7604812936a999070de3058fd03d42aced4644c1fdbba351b0","size":825953}],"step_id":"08_model_train_alternative_H6XVM9DA","wall_time_s":6.942739846999757}

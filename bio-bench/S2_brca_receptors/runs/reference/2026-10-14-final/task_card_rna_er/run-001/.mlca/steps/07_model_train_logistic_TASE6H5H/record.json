@@ -1,0 +1,1 @@
+{"facts":[],"figures":[],"metrics":[],"outputs":[{"caption":"","kind":"model","name":"model.pkl","path":".mlca/steps/07_model_train_logistic_TASE6H5H/outputs/model.pkl","sha256":"709bfe0e612a8dff5dd01bf1d204844dd03c23b03ab81128c8b185a29df37d68","size":1416857}],"step_id":"07_model_train_logistic_TASE6H5H","wall_time_s":9.707776836999983}

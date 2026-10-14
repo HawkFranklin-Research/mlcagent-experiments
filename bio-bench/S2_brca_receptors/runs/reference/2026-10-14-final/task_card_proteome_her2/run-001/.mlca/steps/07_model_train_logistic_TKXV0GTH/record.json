@@ -1,0 +1,1 @@
+{"facts":[],"figures":[],"metrics":[],"outputs":[{"caption":"","kind":"model","name":"model.pkl","path":".mlca/steps/07_model_train_logistic_TKXV0GTH/outputs/model.pkl","sha256":"fc664557ea8d689a7c86d2515203561b6b553afc1e91e0b7964eacfdce6d89d4","size":767452}],"step_id":"07_model_train_logistic_TKXV0GTH","wall_time_s":6.793233125001279}

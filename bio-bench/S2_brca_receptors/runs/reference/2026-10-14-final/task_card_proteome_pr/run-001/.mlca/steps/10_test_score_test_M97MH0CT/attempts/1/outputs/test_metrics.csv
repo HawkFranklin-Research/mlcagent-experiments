@@ -1,0 +1,7 @@
+metric,value,ci_low,ci_high
+roc_auc,0.9199999999999999,0.785689484126984,1.0
+pr_auc,0.9528371628371628,,
+balanced_accuracy,0.8,,
+brier,0.09802377391747168,,
+sensitivity,0.6,,
+specificity,1.0,,

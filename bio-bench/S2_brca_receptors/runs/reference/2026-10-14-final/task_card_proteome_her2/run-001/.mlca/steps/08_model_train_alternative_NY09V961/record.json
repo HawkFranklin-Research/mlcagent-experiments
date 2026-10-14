@@ -1,0 +1,1 @@
+{"facts":[],"figures":[],"metrics":[],"outputs":[{"caption":"","kind":"model","name":"alternative_model.pkl","path":".mlca/steps/08_model_train_alternative_NY09V961/outputs/alternative_model.pkl","sha256":"27834c2c449163ff95f6f2efe2a2b90d223d897e7246c5e181c803c58bfee879","size":823513}],"step_id":"08_model_train_alternative_NY09V961","wall_time_s":6.907378587999119}

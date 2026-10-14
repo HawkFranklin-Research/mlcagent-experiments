@@ -1,0 +1,1 @@
+{"facts": [], "fits": [{"estimator": "SelectKBest", "index_sha256": "6ac3426a11cbb7e2011af3c527c29292cf73e1cf64927516c011281999fabb19", "partition": "train"}], "metrics": [], "outputs": [{"caption": "", "kind": "model", "name": "selector.pkl"}]}

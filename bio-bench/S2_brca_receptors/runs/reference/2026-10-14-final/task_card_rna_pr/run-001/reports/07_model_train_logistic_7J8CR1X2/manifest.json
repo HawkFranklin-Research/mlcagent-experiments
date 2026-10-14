@@ -1,0 +1,1 @@
+{"facts": [], "fits": [{"estimator": "Pipeline", "index_sha256": "b32c857c05c4cc22224d160a9350d241581d3bb3a9bb87504eae9acd9603cd28", "partition": "train"}], "metrics": [], "outputs": [{"caption": "", "kind": "model", "name": "model.pkl"}]}

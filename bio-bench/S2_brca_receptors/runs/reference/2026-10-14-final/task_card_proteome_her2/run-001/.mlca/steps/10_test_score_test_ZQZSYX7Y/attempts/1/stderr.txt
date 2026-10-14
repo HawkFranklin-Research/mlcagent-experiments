@@ -1,0 +1,116 @@
+/home/prime/.cache/mlca-wp7/2026-10-14-final/full-runs/S2_brca_receptors/task_card_proteome_her2/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/metrics/_ranking.py:469: UndefinedMetricWarning: Only one class is present in y_true. ROC AUC score is not defined in that case.
+  warnings.warn(
+/home/prime/.cache/mlca-wp7/2026-10-14-final/full-runs/S2_brca_receptors/task_card_proteome_her2/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/metrics/_ranking.py:469: UndefinedMetricWarning: Only one class is present in y_true. ROC AUC score is not defined in that case.
+  warnings.warn(
+/home/prime/.cache/mlca-wp7/2026-10-14-final/full-runs/S2_brca_receptors/task_card_proteome_her2/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/metrics/_ranking.py:469: UndefinedMetricWarning: Only one class is present in y_true. ROC AUC score is not defined in that case.
+  warnings.warn(
+/home/prime/.cache/mlca-wp7/2026-10-14-final/full-runs/S2_brca_receptors/task_card_proteome_her2/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/metrics/_ranking.py:469: UndefinedMetricWarning: Only one class is present in y_true. ROC AUC score is not defined in that case.
+  warnings.warn(
+/home/prime/.cache/mlca-wp7/2026-10-14-final/full-runs/S2_brca_receptors/task_card_proteome_her2/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/metrics/_ranking.py:469: UndefinedMetricWarning: Only one class is present in y_true. ROC AUC score is not defined in that case.
+  warnings.warn(
+/home/prime/.cache/mlca-wp7/2026-10-14-final/full-runs/S2_brca_receptors/task_card_proteome_her2/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/metrics/_ranking.py:469: UndefinedMetricWarning: Only one class is present in y_true. ROC AUC score is not defined in that case.
+  warnings.warn(
+/home/prime/.cache/mlca-wp7/2026-10-14-final/full-runs/S2_brca_receptors/task_card_proteome_her2/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/metrics/_ranking.py:469: UndefinedMetricWarning: Only one class is present in y_true. ROC AUC score is not defined in that case.
+  warnings.warn(
+/home/prime/.cache/mlca-wp7/2026-10-14-final/full-runs/S2_brca_receptors/task_card_proteome_her2/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/metrics/_ranking.py:469: UndefinedMetricWarning: Only one class is present in y_true. ROC AUC score is not defined in that case.
+  warnings.warn(
+/home/prime/.cache/mlca-wp7/2026-10-14-final/full-runs/S2_brca_receptors/task_card_proteome_her2/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/metrics/_ranking.py:469: UndefinedMetricWarning: Only one class is present in y_true. ROC AUC score is not defined in that case.
+  warnings.warn(
+/home/prime/.cache/mlca-wp7/2026-10-14-final/full-runs/S2_brca_receptors/task_card_proteome_her2/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/metrics/_ranking.py:469: UndefinedMetricWarning: Only one class is present in y_true. ROC AUC score is not defined in that case.
+  warnings.warn(
+/home/prime/.cache/mlca-wp7/2026-10-14-final/full-runs/S2_brca_receptors/task_card_proteome_her2/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/metrics/_ranking.py:469: UndefinedMetricWarning: Only one class is present in y_true. ROC AUC score is not defined in that case.
+  warnings.warn(
+/home/prime/.cache/mlca-wp7/2026-10-14-final/full-runs/S2_brca_receptors/task_card_proteome_her2/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/metrics/_ranking.py:469: UndefinedMetricWarning: Only one class is present in y_true. ROC AUC score is not defined in that case.
+  warnings.warn(
+/home/prime/.cache/mlca-wp7/2026-10-14-final/full-runs/S2_brca_receptors/task_card_proteome_her2/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/metrics/_ranking.py:469: UndefinedMetricWarning: Only one class is present in y_true. ROC AUC score is not defined in that case.
+  warnings.warn(
+/home/prime/.cache/mlca-wp7/2026-10-14-final/full-runs/S2_brca_receptors/task_card_proteome_her2/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/metrics/_ranking.py:469: UndefinedMetricWarning: Only one class is present in y_true. ROC AUC score is not defined in that case.
+  warnings.warn(
+/home/prime/.cache/mlca-wp7/2026-10-14-final/full-runs/S2_brca_receptors/task_card_proteome_her2/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/metrics/_ranking.py:469: UndefinedMetricWarning: Only one class is present in y_true. ROC AUC score is not defined in that case.
+  warnings.warn(
+/home/prime/.cache/mlca-wp7/2026-10-14-final/full-runs/S2_brca_receptors/task_card_proteome_her2/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/metrics/_ranking.py:469: UndefinedMetricWarning: Only one class is present in y_true. ROC AUC score is not defined in that case.
+  warnings.warn(
+/home/prime/.cache/mlca-wp7/2026-10-14-final/full-runs/S2_brca_receptors/task_card_proteome_her2/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/metrics/_ranking.py:469: UndefinedMetricWarning: Only one class is present in y_true. ROC AUC score is not defined in that case.
+  warnings.warn(
+/home/prime/.cache/mlca-wp7/2026-10-14-final/full-runs/S2_brca_receptors/task_card_proteome_her2/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/metrics/_ranking.py:469: UndefinedMetricWarning: Only one class is present in y_true. ROC AUC score is not defined in that case.
+  warnings.warn(
+/home/prime/.cache/mlca-wp7/2026-10-14-final/full-runs/S2_brca_receptors/task_card_proteome_her2/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/metrics/_ranking.py:469: UndefinedMetricWarning: Only one class is present in y_true. ROC AUC score is not defined in that case.
+  warnings.warn(
+/home/prime/.cache/mlca-wp7/2026-10-14-final/full-runs/S2_brca_receptors/task_card_proteome_her2/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/metrics/_ranking.py:469: UndefinedMetricWarning: Only one class is present in y_true. ROC AUC score is not defined in that case.
+  warnings.warn(
+/home/prime/.cache/mlca-wp7/2026-10-14-final/full-runs/S2_brca_receptors/task_card_proteome_her2/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/metrics/_ranking.py:469: UndefinedMetricWarning: Only one class is present in y_true. ROC AUC score is not defined in that case.
+  warnings.warn(
+/home/prime/.cache/mlca-wp7/2026-10-14-final/full-runs/S2_brca_receptors/task_card_proteome_her2/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/metrics/_ranking.py:469: UndefinedMetricWarning: Only one class is present in y_true. ROC AUC score is not defined in that case.
+  warnings.warn(
+/home/prime/.cache/mlca-wp7/2026-10-14-final/full-runs/S2_brca_receptors/task_card_proteome_her2/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/metrics/_ranking.py:469: UndefinedMetricWarning: Only one class is present in y_true. ROC AUC score is not defined in that case.
+  warnings.warn(
+/home/prime/.cache/mlca-wp7/2026-10-14-final/full-runs/S2_brca_receptors/task_card_proteome_her2/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/metrics/_ranking.py:469: UndefinedMetricWarning: Only one class is present in y_true. ROC AUC score is not defined in that case.
+  warnings.warn(
+/home/prime/.cache/mlca-wp7/2026-10-14-final/full-runs/S2_brca_receptors/task_card_proteome_her2/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/metrics/_ranking.py:469: UndefinedMetricWarning: Only one class is present in y_true. ROC AUC score is not defined in that case.
+  warnings.warn(
+/home/prime/.cache/mlca-wp7/2026-10-14-final/full-runs/S2_brca_receptors/task_card_proteome_her2/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/metrics/_ranking.py:469: UndefinedMetricWarning: Only one class is present in y_true. ROC AUC score is not defined in that case.
+  warnings.warn(
+/home/prime/.cache/mlca-wp7/2026-10-14-final/full-runs/S2_brca_receptors/task_card_proteome_her2/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/metrics/_ranking.py:469: UndefinedMetricWarning: Only one class is present in y_true. ROC AUC score is not defined in that case.
+  warnings.warn(
+/home/prime/.cache/mlca-wp7/2026-10-14-final/full-runs/S2_brca_receptors/task_card_proteome_her2/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/metrics/_ranking.py:469: UndefinedMetricWarning: Only one class is present in y_true. ROC AUC score is not defined in that case.
+  warnings.warn(
+/home/prime/.cache/mlca-wp7/2026-10-14-final/full-runs/S2_brca_receptors/task_card_proteome_her2/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/metrics/_ranking.py:469: UndefinedMetricWarning: Only one class is present in y_true. ROC AUC score is not defined in that case.
+  warnings.warn(
+/home/prime/.cache/mlca-wp7/2026-10-14-final/full-runs/S2_brca_receptors/task_card_proteome_her2/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/metrics/_ranking.py:469: UndefinedMetricWarning: Only one class is present in y_true. ROC AUC score is not defined in that case.
+  warnings.warn(
+/home/prime/.cache/mlca-wp7/2026-10-14-final/full-runs/S2_brca_receptors/task_card_proteome_her2/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/metrics/_ranking.py:469: UndefinedMetricWarning: Only one class is present in y_true. ROC AUC score is not defined in that case.
+  warnings.warn(
+/home/prime/.cache/mlca-wp7/2026-10-14-final/full-runs/S2_brca_receptors/task_card_proteome_her2/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/metrics/_ranking.py:469: UndefinedMetricWarning: Only one class is present in y_true. ROC AUC score is not defined in that case.
+  warnings.warn(
+/home/prime/.cache/mlca-wp7/2026-10-14-final/full-runs/S2_brca_receptors/task_card_proteome_her2/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/metrics/_ranking.py:469: UndefinedMetricWarning: Only one class is present in y_true. ROC AUC score is not defined in that case.
+  warnings.warn(
+/home/prime/.cache/mlca-wp7/2026-10-14-final/full-runs/S2_brca_receptors/task_card_proteome_her2/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/metrics/_ranking.py:469: UndefinedMetricWarning: Only one class is present in y_true. ROC AUC score is not defined in that case.
+  warnings.warn(
+/home/prime/.cache/mlca-wp7/2026-10-14-final/full-runs/S2_brca_receptors/task_card_proteome_her2/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/metrics/_ranking.py:469: UndefinedMetricWarning: Only one class is present in y_true. ROC AUC score is not defined in that case.
+  warnings.warn(
+/home/prime/.cache/mlca-wp7/2026-10-14-final/full-runs/S2_brca_receptors/task_card_proteome_her2/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/metrics/_ranking.py:469: UndefinedMetricWarning: Only one class is present in y_true. ROC AUC score is not defined in that case.
+  warnings.warn(
+/home/prime/.cache/mlca-wp7/2026-10-14-final/full-runs/S2_brca_receptors/task_card_proteome_her2/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/metrics/_ranking.py:469: UndefinedMetricWarning: Only one class is present in y_true. ROC AUC score is not defined in that case.
+  warnings.warn(
+/home/prime/.cache/mlca-wp7/2026-10-14-final/full-runs/S2_brca_receptors/task_card_proteome_her2/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/metrics/_ranking.py:469: UndefinedMetricWarning: Only one class is present in y_true. ROC AUC score is not defined in that case.
+  warnings.warn(
+/home/prime/.cache/mlca-wp7/2026-10-14-final/full-runs/S2_brca_receptors/task_card_proteome_her2/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/metrics/_ranking.py:469: UndefinedMetricWarning: Only one class is present in y_true. ROC AUC score is not defined in that case.
+  warnings.warn(
+/home/prime/.cache/mlca-wp7/2026-10-14-final/full-runs/S2_brca_receptors/task_card_proteome_her2/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/metrics/_ranking.py:469: UndefinedMetricWarning: Only one class is present in y_true. ROC AUC score is not defined in that case.
+  warnings.warn(
+/home/prime/.cache/mlca-wp7/2026-10-14-final/full-runs/S2_brca_receptors/task_card_proteome_her2/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/metrics/_ranking.py:469: UndefinedMetricWarning: Only one class is present in y_true. ROC AUC score is not defined in that case.
+  warnings.warn(
+/home/prime/.cache/mlca-wp7/2026-10-14-final/full-runs/S2_brca_receptors/task_card_proteome_her2/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/metrics/_ranking.py:469: UndefinedMetricWarning: Only one class is present in y_true. ROC AUC score is not defined in that case.
+  warnings.warn(
+Traceback (most recent call last):
+  File "/home/prime/.cache/mlca-wp7/2026-10-14-final/full-runs/S2_brca_receptors/task_card_proteome_her2/run-001/.mlca/steps/10_test_score_test_ZQZSYX7Y/attempts/1/script.py", line 3, in <module>
+    run("score_test")
+    ~~~^^^^^^^^^^^^^^
+  File "/home/prime/.cache/mlca-wp7/2026-10-14-final/full-runs/S2_brca_receptors/task_card_proteome_her2/run-001/.mlca/env/lib/python3.13/site-packages/mlca_runtime/reference.py", line 359, in run
+    rt.record_metric(metric, value, "test", ci)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/prime/.cache/mlca-wp7/2026-10-14-final/full-runs/S2_brca_receptors/task_card_proteome_her2/run-001/.mlca/env/lib/python3.13/site-packages/mlca_runtime/__init__.py", line 114, in record_metric
+    _record("metrics", {"name": name, "value": float(value), "split": split, "ci": ci})
+    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/prime/.cache/mlca-wp7/2026-10-14-final/full-runs/S2_brca_receptors/task_card_proteome_her2/run-001/.mlca/env/lib/python3.13/site-packages/mlca_runtime/__init__.py", line 53, in _record
+    json.dump(data, stream, allow_nan=False, sort_keys=True)
+    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/prime/miniconda3/lib/python3.13/json/__init__.py", line 181, in dump
+    for chunk in iterable:
+                 ^^^^^^^^
+  File "/home/prime/miniconda3/lib/python3.13/json/encoder.py", line 435, in _iterencode
+    yield from _iterencode_dict(o, _current_indent_level)
+  File "/home/prime/miniconda3/lib/python3.13/json/encoder.py", line 409, in _iterencode_dict
+    yield from chunks
+  File "/home/prime/miniconda3/lib/python3.13/json/encoder.py", line 328, in _iterencode_list
+    yield from chunks
+  File "/home/prime/miniconda3/lib/python3.13/json/encoder.py", line 409, in _iterencode_dict
+    yield from chunks
+  File "/home/prime/miniconda3/lib/python3.13/json/encoder.py", line 319, in _iterencode_list
+    yield buf + _floatstr(value)
+                ~~~~~~~~~^^^^^^^
+  File "/home/prime/miniconda3/lib/python3.13/json/encoder.py", line 242, in floatstr
+    raise ValueError(
+        "Out of range float values are not JSON compliant: " +
+        repr(o))
+ValueError: Out of range float values are not JSON compliant: nan

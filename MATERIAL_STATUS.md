@@ -11,3 +11,12 @@ Prepared tables and local path configuration remain git-ignored. Preregistration
 Scientific choices and source citations listed in STUDY.md remain author items before measured
 runs; placeholder instructions must not be interpreted as permission for model-chosen methods.
 No live model calls, push, remote creation, upload or publication.
+
+## WP7 offline acceptance finished
+
+Seven reference development attempts recorded zero model requests. S1 core completed with
+four custom instructions not achieved; six S2 attempts failed (four interpretation timeouts,
+two HER2 bootstrap NaN errors). Their exports passed the manifest hash/exclusion audit.
+Experiments suite: 7 passed; code suite: 296 passed, 1 skipped. No measured AI run or freeze.
+See [acceptance report](bio-bench/acceptance/2026-10-14/README.md) and the timestamped
+[interim report](INTERIM_REPORT.md). Draft scientific choices remain outstanding.
