@@ -14,3 +14,16 @@ The cards and PREREGISTRATION.md are DRAFT, not authorization for measured or li
 scientific placeholders before measured runs. Record both original and resolved task-card hashes.
 Source inputs are never modified. Preparation does not fit preprocessing or select predictors.
 Within-study repeated splits remain custom instructions; no E3 built-in is introduced.
+
+## External scoring (work order 04)
+
+`score_inference.py` compares recorded setup decisions with researcher metadata.
+It reports exact metadata agreement, not proof that other scientific aims are invalid.
+
+`score_unsupervised.py` joins original hidden labels to local per-row outputs by
+row identifier after the MLCA run. Clustering uses test ARI/NMI. Representation
+uses a fixed external linear probe fitted on training embeddings and labels and
+scored on test embeddings. The outputs explicitly identify this as external
+scoring, not agent work. Hidden labels must never be registered with MLCA.
+
+Use fresh `--out` paths; the scorers never overwrite a result or launch an agent.
