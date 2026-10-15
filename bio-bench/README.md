@@ -1,5 +1,7 @@
 # bio-bench: biomedical studies with MLCA v2
 
+> **15 October 2026: this folder is the evaluation (Phase 2)** of the study design in `../README.md`. The frozen agent receives each study's prepared dataset and a short **starting brief**, written in advance and kept verbatim with its word count. Arm A runs autonomously; arm B has a human on the loop who may halt any decision. Open and closed models; N runs per study and model, set in the preregistration. Nothing here is run before the freeze. The step-by-step protocols in each `STUDY.md` (built-in choices plus scripted custom instructions) were written earlier: their data preparation and study aims remain, the scripted-step form is stopped. How specific the briefs may be is still to be decided. The text below describes the earlier setup.
+
 Four studies, ordered from mostly built-in choices to mostly custom instructions. Each `STUDY.md` gives the complete protocol: data and preparation, every event step (built-in choice or custom instruction, with draft wording), decision points, outputs and runs.
 
 | Study | Task | Workflow | Runs today? |

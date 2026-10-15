@@ -1,5 +1,7 @@
 # S3 · BRCA PAM50 subtype transfer, TCGA → CPTAC
 
+> **15 October 2026:** this study is part of the evaluation (Phase 2) in `../../README.md`. The frozen agent receives the prepared data and a short starting brief; the scripted step-by-step protocol below is stopped, while its data preparation and aims remain.
+
 **Role:** the cross-cohort study.**Both cohorts have their own published PAM50 labels**, so training and external evaluation are independent. It is a multiclass study on built-in choices, plus custom instructions for the harmonisation variants.
 
 **Needs E1** (external cohort) in MLCA v2.

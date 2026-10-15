@@ -1,5 +1,7 @@
 # S2 · CPTAC-BRCA receptor status: RNA vs proteome
 
+> **15 October 2026:** this study is part of the evaluation (Phase 2) in `../../README.md`. The frozen agent receives the prepared data and a short starting brief; the scripted step-by-step protocol below is stopped, while its data preparation and aims remain.
+
 **Role:** a second guided study, on high-dimensional omics. It has 6 tasks (ER, PR, HER2 × RNA, proteome) run as 6 projects. A few custom instructions add cross-validation on training rows and decision curves.
 
 

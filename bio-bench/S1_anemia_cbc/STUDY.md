@@ -1,5 +1,7 @@
 # S1 · CBC anemia classification
 
+> **15 October 2026:** this study is part of the evaluation (Phase 2) in `../../README.md`. The frozen agent receives the prepared data and a short starting brief; the scripted step-by-step protocol below is stopped, while its data preparation and aims remain.
+
 **Role in the revised paper:** the first and simplest study. It runs almost entirely on MLCA's built-in choices (guided autopilot), with 2–3 custom instructions for figures the template does not produce.
 
 

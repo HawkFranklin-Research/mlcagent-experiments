@@ -2,7 +2,17 @@
 
 This repository holds MLCA v2 (`mlcagent`) evaluation runs: task cards, study protocols, data-preparation scripts, the code MLCA's models generated, logs, token and cost records, metrics and figures. MLCA's code is in `../mlca-revized/` (`HawkFranklin-Research/mlcagent`).
 
-## Two benchmarks, kept apart
+## Study design (15 October 2026): read first
+
+The design is in `README.md` ("Study design"). Rules that follow from it:
+- **`bench/` is the development set** (about 10 public tables) where the agent's rails are built, plus **2–3 held-out tables** that are not run, smoke-tested or opened by the agent before the freeze.
+- **Rails ledger:** every rail added during development records the failure that caused it (dataset, model, run path, step, failure category) and the commit that added it.
+- **Freeze before held-out and evaluation runs:** version, rails and prompts tagged; `PREREGISTRATION.md` committed. No change to the agent after the freeze; a later fix is a later version, and its runs are labelled as such.
+- **`bio-bench/` is the evaluation** (Phase 2): the frozen agent receives each dataset with a short starting brief, written in advance and kept verbatim with its word count. Arm A autonomous; arm B human-on-the-loop (halts and overrides recorded).
+- Survival analysis is not part of development; it appears only in evaluation.
+- Unfinished parts of the earlier plans are stopped. The step-by-step `STUDY.md` protocols are kept for their data preparation and aims.
+
+## Two benchmarks, kept apart (earlier description)
 
 - **`bench/`** runs `mlca bench`: standard public tables (`../mlca-revized/benchmarks/datasets/`), built-in templates and choices only, no custom instructions. It measures MLCA as an agent.
 - **`bio-bench/`** runs the biomedical studies S1–S4: built-in choices first, then custom instructions. It measures both the science and the agent.

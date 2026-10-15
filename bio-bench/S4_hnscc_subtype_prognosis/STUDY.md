@@ -1,5 +1,7 @@
 # S4 · HNSCC subtype discovery → prognostic signature → CPTAC validation
 
+> **15 October 2026:** this study is part of the evaluation (Phase 2) in `../../README.md`. The frozen agent receives the prepared data and a short starting brief; the scripted step-by-step protocol below is stopped, while its data preparation and aims remain.
+
 **Role:** the last and most custom study. MLCA runs the guided workflow up to a Cox baseline. The analysis then continues as a **sequence of custom instructions** (clustering, derived labels, repeated classifier screening, survival validation), each one checked against its event's scope, logged, and run as an AI-written script. It shows what custom instructions add to the guided workflow, and it is the flagship `bio-bench` card.
 
 **Needs E1** (external cohort) in MLCA v2.

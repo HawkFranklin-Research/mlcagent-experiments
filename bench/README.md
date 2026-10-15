@@ -1,5 +1,7 @@
 # bench: `mlca bench` on standard public tables
 
+> **15 October 2026: this folder becomes the development set** (study design in `../README.md`; implementation in `../../mlca-revized/plan.md`, "Organized plan"). About 10 public tables, simple and complex, covering classification (binary, multiclass, multi-label), regression, clustering and representation learning, are run autonomously with open and closed models. Each failure is analysed and fixed as a rail, logged in a rails ledger with the failure that caused it. **2–3 held-out tables** are kept apart and run only after the freeze. The two survival tables leave development (survival is evaluated outside the rails). The table list and the folder name are still to be decided. The runs and notes already here (smoke runs, `validation/2026-10-15-nemotron/`) are development runs and stay as they are. The text below describes the earlier setup.
+
 Measures MLCA v2 as an agent: completion, failures by category, automatic recovery, Navigator fallbacks, human and policy interventions, time split, model calls, tokens and cost. It uses built-in templates and choices only (no custom instructions), on the six tables in `../../mlca-revized/benchmarks/datasets/`.
 
 | Path | What |
