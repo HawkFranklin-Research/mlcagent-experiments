@@ -1,0 +1,1 @@
+{"facts": [], "fits": [], "metrics": [{"ci": null, "name": "input_rows", "split": "external", "value": 541909.0}, {"ci": null, "name": "dropped_missing_group", "split": "external", "value": 135080.0}, {"ci": null, "name": "entities", "split": "external", "value": 4372.0}, {"ci": null, "name": "return_rows", "split": "external", "value": 8905.0}], "outputs": []}

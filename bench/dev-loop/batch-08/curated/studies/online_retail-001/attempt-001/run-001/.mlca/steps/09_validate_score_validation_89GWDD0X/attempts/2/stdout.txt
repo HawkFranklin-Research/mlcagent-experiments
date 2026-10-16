@@ -1,0 +1,3 @@
+features: 9  val rows: 874
+val silhouette: baseline=0.9073, alternative=0.4850
+frozen: baseline  silhouette=0.9073

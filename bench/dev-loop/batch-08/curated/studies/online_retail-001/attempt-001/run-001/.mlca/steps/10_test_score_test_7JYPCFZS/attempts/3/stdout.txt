@@ -1,0 +1,3 @@
+Model: baseline
+Test silhouette: 0.9299
+Assignments: 3498

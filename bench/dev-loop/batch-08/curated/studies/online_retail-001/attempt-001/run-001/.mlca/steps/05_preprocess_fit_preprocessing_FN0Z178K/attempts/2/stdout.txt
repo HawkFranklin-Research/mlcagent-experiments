@@ -1,0 +1,3 @@
+dropped high-cardinality: ['InvoiceDate']
+features=9 num=8 cat=0
+encoded_width=8

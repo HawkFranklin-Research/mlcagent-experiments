@@ -1,0 +1,5 @@
+Input rows: 541909, group: CustomerID, repeated: True
+Placeholders: 1 columns, 47 tokens
+Returns: 8905 rows with negative amount aggregated separately
+Entities: 4372
+Saved entities.parquet

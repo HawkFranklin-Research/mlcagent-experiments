@@ -1,0 +1,1 @@
+{"facts": [], "fits": [{"columns": ["frequency", "distinct_invoices", "monetary_positive", "monetary_negative", "monetary_net", "monetary_mean", "quantity_total", "InvoiceDate", "recency_days"], "estimator": "Pipeline", "index_sha256": "173abdd4a052bb592b33c239d1fc79e58e3288cdea782202a6f6c90920d374ef", "partition": "train"}], "metrics": [], "outputs": []}
