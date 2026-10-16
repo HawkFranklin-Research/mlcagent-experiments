@@ -7,7 +7,7 @@ Development evidence only; no freeze or held-out/biomedical evaluation.
   receives no manifest, expected task, targets or traps. Only evaluation-only
   column names are passed to registration through `exclude_columns`.
 - Driver mode; Navigator and Worker: `openrouter/free`; temperature 0;
-  maximum output 16,384 tokens; request timeout 90 seconds; 16 requests/minute.
+  maximum output 16,384 tokens; SDK I/O timeout 90 seconds (not a strict wall-clock deadline); 16 requests/minute.
   No Inspector, paid model, alternate provider or model fallback list.
 - Fresh projects, autonomous window zero, existing default engine/script limits,
   three Worker attempts, bounded provider cooldowns. Sandbox A is required.
