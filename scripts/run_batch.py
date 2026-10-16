@@ -68,7 +68,7 @@ def source_identity():
     }
 
 
-def validate_stage(folder, identity, model, selected, all_ids, replicates, rails_off):
+def validate_stage(folder, identity, model, selected, all_ids, replicates, rails_off, reasoning_effort=None):
     """Require recorded successes before acceptance, and acceptance before ablation."""
     prior = []
     for path in sorted(folder.parent.glob("batch-[0-9][0-9]/batch.json")):
@@ -95,6 +95,7 @@ def validate_stage(folder, identity, model, selected, all_ids, replicates, rails
             and state.get("rails_enabled")
             and state.get("code_commit") == identity["code_commit"]
             and state.get("rails") == identity["rails"]
+            and state.get("reasoning_effort") == reasoning_effort
             and len(state["jobs"]) == 3 * len(all_ids)
             and all(j.get("result", {}).get("success") for j in state["jobs"])
             for state in prior
@@ -374,6 +375,7 @@ def main():
     parser.add_argument("--batch", type=int, choices=range(1, 11))
     parser.add_argument("--out", type=Path, required=True)
     parser.add_argument("--model")
+    parser.add_argument("--reasoning-effort", choices=["none", "low", "medium", "high", "max"])
     parser.add_argument("--concurrency", type=int, default=6, choices=range(1, 7))
     parser.add_argument("--deadline-s", type=float, default=5400)
     parser.add_argument("--rpm", type=float, default=60)
@@ -437,6 +439,7 @@ def main():
                 set(by_id),
                 args.replicates,
                 args.rails_off,
+                args.reasoning_effort,
             )
             started = folder.parent / "batch-start.json"
             if not started.exists():
@@ -446,6 +449,7 @@ def main():
                 "batch": args.batch,
                 "started_at": utc(),
                 "model": args.model,
+                "reasoning_effort": args.reasoning_effort,
                 "concurrency": args.concurrency,
                 "deadline_s": args.deadline_s,
                 "rpm": args.rpm,
@@ -609,6 +613,7 @@ def main():
                                 "model": state["model"],
                                 "temperature": 0,
                                 "max_output_tokens": 16384,
+                                **({"reasoning_effort": state["reasoning_effort"]} if state.get("reasoning_effort") else {}),
                             }
                             for role in ["navigator", "worker"]
                         },
