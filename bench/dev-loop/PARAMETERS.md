@@ -97,3 +97,17 @@ hand-written reference analysis is substituted. Completed studies are not rerun
 until acceptance. Six studies in parallel; one large atonce; same pacing,
 limits, full-size tables and sandboxA. Cache storage costs and byte-verified
 archival are reported separately from model compute and model repairs.
+
+Final launch gate for the consolidated source5e1dcfc:445 passed,1 skipped,
+97 test files across four isolated offline processes; experiments18 passed.
+The earlier partial gate was superseded before the final collector correction;
+its interrupted logs are retained, never counted as the passing gate.
+
+Finished-study fingerprint caches may be archived during the batch only after
+worker exit and external scoring. For the large closed cache, private tmpfs
+scratch avoids a second disk-sized peak: verify uncompressed SHA256, reclaim
+the redundant closed cache only after a verified archive exists, copy the archive
+to durable private storage, verify its compressed hash and fsync before removing
+scratch. Scientific inputs/outputs/logs/models/vaults are never removed. Check
+RAM headroom first; record staging and restoration hashes in the batch's
+private-cache-archives.json. Source and generation remain fixed during jobs.
