@@ -1,0 +1,4 @@
+Train shape: (4293, 26)
+Features: 22
+Targets: ['Family', 'Genus', 'Species']
+Saved alternative_model.pkl

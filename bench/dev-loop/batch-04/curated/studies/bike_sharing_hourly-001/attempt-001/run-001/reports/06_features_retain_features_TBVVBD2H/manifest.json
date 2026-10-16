@@ -1,0 +1,1 @@
+{"facts": [], "fits": [{"columns": ["season", "yr", "mnth", "hr", "holiday", "weekday", "workingday", "weathersit", "temp", "atemp", "hum", "windspeed"], "estimator": "SelectKBest", "index_sha256": "2a5b8523d997ac9395fa0a5f158c112d6f786e548722af4dbb9059730a24d40e", "partition": "train"}], "metrics": [], "outputs": [{"caption": "", "kind": "model", "name": "selector_all.pkl"}]}

@@ -1,0 +1,1 @@
+{"facts":[],"figures":[],"fits":[],"metrics":[],"outputs":[{"caption":"","kind":"report","name":"split.json","path":".mlca/steps/04_split_freeze_group_KMMM642G/outputs/split.json","sha256":"64884151628a73dd82b4b0801729a1463d13bf81d27f3f906464570f233264d1","size":1124}],"step_id":"04_split_freeze_group_KMMM642G","wall_time_s":1.0594437649997417}

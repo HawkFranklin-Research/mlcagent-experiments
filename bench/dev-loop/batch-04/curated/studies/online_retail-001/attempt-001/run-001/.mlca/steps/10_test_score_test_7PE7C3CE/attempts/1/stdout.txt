@@ -1,0 +1,5 @@
+Selected model: baseline
+Test silhouette: 0.9591
+Test CH: 1196.6146
+Test DB: 0.1720
+Assignments saved: 3498 rows

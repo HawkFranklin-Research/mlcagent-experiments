@@ -1,0 +1,4 @@
+Train rows: 4293
+Feature columns: 22
+Transformed shape: (4293, 22)
+Saved selector_all.pkl

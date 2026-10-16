@@ -1,0 +1,3 @@
+val shape: (3478, 14)
+best model: alternative
+poisson_deviance: 14.2027

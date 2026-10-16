@@ -1,0 +1,3 @@
+Val rows: 42, silhouette sample_size: 42
+Primary metric: silhouette
+Best model: baseline with silhouette=0.5341

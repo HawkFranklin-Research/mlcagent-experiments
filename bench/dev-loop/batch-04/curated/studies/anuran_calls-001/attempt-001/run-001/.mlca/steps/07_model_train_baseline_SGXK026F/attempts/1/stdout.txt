@@ -1,0 +1,4 @@
+Train shape: (4293, 26)
+Feature columns: 22
+Targets: ['Family', 'Genus', 'Species']
+Pipeline steps: ['preprocessor', 'selector', 'model']

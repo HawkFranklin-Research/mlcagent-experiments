@@ -1,0 +1,54 @@
+[
+  {
+    "source": "studies/optical_digits-001/attempt-001/run-001/.mlca/private/row_fingerprints",
+    "archive": "studies/optical_digits-001/attempt-001/run-001/.mlca/private/row_fingerprints.zst",
+    "sha256_uncompressed": "3a462810a02ea913dc1e0a3535a432a6f00c8c724ff58f9d9c497fceb4638517",
+    "source_bytes": 223535104,
+    "archive_bytes": 14882078,
+    "byte_verified": true,
+    "ts": "2026-10-16T10:48:07.447082+00:00",
+    "duration_s": 0.6652468819956994,
+    "restore": "zstd -d --keep <archive> -o <source>; verify uncompressed SHA-256 before opening the project",
+    "storage_staging": "same-filesystem",
+    "scope": "Lossless storage only after study ended; no data, vault, log or output removed."
+  },
+  {
+    "source": "studies/bike_sharing_hourly-001/attempt-001/run-001/.mlca/private/row_fingerprints",
+    "archive": "studies/bike_sharing_hourly-001/attempt-001/run-001/.mlca/private/row_fingerprints.zst",
+    "sha256_uncompressed": "856542db2e919a844b4c39379adad8f37f07bc254a3d208e7e34f71744418da9",
+    "source_bytes": 361910272,
+    "archive_bytes": 33791060,
+    "byte_verified": true,
+    "ts": "2026-10-16T10:56:28.743874+00:00",
+    "duration_s": 1.1918480539970915,
+    "restore": "zstd -d --keep <archive> -o <source>; verify uncompressed SHA-256 before opening the project",
+    "storage_staging": "same-filesystem",
+    "scope": "Lossless storage only after study ended; no data, vault, log or output removed."
+  },
+  {
+    "source": "studies/anuran_calls-001/attempt-001/run-001/.mlca/private/row_fingerprints",
+    "archive": "studies/anuran_calls-001/attempt-001/run-001/.mlca/private/row_fingerprints.zst",
+    "sha256_uncompressed": "314fa34e5ce8ff08d3f16ee748d345cafd6c22c9e37c5284ef1fcc9778016e5c",
+    "source_bytes": 249368576,
+    "archive_bytes": 57104184,
+    "byte_verified": true,
+    "ts": "2026-10-16T11:06:59.721687+00:00",
+    "duration_s": 0.7586362049987656,
+    "restore": "zstd -d --keep <archive> -o <source>; verify uncompressed SHA-256 before opening the project",
+    "storage_staging": "same-filesystem",
+    "scope": "Lossless storage only after study ended; no data, vault, log or output removed."
+  },
+  {
+    "source": "studies/online_retail-001/attempt-001/run-001/.mlca/private/row_fingerprints",
+    "archive": "studies/online_retail-001/attempt-001/run-001/.mlca/private/row_fingerprints.zst",
+    "sha256_uncompressed": "236fee149fab6fe079737e028e712d3016bf7e163691dbfe74b4c375aec2b932",
+    "source_bytes": 2869837824,
+    "archive_bytes": 276820941,
+    "byte_verified": true,
+    "ts": "2026-10-16T11:08:18.971956+00:00",
+    "duration_s": 9.141935729996476,
+    "restore": "zstd -d --keep <archive> -o <source>; verify uncompressed SHA-256 before opening the project",
+    "storage_staging": "same-filesystem",
+    "scope": "Lossless storage only after study ended; no data, vault, log or output removed."
+  }
+]

@@ -1,0 +1,5 @@
+Features: 12; numeric: 3; categorical: 9; dropped: 0
+Key-like excluded: none
+Excluded target derivations: none
+High corr (>=0.98): none
+Placeholders: 0 columns none

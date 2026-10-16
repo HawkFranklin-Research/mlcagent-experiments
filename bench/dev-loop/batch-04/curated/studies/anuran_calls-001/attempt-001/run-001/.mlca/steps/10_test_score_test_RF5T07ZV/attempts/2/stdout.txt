@@ -1,0 +1,3 @@
+test rows: 1193
+best model: alternative
+macro_f1: 0.3666

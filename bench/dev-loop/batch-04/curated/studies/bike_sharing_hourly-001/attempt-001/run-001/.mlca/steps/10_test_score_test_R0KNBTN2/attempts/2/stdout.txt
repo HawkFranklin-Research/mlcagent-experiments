@@ -1,0 +1,3 @@
+Test shape: (3493, 14)
+Selected model: alternative
+poisson_deviance: 13.75

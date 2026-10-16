@@ -1,0 +1,41 @@
+{
+  "id": "deepseek/deepseek-v4.1-flash",
+  "context_length": 1048576,
+  "architecture": {
+    "modality": "text+image->text",
+    "input_modalities": [
+      "text",
+      "image"
+    ],
+    "output_modalities": [
+      "text"
+    ],
+    "tokenizer": "DeepSeek",
+    "instruct_type": null
+  },
+  "supported_parameters": [
+    "frequency_penalty",
+    "include_reasoning",
+    "logit_bias",
+    "logprobs",
+    "max_tokens",
+    "min_p",
+    "presence_penalty",
+    "reasoning",
+    "reasoning_effort",
+    "repetition_penalty",
+    "response_format",
+    "seed",
+    "stop",
+    "structured_outputs",
+    "temperature",
+    "tool_choice",
+    "tools",
+    "top_k",
+    "top_logprobs",
+    "top_p"
+  ],
+  "retrieved_at": "2026-10-16T03:32:17.874871+00:00",
+  "source": "https://openrouter.ai/api/v1/models",
+  "scope": "Capability metadata only; no pricing or inference request."
+}

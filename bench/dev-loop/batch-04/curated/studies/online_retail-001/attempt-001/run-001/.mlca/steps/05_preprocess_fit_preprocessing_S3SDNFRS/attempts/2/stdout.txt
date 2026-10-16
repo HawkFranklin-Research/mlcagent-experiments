@@ -1,0 +1,2 @@
+Excluded key-like columns: []
+Fitted preprocessor with 5 numeric and 0 categorical features.

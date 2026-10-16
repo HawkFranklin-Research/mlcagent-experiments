@@ -1,0 +1,1 @@
+Reversing rows (Quantity < 0) are included in net monetary; frequency counts distinct invoices.

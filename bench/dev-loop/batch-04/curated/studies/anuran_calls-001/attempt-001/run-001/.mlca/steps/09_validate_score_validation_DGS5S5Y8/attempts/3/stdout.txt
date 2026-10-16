@@ -1,0 +1,2 @@
+Val shape: (1709, 26)
+Best model: alternative, macro_f1: 0.5617

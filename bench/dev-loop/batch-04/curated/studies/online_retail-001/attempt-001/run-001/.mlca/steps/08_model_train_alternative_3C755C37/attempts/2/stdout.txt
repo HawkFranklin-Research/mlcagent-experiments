@@ -1,0 +1,4 @@
+Train shape: (2623, 5)
+Selected k: 2
+Silhouette: 0.3729
+Stability: 0.8748

@@ -1,0 +1,4 @@
+Reversing rows (Quantity < 0) included in net monetary; frequency counts distinct invoices.
+Input rows: 406829
+Entities: 4372
+Saved entities.parquet with columns: ['CustomerID', 'recency_days', 'frequency', 'total_value', 'mean_value', 'n_lines']

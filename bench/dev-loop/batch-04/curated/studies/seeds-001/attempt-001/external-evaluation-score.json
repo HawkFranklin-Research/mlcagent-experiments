@@ -1,0 +1,19 @@
+{
+  "schema_version": "1",
+  "producer": "external_evaluation_scorer",
+  "agent_work": false,
+  "kind": "clustering",
+  "source_sha256": "e175383dd58fb4d3f8f31a03e992c477c871fdeb4754d7a504f448cdcba2c0a3",
+  "outputs_sha256": "b2f4ac671f2bc05f1e456307d0dfa616ad6e6ac74f0f2579c5cce9f9745b5556",
+  "rows": {
+    "train": 126,
+    "test": 42
+  },
+  "metrics": {
+    "variety": {
+      "ari": 0.33878610890654254,
+      "nmi": 0.48500698661940617
+    }
+  },
+  "method": "Test-only ARI/NMI"
+}

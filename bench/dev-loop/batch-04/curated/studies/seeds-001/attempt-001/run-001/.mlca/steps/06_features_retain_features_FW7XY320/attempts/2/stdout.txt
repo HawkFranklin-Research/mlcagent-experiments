@@ -1,0 +1,4 @@
+Train shape: (126, 7)
+Feature columns: 7
+Selector fitted on 7 features
+Saved selector_all.pkl

@@ -1,0 +1,5 @@
+train rows: 4293, val rows: 1709
+features: 22, targets: 3
+primary metric: macro_f1, validation score: 0.521
+top feature: MFCCs_19
+saved interpretation.csv

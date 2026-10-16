@@ -1,0 +1,3 @@
+val rows: 874
+candidates: 2
+best silhouette: baseline = 0.9598

@@ -1,0 +1,1 @@
+{"facts":[],"figures":[],"fits":[],"metrics":[],"outputs":[{"caption":"","kind":"report","name":"brief.json","path":".mlca/steps/01_onboard_confirm_brief_T5B0T3K9/outputs/brief.json","sha256":"486599f2aa6ea89b343ded97565770f4b260b9bab11cfb57c59325f1446164fe","size":1037}],"step_id":"01_onboard_confirm_brief_T5B0T3K9","wall_time_s":0.121452892999514}

@@ -1,0 +1,1 @@
+Fitted passthrough selector on 10408 rows, 12 features.

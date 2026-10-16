@@ -1,0 +1,3 @@
+Model: KMeans, k=2.0, val_sil=None
+Top feature: n_lines
+Saved interpretation.csv with 16 rows
