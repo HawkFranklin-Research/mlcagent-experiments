@@ -1,0 +1,15 @@
+{
+  "id": "deepseek/deepseek-v4.1-flash",
+  "reasoning": {
+    "mandatory": false,
+    "default_enabled": true,
+    "supported_efforts": [
+      "max",
+      "high",
+      "low",
+      "none"
+    ],
+    "default_effort": "high"
+  },
+  "scope": "Official reasoning controls only, no pricing lookup or inference call."
+}

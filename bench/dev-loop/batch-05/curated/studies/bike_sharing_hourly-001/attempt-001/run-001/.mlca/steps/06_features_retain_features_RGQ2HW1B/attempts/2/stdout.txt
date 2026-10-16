@@ -1,0 +1,2 @@
+X_train shape: (10427, 13)
+Features: 13

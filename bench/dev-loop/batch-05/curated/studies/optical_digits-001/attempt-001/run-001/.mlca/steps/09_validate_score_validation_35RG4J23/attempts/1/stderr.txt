@@ -1,0 +1,24 @@
+Traceback (most recent call last):
+  File "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/bench/dev-loop/batch-05/studies/optical_digits-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/utils/_available_if.py", line 32, in _check
+    check_result = self.check(obj)
+  File "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/bench/dev-loop/batch-05/studies/optical_digits-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/pipeline.py", line 47, in check
+    getattr(self._final_estimator, attr)
+    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'PCA' object has no attribute 'predict'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/bench/dev-loop/batch-05/studies/optical_digits-001/attempt-001/run-001/.mlca/steps/09_validate_score_validation_35RG4J23/attempts/1/script.py", line 59, in <module>
+    err_base = recon_error(base, X_val, pre, sel)
+  File "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/bench/dev-loop/batch-05/studies/optical_digits-001/attempt-001/run-001/.mlca/steps/09_validate_score_validation_35RG4J23/attempts/1/script.py", line 56, in recon_error
+    Xr = get_recon(model, X_raw, pre, sel)
+  File "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/bench/dev-loop/batch-05/studies/optical_digits-001/attempt-001/run-001/.mlca/steps/09_validate_score_validation_35RG4J23/attempts/1/script.py", line 51, in get_recon
+    return model.predict(X_raw)
+           ^^^^^^^^^^^^^
+  File "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/bench/dev-loop/batch-05/studies/optical_digits-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/utils/_available_if.py", line 43, in __get__
+    self._check(obj, owner=owner)
+    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/bench/dev-loop/batch-05/studies/optical_digits-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/utils/_available_if.py", line 34, in _check
+    raise AttributeError(attr_err_msg) from e
+AttributeError: This 'Pipeline' has no attribute 'predict'

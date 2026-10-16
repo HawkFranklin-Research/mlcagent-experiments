@@ -1,0 +1,4 @@
+features: 64
+processed shape: (3372, 64)
+embedding dim: 8
+recon_mse_scaled: 50.8587

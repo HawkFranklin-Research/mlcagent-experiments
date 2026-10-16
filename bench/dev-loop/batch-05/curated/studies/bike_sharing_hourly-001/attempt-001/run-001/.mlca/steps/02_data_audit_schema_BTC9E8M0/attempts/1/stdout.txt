@@ -1,0 +1,3 @@
+placeholder tokens found in 0 text columns: []
+rows=17379 columns=14 missing_total=0
+schema rows=14

@@ -1,0 +1,16 @@
+Traceback (most recent call last):
+  File "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/bench/dev-loop/batch-05/studies/optical_digits-001/attempt-001/run-001/.mlca/steps/05_preprocess_fit_preprocessing_M7FAZM1F/attempts/1/script.py", line 97, in <module>
+    n_out = len(ct.get_feature_names_out())
+                ~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/bench/dev-loop/batch-05/studies/optical_digits-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/compose/_column_transformer.py", line 621, in get_feature_names_out
+    feature_names_out = self._get_feature_name_out_for_transformer(
+        name, trans, input_features
+    )
+  File "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/bench/dev-loop/batch-05/studies/optical_digits-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/compose/_column_transformer.py", line 579, in _get_feature_name_out_for_transformer
+    return trans.get_feature_names_out(names)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^
+  File "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/bench/dev-loop/batch-05/studies/optical_digits-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/pipeline.py", line 1282, in get_feature_names_out
+    raise AttributeError(
+    ...<3 lines>...
+    )
+AttributeError: Estimator log does not provide get_feature_names_out. Did you mean to call pipeline[:-1].get_feature_names_out()?

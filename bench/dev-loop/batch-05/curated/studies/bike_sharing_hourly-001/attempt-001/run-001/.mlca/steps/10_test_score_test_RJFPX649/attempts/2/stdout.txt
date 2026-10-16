@@ -1,0 +1,3 @@
+test rows: 3477
+selected model: alternative_08
+rmse test: 115.0976

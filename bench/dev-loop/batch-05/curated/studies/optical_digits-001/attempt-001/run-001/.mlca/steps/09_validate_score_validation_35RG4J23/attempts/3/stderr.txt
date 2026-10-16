@@ -1,0 +1,7 @@
+Traceback (most recent call last):
+  File "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/bench/dev-loop/batch-05/studies/optical_digits-001/attempt-001/run-001/.mlca/steps/09_validate_score_validation_35RG4J23/attempts/3/script.py", line 106, in <module>
+    mlca_runtime.save_row_outputs(row_out, "val_embeddings.parquet")
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/bench/dev-loop/batch-05/studies/optical_digits-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/mlca_runtime/__init__.py", line 207, in save_row_outputs
+    raise ValueError("MLCA: row outputs require row_id and partition")
+ValueError: MLCA: row outputs require row_id and partition

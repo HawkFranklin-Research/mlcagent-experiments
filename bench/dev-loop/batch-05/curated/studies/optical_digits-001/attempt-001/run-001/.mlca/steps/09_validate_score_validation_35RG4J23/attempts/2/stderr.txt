@@ -1,0 +1,14 @@
+Traceback (most recent call last):
+  File "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/bench/dev-loop/batch-05/studies/optical_digits-001/attempt-001/run-001/.mlca/steps/09_validate_score_validation_35RG4J23/attempts/2/script.py", line 82, in <module>
+    err_base = recon_error(base, X_val)
+  File "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/bench/dev-loop/batch-05/studies/optical_digits-001/attempt-001/run-001/.mlca/steps/09_validate_score_validation_35RG4J23/attempts/2/script.py", line 58, in recon_error
+    Xr = reconstruct(m, X)
+  File "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/bench/dev-loop/batch-05/studies/optical_digits-001/attempt-001/run-001/.mlca/steps/09_validate_score_validation_35RG4J23/attempts/2/script.py", line 54, in reconstruct
+    return m.inverse_transform(m.transform(X))
+           ^^^^^^^^^^^^^^^^^^^
+  File "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/bench/dev-loop/batch-05/studies/optical_digits-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/utils/_available_if.py", line 43, in __get__
+    self._check(obj, owner=owner)
+    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/bench/dev-loop/batch-05/studies/optical_digits-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/utils/_available_if.py", line 37, in _check
+    raise AttributeError(attr_err_msg)
+AttributeError: This 'Pipeline' has no attribute 'inverse_transform'

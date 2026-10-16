@@ -1,0 +1,4 @@
+placeholders ['?'] in 1 columns
+features: 5
+numeric: 2, categorical: 3
+summary shape: (5, 10)
