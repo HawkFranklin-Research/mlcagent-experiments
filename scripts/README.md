@@ -27,3 +27,33 @@ scored on test embeddings. The outputs explicitly identify this as external
 scoring, not agent work. Hidden labels must never be registered with MLCA.
 
 Use fresh `--out` paths; the scorers never overwrite a result or launch an agent.
+
+## Development batches (work order 05)
+
+This author-approved development loop is separate from frozen measurements.
+From a clean committed code/controller tree, with OPENROUTER_API_KEY available:
+
+```bash
+../mlca-revized/.venv/bin/python scripts/run_batch.py \
+  --batch 1 --out bench/dev-loop/batch-01 \
+  --model deepseek/deepseek-v4.1-flash --concurrency 6
+```
+
+The queue uses development entries only, six concurrent fresh studies, one large
+table at a time, shared pacing and one cost ledger. It never sends researcher
+expectations or leakage fields to the agent; only approved evaluation-column
+exclusions cross the boundary. The Worker writes every analysis script.
+
+Resume with the identical source commits using `--out <same-folder> --resume`.
+Finished studies are never repeated; interrupted attempts stay preserved.
+`REPORT.md`, `batch.json` and `cost-ledger.json` are continuously written. Raw
+projects stay local; curate before committing any run evidence.
+
+External leakage scoring checks fitted column names, group separation and time
+ordering; it is a researcher measurement, not agent work. Missing evidence stays
+unavailable. All three checks plus setup agreement and completion define success.
+`--replicates 3` requires prior successes for every table. `--rails-off` requires
+successful acceptance on the same model and code; engine safeguards stay active.
+
+Parameters, caps and scientific boundaries: `bench/dev-loop/PARAMETERS.md` and
+the code repository's `docs/prompts/05_batch_development_loop.prompt.md`.
