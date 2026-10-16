@@ -26,3 +26,13 @@ Retail inferred defensible static customer aggregation/clustering, but omitted g
 ## Evidence and limits
 
 curated/MANIFEST.csv lists source hashes for copied text evidence. Original attempts retain generated model binaries and tables; their hashes are in curated/OMITTED.csv. No private inputs, fingerprint databases, environments, vaults, raw matrices or local notes are committed. No analysis was substituted. Held-out tables and the paper repository remain untouched. No push, publication or freeze.
+
+## Lossless private cache archival after outcomes
+
+Completed-study fingerprint caches larger than 100 MB were compressed locally
+with zstd. Each archive was decompressed and checked against the original
+uncompressed SHA-256 before reclaiming its redundant original cache copy.
+All cache bytes remain recoverable; sources, scripts, event logs, generated
+models/tables and vaults are unchanged. The private archives are not committed.
+`private-cache-archives.json` records paths, sizes, checksums and restore steps.
+Restore the original cache before opening an archived project for privacy reads.
