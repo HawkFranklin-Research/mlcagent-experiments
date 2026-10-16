@@ -1,0 +1,16 @@
+Traceback (most recent call last):
+  File "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/bench/dev-loop/batch-03/studies/anuran_calls-001/attempt-001/run-001/.mlca/steps/09_validate_score_validation_3MRHWYYC/attempts/1/script.py", line 48, in <module>
+    hl = float(hamming_loss(y_val.values, y_pred))
+               ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/bench/dev-loop/batch-03/studies/anuran_calls-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/utils/_param_validation.py", line 218, in wrapper
+    return func(*args, **kwargs)
+  File "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/bench/dev-loop/batch-03/studies/anuran_calls-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/metrics/_classification.py", line 3283, in hamming_loss
+    y_type, _, y_true, y_pred, sample_weight = _check_targets(
+                                               ~~~~~~~~~~~~~~^
+        y_true, y_pred, sample_weight
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/bench/dev-loop/batch-03/studies/anuran_calls-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/metrics/_classification.py", line 145, in _check_targets
+    raise ValueError("{0} is not supported".format(y_type))
+ValueError: multiclass-multioutput is not supported

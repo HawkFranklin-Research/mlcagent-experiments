@@ -111,3 +111,15 @@ to durable private storage, verify its compressed hash and fsync before removing
 scratch. Scientific inputs/outputs/logs/models/vaults are never removed. Check
 RAM headroom first; record staging and restoration hashes in the batch's
 private-cache-archives.json. Source and generation remain fixed during jobs.
+
+## Author decision after batch 03: Retail and next batches
+
+Online Retail is static customer segmentation: one row per customer, recency
+relative to the last transaction date, no prospective forecasting claim. From
+batch 04 the researcher manifest has no time requirement; grouping and identifier
+exclusion remain required. Earlier scores remain unchanged. Bike retains its
+chronological requirement. The manifest remains hidden from the agent.
+Batch 04 tests engine/instruction fixes with default reasoning unchanged. Batch
+05 changes only reasoning effort to low (supported model metadata lists max,
+high, low, none, not medium), keeping code, rails, model and other settings
+unchanged. Acceptance still requires one unchanged version and K=3.

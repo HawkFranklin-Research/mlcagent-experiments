@@ -1,0 +1,2 @@
+rows=17379 cols=14 missing=0
+schema rows=14

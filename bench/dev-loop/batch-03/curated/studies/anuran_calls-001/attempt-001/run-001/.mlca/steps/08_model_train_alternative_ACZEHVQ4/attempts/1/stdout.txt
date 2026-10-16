@@ -1,0 +1,4 @@
+Train rows: 4293
+Features: 22
+Targets: 3
+Saved alternative_model.pkl

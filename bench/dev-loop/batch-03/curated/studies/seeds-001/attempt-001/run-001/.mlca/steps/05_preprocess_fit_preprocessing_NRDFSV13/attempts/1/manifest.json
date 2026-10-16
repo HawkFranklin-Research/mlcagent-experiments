@@ -1,0 +1,1 @@
+{"facts": [], "fits": [{"columns": ["area", "perimeter", "compactness", "kernel_length", "kernel_width", "asymmetry_coefficient", "groove_length"], "estimator": "ColumnTransformer", "index_sha256": "1d5ee44d68c75cab71fc20b9b7b0df2121f796631c3a7812339693f1820704d5", "partition": "train"}], "metrics": [], "outputs": [{"caption": "", "kind": "model", "name": "preprocessor.pkl"}]}

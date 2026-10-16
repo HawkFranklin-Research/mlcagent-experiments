@@ -1,0 +1,3 @@
+train shape=(348605, 54), val shape=(116200, 54)
+features=54, classes=7
+val roc_auc_ovr=0.9202

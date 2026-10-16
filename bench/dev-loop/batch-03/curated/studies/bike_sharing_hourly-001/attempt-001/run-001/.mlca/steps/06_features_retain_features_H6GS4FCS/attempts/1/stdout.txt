@@ -1,0 +1,2 @@
+Fitted selector on 10408 rows, 12 features
+Saved selector_all.pkl

@@ -1,0 +1,4 @@
+Validation rows: 2707
+Features used: 16
+Top feature: Roundness
+Top importance mean: 0.009351

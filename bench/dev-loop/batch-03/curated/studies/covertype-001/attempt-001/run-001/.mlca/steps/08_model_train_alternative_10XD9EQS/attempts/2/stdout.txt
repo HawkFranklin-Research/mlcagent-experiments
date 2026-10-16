@@ -1,0 +1,3 @@
+features: 54
+train: (348605, 54) val: (116200, 55)
+classes: [np.int64(1), np.int64(2), np.int64(3), np.int64(4), np.int64(5), np.int64(6), np.int64(7)]

@@ -1,0 +1,4 @@
+features: 64
+pca components: 8
+train reconstruction_error: 0.4617
+val reconstruction_error: 0.4589

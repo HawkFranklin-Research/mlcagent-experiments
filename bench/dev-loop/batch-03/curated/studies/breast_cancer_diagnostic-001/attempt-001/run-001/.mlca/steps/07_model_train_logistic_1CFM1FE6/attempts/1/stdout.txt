@@ -1,0 +1,4 @@
+features 30
+train (341, 31) val (113, 31)
+frontend Pipeline
+saved model.pkl

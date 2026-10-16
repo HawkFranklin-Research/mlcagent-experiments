@@ -1,0 +1,4 @@
+Train shape: (348605, 55), Val shape: (116200, 55)
+Feature columns: 54
+Preprocessing output features: 54
+Selected features (k): 20

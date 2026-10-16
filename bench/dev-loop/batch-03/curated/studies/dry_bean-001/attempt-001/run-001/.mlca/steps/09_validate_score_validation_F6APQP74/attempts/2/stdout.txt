@@ -1,0 +1,1 @@
+val rows=2707 models=2 best=logistic auc=0.9944

@@ -1,0 +1,3 @@
+Features: 22
+Train shape: (4293, 22)
+Saved selector_all.pkl

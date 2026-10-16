@@ -1,0 +1,4 @@
+Test rows: 115
+Features: 30
+Threshold: 0.3300
+roc_auc: 0.9990 (95% CI: 0.9962-1.0000)

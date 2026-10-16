@@ -1,0 +1,3 @@
+Excluded features: none
+Placeholder columns: 0
+Train shape: (8124, 16), Val transformed shape: (2707, 16)

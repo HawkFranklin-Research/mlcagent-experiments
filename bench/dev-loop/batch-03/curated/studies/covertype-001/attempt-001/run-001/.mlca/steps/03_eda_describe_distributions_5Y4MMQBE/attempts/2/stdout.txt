@@ -1,0 +1,1 @@
+numeric=10 categorical=45 rows=55

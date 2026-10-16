@@ -1,0 +1,11 @@
+Traceback (most recent call last):
+  File "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/bench/dev-loop/batch-03/studies/optical_digits-001/attempt-001/run-001/.mlca/steps/09_validate_score_validation_BT6AKQ6V/attempts/2/script.py", line 52, in <module>
+    X_ref = np.asarray(frontend.transform(X_val))
+                       ~~~~~~~~~~~~~~~~~~^^^^^^^
+  File "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/bench/dev-loop/batch-03/studies/optical_digits-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/pipeline.py", line 1110, in transform
+    Xt = transform.transform(Xt, **routed_params[name].transform)
+  File "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/bench/dev-loop/batch-03/studies/optical_digits-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/utils/_set_output.py", line 327, in wrapped
+    data_to_wrap = f(self, X, *args, **kwargs)
+  File "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/bench/dev-loop/batch-03/studies/optical_digits-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/compose/_column_transformer.py", line 1066, in transform
+    raise ValueError(f"columns are missing: {diff}")
+ValueError: columns are missing: {'pixel_24', 'pixel_36', 'pixel_42', 'pixel_60', 'pixel_13', 'pixel_44', 'pixel_11', 'pixel_12', 'pixel_64', 'pixel_57', 'pixel_10', 'pixel_63', 'pixel_6', 'pixel_22', 'pixel_26', 'pixel_46', 'pixel_28', 'pixel_43', 'pixel_40', 'pixel_18', 'pixel_45', 'pixel_34', 'pixel_49', 'pixel_3', 'pixel_31', 'pixel_5', 'pixel_7', 'pixel_1', 'pixel_23', 'pixel_58', 'pixel_35', 'pixel_39', 'pixel_50', 'pixel_52', 'pixel_37', 'pixel_32', 'pixel_4', 'pixel_19', 'pixel_20', 'pixel_33', 'pixel_62', 'pixel_25', 'pixel_27', 'pixel_14', 'pixel_17', 'pixel_47', 'pixel_61', 'pixel_30', 'pixel_9', 'pixel_38', 'pixel_41', 'pixel_55', 'pixel_16', 'pixel_21', 'pixel_29', 'pixel_8', 'pixel_2', 'pixel_15', 'pixel_51', 'pixel_56', 'pixel_59', 'pixel_54', 'pixel_53', 'pixel_48'}

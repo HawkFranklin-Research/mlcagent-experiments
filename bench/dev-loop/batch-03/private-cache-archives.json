@@ -1,0 +1,80 @@
+[
+  {
+    "source": "studies/anuran_calls-001/attempt-001/run-001/.mlca/private/row_fingerprints",
+    "archive": "studies/anuran_calls-001/attempt-001/run-001/.mlca/private/row_fingerprints.zst",
+    "sha256_uncompressed": "384521468381745171f309db26d7d223cb34718096429de74d1f6ff847e6b1c0",
+    "source_bytes": 249561088,
+    "archive_bytes": 57120660,
+    "byte_verified": true,
+    "ts": "2026-10-16T07:26:22.239415+00:00",
+    "duration_s": 0.909924110997963,
+    "restore": "zstd -d --keep <archive> -o <source>; verify uncompressed SHA-256 before opening the project",
+    "storage_staging": "same-filesystem",
+    "scope": "Lossless storage only after study ended; no data, vault, log or output removed."
+  },
+  {
+    "source": "studies/dry_bean-001/attempt-001/run-001/.mlca/private/row_fingerprints",
+    "archive": "studies/dry_bean-001/attempt-001/run-001/.mlca/private/row_fingerprints.zst",
+    "sha256_uncompressed": "b2c391afeb577c5d640ac9efb411a188e38b2361bfc3fb3ab1007b32fc7faea6",
+    "source_bytes": 320614400,
+    "archive_bytes": 77777509,
+    "byte_verified": true,
+    "ts": "2026-10-16T07:29:13.611946+00:00",
+    "duration_s": 1.2337009590009984,
+    "restore": "zstd -d --keep <archive> -o <source>; verify uncompressed SHA-256 before opening the project",
+    "storage_staging": "same-filesystem",
+    "scope": "Lossless storage only after study ended; no data, vault, log or output removed."
+  },
+  {
+    "source": "studies/bike_sharing_hourly-001/attempt-001/run-001/.mlca/private/row_fingerprints",
+    "archive": "studies/bike_sharing_hourly-001/attempt-001/run-001/.mlca/private/row_fingerprints.zst",
+    "sha256_uncompressed": "b6b4b1afbfa0822071562906bee8f0f155aa4c6e758022c4e64f93ffe0d531e9",
+    "source_bytes": 361730048,
+    "archive_bytes": 33724120,
+    "byte_verified": true,
+    "ts": "2026-10-16T07:30:05.078803+00:00",
+    "duration_s": 1.3615740989989717,
+    "restore": "zstd -d --keep <archive> -o <source>; verify uncompressed SHA-256 before opening the project",
+    "storage_staging": "same-filesystem",
+    "scope": "Lossless storage only after study ended; no data, vault, log or output removed."
+  },
+  {
+    "source": "studies/adult-001/attempt-001/run-001/.mlca/private/row_fingerprints",
+    "archive": "studies/adult-001/attempt-001/run-001/.mlca/private/row_fingerprints.zst",
+    "sha256_uncompressed": "8eadd086fc7ea858507cfc58013a3746a01c71c63d5fe6fc24e807f6a1c2c25f",
+    "source_bytes": 982814720,
+    "archive_bytes": 85501121,
+    "byte_verified": true,
+    "ts": "2026-10-16T07:33:28.574231+00:00",
+    "duration_s": 3.3749808219981787,
+    "restore": "zstd -d --keep <archive> -o <source>; verify uncompressed SHA-256 before opening the project",
+    "storage_staging": "same-filesystem",
+    "scope": "Lossless storage only after study ended; no data, vault, log or output removed."
+  },
+  {
+    "source": "studies/optical_digits-001/attempt-001/run-001/.mlca/private/row_fingerprints",
+    "archive": "studies/optical_digits-001/attempt-001/run-001/.mlca/private/row_fingerprints.zst",
+    "sha256_uncompressed": "d050b19f8b51a267092a4b53efd80eb8033c277c0e1b551eab7c3ae70b9c337f",
+    "source_bytes": 489394176,
+    "archive_bytes": 29977687,
+    "byte_verified": true,
+    "ts": "2026-10-16T07:45:30.607475+00:00",
+    "duration_s": 1.7150437419986702,
+    "restore": "zstd -d --keep <archive> -o <source>; verify uncompressed SHA-256 before opening the project",
+    "storage_staging": "same-filesystem",
+    "scope": "Lossless storage only after study ended; no data, vault, log or output removed."
+  },
+  {
+    "source": "studies/covertype-001/attempt-001/run-001/.mlca/private/row_fingerprints",
+    "archive": "studies/covertype-001/attempt-001/run-001/.mlca/private/row_fingerprints.zst",
+    "sha256_uncompressed": "468b10ce70306f3822575a08194c5b08c304e48f7660703ab496ea8543ec7a79",
+    "source_bytes": 44915015680,
+    "archive_bytes": 3488044880,
+    "byte_verified": true,
+    "ts": "2026-10-16T08:27:32.645363+00:00",
+    "duration_s": 161.6247242210011,
+    "restore": "zstd -d --keep <archive> -o <source>; verify uncompressed SHA-256 before opening the project",
+    "storage_staging": "private tmpfs; verified before redundant cache reclamation; durable archive copy verified and fsynced",
+    "scope": "Lossless storage only after study ended; no data, vault, log or output removed."
+  }
+]

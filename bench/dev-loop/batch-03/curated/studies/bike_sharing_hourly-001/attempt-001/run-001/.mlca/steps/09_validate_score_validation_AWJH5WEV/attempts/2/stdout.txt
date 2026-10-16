@@ -1,0 +1,3 @@
+val rows=3478 features=12 targets=['cnt']
+primary=poisson_deviance scores={'baseline': 190.90048433337003, 'alternative': 12.773967717164807}
+best=alternative score=12.7740 rmse=53.2574

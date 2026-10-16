@@ -1,0 +1,4 @@
+Traceback (most recent call last):
+  File "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/bench/dev-loop/batch-03/studies/covertype-001/attempt-001/run-001/.mlca/steps/10_test_score_test_B3T85HTR/attempts/1/script.py", line 30, in <module>
+    raise KeyError(f"Selected model key not found. Available keys: {list(val_manifest.keys())}")
+KeyError: "Selected model key not found. Available keys: ['facts', 'fits', 'metrics', 'outputs']"

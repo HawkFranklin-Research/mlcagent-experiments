@@ -1,0 +1,4 @@
+Traceback (most recent call last):
+  File "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/bench/dev-loop/batch-03/studies/dry_bean-001/attempt-001/run-001/.mlca/steps/09_validate_score_validation_F6APQP74/attempts/1/script.py", line 15, in <module>
+    raise KeyError(f"Missing keys: {missing}. Available: {list(protocol.keys())}")
+KeyError: "Missing keys: ['primary_metric']. Available: ['bootstrap_resamples', 'columns', 'excluded_columns', 'group_column', 'primary_data', 'seed', 'targets', 'task']"

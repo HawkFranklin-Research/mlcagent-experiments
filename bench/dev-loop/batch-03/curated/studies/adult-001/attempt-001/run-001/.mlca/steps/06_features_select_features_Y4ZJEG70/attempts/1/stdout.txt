@@ -1,0 +1,4 @@
+Train rows: 29275
+Input features: 13
+Preprocessed features: 98
+Selected k: 20

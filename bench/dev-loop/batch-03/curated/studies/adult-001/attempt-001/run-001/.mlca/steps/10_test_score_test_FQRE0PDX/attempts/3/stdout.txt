@@ -1,0 +1,2 @@
+Test rows: 9761
+Primary metric roc_auc: 0.9254

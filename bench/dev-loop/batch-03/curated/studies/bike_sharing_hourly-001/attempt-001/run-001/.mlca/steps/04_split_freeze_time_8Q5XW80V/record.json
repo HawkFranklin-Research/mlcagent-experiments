@@ -1,0 +1,1 @@
+{"facts":[],"figures":[],"fits":[],"metrics":[],"outputs":[{"caption":"","kind":"report","name":"split.json","path":".mlca/steps/04_split_freeze_time_8Q5XW80V/outputs/split.json","sha256":"c55e181ad1e9b2a2e8e68da36a72d01cbed94a1448dca2aee6726547398f627d","size":1130}],"step_id":"04_split_freeze_time_8Q5XW80V","wall_time_s":8.825846530999115}

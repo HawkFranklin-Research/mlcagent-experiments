@@ -1,0 +1,3 @@
+Train shape: (29275, 14)
+Feature count: 13
+Model saved: model.pkl

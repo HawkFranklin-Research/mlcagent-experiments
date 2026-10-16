@@ -1,0 +1,39 @@
+Traceback (most recent call last):
+  File "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/bench/dev-loop/batch-03/studies/seeds-001/attempt-001/run-001/.mlca/steps/07_model_train_baseline_C14KNZHQ/attempts/1/script.py", line 72, in <module>
+    pipe = mlca_runtime.fit_record(pipe, X, "train")
+  File "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/bench/dev-loop/batch-03/studies/seeds-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/mlca_runtime/__init__.py", line 183, in fit_record
+    estimator_or_pipeline.fit(X, y, **kwargs) if y is not None else estimator_or_pipeline.fit(X, **kwargs)
+                                                                    ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/bench/dev-loop/batch-03/studies/seeds-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/base.py", line 1403, in wrapper
+    return fit_method(estimator, *args, **kwargs)
+  File "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/bench/dev-loop/batch-03/studies/seeds-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/pipeline.py", line 645, in fit
+    self._final_estimator.fit(Xt, y, **last_step_params["fit"])
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/bench/dev-loop/batch-03/studies/seeds-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/base.py", line 1403, in wrapper
+    return fit_method(estimator, *args, **kwargs)
+  File "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/bench/dev-loop/batch-03/studies/seeds-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/cluster/_kmeans.py", line 1515, in fit
+    labels, inertia, centers, n_iter_ = kmeans_single(
+                                        ~~~~~~~~~~~~~^
+        X,
+        ^^
+    ...<5 lines>...
+        n_threads=self._n_threads,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/bench/dev-loop/batch-03/studies/seeds-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/utils/parallel.py", line 208, in wrapper
+    controller = _get_threadpool_controller()
+  File "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/bench/dev-loop/batch-03/studies/seeds-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/utils/parallel.py", line 192, in _get_threadpool_controller
+    _threadpool_controller = ThreadpoolController()
+  File "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/bench/dev-loop/batch-03/studies/seeds-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/threadpoolctl.py", line 967, in __init__
+    self._load_libraries()
+    ~~~~~~~~~~~~~~~~~~~~^^
+  File "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/bench/dev-loop/batch-03/studies/seeds-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/threadpoolctl.py", line 1146, in _load_libraries
+    self._find_libraries_with_linux()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/bench/dev-loop/batch-03/studies/seeds-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/threadpoolctl.py", line 1168, in _find_libraries_with_linux
+    with open("/proc/self/maps") as f:
+         ~~~~^^^^^^^^^^^^^^^^^^^
+  File "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/bench/dev-loop/batch-03/studies/seeds-001/attempt-001/run-001/.mlca/steps/07_model_train_baseline_C14KNZHQ/attempts/1/hooks/sitecustomize.py", line 23, in guard
+    raise PermissionError("MLCA blocked an undeclared file access")
+PermissionError: MLCA blocked an undeclared file access

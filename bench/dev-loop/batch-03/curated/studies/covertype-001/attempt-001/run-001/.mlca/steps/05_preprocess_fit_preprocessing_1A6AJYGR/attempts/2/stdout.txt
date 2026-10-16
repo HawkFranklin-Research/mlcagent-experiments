@@ -1,0 +1,5 @@
+Features: 54
+Excluded derivations: []
+Placeholders: none; 0 columns
+Train shape: (348605, 54), Val transformed shape: (116200, 54)
+Saved preprocessor.pkl

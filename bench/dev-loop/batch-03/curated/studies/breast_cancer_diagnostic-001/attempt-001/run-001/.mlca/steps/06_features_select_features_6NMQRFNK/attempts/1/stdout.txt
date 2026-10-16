@@ -1,0 +1,1 @@
+train rows=341 features=30 transformed=30 k=20

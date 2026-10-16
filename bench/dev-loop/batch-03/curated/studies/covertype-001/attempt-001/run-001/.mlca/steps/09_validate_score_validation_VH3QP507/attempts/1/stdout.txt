@@ -1,0 +1,3 @@
+Val shape: (116200, 55)
+Models evaluated: ['07_model_train_logistic_DCT6F51F', '08_model_train_alternative_10XD9EQS']
+Best model: 08_model_train_alternative_10XD9EQS with roc_auc_ovr=0.9489

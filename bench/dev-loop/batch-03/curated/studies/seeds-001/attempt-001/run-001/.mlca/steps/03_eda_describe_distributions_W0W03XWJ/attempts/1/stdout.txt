@@ -1,0 +1,3 @@
+Features: 7 numeric, 0 categorical
+Placeholders/whitespace in 0 text columns
+Saved distributions.csv

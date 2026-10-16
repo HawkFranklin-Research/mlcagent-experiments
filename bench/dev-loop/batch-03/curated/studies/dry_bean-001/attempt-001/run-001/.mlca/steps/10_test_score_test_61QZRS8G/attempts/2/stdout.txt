@@ -1,0 +1,4 @@
+test rows: 2712
+features: 16
+roc_auc_ovr: 0.9949 CI [0.9935, 0.9961]
+f1_macro: 0.9408 CI [0.9315, 0.9489]

@@ -1,0 +1,3 @@
+Train shape: (3372, 64)
+Feature columns: 64
+Selector fitted and saved as selector_all.pkl
