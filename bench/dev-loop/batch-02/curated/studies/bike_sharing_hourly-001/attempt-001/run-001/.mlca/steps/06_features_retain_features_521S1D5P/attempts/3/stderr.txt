@@ -1,0 +1,13 @@
+Traceback (most recent call last):
+  File "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/bench/dev-loop/batch-02/studies/bike_sharing_hourly-001/attempt-001/run-001/.mlca/steps/06_features_retain_features_521S1D5P/attempts/3/script.py", line 22, in <module>
+    X_train = train[feature_cols].copy()
+              ~~~~~^^^^^^^^^^^^^^
+  File "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/bench/dev-loop/batch-02/studies/bike_sharing_hourly-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/pandas/core/frame.py", line 4384, in __getitem__
+    indexer = self.columns._get_indexer_strict(key, "columns")[1]
+              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/bench/dev-loop/batch-02/studies/bike_sharing_hourly-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/pandas/core/indexes/base.py", line 6302, in _get_indexer_strict
+    self._raise_if_missing(keyarr, indexer, axis_name)
+    ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/bench/dev-loop/batch-02/studies/bike_sharing_hourly-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/pandas/core/indexes/base.py", line 6355, in _raise_if_missing
+    raise KeyError(f"{not_found} not in index")
+KeyError: "['dteday_day', 'dteday_year', 'dteday_month', 'dteday_dayofweek'] not in index"

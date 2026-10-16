@@ -1,0 +1,2 @@
+features=64 numeric=64 cat=0 heavy=22
+encoded_width=64 sparse=False

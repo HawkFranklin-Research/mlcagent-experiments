@@ -1,0 +1,11 @@
+Traceback (most recent call last):
+  File "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/bench/dev-loop/batch-02/studies/abalone-001/attempt-001/run-001/.mlca/steps/10_test_score_test_9H2B9T9X/attempts/1/script.py", line 20, in <module>
+    best = sub.loc[sub["value"].idxmin()]
+                   ~~~~~~~~~~~~~~~~~~~^^
+  File "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/bench/dev-loop/batch-02/studies/abalone-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/pandas/core/series.py", line 2484, in idxmin
+    iloc = self.argmin(axis, skipna, *args, **kwargs)
+  File "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/bench/dev-loop/batch-02/studies/abalone-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/pandas/core/base.py", line 887, in argmin
+    result = nanops.nanargmin(delegate, skipna=skipna)
+  File "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/bench/dev-loop/batch-02/studies/abalone-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/pandas/core/nanops.py", line 1213, in nanargmin
+    result = values.argmin(axis)
+ValueError: attempt to get argmin of an empty sequence

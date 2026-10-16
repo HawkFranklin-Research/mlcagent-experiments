@@ -1,0 +1,4 @@
+Placeholder tokens found in 3 columns: ['workclass', 'occupation', 'native-country']
+Rows: 48794, Cols: 14
+Numeric features: 6, Categorical features: 7
+Saved distributions.csv with 40 rows

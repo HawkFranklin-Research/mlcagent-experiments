@@ -1,0 +1,3 @@
+Train: (348605, 55), Val: (116200, 55)
+Features: 54 (num: 54, cat: 0)
+Dropped: key-like=[], high-card=[], derived=[]

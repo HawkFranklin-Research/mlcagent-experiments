@@ -1,0 +1,3 @@
+placeholders: 0 columns
+log1p: none
+features: 7 total, 7 num, 0 log1p, 0 cat, 0 high-card dropped

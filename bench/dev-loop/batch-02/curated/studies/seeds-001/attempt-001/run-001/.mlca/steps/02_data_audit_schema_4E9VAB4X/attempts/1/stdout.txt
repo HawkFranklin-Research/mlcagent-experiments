@@ -1,0 +1,2 @@
+No placeholder tokens found in text columns.
+n_rows=210, n_columns=7, missing.total=0

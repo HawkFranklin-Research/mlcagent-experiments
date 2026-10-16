@@ -1,0 +1,5 @@
+Train shape: (126, 7)
+Feature columns: 7
+Preprocessor input columns: 7
+Transformed shape: (126, 7)
+Selector fitted and saved.

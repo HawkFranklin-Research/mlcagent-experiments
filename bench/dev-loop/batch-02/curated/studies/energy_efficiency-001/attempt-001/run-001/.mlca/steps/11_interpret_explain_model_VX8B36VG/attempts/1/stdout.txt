@@ -1,0 +1,5 @@
+Features: 8
+Targets: ['Y1', 'Y2']
+Validation metrics rows: 14
+Top feature: num__X1
+Interpretation saved.

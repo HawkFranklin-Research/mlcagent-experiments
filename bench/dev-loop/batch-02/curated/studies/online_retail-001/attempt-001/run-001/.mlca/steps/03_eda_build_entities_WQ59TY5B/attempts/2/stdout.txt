@@ -1,0 +1,1 @@
+reversing rows (Quantity<0): 8905; kept as negative amounts

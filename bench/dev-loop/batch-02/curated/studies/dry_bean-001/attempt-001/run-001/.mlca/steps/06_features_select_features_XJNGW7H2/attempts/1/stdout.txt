@@ -1,0 +1,5 @@
+Train shape: (8124, 17)
+Feature columns: 16
+Preprocessed features: 16
+Selected k: 16
+Saved selector.pkl

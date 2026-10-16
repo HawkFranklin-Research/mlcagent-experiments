@@ -1,0 +1,4 @@
+placeholders found: ['?', '-', 'NA', 'N/A'] in 0 columns
+n_numeric=10 n_categorical=44
+distributions rows=18
+target classes=7

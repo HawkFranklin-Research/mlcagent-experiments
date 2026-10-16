@@ -1,0 +1,20 @@
+Traceback (most recent call last):
+  File "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/bench/dev-loop/batch-02/studies/covertype-001/attempt-001/run-001/.mlca/steps/09_validate_score_validation_ZM8QK3YF/attempts/1/script.py", line 53, in <module>
+    proba = mdl.predict_proba(X_val)
+  File "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/bench/dev-loop/batch-02/studies/covertype-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/pipeline.py", line 926, in predict_proba
+    return self.steps[-1][1].predict_proba(Xt, **params)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/bench/dev-loop/batch-02/studies/covertype-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/pipeline.py", line 925, in predict_proba
+    Xt = transform.transform(Xt)
+  File "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/bench/dev-loop/batch-02/studies/covertype-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/pipeline.py", line 1110, in transform
+    Xt = transform.transform(Xt, **routed_params[name].transform)
+  File "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/bench/dev-loop/batch-02/studies/covertype-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/utils/_set_output.py", line 327, in wrapped
+    data_to_wrap = f(self, X, *args, **kwargs)
+  File "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/bench/dev-loop/batch-02/studies/covertype-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/compose/_column_transformer.py", line 1070, in transform
+    _check_n_features(self, X, reset=False)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/bench/dev-loop/batch-02/studies/covertype-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/utils/validation.py", line 2926, in _check_n_features
+    raise ValueError(
+    ...<2 lines>...
+    )
+ValueError: X has 20 features, but ColumnTransformer is expecting 54 features as input.

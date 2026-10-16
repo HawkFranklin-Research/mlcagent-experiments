@@ -1,0 +1,1 @@
+{"facts": [{"key": "top_feature", "source": "interpretation.csv", "unit": null, "value": "f6"}], "fits": [], "metrics": [], "outputs": [{"caption": "Model interpretation summary", "kind": "table", "name": "interpretation.csv"}, {"caption": "Model interpretation summary", "kind": "table", "name": "interpretation.parquet"}]}

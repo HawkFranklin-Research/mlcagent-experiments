@@ -1,0 +1,1 @@
+{"facts": [{"key": "top_feature", "source": "06_features_retain_features_8F2KVPF9/selector_all.pkl", "unit": null, "value": "num__X1"}], "fits": [], "metrics": [], "outputs": [{"caption": "Frozen model interpretation", "kind": "table", "name": "interpretation.csv"}, {"caption": "Frozen model interpretation", "kind": "table", "name": "interpretation.parquet"}]}

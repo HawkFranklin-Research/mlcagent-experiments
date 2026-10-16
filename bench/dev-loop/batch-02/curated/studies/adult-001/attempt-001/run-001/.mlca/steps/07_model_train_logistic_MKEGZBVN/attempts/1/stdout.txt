@@ -1,0 +1,3 @@
+train shape: (29275, 14)
+features: 13
+classes: ['<=50K', '>50K']

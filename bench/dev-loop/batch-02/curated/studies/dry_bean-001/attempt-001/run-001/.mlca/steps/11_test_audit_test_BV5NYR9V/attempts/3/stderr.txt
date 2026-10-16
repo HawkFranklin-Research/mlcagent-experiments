@@ -1,0 +1,7 @@
+Traceback (most recent call last):
+  File "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/bench/dev-loop/batch-02/studies/dry_bean-001/attempt-001/run-001/.mlca/steps/11_test_audit_test_BV5NYR9V/attempts/3/script.py", line 44, in <module>
+    mlca_runtime.save_row_outputs(out, "test_predictions.csv")
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/bench/dev-loop/batch-02/studies/dry_bean-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/mlca_runtime/__init__.py", line 207, in save_row_outputs
+    raise ValueError("MLCA: row outputs require row_id and partition")
+ValueError: MLCA: row outputs require row_id and partition

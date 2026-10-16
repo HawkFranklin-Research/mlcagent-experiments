@@ -1,0 +1,4 @@
+Train shape: (2506, 9), Val shape: (835, 9)
+Features: 8
+Train RMSE: 2.1432
+Val RMSE: 2.2186

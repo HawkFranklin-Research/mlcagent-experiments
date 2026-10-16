@@ -1,0 +1,1 @@
+{"facts":[],"figures":[],"fits":[],"metrics":[],"outputs":[{"caption":"","kind":"report","name":"split.json","path":".mlca/steps/04_split_freeze_stratified_T19DX3XX/outputs/split.json","sha256":"3f4efe725491ce537c3409671fabe2d26ecbdae83728f18ca635ba68750d7388","size":1146}],"step_id":"04_split_freeze_stratified_T19DX3XX","wall_time_s":27.504453838999325}

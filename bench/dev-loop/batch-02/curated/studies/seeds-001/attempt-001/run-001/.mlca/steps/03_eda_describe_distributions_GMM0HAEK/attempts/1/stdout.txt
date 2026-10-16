@@ -1,0 +1,2 @@
+Features: 7 numeric, 0 categorical
+Saved distributions.csv with 7 rows

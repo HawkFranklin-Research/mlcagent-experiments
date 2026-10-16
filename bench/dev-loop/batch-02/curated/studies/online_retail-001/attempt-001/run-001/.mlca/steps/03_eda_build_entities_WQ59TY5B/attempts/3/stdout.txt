@@ -1,0 +1,2 @@
+reversing rows (negative qty): 8905
+entities: 4372

@@ -1,0 +1,3 @@
+train (3372, 64) val (1124, 64)
+features 64 pca 8
+train_recon 0.4539 val_recon 0.4678

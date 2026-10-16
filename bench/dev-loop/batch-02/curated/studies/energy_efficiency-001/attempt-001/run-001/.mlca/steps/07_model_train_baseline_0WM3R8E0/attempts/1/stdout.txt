@@ -1,0 +1,3 @@
+Targets: ['Y1', 'Y2']
+Train: (460, 10), Val: (153, 10)
+Val RMSE mean: 3.3820

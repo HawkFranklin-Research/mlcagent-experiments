@@ -1,0 +1,4 @@
+Train shape: (2506, 9)
+Features used: 8
+Targets: ['Rings']
+Saved alternative_model.pkl

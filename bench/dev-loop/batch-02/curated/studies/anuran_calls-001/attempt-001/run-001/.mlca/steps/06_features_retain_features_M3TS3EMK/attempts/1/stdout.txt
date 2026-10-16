@@ -1,0 +1,3 @@
+Preprocessor type: ColumnTransformer
+Features: 22, Train rows: 4293
+Saved selector_all.pkl

@@ -1,0 +1,3 @@
+features: 16
+train rows: 8124
+train accuracy: 0.9221

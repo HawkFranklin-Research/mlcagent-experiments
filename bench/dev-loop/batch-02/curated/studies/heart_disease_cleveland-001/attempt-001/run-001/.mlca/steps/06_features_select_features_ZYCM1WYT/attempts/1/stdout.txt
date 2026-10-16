@@ -1,0 +1,4 @@
+feature_cols: 13
+preprocessed features: 13
+k: 13
+saved selector.pkl

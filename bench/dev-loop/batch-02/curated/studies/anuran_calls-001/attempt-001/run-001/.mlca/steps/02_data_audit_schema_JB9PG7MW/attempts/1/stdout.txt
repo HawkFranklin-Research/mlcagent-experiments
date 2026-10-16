@@ -1,0 +1,2 @@
+Placeholders found in 0 text columns: []
+rows=7195 cols=26 missing=0

@@ -1,0 +1,5 @@
+Test ROC AUC: 0.8580 (95% CI: 0.7620-0.9342)
+Test PR AUC: 0.8469
+Balanced accuracy: 0.7743
+Sensitivity: 0.9310, Specificity: 0.6176
+Brier score: 0.1917

@@ -1,0 +1,4 @@
+No placeholder tokens found in text columns.
+Features: 16 (numeric=16, categorical=0)
+Summary rows: 44
+Saved distributions.csv

@@ -1,0 +1,3 @@
+features=54 rows=348605
+selector_includes_prep=True
+model=LogisticRegression

@@ -1,0 +1,2 @@
+val rows: 113 features: 30
+best: logistic roc_auc: 0.9896

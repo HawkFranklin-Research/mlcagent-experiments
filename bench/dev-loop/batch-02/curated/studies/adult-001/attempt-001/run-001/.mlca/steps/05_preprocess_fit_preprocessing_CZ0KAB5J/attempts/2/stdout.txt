@@ -1,0 +1,2 @@
+Placeholders found in 3 columns: ['workclass', 'occupation', 'native-country']
+Train features: 13, val transformed shape: (9758, 98)

@@ -1,0 +1,3 @@
+No target-derived features excluded.
+No placeholder tokens found in text columns.
+Train shape: (8124, 16), Val shape: (2707, 16), Transformed val shape: (2707, 16)

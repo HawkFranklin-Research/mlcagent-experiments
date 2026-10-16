@@ -1,0 +1,2 @@
+rows=4177 cols=9 missing=0
+schema saved: /home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/bench/dev-loop/batch-02/studies/abalone-001/attempt-001/run-001/.mlca/steps/02_data_audit_schema_NQ7G12FJ/attempts/1/outputs/schema.json

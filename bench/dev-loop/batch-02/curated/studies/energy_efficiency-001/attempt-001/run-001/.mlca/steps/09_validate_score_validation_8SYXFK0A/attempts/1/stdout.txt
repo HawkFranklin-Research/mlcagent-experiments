@@ -1,0 +1,2 @@
+val rows: 153, features: 8
+best model: alternative, macro rmse: 1.2171

@@ -1,0 +1,36 @@
+Traceback (most recent call last):
+  File "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/bench/dev-loop/batch-02/studies/anuran_calls-001/attempt-001/run-001/.mlca/steps/09_validate_score_validation_HYD42CKP/attempts/2/script.py", line 102, in <module>
+    per = [f1_score(Y_enc[:, i], pred[:, i], average="macro") for i in range(len(targets))]
+           ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/bench/dev-loop/batch-02/studies/anuran_calls-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/utils/_param_validation.py", line 218, in wrapper
+    return func(*args, **kwargs)
+  File "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/bench/dev-loop/batch-02/studies/anuran_calls-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/metrics/_classification.py", line 1611, in f1_score
+    return fbeta_score(
+        y_true,
+    ...<6 lines>...
+        zero_division=zero_division,
+    )
+  File "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/bench/dev-loop/batch-02/studies/anuran_calls-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/utils/_param_validation.py", line 191, in wrapper
+    return func(*args, **kwargs)
+  File "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/bench/dev-loop/batch-02/studies/anuran_calls-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/metrics/_classification.py", line 1831, in fbeta_score
+    _, _, f, _ = precision_recall_fscore_support(
+                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        y_true,
+        ^^^^^^^
+    ...<7 lines>...
+        zero_division=zero_division,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/bench/dev-loop/batch-02/studies/anuran_calls-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/utils/_param_validation.py", line 191, in wrapper
+    return func(*args, **kwargs)
+  File "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/bench/dev-loop/batch-02/studies/anuran_calls-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/metrics/_classification.py", line 2145, in precision_recall_fscore_support
+    labels = _check_set_wise_labels(y_true, y_pred, average, labels, pos_label)
+  File "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/bench/dev-loop/batch-02/studies/anuran_calls-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/metrics/_classification.py", line 1910, in _check_set_wise_labels
+    y_type, present_labels, y_true, y_pred, _ = _check_targets(y_true, y_pred)
+                                                ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/bench/dev-loop/batch-02/studies/anuran_calls-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/metrics/_classification.py", line 134, in _check_targets
+    raise ValueError(
+    ...<3 lines>...
+    )
+ValueError: Classification metrics can't handle a mix of unknown and multiclass targets

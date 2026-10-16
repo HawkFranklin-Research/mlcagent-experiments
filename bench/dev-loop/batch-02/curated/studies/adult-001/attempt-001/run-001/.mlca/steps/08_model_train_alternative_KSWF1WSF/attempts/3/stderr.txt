@@ -1,0 +1,14 @@
+Traceback (most recent call last):
+  File "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/bench/dev-loop/batch-02/studies/adult-001/attempt-001/run-001/.mlca/steps/08_model_train_alternative_KSWF1WSF/attempts/3/script.py", line 46, in <module>
+    mlca_runtime.record_metric("train_roc_auc", float(roc_auc_score(y, proba, pos_label=classes[1])), "train")
+                                                      ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/bench/dev-loop/batch-02/studies/adult-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/utils/_param_validation.py", line 196, in wrapper
+    params = func_sig.bind(*args, **kwargs)
+  File "/home/prime/miniconda3/lib/python3.13/inspect.py", line 3306, in bind
+    return self._bind(args, kwargs)
+           ~~~~~~~~~~^^^^^^^^^^^^^^
+  File "/home/prime/miniconda3/lib/python3.13/inspect.py", line 3295, in _bind
+    raise TypeError(
+        'got an unexpected keyword argument {arg!r}'.format(
+            arg=next(iter(kwargs))))
+TypeError: got an unexpected keyword argument 'pos_label'

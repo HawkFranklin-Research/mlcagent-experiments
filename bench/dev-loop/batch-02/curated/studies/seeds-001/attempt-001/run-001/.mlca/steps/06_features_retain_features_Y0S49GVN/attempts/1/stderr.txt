@@ -1,0 +1,26 @@
+Traceback (most recent call last):
+  File "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/bench/dev-loop/batch-02/studies/seeds-001/attempt-001/run-001/.mlca/steps/06_features_retain_features_Y0S49GVN/attempts/1/script.py", line 87, in <module>
+    mlca_runtime.fit_record(selector, X_trans, partition="train")
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/bench/dev-loop/batch-02/studies/seeds-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/mlca_runtime/__init__.py", line 183, in fit_record
+    estimator_or_pipeline.fit(X, y, **kwargs) if y is not None else estimator_or_pipeline.fit(X, **kwargs)
+                                                                    ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/bench/dev-loop/batch-02/studies/seeds-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/base.py", line 1393, in wrapper
+    estimator._validate_params()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/bench/dev-loop/batch-02/studies/seeds-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/base.py", line 554, in _validate_params
+    validate_parameter_constraints(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        self._parameter_constraints,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        self.get_params(deep=False),
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        caller_name=self.__class__.__name__,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/bench/dev-loop/batch-02/studies/seeds-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/utils/_param_validation.py", line 98, in validate_parameter_constraints
+    raise InvalidParameterError(
+    ...<2 lines>...
+    )
+sklearn.utils._param_validation.InvalidParameterError: The 'threshold' parameter of VarianceThreshold must be a float in the range [0.0, inf). Got -inf instead.
