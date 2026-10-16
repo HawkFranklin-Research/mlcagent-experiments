@@ -1,0 +1,1 @@
+{"facts": [], "fits": [], "metrics": [], "outputs": [{"caption": "Validation clustering metrics", "kind": "table", "name": "validation_metrics.csv"}, {"caption": "Validation clustering metrics", "kind": "table", "name": "validation_metrics.parquet"}]}

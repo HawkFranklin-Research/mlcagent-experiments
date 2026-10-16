@@ -1,0 +1,31 @@
+Traceback (most recent call last):
+  File "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/bench/dev-loop/batch-07/studies/online_retail-001/attempt-001/run-001/.mlca/steps/03_eda_build_entities_PMXXXB63/attempts/1/script.py", line 30, in <module>
+    agg = df.groupby(group_col).agg(
+          ~~~~~~~~~~~~~~~~~~~~~~~~~^
+        frequency=("InvoiceNo", "nunique"),
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+        last_invoice=(time_cols[0], "max"),
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ).reset_index()
+    ^
+  File "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/bench/dev-loop/batch-07/studies/online_retail-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/pandas/core/groupby/generic.py", line 2291, in aggregate
+    result = op.agg()
+  File "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/bench/dev-loop/batch-07/studies/online_retail-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/pandas/core/apply.py", line 294, in agg
+    return self.agg_dict_like()
+           ~~~~~~~~~~~~~~~~~~^^
+  File "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/bench/dev-loop/batch-07/studies/online_retail-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/pandas/core/apply.py", line 511, in agg_dict_like
+    return self.agg_or_apply_dict_like(op_name="agg")
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/bench/dev-loop/batch-07/studies/online_retail-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/pandas/core/apply.py", line 1677, in agg_or_apply_dict_like
+    result_index, result_data = self.compute_dict_like(
+                                ~~~~~~~~~~~~~~~~~~~~~~^
+        op_name, selected_obj, selection, kwargs
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/bench/dev-loop/batch-07/studies/online_retail-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/pandas/core/apply.py", line 550, in compute_dict_like
+    func = self.normalize_dictlike_arg(op_name, selected_obj, func)
+  File "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/bench/dev-loop/batch-07/studies/online_retail-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/pandas/core/apply.py", line 762, in normalize_dictlike_arg
+    raise KeyError(f"Label(s) {list(cols)} do not exist")
+KeyError: "Label(s) ['InvoiceNo'] do not exist"

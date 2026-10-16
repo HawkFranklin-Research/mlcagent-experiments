@@ -1,0 +1,2 @@
+features=64 numeric=42 log1p=22 categorical=0
+encoded_width=64 wide=False saved=preprocessor.pkl

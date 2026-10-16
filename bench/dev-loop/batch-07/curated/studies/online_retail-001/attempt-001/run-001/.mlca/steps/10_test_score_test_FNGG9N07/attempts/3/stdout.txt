@@ -1,0 +1,2 @@
+model=alternative test_n=868
+silhouette=0.2148 sil=0.2148 ch=73.1082 db=1.0999

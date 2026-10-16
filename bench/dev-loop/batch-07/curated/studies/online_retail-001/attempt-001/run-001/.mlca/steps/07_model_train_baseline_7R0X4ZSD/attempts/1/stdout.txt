@@ -1,0 +1,4 @@
+Chosen k=2
+Silhouette=0.9688
+Stability=0.8798
+Train rows=2603

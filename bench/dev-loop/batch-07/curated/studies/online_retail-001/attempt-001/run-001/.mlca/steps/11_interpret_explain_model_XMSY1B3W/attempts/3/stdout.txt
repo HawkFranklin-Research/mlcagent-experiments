@@ -1,0 +1,5 @@
+Model: MiniBatchKMeans
+Selected features: 0
+Top feature: None
+Validation silhouette: 0.5241
+Interpretation saved to interpretation.csv

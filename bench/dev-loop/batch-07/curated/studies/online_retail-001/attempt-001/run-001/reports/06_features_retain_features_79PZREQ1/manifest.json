@@ -1,0 +1,1 @@
+{"facts": [], "fits": [{"columns": ["monetary_total", "monetary_mean", "n_lines", "recency_days"], "estimator": "Pipeline", "index_sha256": "3963afbc7647d94bd6e22c7bf20c4ec94e2906ba9da7a5ee36ae777d20b02a65", "partition": "train"}], "metrics": [], "outputs": [{"caption": "", "kind": "model", "name": "selector_all.pkl"}]}

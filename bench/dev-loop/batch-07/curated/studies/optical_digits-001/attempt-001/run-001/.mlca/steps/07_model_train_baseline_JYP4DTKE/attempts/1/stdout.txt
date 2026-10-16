@@ -1,0 +1,2 @@
+features: 64 pca_components: 8
+val reconstruction_error (frontend feature space): 0.4678

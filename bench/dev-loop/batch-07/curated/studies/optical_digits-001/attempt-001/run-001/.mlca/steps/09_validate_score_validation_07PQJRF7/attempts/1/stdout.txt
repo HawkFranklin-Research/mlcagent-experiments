@@ -1,0 +1,4 @@
+frontend shape (1124, 64)
+baseline PCA (1124, 64) 0.4678
+alternative MLPRegressor (1124, 64) 0.3561
+best alternative 0.3561

@@ -1,0 +1,2 @@
+dropped high-card/time/const: ['InvoiceDate']
+fitted preprocessor: rows=2603 features=4

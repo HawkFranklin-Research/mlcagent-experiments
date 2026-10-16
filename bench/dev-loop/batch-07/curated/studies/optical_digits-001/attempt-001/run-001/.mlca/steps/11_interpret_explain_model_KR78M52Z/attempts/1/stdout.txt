@@ -1,0 +1,4 @@
+features: 64
+model: PCA
+val metrics rows: 2
+top_feature: pixel_17

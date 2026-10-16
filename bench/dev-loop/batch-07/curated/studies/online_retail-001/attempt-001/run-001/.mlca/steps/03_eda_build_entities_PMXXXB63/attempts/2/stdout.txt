@@ -1,0 +1,2 @@
+Reversing rows dropped: 8905
+entities: 4339

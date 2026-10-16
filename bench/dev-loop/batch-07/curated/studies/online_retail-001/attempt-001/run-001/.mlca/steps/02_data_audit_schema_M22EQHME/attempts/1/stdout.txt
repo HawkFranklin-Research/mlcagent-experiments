@@ -1,0 +1,3 @@
+Placeholders found: ['?'] in 1 columns
+Rows: 541909, Columns: 6
+Missing total: 136534

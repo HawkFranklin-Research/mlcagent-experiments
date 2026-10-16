@@ -1,0 +1,2 @@
+features: 4 (num=4, cat=0), wide=False
+best k=3, silhouette=0.4889, stability=0.8236

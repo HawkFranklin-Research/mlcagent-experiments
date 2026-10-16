@@ -1,0 +1,3 @@
+X_train shape: (2603, 4)
+Preprocessor type: ColumnTransformer
+Pipeline steps: ['preprocessor', 'selector']
