@@ -1,0 +1,24 @@
+Traceback (most recent call last):
+  File "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/bench/dev-loop/batch-01/studies/breast_cancer_diagnostic-001/attempt-001/run-001/.mlca/steps/06_features_select_features_THDS477D/attempts/2/script.py", line 41, in <module>
+    pre = joblib.load(ins["05_preprocess_fit_preprocessing_YS7QE43Y/preprocessor.pkl"])
+  File "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/bench/dev-loop/batch-01/studies/breast_cancer_diagnostic-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/joblib/numpy_pickle.py", line 755, in load
+    obj = _unpickle(
+        fobj,
+    ...<2 lines>...
+        mmap_mode=validated_mmap_mode,
+    )
+  File "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/bench/dev-loop/batch-01/studies/breast_cancer_diagnostic-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/joblib/numpy_pickle.py", line 632, in _unpickle
+    obj = unpickler.load()
+  File "/home/prime/miniconda3/lib/python3.13/pickle.py", line 1256, in load
+    dispatch[key[0]](self)
+    ~~~~~~~~~~~~~~~~^^^^^^
+  File "/home/prime/miniconda3/lib/python3.13/pickle.py", line 1581, in load_stack_global
+    self.append(self.find_class(module, name))
+                ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "/home/prime/miniconda3/lib/python3.13/pickle.py", line 1624, in find_class
+    return _getattribute(sys.modules[module], name)[0]
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/prime/miniconda3/lib/python3.13/pickle.py", line 326, in _getattribute
+    raise AttributeError("Can't get attribute {!r} on {!r}"
+                         .format(name, top)) from None
+AttributeError: Can't get attribute 'TextCleaner' on <module '__main__' from '/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/bench/dev-loop/batch-01/studies/breast_cancer_diagnostic-001/attempt-001/run-001/.mlca/steps/06_features_select_features_THDS477D/attempts/2/script.py'>

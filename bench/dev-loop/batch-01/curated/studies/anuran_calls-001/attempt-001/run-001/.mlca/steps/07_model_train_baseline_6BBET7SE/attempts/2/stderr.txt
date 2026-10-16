@@ -1,0 +1,4 @@
+Traceback (most recent call last):
+  File "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/bench/dev-loop/batch-01/studies/anuran_calls-001/attempt-001/run-001/.mlca/steps/07_model_train_baseline_6BBET7SE/attempts/2/script.py", line 42, in <module>
+    pre = pickle.load(f)
+AttributeError: Can't get attribute 'clean_text' on <module '__main__' from '/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/bench/dev-loop/batch-01/studies/anuran_calls-001/attempt-001/run-001/.mlca/steps/07_model_train_baseline_6BBET7SE/attempts/2/script.py'>

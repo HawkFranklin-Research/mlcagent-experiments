@@ -1,0 +1,4 @@
+No placeholders found in text columns.
+Rows: 5620, Features: 64
+Numeric: 64, Categorical: 0
+Saved distributions.csv

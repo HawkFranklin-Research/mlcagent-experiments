@@ -1,0 +1,12 @@
+Traceback (most recent call last):
+  File "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/bench/dev-loop/batch-01/studies/heart_disease_cleveland-001/attempt-001/run-001/.mlca/steps/05_preprocess_fit_preprocessing_VHAA70AD/attempts/1/script.py", line 99, in <module>
+    cat_pipe.set_output(transform="pandas")
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/bench/dev-loop/batch-01/studies/heart_disease_cleveland-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/pipeline.py", line 248, in set_output
+    _safe_set_output(step, transform=transform)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/bench/dev-loop/batch-01/studies/heart_disease_cleveland-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/utils/_set_output.py", line 468, in _safe_set_output
+    raise ValueError(
+    ...<2 lines>...
+    )
+ValueError: Unable to configure output for TextCleaner() because `set_output` is not available.

@@ -1,0 +1,4 @@
+No placeholders found in text columns
+Numeric columns: 23
+Categorical columns: 0
+Saved distributions.csv with 37 rows

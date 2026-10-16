@@ -1,0 +1,14 @@
+{
+  "ts": "2026-10-16T04:25:00.845521+00:00",
+  "actor": "implementing_agent",
+  "dataset": "covertype",
+  "action": "SIGINT study worker",
+  "classification": "infrastructure_intervention",
+  "reason": "Confirmed engine privacy collection bottleneck after successful sandbox script, retaining all outcomes; stop before resource exhaustion rather than wait for 90-minute deadline.",
+  "protocol_deviation": "Early infrastructure stop before configured per-study deadline; not a model failure or completion.",
+  "evidence": "studies/covertype-001/attempt-001/run-001/.mlca/log/events.jsonl",
+  "observed_script_compute_s": 1.9184581330009678,
+  "process_wall_s": 1514.3219153881073,
+  "resident_kib": 5762836,
+  "source_unchanged": true
+}

@@ -1,0 +1,4 @@
+Train shape: (460, 10)
+Feature columns: 8
+Preprocessed shape: (460, 8)
+Saved selector_all.pkl

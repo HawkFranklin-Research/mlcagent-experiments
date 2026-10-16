@@ -1,0 +1,7 @@
+Traceback (most recent call last):
+  File "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/bench/dev-loop/batch-01/studies/online_retail-001/attempt-001/run-001/.mlca/steps/03_eda_build_entities_VWBZMCWK/attempts/2/script.py", line 79, in <module>
+    mlca_runtime.record_metric("n_entities", float(len(entities)), "eda")
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/bench/dev-loop/batch-01/studies/online_retail-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/mlca_runtime/__init__.py", line 138, in record_metric
+    raise ValueError("Metrics require a finite value and named partition")
+ValueError: Metrics require a finite value and named partition

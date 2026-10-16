@@ -1,0 +1,2 @@
+Rows: 210, Columns: 7
+Saved entities.parquet

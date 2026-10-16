@@ -1,0 +1,3 @@
+Placeholders found in 1 columns: ['Description']
+Dropped 135080 rows without entity key CustomerID
+Reversing rows (negative Quantity or UnitPrice) are included in frequency and monetary totals; returns reduce totals.

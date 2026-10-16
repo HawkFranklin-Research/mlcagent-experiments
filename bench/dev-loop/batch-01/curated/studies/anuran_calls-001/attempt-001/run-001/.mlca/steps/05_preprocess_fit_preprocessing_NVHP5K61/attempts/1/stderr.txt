@@ -1,0 +1,12 @@
+Traceback (most recent call last):
+  File "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/bench/dev-loop/batch-01/studies/anuran_calls-001/attempt-001/run-001/.mlca/steps/05_preprocess_fit_preprocessing_NVHP5K61/attempts/1/script.py", line 53, in <module>
+    r = abs(train[c].corr(y))
+            ~~~~~~~~~~~~~^^^
+  File "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/bench/dev-loop/batch-01/studies/anuran_calls-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/pandas/core/series.py", line 2771, in corr
+    other_values = other.to_numpy(dtype=float, na_value=np.nan, copy=False)
+  File "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/bench/dev-loop/batch-01/studies/anuran_calls-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/pandas/core/base.py", line 664, in to_numpy
+    return self.array.to_numpy(dtype, copy=copy, na_value=na_value, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/bench/dev-loop/batch-01/studies/anuran_calls-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/pandas/core/arrays/arrow/array.py", line 1803, in to_numpy
+    result = result.astype(dtype, copy=False)
+ValueError: could not convert string to float: 'Leptodactylidae'

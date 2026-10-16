@@ -1,0 +1,3 @@
+Rows: 17379, Columns: 17
+Missing total: 0
+Placeholders: none

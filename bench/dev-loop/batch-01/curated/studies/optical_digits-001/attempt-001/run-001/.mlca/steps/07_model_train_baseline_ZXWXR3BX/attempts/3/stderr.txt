@@ -1,0 +1,55 @@
+Traceback (most recent call last):
+  File "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/bench/dev-loop/batch-01/studies/optical_digits-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/utils/_indexing.py", line 411, in _get_column_indices
+    return [column_names.index(col) for col in selected_columns]
+            ~~~~~~~~~~~~~~~~~~^^^^^
+ValueError: 'pixel_1' is not in list
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/bench/dev-loop/batch-01/studies/optical_digits-001/attempt-001/run-001/.mlca/steps/07_model_train_baseline_ZXWXR3BX/attempts/3/script.py", line 71, in <module>
+    fitted = mlca_runtime.fit_record(full, X_train, partition='train')
+  File "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/bench/dev-loop/batch-01/studies/optical_digits-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/mlca_runtime/__init__.py", line 178, in fit_record
+    estimator_or_pipeline.fit(X, y, **kwargs) if y is not None else estimator_or_pipeline.fit(X, **kwargs)
+                                                                    ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/bench/dev-loop/batch-01/studies/optical_digits-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/base.py", line 1403, in wrapper
+    return fit_method(estimator, *args, **kwargs)
+  File "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/bench/dev-loop/batch-01/studies/optical_digits-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/pipeline.py", line 632, in fit
+    Xt = self._fit(
+        X, y, routed_params, raw_params=params, callback_ctx=callback_ctx
+    )
+  File "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/bench/dev-loop/batch-01/studies/optical_digits-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/pipeline.py", line 561, in _fit
+    X, fitted_transformer = fit_transform_one_cached(
+                            ~~~~~~~~~~~~~~~~~~~~~~~~^
+        cloned_transformer,
+        ^^^^^^^^^^^^^^^^^^^
+    ...<7 lines>...
+        callback_ctx=subcontext,
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/bench/dev-loop/batch-01/studies/optical_digits-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/joblib/memory.py", line 331, in __call__
+    return self.func(*args, **kwargs)
+           ~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/bench/dev-loop/batch-01/studies/optical_digits-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/pipeline.py", line 1593, in _fit_transform_one_with_callbacks
+    Xt, transformer = _fit_transform_one(
+                      ~~~~~~~~~~~~~~~~~~^
+        transformer, X, y, weight, message_clsname, message, params
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/bench/dev-loop/batch-01/studies/optical_digits-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/pipeline.py", line 1566, in _fit_transform_one
+    res = transformer.fit_transform(X, y, **params.get("fit_transform", {}))
+  File "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/bench/dev-loop/batch-01/studies/optical_digits-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/utils/_set_output.py", line 327, in wrapped
+    data_to_wrap = f(self, X, *args, **kwargs)
+  File "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/bench/dev-loop/batch-01/studies/optical_digits-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/base.py", line 1403, in wrapper
+    return fit_method(estimator, *args, **kwargs)
+  File "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/bench/dev-loop/batch-01/studies/optical_digits-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/compose/_column_transformer.py", line 969, in fit_transform
+    self._validate_column_callables(X)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^
+  File "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/bench/dev-loop/batch-01/studies/optical_digits-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/compose/_column_transformer.py", line 524, in _validate_column_callables
+    transformer_to_input_indices[name] = _get_column_indices(X, columns)
+                                         ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/bench/dev-loop/batch-01/studies/optical_digits-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/utils/_indexing.py", line 415, in _get_column_indices
+    raise ValueError(msg) from e
+ValueError: Some column names are not columns of the dataframe: {'pixel_24', 'pixel_36', 'pixel_42', 'pixel_60', 'pixel_13', 'pixel_44', 'pixel_11', 'pixel_12', 'pixel_64', 'pixel_57', 'pixel_10', 'pixel_63', 'pixel_6', 'pixel_22', 'pixel_26', 'pixel_46', 'pixel_28', 'pixel_43', 'pixel_40', 'pixel_18', 'pixel_45', 'pixel_34', 'pixel_49', 'pixel_3', 'pixel_31', 'pixel_5', 'pixel_7', 'pixel_1', 'pixel_23', 'pixel_58', 'pixel_35', 'pixel_39', 'pixel_50', 'pixel_52', 'pixel_37', 'pixel_32', 'pixel_4', 'pixel_19', 'pixel_20', 'pixel_33', 'pixel_62', 'pixel_25', 'pixel_27', 'pixel_14', 'pixel_17', 'pixel_47', 'pixel_61', 'pixel_30', 'pixel_9', 'pixel_38', 'pixel_41', 'pixel_55', 'pixel_16', 'pixel_21', 'pixel_29', 'pixel_8', 'pixel_2', 'pixel_15', 'pixel_51', 'pixel_56', 'pixel_59', 'pixel_54', 'pixel_53', 'pixel_48'}

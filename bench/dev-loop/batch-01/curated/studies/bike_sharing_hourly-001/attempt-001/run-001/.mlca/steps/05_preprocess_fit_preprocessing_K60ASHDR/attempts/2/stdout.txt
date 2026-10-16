@@ -1,0 +1,2 @@
+excluded derivations: ['casual', 'registered']
+fitted preprocessor: 10408 rows, 13 features

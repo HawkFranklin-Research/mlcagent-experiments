@@ -1,0 +1,1 @@
+{"facts":[],"figures":[],"fits":[],"metrics":[],"outputs":[{"caption":"","kind":"data","name":"entities.parquet","path":".mlca/steps/03_eda_build_entities_8K69N2A3/outputs/entities.parquet","sha256":"20d953e4b6aa51b801b2eb2e371f7432b4c64090a4209fca546713c9c1b54e1c","size":16027}],"step_id":"03_eda_build_entities_8K69N2A3","wall_time_s":82.15256214499823}

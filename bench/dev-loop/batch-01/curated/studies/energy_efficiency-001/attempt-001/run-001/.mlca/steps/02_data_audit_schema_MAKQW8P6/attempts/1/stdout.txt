@@ -1,0 +1,3 @@
+placeholders: 0 columns
+shape: 768 rows x 10 columns
+saved schema.json with 10 rows

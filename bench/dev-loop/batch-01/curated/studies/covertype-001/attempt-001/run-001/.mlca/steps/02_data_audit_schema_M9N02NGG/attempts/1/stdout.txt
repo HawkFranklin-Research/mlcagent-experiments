@@ -1,0 +1,4 @@
+Rows: 581012, Columns: 55
+Total missing: 0
+No placeholders found
+Schema saved to schema.json

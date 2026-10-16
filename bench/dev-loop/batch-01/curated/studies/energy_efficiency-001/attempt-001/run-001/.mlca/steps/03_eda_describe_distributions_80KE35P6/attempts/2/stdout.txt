@@ -1,0 +1,2 @@
+rows=768 cols=10
+n_numeric=10 n_categorical=0

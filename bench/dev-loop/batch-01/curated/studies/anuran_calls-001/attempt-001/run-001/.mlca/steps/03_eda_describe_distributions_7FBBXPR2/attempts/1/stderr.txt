@@ -1,0 +1,4 @@
+Traceback (most recent call last):
+  File "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/bench/dev-loop/batch-01/studies/anuran_calls-001/attempt-001/run-001/.mlca/steps/03_eda_describe_distributions_7FBBXPR2/attempts/1/script.py", line 23, in <module>
+    raise ValueError(f"Group column '{group_col}' not in dataframe columns: {df.columns.tolist()}")
+ValueError: Group column 'None' not in dataframe columns: ['MFCCs_ 1', 'MFCCs_ 2', 'MFCCs_ 3', 'MFCCs_ 4', 'MFCCs_ 5', 'MFCCs_ 6', 'MFCCs_ 7', 'MFCCs_ 8', 'MFCCs_ 9', 'MFCCs_10', 'MFCCs_11', 'MFCCs_12', 'MFCCs_13', 'MFCCs_14', 'MFCCs_15', 'MFCCs_16', 'MFCCs_17', 'MFCCs_18', 'MFCCs_19', 'MFCCs_20', 'MFCCs_21', 'MFCCs_22', 'Family', 'Genus', 'Species', 'RecordID']
