@@ -1,0 +1,5 @@
+Traceback (most recent call last):
+  File "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/bench/dev-loop/round-02/breast_cancer_diagnostic/run-001/.mlca/steps/07_model_train_logistic_REQDQADE/attempts/2/script.py", line 16, in <module>
+    target_col = protocol["answers"]["columns"]["target"]
+                 ~~~~~~~~^^^^^^^^^^^
+KeyError: 'answers'

@@ -1,0 +1,3 @@
+Dataset shape: 303 rows, 14 columns
+Total missing values: 6
+Schema saved to schema.json

@@ -1,0 +1,2 @@
+Validation shape after preprocessing: (113, 30)
+Preprocessor saved as preprocessor.pkl

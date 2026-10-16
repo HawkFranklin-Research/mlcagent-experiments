@@ -1,0 +1,4 @@
+train 341x30
+features 30
+k 20
+saved selector.pkl

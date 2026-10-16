@@ -1,0 +1,4 @@
+n_numeric: 13
+n_categorical: 0
+X shape: (303, 13)
+y shape: (303,)

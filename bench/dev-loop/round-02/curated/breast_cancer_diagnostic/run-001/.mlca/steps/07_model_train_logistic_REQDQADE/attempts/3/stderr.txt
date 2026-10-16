@@ -1,0 +1,77 @@
+Traceback (most recent call last):
+  File "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/bench/dev-loop/round-02/breast_cancer_diagnostic/run-001/.mlca/steps/07_model_train_logistic_REQDQADE/attempts/3/script.py", line 35, in <module>
+    fitted_pipeline = mlca_runtime.fit_record(pipeline, X_train, "train", y=y_train)
+  File "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/bench/dev-loop/round-02/breast_cancer_diagnostic/run-001/.mlca/env/lib/python3.13/site-packages/mlca_runtime/__init__.py", line 171, in fit_record
+    estimator_or_pipeline.fit(X, y, **kwargs) if y is not None else estimator_or_pipeline.fit(X, **kwargs)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/bench/dev-loop/round-02/breast_cancer_diagnostic/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/base.py", line 1403, in wrapper
+    return fit_method(estimator, *args, **kwargs)
+  File "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/bench/dev-loop/round-02/breast_cancer_diagnostic/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/pipeline.py", line 632, in fit
+    Xt = self._fit(
+        X, y, routed_params, raw_params=params, callback_ctx=callback_ctx
+    )
+  File "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/bench/dev-loop/round-02/breast_cancer_diagnostic/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/pipeline.py", line 561, in _fit
+    X, fitted_transformer = fit_transform_one_cached(
+                            ~~~~~~~~~~~~~~~~~~~~~~~~^
+        cloned_transformer,
+        ^^^^^^^^^^^^^^^^^^^
+    ...<7 lines>...
+        callback_ctx=subcontext,
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/bench/dev-loop/round-02/breast_cancer_diagnostic/run-001/.mlca/env/lib/python3.13/site-packages/joblib/memory.py", line 331, in __call__
+    return self.func(*args, **kwargs)
+           ~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/bench/dev-loop/round-02/breast_cancer_diagnostic/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/pipeline.py", line 1593, in _fit_transform_one_with_callbacks
+    Xt, transformer = _fit_transform_one(
+                      ~~~~~~~~~~~~~~~~~~^
+        transformer, X, y, weight, message_clsname, message, params
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/bench/dev-loop/round-02/breast_cancer_diagnostic/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/pipeline.py", line 1566, in _fit_transform_one
+    res = transformer.fit_transform(X, y, **params.get("fit_transform", {}))
+  File "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/bench/dev-loop/round-02/breast_cancer_diagnostic/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/base.py", line 1403, in wrapper
+    return fit_method(estimator, *args, **kwargs)
+  File "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/bench/dev-loop/round-02/breast_cancer_diagnostic/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/pipeline.py", line 712, in fit_transform
+    Xt = self._fit(
+        X, y, routed_params, raw_params=params, callback_ctx=callback_ctx
+    )
+  File "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/bench/dev-loop/round-02/breast_cancer_diagnostic/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/pipeline.py", line 561, in _fit
+    X, fitted_transformer = fit_transform_one_cached(
+                            ~~~~~~~~~~~~~~~~~~~~~~~~^
+        cloned_transformer,
+        ^^^^^^^^^^^^^^^^^^^
+    ...<7 lines>...
+        callback_ctx=subcontext,
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/bench/dev-loop/round-02/breast_cancer_diagnostic/run-001/.mlca/env/lib/python3.13/site-packages/joblib/memory.py", line 331, in __call__
+    return self.func(*args, **kwargs)
+           ~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/bench/dev-loop/round-02/breast_cancer_diagnostic/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/pipeline.py", line 1593, in _fit_transform_one_with_callbacks
+    Xt, transformer = _fit_transform_one(
+                      ~~~~~~~~~~~~~~~~~~^
+        transformer, X, y, weight, message_clsname, message, params
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/bench/dev-loop/round-02/breast_cancer_diagnostic/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/pipeline.py", line 1566, in _fit_transform_one
+    res = transformer.fit_transform(X, y, **params.get("fit_transform", {}))
+  File "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/bench/dev-loop/round-02/breast_cancer_diagnostic/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/utils/_set_output.py", line 327, in wrapped
+    data_to_wrap = f(self, X, *args, **kwargs)
+  File "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/bench/dev-loop/round-02/breast_cancer_diagnostic/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/base.py", line 1403, in wrapper
+    return fit_method(estimator, *args, **kwargs)
+  File "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/bench/dev-loop/round-02/breast_cancer_diagnostic/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/compose/_column_transformer.py", line 969, in fit_transform
+    self._validate_column_callables(X)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^
+  File "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/bench/dev-loop/round-02/breast_cancer_diagnostic/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/compose/_column_transformer.py", line 524, in _validate_column_callables
+    transformer_to_input_indices[name] = _get_column_indices(X, columns)
+                                         ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/bench/dev-loop/round-02/breast_cancer_diagnostic/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/utils/_indexing.py", line 391, in _get_column_indices
+    raise ValueError(
+        "Specifying the columns using strings is only supported for dataframes."
+    )
+ValueError: Specifying the columns using strings is only supported for dataframes.

@@ -1,0 +1,5 @@
+train shape: (181, 13)
+val shape: (59, 13)
+n_features: 13
+k: 13
+n_selected: 13

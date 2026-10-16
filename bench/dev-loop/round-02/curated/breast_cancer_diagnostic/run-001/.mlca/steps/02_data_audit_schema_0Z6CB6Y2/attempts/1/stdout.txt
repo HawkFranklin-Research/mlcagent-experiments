@@ -1,0 +1,3 @@
+Rows: 569
+Columns: 31
+Total missing: 0
