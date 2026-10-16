@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/bench/dev-loop/batch-06/studies/optical_digits-001/attempt-001/run-001/.mlca/steps/10_test_score_test_WXH3WJR2/attempts/1/script.py", line 128, in <module>
+    emb_all = pd.concat([make_emb_df(emb_tr, train.index, "train"),
+                         ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/bench/dev-loop/batch-06/studies/optical_digits-001/attempt-001/run-001/.mlca/steps/10_test_score_test_WXH3WJR2/attempts/1/script.py", line 123, in make_emb_df
+    df = pd.DataFrame(emb, columns=[f"embedding_{i}" for i in range(emb.shape[1])])
+                                                                    ^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'shape'

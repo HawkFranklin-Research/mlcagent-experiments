@@ -1,0 +1,4 @@
+input rows: 541909, entities: 4339
+reversing rows dropped (Quantity<=0): 8905
+last invoice date: 2011-12-09 12:50:00
+aggregation: one row per entity_id with recency_days, frequency, total_value, mean_value, n_invoices

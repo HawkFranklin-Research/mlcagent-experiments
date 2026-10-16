@@ -1,0 +1,1 @@
+{"facts": [{"key": "entity_count", "source": "entities.parquet", "unit": null, "value": 4339}], "fits": [], "metrics": [{"ci": null, "name": "n_entities", "split": "train", "value": 4339.0}], "outputs": [{"caption": "", "kind": "report", "name": "entity_summary.json"}]}

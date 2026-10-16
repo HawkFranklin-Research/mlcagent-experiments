@@ -1,0 +1,2 @@
+features=64 numeric=64 log1p=22 cat=0
+output width ~64

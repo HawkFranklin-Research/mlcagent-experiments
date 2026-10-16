@@ -1,0 +1,4 @@
+val rows: 1124, features: 64
+baseline err: 0.4678
+alternative err: 0.3506
+best: alternative = 0.3506

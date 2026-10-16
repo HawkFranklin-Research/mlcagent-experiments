@@ -1,0 +1,1 @@
+{"aggregation_rule": "drop rows with missing entity key; drop rows with Quantity<=0 (returns/reversals); one row per entity with recency_days, frequency, total_value, mean_value, n_invoices", "last_invoice_date": "2011-12-09 12:50:00", "n_entities": 4339, "n_input_rows": 541909, "n_reversing_rows_dropped": 8905}

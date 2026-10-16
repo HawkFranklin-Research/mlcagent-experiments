@@ -1,0 +1,3 @@
+features: 64, pca components: 8
+train reconstruction_error (frontend space): 0.4539
+val reconstruction_error (frontend space): 0.4678

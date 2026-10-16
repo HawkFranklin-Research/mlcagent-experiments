@@ -1,0 +1,1 @@
+{"known":{"cost_usd":0.115940568,"input_tokens":130129,"output_tokens":103502,"reasoning_tokens":88400},"models":{"deepseek/deepseek-v4.1-flash":45},"partial":false,"requests":45,"unknown":{"cost_usd":0,"input_tokens":0,"output_tokens":0}}
