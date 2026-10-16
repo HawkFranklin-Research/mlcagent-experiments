@@ -75,3 +75,25 @@ Queue: `scripts/run_batch.py`; external scorers: `scripts/score_inference.py` an
 `scripts/score_leakage.py`. The queue's offline tests use tiny process stubs, not
 no-AI analysis runs. Four queue tests and two leakage tests pass. Shared engine
 controls commit: c448e56. Full native suite remains the Step 1.7 launch gate.
+
+## Batch03 preparation after batch02
+
+Batch02 evidence commit4a9a60d:3 qualifying successes (Heart, Abalone, Energy),
+9 retained failures. Engine/template contracts and instruction rails are repaired
+between batches, with no model or generation-setting change. Model remains
+DeepSeek V4.1 Flash, temperature0,max output16384, provider-default reasoning.
+The final full native gate must pass before launching batch03.
+
+Batch03 queues eight failed tables: breast_cancer_diagnostic, adult, dry_bean,
+covertype, anuran_calls, bike_sharing_hourly, seeds, optical_digits. The ninth
+failure, Online Retail, is temporarily deferred pending the author's choice of
+static customer segmentation versus the existing temporal criterion. No scoring
+expectation or previous result is rewritten. If decided before launch, record
+the prospective decision and update this scope before any live request.
+
+The existing entity-preparation action and prepares_data handoff remain the
+path for changing analysis units before the frozen split. No synthetic or
+hand-written reference analysis is substituted. Completed studies are not rerun
+until acceptance. Six studies in parallel; one large atonce; same pacing,
+limits, full-size tables and sandboxA. Cache storage costs and byte-verified
+archival are reported separately from model compute and model repairs.
