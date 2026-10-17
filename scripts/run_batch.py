@@ -19,11 +19,24 @@ from filelock import FileLock
 ROOT = Path(__file__).resolve().parents[1]
 CODE = ROOT.parent / "mlca-revized"
 sys.path.insert(0, str(CODE / "src"))
+from comparison import (
+    PROVIDERS,
+    read_plan,
+    runtime_identity,
+    select_jobs,
+    validate_plan,
+    validate_state,
+)
 from mlca.llm.usage import summary
 from mlca.paths import atomic_json
 from mlca.rails import load
 
 TERMINAL = {"finished"}
+
+
+def batch_paths(parent):
+    """Accept arbitrary output folder names as well as historical batch-NN folders."""
+    return sorted(Path(parent).glob("*/batch.json"))
 
 
 def utc():
@@ -68,14 +81,29 @@ def source_identity():
     }
 
 
-def validate_stage(folder, identity, model, selected, all_ids, replicates, rails_off, reasoning_effort=None):
+def validate_stage(
+    folder,
+    identity,
+    model,
+    selected,
+    all_ids,
+    replicates,
+    rails_off,
+    reasoning_effort=None,
+    provider="openrouter",
+    comparison_plan_sha256=None,
+):
     """Require recorded successes before acceptance, and acceptance before ablation."""
     prior = []
-    for path in sorted(folder.parent.glob("batch-[0-9][0-9]/batch.json")):
+    for path in sorted(batch_paths(folder.parent)):
         if path.parent == folder:
             continue
         state = json.loads(path.read_text())
-        if state.get("status") == "finished" and state.get("model") == model:
+        if (
+            state.get("status") == "finished"
+            and state.get("model") == model
+            and state.get("provider", "openrouter") == provider
+        ):
             prior.append(state)
     if replicates == 3:
         succeeded = {
@@ -96,6 +124,10 @@ def validate_stage(folder, identity, model, selected, all_ids, replicates, rails
             and state.get("code_commit") == identity["code_commit"]
             and state.get("rails") == identity["rails"]
             and state.get("reasoning_effort") == reasoning_effort
+            and (
+                comparison_plan_sha256 is None
+                or state.get("comparison_plan_sha256") == comparison_plan_sha256
+            )
             and len(state["jobs"]) == 3 * len(all_ids)
             and all(j.get("result", {}).get("success") for j in state["jobs"])
             for state in prior
@@ -204,6 +236,16 @@ def finish_job(folder, job, expected):
     result["repair_calls"] = sum(
         r.get("purpose") == "repair" for r in request_list.values()
     )
+    enforced = attempt.parent / (attempt.name + "-enforced-resources.json")
+    result["enforced_resources"] = (
+        json.loads(enforced.read_text()) if enforced.exists() else None
+    )
+    if job.get("cgroup"):
+        from study_resources import memory_events
+
+        result["memory_events"] = memory_events(job["cgroup"])
+        if result["memory_events"].get("oom_kill", 0):
+            result.update(status="failed", category="memory_limit")
     result["workflow_completed"] = result.get("status") == "completed"
     job["result"] = result
     result["setup_agreement"] = None
@@ -222,6 +264,9 @@ def finish_job(folder, job, expected):
                 result["furthest_event"] = record.event_id
             if record.step_id:
                 result["furthest_step"] = record.step_id
+        splits = [r.payload for r in records if r.type.value == "SplitFrozen"]
+        result["split_parameters"] = splits[-1].get("parameters") if splits else None
+        result["split_sha256"] = splits[-1].get("sha256") if splits else None
         proposals = [
             r.payload["proposal"]
             for r in records
@@ -298,16 +343,21 @@ def write_report(folder, state):
     costs = accounting(request_records(folder))
     atomic_json(folder / "cost-ledger.json", costs)
     cumulative = []
-    for path in sorted(folder.parent.glob("batch-[0-9][0-9]")):
-        cumulative.extend(request_records(path))
+    for path in batch_paths(folder.parent):
+        cumulative.extend(request_records(path.parent))
     running = accounting(list({r["request_id"]: r for r in cumulative}.values()))
     state["accounting"] = costs
     state["running_accounting"] = running
     atomic_json(folder / "batch.json", state)
     lines = [
-        "# Development batch " + str(state["batch"]),
+        "# "
+        + state.get("stage", "development").title()
+        + " batch "
+        + str(state["batch"]),
         "",
-        "Development only; model, runtime source and rails fixed for this batch. No comparison with exploratory rounds.",
+        "Model, provider, runtime source and rail setting fixed for every study in this batch.",
+        "Comparison plan: " + str(state.get("comparison_plan_sha256", "none")),
+        "Acceptance outcome and rail effect are reported separately; failed runs are retained.",
         "",
         "| Table / replicate | Completed | Setup agrees | Leakage: columns / groups / time | Success | Furthest event / step | Category | Repairs | Requests | Input / output / reasoning | Known cost USD | Wall s | Reported models |",
         "|---|---|---|---|---|---|---|---:|---:|---|---:|---:|---|",
@@ -346,11 +396,29 @@ def worker(spec_file):
     spec = json.loads(Path(spec_file).read_text())
     attempt = Path(spec["attempt"])
     os.environ.update(spec["environment"])
-    if hasattr(os, "sched_setaffinity") and spec.get("affinity"):
-        os.sched_setaffinity(0, spec["affinity"])
-    from mlca.autonomous.runner import run
 
     try:
+        if hasattr(os, "sched_setaffinity") and spec.get("affinity"):
+            os.sched_setaffinity(0, spec["affinity"])
+        if spec.get("cgroup"):
+            from study_resources import enter_group
+
+            enter_group(spec["cgroup"], spec["memory_limit_mib"])
+        atomic_json(
+            attempt.parent / (attempt.name + "-enforced-resources.json"),
+            {
+                "affinity": sorted(os.sched_getaffinity(0))
+                if hasattr(os, "sched_getaffinity")
+                else None,
+                "threads": int(spec["environment"]["OMP_NUM_THREADS"]),
+                "memory_limit_mib": spec.get("memory_limit_mib"),
+                "memory_enforcement": "cgroup_v2"
+                if spec.get("cgroup")
+                else "not_enforced",
+            },
+        )
+        from mlca.autonomous.runner import run
+
         result = run(
             Path(spec["data"]),
             attempt,
@@ -375,7 +443,25 @@ def main():
     parser.add_argument("--batch", type=int, choices=range(1, 11))
     parser.add_argument("--out", type=Path, required=True)
     parser.add_argument("--model")
-    parser.add_argument("--reasoning-effort", choices=["none", "low", "medium", "high", "max"])
+    parser.add_argument("--provider", choices=list(PROVIDERS))
+    parser.add_argument("--comparison-plan", type=Path)
+    parser.add_argument("--stage", choices=["acceptance", "ablation"])
+    parser.add_argument(
+        "--provisional-ablation",
+        action="store_true",
+        help="Allow a separate rails-off arm before acceptance finishes; requires a shared plan",
+    )
+    parser.add_argument("--shard", help="Disjoint planned study subset i/n (1-based)")
+    parser.add_argument("--threads", type=int, default=2)
+    parser.add_argument("--memory-limit-mib", type=int)
+    parser.add_argument(
+        "--cgroup-root",
+        type=Path,
+        help="Existing delegated cgroup-v2 root; no automatic provisioning",
+    )
+    parser.add_argument(
+        "--reasoning-effort", choices=["none", "low", "medium", "high", "max"]
+    )
     parser.add_argument("--concurrency", type=int, default=6, choices=range(1, 7))
     parser.add_argument("--deadline-s", type=float, default=5400)
     parser.add_argument("--rpm", type=float, default=60)
@@ -390,8 +476,40 @@ def main():
         return
     if args.deadline_s <= 0 or args.rpm <= 0:
         raise ValueError("Deadlines and request rates must be positive")
+    if args.threads < 1 or (
+        args.memory_limit_mib is not None and args.memory_limit_mib <= 0
+    ):
+        raise ValueError("Positive thread/memory limits required")
+    if (
+        (args.shard or args.provisional_ablation or args.stage)
+        and not args.comparison_plan
+        and not args.resume
+    ):
+        raise ValueError(
+            "Comparison stage, sharding and concurrent ablation require --comparison-plan"
+        )
     identity = source_identity()
     all_entries = entries()
+    plan = read_plan(args.comparison_plan) if args.comparison_plan else None
+    if plan:
+        validate_plan(plan, identity, all_entries, runtime_identity(CODE))
+        # Configuration comes from the shared immutable plan, not per-node overrides.
+        for name in ["provider", "model", "reasoning_effort"]:
+            if getattr(args, name) is not None and getattr(args, name) != plan[name]:
+                raise ValueError("CLI setting differs from comparison plan: " + name)
+    if plan:
+        for attr, key in [
+            ("threads", "threads"),
+            ("memory_limit_mib", "memory_limit_mib"),
+            ("deadline_s", "deadline_s"),
+            ("rpm", "rpm_per_node"),
+        ]:
+            flag = "--" + attr.replace("_", "-")
+            if (
+                any(a == flag or a.startswith(flag + "=") for a in sys.argv[1:])
+                and getattr(args, attr) != plan[key]
+            ):
+                raise ValueError("CLI setting differs from comparison plan: " + attr)
     by_id = {e["id"]: e for e in all_entries}
     folder = args.out.resolve()
     folder.mkdir(parents=True, exist_ok=True)
@@ -406,6 +524,34 @@ def main():
                 raise ValueError(
                     "Resume requires the original code, rails and controller version"
                 )
+            if state.get("comparison_plan_sha256"):
+                stored = read_plan(folder / "comparison-plan.json")
+                validate_plan(stored, identity, all_entries, runtime_identity(CODE))
+                validate_state(stored, state)
+                if state["comparison_plan_sha256"] != stored["plan_sha256"]:
+                    raise ValueError("Stored comparison identity differs")
+            if args.rails_off and state["rails_enabled"]:
+                raise ValueError("Resume cannot change the recorded rail setting")
+            if plan and plan["plan_sha256"] != state.get("comparison_plan_sha256"):
+                raise ValueError("Resume cannot change comparison plan")
+            for name in ["provider", "model", "reasoning_effort", "stage", "shard"]:
+                value = getattr(args, name)
+                if value is not None and value != state.get(
+                    name, "openrouter" if name == "provider" else None
+                ):
+                    raise ValueError("Resume cannot change recorded " + name)
+            for attr in [
+                "threads",
+                "memory_limit_mib",
+                "deadline_s",
+                "rpm",
+                "replicates",
+            ]:
+                flag = "--" + attr.replace("_", "-")
+                if any(
+                    a == flag or a.startswith(flag + "=") for a in sys.argv[1:]
+                ) and getattr(args, attr) != state.get(attr):
+                    raise ValueError("Resume cannot change recorded " + attr)
             for job in state["jobs"]:
                 if job["status"] == "interrupted":
                     job["status"] = "queued"
@@ -418,51 +564,119 @@ def main():
                         job["status"] = "queued"
                         job.pop("stop_reason", None)
         else:
-            if state_file.exists() or not args.batch or not args.model:
+            if state_file.exists() or (not plan and (not args.batch or not args.model)):
                 raise ValueError(
                     "New batch needs a fresh directory, --batch and --model"
                 )
-            selected = args.tables or list(by_id)
+            if plan:
+                stage = args.stage or ("ablation" if args.rails_off else "acceptance")
+                if args.rails_off and stage != "ablation":
+                    raise ValueError("--rails-off conflicts with acceptance stage")
+                if args.provisional_ablation and stage != "ablation":
+                    raise ValueError(
+                        "Concurrent ablation flag applies only to ablation"
+                    )
+                expected_replicates = 3 if stage == "acceptance" else 1
+                if (
+                    any(
+                        a == "--replicates" or a.startswith("--replicates=")
+                        for a in sys.argv[1:]
+                    )
+                    and args.replicates != expected_replicates
+                ):
+                    raise ValueError("CLI replicate count differs from comparison plan")
+                planned_jobs = select_jobs(plan, stage, args.tables, args.shard)
+                selected = list(dict.fromkeys(j["dataset"] for j in planned_jobs))
+                if stage == "ablation" and not args.provisional_ablation:
+                    # Sequential path still requires recorded acceptance; planned path may explicitly overlap.
+                    validate_stage(
+                        folder,
+                        identity,
+                        plan["model"],
+                        list(by_id),
+                        set(by_id),
+                        1,
+                        True,
+                        plan["reasoning_effort"],
+                        provider=plan["provider"],
+                        comparison_plan_sha256=plan["plan_sha256"],
+                    )
+            else:
+                stage = (
+                    "ablation"
+                    if args.rails_off
+                    else "acceptance"
+                    if args.replicates == 3
+                    else "development"
+                )
+                planned_jobs = None
+                selected = args.tables or list(by_id)
             if (
                 not set(selected) <= set(by_id)
-                or args.batch == 1
+                or not plan
+                and args.batch == 1
                 and set(selected) != set(by_id)
+                or len(selected) != len(set(selected))
             ):
                 raise ValueError(
                     "Only development tables; batch-01 must include all twelve"
                 )
-            validate_stage(
-                folder,
-                identity,
-                args.model,
-                selected,
-                set(by_id),
-                args.replicates,
-                args.rails_off,
-                args.reasoning_effort,
-            )
+            if not plan:
+                validate_stage(
+                    folder,
+                    identity,
+                    args.model,
+                    selected,
+                    set(by_id),
+                    args.replicates,
+                    args.rails_off,
+                    args.reasoning_effort,
+                    provider=args.provider or "openrouter",
+                )
             started = folder.parent / "batch-start.json"
             if not started.exists():
                 atomic_json(started, {"started_at": utc()})
             state = {
                 **identity,
-                "batch": args.batch,
+                "batch": args.batch or stage,
+                "stage": stage,
+                "provider": plan["provider"] if plan else args.provider or "openrouter",
+                "endpoint": plan["endpoint"]
+                if plan
+                else PROVIDERS[args.provider or "openrouter"][0],
+                "comparison_plan_sha256": plan["plan_sha256"] if plan else None,
+                "shard": args.shard,
+                "provisional_ablation": args.provisional_ablation,
+                "datasets": plan["datasets"]
+                if plan
+                else [{"id": e["id"], "sha256": e["sha256"]} for e in all_entries],
                 "started_at": utc(),
-                "model": args.model,
-                "reasoning_effort": args.reasoning_effort,
+                "model": plan["model"] if plan else args.model,
+                "reasoning_effort": plan["reasoning_effort"]
+                if plan
+                else args.reasoning_effort,
                 "concurrency": args.concurrency,
-                "deadline_s": args.deadline_s,
-                "rpm": args.rpm,
-                "rails_enabled": not args.rails_off,
-                "replicates": args.replicates,
-                "threads": max(1, len(os.sched_getaffinity(0)) // args.concurrency)
-                if hasattr(os, "sched_getaffinity")
-                else max(1, (os.cpu_count() or 1) // args.concurrency),
-                "memory_limit": "not_enforced",
+                "deadline_s": plan["deadline_s"] if plan else args.deadline_s,
+                "rpm": plan["rpm_per_node"] if plan else args.rpm,
+                "rails_enabled": stage != "ablation",
+                "replicates": (3 if stage == "acceptance" else 1)
+                if plan
+                else args.replicates,
+                "threads": plan["threads"] if plan else args.threads,
+                "memory_limit_mib": plan["memory_limit_mib"]
+                if plan
+                else args.memory_limit_mib,
+                "memory_limit": "cgroup_v2"
+                if (plan["memory_limit_mib"] if plan else args.memory_limit_mib)
+                else "not_enforced",
+                "runtime": plan["runtime"] if plan else runtime_identity(CODE),
                 "sandbox": "A",
                 "spending_ceiling_usd": None,
                 "model_call_deadline_s": 300,
+                "temperature": 0,
+                "max_output_tokens": 16384,
                 "structured_outputs": True,
+                "sdk_timeout_s": 90,
                 "script_timeout_s": 300,
                 "max_worker_attempts": 3,
                 "controller_sampling": False,
@@ -473,17 +687,44 @@ def main():
                 },
                 "jobs": [
                     {
-                        "id": f"{name}-{rep:03d}",
-                        "dataset": name,
-                        "replicate": rep,
-                        "large": by_id[name]["rows"] > 500000,
+                        **j,
+                        "large": by_id[j["dataset"]]["rows"] > 500000,
                         "status": "queued",
                         "attempts": [],
                     }
-                    for name in selected
-                    for rep in range(1, args.replicates + 1)
+                    for j in (
+                        planned_jobs
+                        or [
+                            {
+                                "id": f"{name}-{rep:03d}",
+                                "dataset": name,
+                                "replicate": rep,
+                            }
+                            for name in selected
+                            for rep in range(1, args.replicates + 1)
+                        ]
+                    )
                 ],
             }
+            if plan:
+                atomic_json(folder / "comparison-plan.json", plan)
+        if plan:
+            validate_state(plan, state)
+        provider_name = state.get("provider", "openrouter")
+        state.setdefault("endpoint", PROVIDERS[provider_name][0])
+        state.setdefault("provider", provider_name)
+        memory_mib = state.get("memory_limit_mib")
+        if memory_mib and not args.cgroup_root:
+            raise ValueError(
+                "Memory enforcement requires --cgroup-root; refusing an unenforced ceiling"
+            )
+        if (
+            hasattr(os, "sched_getaffinity")
+            and len(os.sched_getaffinity(0)) < state["threads"]
+        ):
+            raise ValueError(
+                "Insufficient available CPUs for requested per-study affinity"
+            )
         if Path("/proc/meminfo").is_file():
             state["machine"]["memory_total_kib"] = int(
                 Path("/proc/meminfo").read_text().split("MemTotal:")[1].split()[0]
@@ -492,8 +733,24 @@ def main():
 
         if detect(False) != "A":
             raise ValueError("Sandbox A required")
-        if not os.environ.get("OPENROUTER_API_KEY"):
-            raise ValueError("Provide OPENROUTER_API_KEY in the environment")
+        if state.get("comparison_plan_sha256"):
+            state["rate_limit_dir"] = str(
+                Path(os.environ.get("XDG_CACHE_HOME", str(Path.home() / ".cache")))
+                / "mlca-comparison-rate"
+                / state["comparison_plan_sha256"]
+            )
+        else:
+            state["rate_limit_dir"] = str(folder / ".control/rate")
+        key_env = PROVIDERS[provider_name][1]
+        if not os.environ.get(key_env):
+            raise ValueError("Provide " + key_env + " in the environment")
+        if memory_mib:
+            from study_resources import prepare_group
+
+            probe = prepare_group(
+                args.cgroup_root, "mlca-probe-" + str(os.getpid()), memory_mib
+            )
+            probe.rmdir()
         processes = {}
         while any(j["status"] not in TERMINAL for j in state["jobs"]):
             try:
@@ -507,8 +764,12 @@ def main():
                 "started_at"
             ]
             if (
-                datetime.now(timezone.utc) - datetime.fromisoformat(started)
-            ).total_seconds() > 5 * 86400:
+                state.get("stage", "development") == "development"
+                and (
+                    datetime.now(timezone.utc) - datetime.fromisoformat(started)
+                ).total_seconds()
+                > 5 * 86400
+            ):
                 state["stop_reason"] = "five_day_cap"
                 interrupted[0] = True
             for job in state["jobs"]:
@@ -598,22 +859,29 @@ def main():
                         "rails_enabled": state["rails_enabled"],
                         "providers": {
                             "development": {
-                                "kind": "openrouter",
-                                "api_key_env": "OPENROUTER_API_KEY",
-                                "timeout_s": 90,
+                                "kind": provider_name,
+                                "base_url": state["endpoint"],
+                                "api_key_env": key_env,
+                                "timeout_s": state.get("sdk_timeout_s", 90),
                                 "structured_outputs": state["structured_outputs"],
-                                "call_deadline_s": 300,
+                                "call_deadline_s": state["model_call_deadline_s"],
                                 "requests_per_minute": state["rpm"],
-                                "rate_limit_dir": str(folder / ".control/rate"),
+                                "rate_limit_dir": state["rate_limit_dir"],
                             }
                         },
                         "roles": {
                             role: {
                                 "provider": "development",
                                 "model": state["model"],
-                                "temperature": 0,
-                                "max_output_tokens": 16384,
-                                **({"reasoning_effort": state["reasoning_effort"]} if state.get("reasoning_effort") else {}),
+                                "temperature": state.get("temperature", 0),
+                                "max_output_tokens": state.get(
+                                    "max_output_tokens", 16384
+                                ),
+                                **(
+                                    {"reasoning_effort": state["reasoning_effort"]}
+                                    if state.get("reasoning_effort")
+                                    else {}
+                                ),
                             }
                             for role in ["navigator", "worker"]
                         },
@@ -645,15 +913,43 @@ def main():
                         if hasattr(os, "sched_getaffinity")
                         else []
                     )
+                    offset = state["jobs"].index(job) * state["threads"]
                     affinity = (
-                        cpus[
-                            (len(job["attempts"]) + state["jobs"].index(job))
-                            * state["threads"]
-                            % len(cpus) :
-                        ][: state["threads"]]
+                        [
+                            cpus[(offset + n) % len(cpus)]
+                            for n in range(state["threads"])
+                        ]
                         if cpus
                         else []
                     )
+                    cgroup = None
+                    if memory_mib:
+                        from study_resources import prepare_group
+
+                        group_name = (
+                            "mlca-"
+                            + hashlib.sha256(
+                                (str(folder) + job["id"] + str(number)).encode()
+                            ).hexdigest()[:24]
+                        )
+                        try:
+                            cgroup = prepare_group(
+                                args.cgroup_root, group_name, memory_mib
+                            )
+                        except (OSError, ValueError) as exc:
+                            # Retain the failed study without abandoning other active workers.
+                            atomic_json(
+                                attempt / "worker-result.json",
+                                {
+                                    "status": "failed",
+                                    "category": "resource_setup_error",
+                                    "error_type": type(exc).__name__,
+                                },
+                            )
+                            job["cgroup"] = None
+                            finish_job(folder, job, entry)
+                            continue
+                    state["memory_limit"] = "cgroup_v2" if cgroup else "not_enforced"
                     spec = {
                         "data": str(CODE / "benchmarks" / entry["file"]),
                         "attempt": str(attempt),
@@ -661,6 +957,8 @@ def main():
                         "config": cfg,
                         "environment": env,
                         "affinity": affinity,
+                        "memory_limit_mib": memory_mib,
+                        "cgroup": str(cgroup) if cgroup else None,
                     }
                     spec_file = folder / ".control" / f"{job['id']}-{number:03d}.json"
                     atomic_json(spec_file, spec)
@@ -685,6 +983,7 @@ def main():
                         status="running",
                         pid=proc.pid,
                         process_start=start_token(proc.pid),
+                        cgroup=str(cgroup) if cgroup else None,
                     )
                     processes[job["id"]] = proc
             write_report(folder, state)

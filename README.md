@@ -46,3 +46,10 @@ mlca models --select openai/gpt-6-luna --select anthropic/claude-haiku-5.5
 mlca bench run bench/cards/<card>.yaml --runs N --out bench/<task>/runs/<model-slug>/<date>
 mlca bench summarize bench/<task>/runs/<model-slug>/<date>
 ```
+
+## Acceptance / rails ablation controller
+
+Separate arms may run concurrently under one fixed plan; rails never switch
+inside a study. See [comparison execution and provenance](bench/dev-loop/COMPARISON_RUNS.md)
+for provider selection, fixed study IDs, sharding, execution limits and validated
+pooling. This implementation does not provision machines or launch experiments.

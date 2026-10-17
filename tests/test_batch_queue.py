@@ -79,6 +79,7 @@ def test_process_queue_and_resume_never_repeat_finished_studies(tmp_path, monkey
     monkeypatch.setattr(batch, "source_identity", lambda: identity)
     monkeypatch.setattr(batch, "entries", lambda: entries)
     monkeypatch.setattr(batch, "git_head", lambda _: "fixture")
+    monkeypatch.setattr(batch, "runtime_identity", lambda _: {})
     original_run = subprocess.run
     monkeypatch.setattr(
         batch.subprocess,

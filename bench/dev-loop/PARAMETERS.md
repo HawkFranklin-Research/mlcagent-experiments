@@ -123,3 +123,21 @@ Batch 04 tests engine/instruction fixes with default reasoning unchanged. Batch
 05 changes only reasoning effort to low (supported model metadata lists max,
 high, low, none, not medium), keeping code, rails, model and other settings
 unchanged. Acceptance still requires one unchanged version and K=3.
+
+## Author amendment: concurrent separate studies (18 October 2026)
+
+This supersedes the sequential ordering requirement for a newly planned
+acceptance/ablation comparison only. Separate rails-on and rails-off studies may
+run at the same time; a study never changes its rail setting. Shared immutable
+plans contain 36 acceptance and 12 ablation jobs. Ablation is designated against
+acceptance replicate 1 of each table, retaining the existing protocol seed 42;
+actual split parameters and hashes are recorded, not assumed identical.
+
+Provider is explicit (OpenRouter or direct DeepSeek), with no automatic fallback.
+No spending ceiling. Per-study thread default is fixed at two; no RAM ceiling
+unless explicitly selected and enforceable with a delegated cgroup-v2 controller.
+Existing deadlines/sandbox remain. Host differences and unenforced RAM are
+reported as comparability limitations. Correctly executed ablations remain
+reported even when the candidate fails acceptance. No new runs were launched.
+Implementation, exact CLI and pooling rules: [COMPARISON_RUNS.md](COMPARISON_RUNS.md).
+Earlier development evidence and its parameters remain unchanged.
