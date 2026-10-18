@@ -1,0 +1,7 @@
+variable,type,n_missing,mean,sd,min,median,max,n_levels,top_level_share
+StockCode,categorical,0,,,,,,4070.0,0.0043
+Description,categorical,1454,,,,,,4223.0,0.0044
+Quantity,numeric,0,9.5522,218.0812,-80995.0,3.0,80995.0,,
+InvoiceDate,categorical,0,,,,,,23260.0,0.0021
+UnitPrice,numeric,0,4.6111,96.7599,-11062.06,2.08,38970.0,,
+Country,categorical,0,,,,,,38.0,0.9143

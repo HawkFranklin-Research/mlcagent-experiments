@@ -1,0 +1,17 @@
+id: RL-0003
+kind: instruction
+roles:
+- navigator
+events:
+- onboard
+problem_types:
+- all
+text: List as leakage_suspects every column that is a component, sum, difference, rescaling
+  or recoding of a target, or that is known only after the outcome (for example the raw score
+  a binary target was derived from, or partial counts that add up to a total). List as identifier_suspects
+  row keys, record numbers and codes with nearly one unique value per row. Never propose either
+  kind as a feature.
+reason: A target reconstructed from its parts gives near-perfect scores without learning anything;
+  setup is the only point where the agent names such columns before the split.
+ledger: L-0002
+added_in: rails-0.3

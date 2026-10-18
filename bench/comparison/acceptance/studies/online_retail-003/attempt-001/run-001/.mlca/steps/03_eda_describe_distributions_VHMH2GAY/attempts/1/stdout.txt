@@ -1,0 +1,3 @@
+table shape: (541909, 7)
+features summarized: 6
+numeric=2 categorical=4

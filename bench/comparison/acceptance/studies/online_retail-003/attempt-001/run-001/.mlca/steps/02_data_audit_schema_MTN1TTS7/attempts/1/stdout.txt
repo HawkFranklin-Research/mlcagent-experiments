@@ -1,0 +1,2 @@
+rows=541909 cols=7 missing_total=136534
+placeholders=['?'] in 1 text column(s)

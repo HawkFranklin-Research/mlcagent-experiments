@@ -1,0 +1,6 @@
+variable,kind,n_missing,mean,sd,min,median,max,n_levels,top_level_share
+Description,categorical,1501,,,,,,4210.0,0.004384
+Quantity,numeric,0,9.552,218.1,-81000.0,3.0,81000.0,,
+InvoiceDate,categorical,0,,,,,,23260.0,0.002056
+UnitPrice,numeric,0,4.611,96.76,-11060.0,2.08,38970.0,,
+Country,categorical,0,,,,,,38.0,0.9143

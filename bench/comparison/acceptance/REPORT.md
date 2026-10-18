@@ -36,9 +36,9 @@ Acceptance outcome and rail effect are reported separately; failed runs are reta
 | seeds / 1 | True | True | True / True / True | True | report / 12_report_generate_reports_54EJT9RC |  | 1 | 39 | 101958 / 81372 / 65269 | None | 1545.9433023929596 | {"deepseek-flash": 39} |
 | seeds / 2 | True | True | True / True / True | True | report / 12_report_generate_reports_CDN8V6CA |  | 1 | 39 | 101278 / 92607 / 78972 | None | 2041.6339571475983 | {"deepseek-flash": 39} |
 | seeds / 3 | True | True | True / True / True | True | report / 12_report_generate_reports_35DRJDVG |  | 0 | 40 | 105079 / 78861 / 65096 | None | 1993.410948753357 | {"deepseek-flash": 40} |
-| online_retail / 1 | running | None | None / None / None | None | setup / None |  | None | None | None / None / None | None | None | {} |
-| online_retail / 2 | queued | None | None / None / None | None | setup / None |  | None | None | None / None / None | None | None | {} |
-| online_retail / 3 | queued | None | None / None / None | None | setup / None |  | None | None | None / None / None | None | None | {} |
+| online_retail / 1 | False | True | True / True / True | False | model / 08_model_train_alternative_4PEDXQ5Q | runtime_error:ValueError | 3 | 27 | 71819 / 92076 / 82141 | None | 632.5324809551239 | {"deepseek-flash": 27} |
+| online_retail / 2 | False | True | None / None / True | False | split / 04_split_freeze_stratified_8S587J5T | runtime_error:MlcaUserError | 0 | 13 | 35242 / 18670 / 14216 | None | 252.34039568901062 | {"deepseek-flash": 13} |
+| online_retail / 3 | False | True | None / None / True | False | split / 04_split_freeze_group_P99NV8B7 | runtime_error:MlcaUserError | 0 | 11 | 27904 / 11064 / 7636 | None | 206.09081864356995 | {"deepseek-flash": 11} |
 | optical_digits / 1 | False | None | None / None / None | False | setup / None | runtime_error:MlcaUserError | 0 | 2 | 34571 / 1426 / 558 | None | 1043.7155458927155 | {"deepseek-flash": 2} |
 | optical_digits / 2 | True | True | True / True / True | True | report / 12_report_generate_reports_YQ7GJY1T |  | 2 | 42 | 127002 / 102901 / 85848 | None | 593.4525322914124 | {"deepseek-flash": 42} |
 | optical_digits / 3 | True | True | True / True / True | True | report / 12_report_generate_reports_55XFSVXE |  | 0 | 38 | 122482 / 75361 / 61975 | None | 424.2604696750641 | {"deepseek-flash": 38} |
@@ -47,22 +47,21 @@ Acceptance outcome and rail effect are reported separately; failed runs are reta
 
 ```json
 {
-  "requests": 1080,
+  "requests": 1116,
   "known": {
-    "input_tokens": 2921255,
-    "output_tokens": 2516331,
-    "reasoning_tokens": 2098991,
+    "input_tokens": 3023171,
+    "output_tokens": 2607363,
+    "reasoning_tokens": 2175782,
     "cost_usd": null
   },
   "unknown": {
-    "input_tokens": 1,
-    "output_tokens": 1,
-    "cost_usd": 1080
+    "input_tokens": 0,
+    "output_tokens": 0,
+    "cost_usd": 1116
   },
   "partial": true,
   "models": {
-    "deepseek-flash": 1079,
-    "unavailable": 1
+    "deepseek-flash": 1116
   }
 }
 ```
@@ -71,22 +70,21 @@ Acceptance outcome and rail effect are reported separately; failed runs are reta
 
 ```json
 {
-  "requests": 1080,
+  "requests": 1116,
   "known": {
-    "input_tokens": 2921255,
-    "output_tokens": 2516331,
-    "reasoning_tokens": 2098991,
+    "input_tokens": 3023171,
+    "output_tokens": 2607363,
+    "reasoning_tokens": 2175782,
     "cost_usd": null
   },
   "unknown": {
-    "input_tokens": 1,
-    "output_tokens": 1,
-    "cost_usd": 1080
+    "input_tokens": 0,
+    "output_tokens": 0,
+    "cost_usd": 1116
   },
   "partial": true,
   "models": {
-    "deepseek-flash": 1079,
-    "unavailable": 1
+    "deepseek-flash": 1116
   }
 }
 ```
