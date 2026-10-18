@@ -1,0 +1,2 @@
+val roc_auc_ovr: 0.9943
+n_features: 16 n_train: 8124

@@ -1,0 +1,2 @@
+train_rows 341 n_features 30 k 20
+saved selector.pkl

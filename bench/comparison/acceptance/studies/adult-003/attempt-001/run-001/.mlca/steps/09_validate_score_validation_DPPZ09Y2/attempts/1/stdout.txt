@@ -1,0 +1,3 @@
+train rows=29275, val rows=9758
+models=['logistic', 'alternative'], primary_metric=roc_auc
+best_model=alternative, best_val_roc_auc=0.910523

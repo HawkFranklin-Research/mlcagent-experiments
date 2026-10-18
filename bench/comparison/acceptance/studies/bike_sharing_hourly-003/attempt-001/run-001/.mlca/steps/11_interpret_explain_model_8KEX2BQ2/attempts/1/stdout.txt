@@ -1,0 +1,4 @@
+train=(10427, 14), val=(3475, 14), features=13
+primary_metric=rmse
+top_feature=feature_18
+saved interpretation.csv rows=25

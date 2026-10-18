@@ -1,0 +1,4 @@
+loaded 48794 rows, 13 cols
+placeholder columns: 0
+saved 36 summary rows, 12 cols
+numeric=5, categorical=7

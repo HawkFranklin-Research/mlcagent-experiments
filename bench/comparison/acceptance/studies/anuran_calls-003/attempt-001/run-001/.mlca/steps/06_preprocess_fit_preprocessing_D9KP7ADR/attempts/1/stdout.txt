@@ -1,0 +1,4 @@
+placeholders: none
+corr_warn: none
+fit: rows=4293 features=22 num=22 cat=0 wide=False
+excluded: none

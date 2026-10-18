@@ -1,0 +1,4 @@
+task=binary primary=roc_auc val_rows=113 features=30
+candidates=2
+best_model=logistic_QMMJ5EQH primary_value=0.9896
+best_val_roc_auc=0.9896

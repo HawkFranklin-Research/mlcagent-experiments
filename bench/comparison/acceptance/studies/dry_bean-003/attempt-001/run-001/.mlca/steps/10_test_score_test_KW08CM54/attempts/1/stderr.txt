@@ -1,0 +1,12 @@
+Traceback (most recent call last):
+  File "/workspaces/mlcagent-experiments/bench/comparison/acceptance/studies/dry_bean-003/attempt-001/run-001/.mlca/steps/10_test_score_test_KW08CM54/attempts/1/script.py", line 50, in <module>
+    proba = full.predict_proba(X)
+  File "/workspaces/mlcagent-experiments/bench/comparison/acceptance/studies/dry_bean-003/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/pipeline.py", line 925, in predict_proba
+    Xt = transform.transform(Xt)
+  File "/workspaces/mlcagent-experiments/bench/comparison/acceptance/studies/dry_bean-003/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/pipeline.py", line 1110, in transform
+    Xt = transform.transform(Xt, **routed_params[name].transform)
+  File "/workspaces/mlcagent-experiments/bench/comparison/acceptance/studies/dry_bean-003/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/utils/_set_output.py", line 327, in wrapped
+    data_to_wrap = f(self, X, *args, **kwargs)
+  File "/workspaces/mlcagent-experiments/bench/comparison/acceptance/studies/dry_bean-003/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/compose/_column_transformer.py", line 1066, in transform
+    raise ValueError(f"columns are missing: {diff}")
+ValueError: columns are missing: {'Eccentricity', 'Solidity', 'Extent', 'Roundness', 'ShapeFactor1', 'Compactness', 'MinorAxisLength', 'MajorAxisLength', 'ShapeFactor4', 'AspectRatio', 'ConvexArea', 'EquivDiameter', 'ShapeFactor3', 'ShapeFactor2', 'Area', 'Perimeter'}

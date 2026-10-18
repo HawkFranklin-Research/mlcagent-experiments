@@ -1,0 +1,3 @@
+val rows: 42
+candidates: ['baseline', 'alternative']
+best silhouette: baseline 0.4639

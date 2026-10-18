@@ -1,0 +1,2 @@
+rows=48794 features=12 numeric=5 categorical=7
+summary_rows=36 key_like_dropped=[]

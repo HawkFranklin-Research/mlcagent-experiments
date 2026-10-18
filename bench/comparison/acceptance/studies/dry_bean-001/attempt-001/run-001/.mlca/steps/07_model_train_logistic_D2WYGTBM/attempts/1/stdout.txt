@@ -1,0 +1,2 @@
+features: 16 frontend: Pipeline
+fitted rows: 8124 saved model.pkl

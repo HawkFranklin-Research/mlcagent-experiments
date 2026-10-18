@@ -1,0 +1,5 @@
+Traceback (most recent call last):
+  File "/workspaces/mlcagent-experiments/bench/comparison/acceptance/studies/abalone-002/attempt-001/run-001/.mlca/steps/05_preprocess_fit_preprocessing_FG7YG4JM/attempts/1/script.py", line 115, in <module>
+    mlca_runtime.fit_record(pre, train_clean)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+TypeError: fit_record() missing 1 required positional argument: 'partition'

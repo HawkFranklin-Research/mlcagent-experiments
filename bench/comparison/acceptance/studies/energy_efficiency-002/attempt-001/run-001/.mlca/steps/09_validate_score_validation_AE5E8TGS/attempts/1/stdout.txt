@@ -1,0 +1,3 @@
+rows=18 candidates=2
+best_model=alternative
+rmse_val=1.2061

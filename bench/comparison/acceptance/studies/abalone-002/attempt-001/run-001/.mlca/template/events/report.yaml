@@ -1,0 +1,26 @@
+id: report
+title: Report
+goal: Assemble methods, provenance, figures and usage from the event log.
+gate:
+- event_done: interpret
+subgoals:
+- id: outputs_recorded
+  text: Report index generated
+  check:
+    type: output_exists
+    action: generate_reports
+    output: report_index.json
+actions:
+- generate_reports
+default_options:
+- generate_reports
+done_when: all_subgoals
+custom_scope:
+  description: Report assembly only.
+  deny_patterns: []
+  readable_inputs:
+  - train
+  - val
+  - prior_outputs
+  - test
+max_options: 3

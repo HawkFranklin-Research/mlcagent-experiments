@@ -1,0 +1,2 @@
+train shape: (8124, 17)
+feature columns: 16; transformed: 16; k: 16

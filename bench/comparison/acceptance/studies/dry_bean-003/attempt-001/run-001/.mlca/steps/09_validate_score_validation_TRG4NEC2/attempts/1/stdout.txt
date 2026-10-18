@@ -1,0 +1,2 @@
+features 16 val rows 2707
+best logistic roc_auc_ovr 0.9944

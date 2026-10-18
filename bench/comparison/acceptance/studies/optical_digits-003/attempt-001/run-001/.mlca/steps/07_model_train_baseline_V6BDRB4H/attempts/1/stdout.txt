@@ -1,0 +1,3 @@
+features: 64, pca_components: 8
+train_recon_error: 6.1441
+val_recon_error: 6.2867

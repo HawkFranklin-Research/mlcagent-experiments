@@ -1,0 +1,7 @@
+model,metric,value
+baseline,rmse_cnt,184.841441
+baseline,mae_cnt,137.988112
+baseline,r2_cnt,0.296987
+baseline,rmse_macro,184.841441
+baseline,mae_macro,137.988112
+baseline,r2_macro,0.296987

@@ -1,0 +1,1 @@
+{"facts": [{"key": "top_feature", "source": "interpretation.csv", "unit": null, "value": "Roundness"}], "fits": [], "metrics": [], "outputs": [{"caption": "Validation permutation importance", "kind": "table", "name": "interpretation.csv"}, {"caption": "Validation permutation importance", "kind": "table", "name": "interpretation.parquet"}]}

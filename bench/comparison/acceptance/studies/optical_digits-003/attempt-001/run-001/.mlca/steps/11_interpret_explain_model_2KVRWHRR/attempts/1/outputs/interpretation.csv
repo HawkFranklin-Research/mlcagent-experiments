@@ -1,0 +1,34 @@
+section,item,value,source
+task,primary_metric,reconstruction_error,_protocol
+data,n_features,64,train.parquet
+data,n_rows_train,3372,train.parquet
+data,targets,none,_protocol
+data,excluded,none,_protocol
+model,baseline_type,PCA,model.pkl
+hyperparam,baseline_n_components,8,model.pkl
+hyperparam,baseline_random_state,42,model.pkl
+pipeline,baseline_steps,frontend|pca,model.pkl
+model,alternative_type,MLPRegressor,alternative_model.pkl
+hyperparam,alternative_hidden_layer_sizes,"(16, 8, 16)",alternative_model.pkl
+hyperparam,alternative_alpha,0.0001,alternative_model.pkl
+hyperparam,alternative_learning_rate_init,0.001,alternative_model.pkl
+hyperparam,alternative_max_iter,300,alternative_model.pkl
+hyperparam,alternative_solver,adam,alternative_model.pkl
+hyperparam,alternative_activation,relu,alternative_model.pkl
+hyperparam,alternative_random_state,42,alternative_model.pkl
+pipeline,alternative_steps,frontend|pca|mlp,alternative_model.pkl
+model,latest_type,MLPRegressor,latest_model
+hyperparam,latest_hidden_layer_sizes,"(16, 8, 16)",latest_model
+hyperparam,latest_alpha,0.0001,latest_model
+hyperparam,latest_learning_rate_init,0.001,latest_model
+hyperparam,latest_max_iter,300,latest_model
+hyperparam,latest_solver,adam,latest_model
+hyperparam,latest_activation,relu,latest_model
+hyperparam,latest_random_state,42,latest_model
+pipeline,latest_steps,frontend|pca|mlp,latest_model
+validation,val_value,6.287,validation_metrics.csv
+validation,val_value,0.242,validation_metrics.csv
+interpretation,top_feature,pixel_22,interpretation.csv
+limitations,outcome,no outcome; unsupervised representation,_protocol
+limitations,group_column,none used,_protocol
+limitations,metric_note,"reconstruction error; PCA inverse_transform, MLP predict",_protocol

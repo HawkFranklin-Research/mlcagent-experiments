@@ -1,0 +1,3 @@
+Features: 64
+Train shape: (3372, 64)
+Val reconstruction MSE: 0.2420

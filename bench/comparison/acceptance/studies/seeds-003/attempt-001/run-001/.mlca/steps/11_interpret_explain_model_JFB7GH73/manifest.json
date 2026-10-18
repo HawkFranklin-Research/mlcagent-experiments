@@ -1,0 +1,1 @@
+{"facts": [{"key": "top_feature", "source": "train", "unit": null, "value": "area"}], "fits": [], "metrics": [], "outputs": [{"caption": "Frozen clustering model interpretation", "kind": "table", "name": "interpretation.csv"}, {"caption": "Frozen clustering model interpretation", "kind": "table", "name": "interpretation.parquet"}]}

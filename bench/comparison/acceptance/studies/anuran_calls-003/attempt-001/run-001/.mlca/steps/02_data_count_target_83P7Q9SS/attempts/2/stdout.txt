@@ -1,0 +1,3 @@
+rows=7195 targets=3
+classes=22 flagged_under_5pct=11
+saved target_counts.csv

@@ -1,0 +1,3 @@
+candidates: ['alternative', 'baseline'] best: alternative
+X_test: (155, 8)
+test rmse macro = 1.2833

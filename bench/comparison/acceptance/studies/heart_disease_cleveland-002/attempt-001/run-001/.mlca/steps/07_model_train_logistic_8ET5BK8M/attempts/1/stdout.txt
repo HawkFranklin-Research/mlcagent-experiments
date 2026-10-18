@@ -1,0 +1,4 @@
+train rows: 181
+features: 13
+steps: ['frontend', 'model']
+saved model.pkl

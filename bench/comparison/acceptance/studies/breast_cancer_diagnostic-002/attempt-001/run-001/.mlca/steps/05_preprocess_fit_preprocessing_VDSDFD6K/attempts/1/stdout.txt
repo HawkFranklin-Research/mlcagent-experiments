@@ -1,0 +1,2 @@
+text placeholders found in 0 column(s)
+num=30 cat=0 val_out=(113, 30)

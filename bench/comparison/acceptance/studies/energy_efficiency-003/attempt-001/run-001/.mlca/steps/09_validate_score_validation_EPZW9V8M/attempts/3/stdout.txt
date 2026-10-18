@@ -1,0 +1,2 @@
+features=8 val_rows=153 candidates=2
+best_model=alternative rmse=1.206

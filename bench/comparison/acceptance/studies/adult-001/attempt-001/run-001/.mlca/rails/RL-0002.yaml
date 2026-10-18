@@ -1,0 +1,19 @@
+id: RL-0002
+kind: instruction
+roles:
+- navigator
+events:
+- onboard
+problem_types:
+- all
+text: 'Choose problem_type from the schema. Two observed values in the outcome: binary. Three
+  or more discrete labels: multiclass. Several categorical outcome columns describing the
+  same row at different levels of detail: multilabel, with all of them as targets. One numeric
+  measurement or count: regression. Two or more numeric outcomes recorded together: multioutput_regression.
+  If no column is a plausible outcome, choose clustering when rows are entities or events
+  to segment, and representation when the table is many homogeneous numeric features of one
+  kind. Prefer the task the table was evidently assembled for over an incidental column.'
+reason: Setup proposals chose a binary outcome as multiclass and a multi-output outcome set
+  as a single target; the problem type decides every later step.
+ledger: L-0002
+added_in: rails-0.3

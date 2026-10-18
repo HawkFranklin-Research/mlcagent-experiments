@@ -1,0 +1,21 @@
+id: RL-0004
+kind: instruction
+roles:
+- navigator
+events:
+- onboard
+problem_types:
+- all
+text: Set group_column when a non-target column repeats across rows and identifies the source unit
+  (subject, recording, customer, device), so its rows must stay in one partition. List time_columns
+  when rows are consecutive periods of one series, regardless of the stated prediction aim, or when
+  the aim is to predict later periods. Use columns that establish chronological order, not redundant
+  seasonal encodings. Leave both empty when no such column exists; do not invent them. Declare constraints
+  for the final analysis units, not merely every raw event field. When clustering or segmenting static
+  entities from transactional records, leave time_columns empty; transaction timestamps used only to
+  aggregate static features (such as recency relative to an observation date) are not time columns for
+  partitioning. Consecutive periods of a single series still require chronology.
+reason: Rows from one source unit or one period on both sides of the split inflate validation and
+  test scores; the split can respect them only if setup declares them.
+ledger: L-0008
+added_in: rails-0.3

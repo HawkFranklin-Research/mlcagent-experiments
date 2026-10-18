@@ -1,0 +1,2 @@
+Placeholders in 3 columns
+Features: 13, Val transformed: (9758, 98)

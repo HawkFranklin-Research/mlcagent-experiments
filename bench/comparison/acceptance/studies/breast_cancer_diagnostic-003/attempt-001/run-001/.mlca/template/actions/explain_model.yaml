@@ -1,0 +1,23 @@
+id: explain_model
+event: interpret
+title: Rank features of the frozen model
+params: {}
+prompt: |
+  Do: permutation importance on validation rows using scoring compatible with the declared task.primary_metric (binary ROC AUC or multiclass macro one-vs-rest AUC by default; 20 repeats, seed); top 15 features. Reuse the complete frozen pipeline without fitting or double preprocessing.
+  Save: interpretation.csv (feature, importance_mean, importance_sd).
+  Record: fact top_feature (source interpretation.csv).
+inputs:
+- ref: train
+- ref: val
+- ref: prior_outputs
+outputs:
+- name: interpretation.csv
+  kind: table
+  required: true
+fact_candidates:
+- top_feature
+reads_test: false
+timeout_s: 300
+methods_text: Permutation feature importance used validation rows and scoring compatible with the declared
+  task-specific primary metric; no model was refitted.
+builtin: null

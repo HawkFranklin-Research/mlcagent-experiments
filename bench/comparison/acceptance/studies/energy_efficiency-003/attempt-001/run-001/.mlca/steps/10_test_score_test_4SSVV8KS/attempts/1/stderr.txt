@@ -1,0 +1,4 @@
+Traceback (most recent call last):
+  File "/workspaces/mlcagent-experiments/bench/comparison/acceptance/studies/energy_efficiency-003/attempt-001/run-001/.mlca/steps/10_test_score_test_4SSVV8KS/attempts/1/script.py", line 97, in <module>
+    raise ValueError(f"Target/excluded column reached model input: {bad}")
+ValueError: Target/excluded column reached model input: ['Y1', 'Y2']

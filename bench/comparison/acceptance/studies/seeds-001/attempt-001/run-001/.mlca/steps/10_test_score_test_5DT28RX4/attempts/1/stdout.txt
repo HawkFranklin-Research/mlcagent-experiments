@@ -1,0 +1,2 @@
+selected=baseline metric=silhouette k_test=2 n_test=42
+silhouette=0.3838 ch=32.77 db=0.9226

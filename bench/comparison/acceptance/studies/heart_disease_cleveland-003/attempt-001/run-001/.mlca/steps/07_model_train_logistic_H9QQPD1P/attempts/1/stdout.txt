@@ -1,0 +1,2 @@
+train_rows=181 features=13 target=heart_disease_binary
+steps=['preprocessor', 'select_k_best', 'classifier']

@@ -1,0 +1,3 @@
+placeholders: 0 columns
+features: 5 numeric, 8 categorical
+summary rows: 39

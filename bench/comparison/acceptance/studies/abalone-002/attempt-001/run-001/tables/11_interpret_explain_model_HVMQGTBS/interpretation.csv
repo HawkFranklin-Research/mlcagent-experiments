@@ -1,0 +1,15 @@
+item,value,source
+targets,Rings,cf3ad40a84ac58a0fa7823c4ec679fc8502232f166b61a51d208e5661bbe35a7.json
+task_type,regression,cf3ad40a84ac58a0fa7823c4ec679fc8502232f166b61a51d208e5661bbe35a7.json
+primary_metric,rmse,cf3ad40a84ac58a0fa7823c4ec679fc8502232f166b61a51d208e5661bbe35a7.json
+frozen_model_artifact,alternative_model.pkl,alternative_model.pkl
+model_class,Pipeline,alternative_model.pkl
+selected_hyperparameters,"{""ccp_alpha"": 0.0, ""criterion"": ""squared_error"", ""max_depth"": null, ""max_features"": null, ""max_leaf_nodes"": null, ""min_impurity_decrease"": 0.0, ""min_samples_leaf"": 1, ""min_samples_split"": 2, ""min_weight_fraction_leaf"": 0.0, ""monotonic_cst"": null, ""random_state"": null, ""splitter"": ""best""}",manifest.json
+feature_count,8,train.parquet
+feature_columns,"Sex, Length, Diameter, Height, Whole_weight, Shucked_weight, Viscera_weight, Shell_weight",train.parquet
+preprocessor,ColumnTransformer,preprocessor.pkl
+selector,Pipeline,selector_all.pkl
+validation_evidence,validation_metrics.csv,validation_metrics.csv
+validation_rmse,2.219,validation_metrics.csv
+top_feature,Length,interpretation.csv
+limitations,Frozen interpretation only; no fitting or refitting. Validation evidence is not test evidence. Feature importance/coefficient ranking can be unstable for correlated measurements; count outcome may be right-skewed.,cf3ad40a84ac58a0fa7823c4ec679fc8502232f166b61a51d208e5661bbe35a7.json

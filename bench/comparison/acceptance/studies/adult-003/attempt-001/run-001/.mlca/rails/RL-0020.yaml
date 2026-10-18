@@ -1,0 +1,24 @@
+id: RL-0020
+kind: instruction
+roles:
+- navigator
+- worker
+events:
+- eda
+problem_types:
+- clustering
+text: 'If the proposed clustering units are entities but the input rows are repeated transactions,
+  the Navigator must recommend build_entities before a distribution-only EDA action completes the
+  event. In that entity-building step, before the split, the Worker builds one row per entity: drop
+  rows without an entity key, handle reversing rows (negative amounts, returns) by an explicit rule
+  printed in one line, and aggregate deterministically (recency against the last date in the table,
+  frequency, total and mean value), with no fitted transform. Save the declared prepared-data artifact
+  so the engine freezes the entity rows. Do not aggregate after partitioning or pretend transaction-level
+  clustering satisfies an entity-level aim. Preserve the declared group column as a complete explicit
+  column with the same name, never a generic renamed identifier or index alone. Preserve declared
+  chronological ordering columns with a documented, consistent entity-level time aggregation; do
+  not silently discard them.'
+reason: A distribution-only EDA completed before entity preparation, leaving missing group keys and
+  the wrong analysis rows at the split.
+ledger: L-0007
+added_in: rails-0.3

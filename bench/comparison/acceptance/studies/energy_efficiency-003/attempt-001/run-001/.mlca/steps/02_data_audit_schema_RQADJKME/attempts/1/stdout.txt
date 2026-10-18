@@ -1,0 +1,1 @@
+rows=768, cols=10, missing=0

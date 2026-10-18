@@ -1,0 +1,2 @@
+train rows=8124, features=16, classes=7
+saved model.pkl

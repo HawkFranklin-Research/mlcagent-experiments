@@ -1,0 +1,2 @@
+train rows: 460, features: 8, targets: 2
+steps: ['preprocessor', 'selector']

@@ -1,0 +1,6 @@
+Traceback (most recent call last):
+  File "/workspaces/mlcagent-experiments/bench/comparison/acceptance/studies/energy_efficiency-003/attempt-001/run-001/.mlca/steps/09_validate_score_validation_EPZW9V8M/attempts/2/script.py", line 80, in <module>
+    pred = pred_for(predictor)
+  File "/workspaces/mlcagent-experiments/bench/comparison/acceptance/studies/energy_efficiency-003/attempt-001/run-001/.mlca/steps/09_validate_score_validation_EPZW9V8M/attempts/2/script.py", line 64, in pred_for
+    raise RuntimeError(f"pipeline expects protected columns: {bad}")
+RuntimeError: pipeline expects protected columns: ['Y1', 'Y2']

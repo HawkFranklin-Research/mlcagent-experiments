@@ -1,0 +1,9 @@
+column,type,mean,sd,min,median,max,n_missing,n_levels,top_share
+Sex,categorical,,,,,,0,3.0,0.3658
+Length,numeric,0.524,0.1201,0.075,0.545,0.815,0,,
+Diameter,numeric,0.4079,0.09924,0.055,0.425,0.65,0,,
+Height,numeric,0.1395,0.04183,0.0,0.14,1.13,0,,
+Whole_weight,numeric,0.8287,0.4904,0.002,0.7995,2.825,0,,
+Shucked_weight,numeric,0.3594,0.222,0.001,0.336,1.488,0,,
+Viscera_weight,numeric,0.1806,0.1096,0.0005,0.171,0.76,0,,
+Shell_weight,numeric,0.2388,0.1392,0.0015,0.234,1.005,0,,

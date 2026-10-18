@@ -1,0 +1,8 @@
+column,type,mean,sd,min,median,max,n_missing,n_levels,top_share
+area,numeric,14.85,2.91,10.59,14.36,21.18,0,,
+perimeter,numeric,14.56,1.306,12.41,14.32,17.25,0,,
+compactness,numeric,0.871,0.02363,0.8081,0.8735,0.9183,0,,
+kernel_length,numeric,5.629,0.4431,4.899,5.524,6.675,0,,
+kernel_width,numeric,3.259,0.3777,2.63,3.237,4.033,0,,
+asymmetry_coefficient,numeric,3.7,1.504,0.7651,3.599,8.456,0,,
+groove_length,numeric,5.408,0.4915,4.519,5.223,6.55,0,,

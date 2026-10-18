@@ -1,0 +1,3 @@
+placeholders found in 1 text columns: ['Description']
+Return rule: rows with Quantity<0 are kept and netted into monetary totals; frequency counts non-return invoices only.
+rows_in=541909 rows_used=406829 entities=4372 saved entities.parquet

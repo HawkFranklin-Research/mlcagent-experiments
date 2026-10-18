@@ -1,0 +1,3 @@
+No placeholder tokens found
+Schema: 7 columns, 0 missing total
+Rows: 210

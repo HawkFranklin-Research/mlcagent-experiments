@@ -1,0 +1,33 @@
+column,scope,kind,n,n_missing,mean,sd,min,median,max,n_levels,top_share
+MFCCs_ 1,overall,numeric,7195,0,0.9899,0.06902,-0.2512,1.0,1.0,,
+MFCCs_ 2,overall,numeric,7195,0,0.3236,0.2187,-0.673,0.3022,1.0,,
+MFCCs_ 3,overall,numeric,7195,0,0.3112,0.2635,-0.436,0.2746,1.0,,
+MFCCs_ 4,overall,numeric,7195,0,0.446,0.1603,-0.4727,0.4815,1.0,,
+MFCCs_ 5,overall,numeric,7195,0,0.127,0.1627,-0.636,0.1614,0.7522,,
+MFCCs_ 6,overall,numeric,7195,0,0.09794,0.1204,-0.4104,0.07208,0.9642,,
+MFCCs_ 7,overall,numeric,7195,0,-0.001397,0.1714,-0.539,-0.05263,1.0,,
+MFCCs_ 8,overall,numeric,7195,0,-0.0003701,0.1163,-0.5765,0.01326,0.5518,,
+MFCCs_ 9,overall,numeric,7195,0,0.1282,0.179,-0.5873,0.1893,0.738,,
+MFCCs_10,overall,numeric,7195,0,0.056,0.1271,-0.9523,0.06348,0.5228,,
+MFCCs_11,overall,numeric,7195,0,-0.1157,0.1868,-0.902,-0.1533,0.523,,
+MFCCs_12,overall,numeric,7195,0,0.04337,0.156,-0.7994,0.05105,0.6909,,
+MFCCs_13,overall,numeric,7195,0,0.1509,0.2069,-0.6441,0.1969,0.9457,,
+MFCCs_14,overall,numeric,7195,0,-0.03924,0.1525,-0.5904,-0.05071,0.5757,,
+MFCCs_15,overall,numeric,7195,0,-0.1017,0.1876,-0.7172,-0.1433,0.6689,,
+MFCCs_16,overall,numeric,7195,0,0.04206,0.1199,-0.4987,0.04108,0.6707,,
+MFCCs_17,overall,numeric,7195,0,0.08868,0.1381,-0.4215,0.1128,0.6812,,
+MFCCs_18,overall,numeric,7195,0,0.007755,0.08473,-0.7593,0.01182,0.6141,,
+MFCCs_19,overall,numeric,7195,0,-0.04947,0.08255,-0.6807,-0.05263,0.5742,,
+MFCCs_20,overall,numeric,7195,0,-0.05324,0.09418,-0.3616,-0.05518,0.4678,,
+MFCCs_21,overall,numeric,7195,0,0.03731,0.07947,-0.4308,0.03127,0.3898,,
+MFCCs_22,overall,numeric,7195,0,0.08757,0.1234,-0.3793,0.1054,0.4322,,
+Species,target=AdenomeraHylaedactylus,target_class,3478,0,,,,,,,0.4834
+Species,target=HypsiboasCordobae,target_class,1121,0,,,,,,,0.1558
+Species,target=AdenomeraAndre,target_class,672,0,,,,,,,0.0934
+Species,target=Ameeregatrivittata,target_class,542,0,,,,,,,0.07533
+Species,target=HypsiboasCinerascens,target_class,472,0,,,,,,,0.0656
+Species,target=HylaMinuta,target_class,310,0,,,,,,,0.04309
+Species,target=LeptodactylusFuscus,target_class,270,0,,,,,,,0.03753
+Species,target=ScinaxRuber,target_class,148,0,,,,,,,0.02057
+Species,target=OsteocephalusOophagus,target_class,114,0,,,,,,,0.01584
+Species,target=Rhinellagranulosa,target_class,68,0,,,,,,,0.009451

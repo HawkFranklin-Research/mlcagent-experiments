@@ -1,0 +1,13 @@
+Traceback (most recent call last):
+  File "/workspaces/mlcagent-experiments/bench/comparison/acceptance/studies/breast_cancer_diagnostic-001/attempt-001/run-001/.mlca/steps/10_test_score_test_SXWM3VYM/attempts/1/script.py", line 69, in <module>
+    proba_main, classes_main = get_scores(pipe_main, val)
+                               ~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "/workspaces/mlcagent-experiments/bench/comparison/acceptance/studies/breast_cancer_diagnostic-001/attempt-001/run-001/.mlca/steps/10_test_score_test_SXWM3VYM/attempts/1/script.py", line 58, in get_scores
+    proba = pipe.predict_proba(X[feature_cols])
+  File "/workspaces/mlcagent-experiments/bench/comparison/acceptance/studies/breast_cancer_diagnostic-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/pipeline.py", line 925, in predict_proba
+    Xt = transform.transform(Xt)
+  File "/workspaces/mlcagent-experiments/bench/comparison/acceptance/studies/breast_cancer_diagnostic-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/utils/_set_output.py", line 327, in wrapped
+    data_to_wrap = f(self, X, *args, **kwargs)
+  File "/workspaces/mlcagent-experiments/bench/comparison/acceptance/studies/breast_cancer_diagnostic-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/compose/_column_transformer.py", line 1066, in transform
+    raise ValueError(f"columns are missing: {diff}")
+ValueError: columns are missing: {'fractal_dimension1', 'perimeter2', 'concave_points1', 'radius2', 'fractal_dimension3', 'fractal_dimension2', 'radius1', 'compactness3', 'area2', 'symmetry2', 'smoothness2', 'smoothness3', 'concavity3', 'concave_points3', 'compactness2', 'perimeter3', 'concavity1', 'symmetry1', 'texture2', 'texture3', 'compactness1', 'area3', 'smoothness1', 'radius3', 'concave_points2', 'concavity2', 'perimeter1', 'area1', 'symmetry3', 'texture1'}

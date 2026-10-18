@@ -1,0 +1,3 @@
+Train (29275, 13) Val (9758, 13)
+Placeholders in 3 cols: ['workclass', 'occupation', 'native-country']
+Encoded train=(29275, 12) val=(9758, 97)

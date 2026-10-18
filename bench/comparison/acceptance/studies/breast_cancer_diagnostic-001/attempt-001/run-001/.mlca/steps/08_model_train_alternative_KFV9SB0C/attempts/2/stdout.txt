@@ -1,0 +1,2 @@
+val roc_auc=0.9859 pos_label=M
+train=341 val=113 features=30

@@ -1,0 +1,4 @@
+placeholders: 0 cols tokens=none
+excluded features: none
+features=30 numeric=30 categorical=0 width~=30
+val transformed shape=(113, 30)

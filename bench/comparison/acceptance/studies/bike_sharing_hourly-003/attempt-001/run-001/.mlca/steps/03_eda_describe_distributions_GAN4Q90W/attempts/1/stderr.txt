@@ -1,0 +1,2 @@
+/workspaces/mlcagent-experiments/bench/comparison/acceptance/studies/bike_sharing_hourly-003/attempt-001/run-001/.mlca/steps/03_eda_describe_distributions_GAN4Q90W/attempts/1/script.py:23: Pandas4Warning: is_categorical_dtype is deprecated and will be removed in a future version. Use isinstance(dtype, pd.CategoricalDtype) instead
+  elif (pd.api.types.is_object_dtype(s) or pd.api.types.is_categorical_dtype(s)) and s.nunique() == len(s):

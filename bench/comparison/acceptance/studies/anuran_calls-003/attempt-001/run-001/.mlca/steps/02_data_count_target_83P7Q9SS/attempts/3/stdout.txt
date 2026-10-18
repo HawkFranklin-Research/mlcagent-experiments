@@ -1,0 +1,3 @@
+rows=7195 targets=3 classes_total=22
+flagged_under_5pct=11 saved_rows=22
+saved target_counts.csv

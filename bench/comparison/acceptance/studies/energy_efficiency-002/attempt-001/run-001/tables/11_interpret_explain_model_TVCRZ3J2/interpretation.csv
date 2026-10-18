@@ -1,0 +1,15 @@
+aspect,detail,source
+event,Interpret frozen model without fitting,_protocol
+selected_model_file,alternative_model.pkl,alternative_model.pkl
+model_structure,"Pipeline[pre:ColumnTransformer > model:RandomForestRegressor]; final=RandomForestRegressor; params={'bootstrap': True, 'ccp_alpha': 0.0, 'criterion': 'squared_error', 'max_depth': None, 'max_features': 1.0, 'max_leaf_nodes': None, 'max_samples': None, 'min_impurity_decrease': 0.0, 'min_samples_leaf': 1, 'min_samples_split': 2, 'min_weight_fraction_leaf': 0.0, 'monotonic_cst': None, 'n_estimators': 100, 'n_jobs': None, 'oob_score': False, 'random_state': 42, 'verbose': 0, 'warm_start': False}",alternative_model.pkl
+targets,"Y1, Y2",_protocol
+primary_metric,rmse,_protocol
+group_column,None,_protocol
+excluded_columns,[],_protocol
+feature_columns_count,8,train.parquet
+feature_columns,"X1, X2, X3, X4, X5, X6, X7, X8",train.parquet
+validation_evidence,"model=baseline, metric=rmse_Y1, value=3.028 | model=baseline, metric=mae_Y1, value=2.289 | model=baseline, metric=r2_Y1, value=0.9113 | model=baseline, metric=rmse_Y2, value=3.612 | model=baseline, metric=mae_Y2, value=2.577 | model=baseline, metric=r2_Y2, value=0.8626 | model=baseline, metric=rmse_macro, value=3.32 | model=baseline, metric=mae_macro, value=2.433 | model=baseline, metric=r2_macro, value=0.8869 | model=alternative, metric=rmse_Y1, value=0.4974 | model=alternative, metric=mae_Y1, value=0.3406 | model=alternative, metric=r2_Y1, value=0.9976",validation_metrics.csv
+top_feature,keep__X5,alternative_model.pkl
+limitation,"No temporal or identifier column; the model describes simulated factorial associations, not causal effects.",_protocol
+limitation,Validation evidence only; no post-test fitting or threshold tuning was performed here.,validation_metrics.csv
+limitation,Feature importance is model-derived and may reflect correlated design parameters.,alternative_model.pkl

@@ -1,0 +1,1 @@
+{"facts":[],"figures":[],"fits":[],"metrics":[],"outputs":[{"caption":"","kind":"report","name":"split.json","path":".mlca/steps/04_split_freeze_stratified_WNFTJQXZ/outputs/split.json","sha256":"03708c3113b6e9cdcd4e4ac1beb559316bc58555867d12e335648083918be716","size":1143}],"step_id":"04_split_freeze_stratified_WNFTJQXZ","wall_time_s":0.36560336599904986}

@@ -1,0 +1,2 @@
+val roc_auc: 0.9189
+Saved alternative_model.pkl

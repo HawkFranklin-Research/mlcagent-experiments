@@ -1,0 +1,3 @@
+model: Pipeline k: 2 features: 7
+val silhouette = nan
+rows: 13

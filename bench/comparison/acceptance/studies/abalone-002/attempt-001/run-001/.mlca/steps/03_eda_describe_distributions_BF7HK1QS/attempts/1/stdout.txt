@@ -1,0 +1,2 @@
+placeholders found: none; columns containing placeholders: 0
+summary rows=9 numeric=8 categorical=1

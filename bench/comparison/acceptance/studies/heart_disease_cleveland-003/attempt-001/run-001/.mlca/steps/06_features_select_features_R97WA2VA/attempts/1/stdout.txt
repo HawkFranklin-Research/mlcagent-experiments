@@ -1,0 +1,4 @@
+train rows: 181
+feature cols: 13
+preprocessed width: 13, k: 13
+selected: 13

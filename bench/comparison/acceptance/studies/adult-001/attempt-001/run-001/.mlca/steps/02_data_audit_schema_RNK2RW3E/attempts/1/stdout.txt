@@ -1,0 +1,3 @@
+rows=48794 columns=13
+missing.total=2203
+placeholder tokens in 3 text columns: ?

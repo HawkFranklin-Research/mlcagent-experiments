@@ -1,0 +1,5 @@
+model=Pipeline final=RandomForestRegressor
+train_rows=460 features=8 selected=None
+top_feature=X5
+val_rmse_mean=3.156757504047396
+saved interpretation.csv

@@ -1,0 +1,5 @@
+train (181, 14) val (59, 14); placeholders [] in 0 cols
+derived excluded: []
+corr>=0.98 warning: []
+num=13 cat=0 dropped=[] date=[]
+encoded width=13 val_rows=59

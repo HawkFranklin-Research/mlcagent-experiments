@@ -1,0 +1,3 @@
+selected alternative on val rmse=2.131
+test rows=836 features=8
+test rmse=2.226

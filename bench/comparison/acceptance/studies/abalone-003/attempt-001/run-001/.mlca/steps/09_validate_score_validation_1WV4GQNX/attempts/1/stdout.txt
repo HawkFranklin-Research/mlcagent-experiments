@@ -1,0 +1,3 @@
+validation rows: 835
+candidates: ['baseline', 'alternative']
+best rmse: alternative = 2.129

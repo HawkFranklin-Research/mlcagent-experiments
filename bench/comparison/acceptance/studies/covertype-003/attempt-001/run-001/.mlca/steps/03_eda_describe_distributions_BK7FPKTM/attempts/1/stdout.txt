@@ -1,0 +1,4 @@
+feature columns: 54
+summary rows: 19
+placeholder columns: 0
+n_numeric=0, n_categorical=54

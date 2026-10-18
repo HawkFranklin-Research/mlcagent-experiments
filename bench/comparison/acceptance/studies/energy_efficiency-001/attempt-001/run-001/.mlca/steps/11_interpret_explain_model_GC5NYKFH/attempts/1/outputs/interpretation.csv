@@ -1,0 +1,45 @@
+section,item,value,source
+model,frozen_model_class,Pipeline,latest_model
+model,final_estimator_class,RandomForestRegressor,latest_model
+model,pipeline_steps,pre > model,latest_model
+hyperparameter,bootstrap,True,latest_model
+hyperparameter,ccp_alpha,0.0,latest_model
+hyperparameter,criterion,squared_error,latest_model
+hyperparameter,max_depth,None,latest_model
+hyperparameter,max_features,1.0,latest_model
+hyperparameter,max_leaf_nodes,None,latest_model
+hyperparameter,max_samples,None,latest_model
+hyperparameter,min_impurity_decrease,0.0,latest_model
+hyperparameter,min_samples_leaf,1,latest_model
+hyperparameter,min_samples_split,2,latest_model
+hyperparameter,min_weight_fraction_leaf,0.0,latest_model
+hyperparameter,monotonic_cst,None,latest_model
+hyperparameter,n_estimators,100,latest_model
+hyperparameter,n_jobs,None,latest_model
+hyperparameter,oob_score,False,latest_model
+hyperparameter,estimator__ccp_alpha,0.0,latest_model
+hyperparameter,estimator__criterion,squared_error,latest_model
+hyperparameter,estimator__max_depth,None,latest_model
+hyperparameter,estimator__max_features,None,latest_model
+hyperparameter,estimator__max_leaf_nodes,None,latest_model
+hyperparameter,estimator__min_impurity_decrease,0.0,latest_model
+hyperparameter,estimator__min_samples_leaf,1,latest_model
+hyperparameter,estimator__min_samples_split,2,latest_model
+hyperparameter,estimator__min_weight_fraction_leaf,0.0,latest_model
+hyperparameter,estimator__monotonic_cst,None,latest_model
+hyperparameter,estimator__random_state,None,latest_model
+hyperparameter,estimator__splitter,best,latest_model
+input,n_train_rows,460,train
+input,n_features,8,train
+input,targets,"Y1,Y2",_protocol
+input,excluded_columns,none,_protocol
+input,group_column,none,_protocol
+model,top_feature,X5,latest_model
+model,top_feature_mean_abs_importance,0.2849,latest_model
+validation,primary_metric,rmse,_protocol
+validation,rmse_overall,3.1568,validation_metrics.csv
+validation,rmse_mean,3.1568,validation_metrics.csv
+limitation,no_fitting,interpretation only; model loaded from disk,interpretation.csv
+limitation,importance_source,model coefficients/feature_importances; not causal,latest_model
+limitation,validation_only,validation evidence reported; no test exposure,validation_metrics.csv
+limitation,multioutput_aggregation,importance averaged across targets where applicable,latest_model

@@ -1,0 +1,1 @@
+{"facts":[],"figures":[],"fits":[],"metrics":[],"outputs":[{"caption":"","kind":"report","name":"split.json","path":".mlca/steps/04_split_freeze_stratified_55T60CXH/outputs/split.json","sha256":"067fb346e5ce4d9bccc7ef400e3dce099eb78364b390cb7a83d1ff3c6c92ea5c","size":1154}],"step_id":"04_split_freeze_stratified_55T60CXH","wall_time_s":0.5421426760003669}

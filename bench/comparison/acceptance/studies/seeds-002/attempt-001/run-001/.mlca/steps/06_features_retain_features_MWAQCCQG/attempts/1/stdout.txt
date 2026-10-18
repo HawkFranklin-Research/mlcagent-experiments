@@ -1,0 +1,5 @@
+Raw feature columns: 7
+Preprocessed features: 7
+Selected features: 7
+Training rows: 126
+Saved selector_all.pkl

@@ -1,0 +1,2 @@
+Selected: logistic, val roc_auc: 0.9896
+Test roc_auc: 0.9987 [0.9947, 1.0000]

@@ -1,0 +1,16 @@
+feature,importance_mean,importance_sd
+ShapeFactor1,0.03883,0.001402
+ShapeFactor2,0.01587,0.000894
+AspectRatio,0.01329,0.0007755
+Roundness,0.01255,0.000698
+ShapeFactor4,0.01145,0.0007637
+Eccentricity,0.009723,0.0006311
+Perimeter,0.005685,0.0005226
+MinorAxisLength,0.005034,0.0004811
+MajorAxisLength,0.004764,0.0004487
+EquivDiameter,0.003711,0.0003932
+ConvexArea,0.00361,0.0004603
+Area,0.003442,0.0004408
+Solidity,0.001824,0.000187
+ShapeFactor3,0.001525,0.0002526
+Compactness,0.001186,0.000169

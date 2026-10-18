@@ -1,0 +1,11 @@
+aspect,baseline_model,alternative_model,notes
+model_class,Pipeline,Pipeline,top-level estimator
+estimator_class,LinearRegression,RandomForestRegressor,final pipeline step
+selected_hyperparameters,default,"n_estimators=100, max_depth=None, min_samples_leaf=1",key params only
+n_features,8,8,selector n_features=unknown
+input_features,"Sex, Length, Diameter, Height, Whole_weight, Shucked_weight, Viscera_weight, Shell_weight","Sex, Length, Diameter, Height, Whole_weight, Shucked_weight, Viscera_weight, Shell_weight",training schema
+preprocessing_steps,see manifest,see manifest,from preprocessor manifest
+top_feature,unknown,unknown,magnitude-based ranking
+val_metric_name,rmse,rmse,primary metric from task
+val_metric_value,nan,nan,validation split
+limitations,Frozen; no refit; single target; dependent on preprocessor/selector chain.,Frozen; no refit; risk of overfit; validation only.,see manifests for details

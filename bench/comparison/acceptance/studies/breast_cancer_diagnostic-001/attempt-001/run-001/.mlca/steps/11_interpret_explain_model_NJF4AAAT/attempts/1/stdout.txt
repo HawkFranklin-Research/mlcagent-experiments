@@ -1,0 +1,2 @@
+rows=113 features=30 repeats=20
+top_feature=area2

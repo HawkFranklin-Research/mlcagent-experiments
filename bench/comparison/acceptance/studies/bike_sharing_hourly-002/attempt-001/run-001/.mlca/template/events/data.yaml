@@ -1,0 +1,27 @@
+id: data
+title: Data
+goal: Know what one row is, how each column is typed and how the task is coded.
+gate:
+- event_done: onboard
+subgoals:
+- id: outputs_recorded
+  text: 'Schema audited: types, unique values, missingness'
+  check:
+    type: output_exists
+    action: audit_schema
+    output: schema.json
+actions:
+- audit_schema
+- count_target
+default_options:
+- audit_schema
+done_when: all_subgoals
+custom_scope:
+  description: Inspect columns, types, missingness, duplicates and target coding.
+    No modelling.
+  deny_patterns:
+  - (?i)\b(train|fit)\b.*\bmodel\b
+  - (?i)\btest (set|split|partition)\b
+  readable_inputs:
+  - registered_data
+max_options: 3

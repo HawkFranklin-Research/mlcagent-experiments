@@ -1,0 +1,2 @@
+Features: numeric=7+log=0 cat=0 dropped=0
+Saved preprocessor.pkl with 7 input features

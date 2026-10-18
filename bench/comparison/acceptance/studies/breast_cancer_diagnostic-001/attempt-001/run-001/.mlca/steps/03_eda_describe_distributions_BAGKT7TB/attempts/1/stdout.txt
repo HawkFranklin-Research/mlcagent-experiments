@@ -1,0 +1,3 @@
+shape=(569, 31) numeric_features=30 categorical_features=0
+placeholders=none columns=0
+distributions rows=47

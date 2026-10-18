@@ -1,0 +1,2 @@
+features=64; baseline=PCA; top_feature=keep__pixel_43
+validation=:reconstruction_error=6.287; :reconstruction_error=0.3506

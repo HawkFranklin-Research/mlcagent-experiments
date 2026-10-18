@@ -1,0 +1,2 @@
+selected 08_alternative (MLP) val_mse=0.241953
+test_mse=0.233467, embeddings_shape=(4496, 10)

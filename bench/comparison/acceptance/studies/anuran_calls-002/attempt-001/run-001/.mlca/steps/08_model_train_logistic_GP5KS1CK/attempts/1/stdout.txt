@@ -1,0 +1,3 @@
+rows 4293 features 22
+classes 10
+train_roc_auc_ovr 0.9996

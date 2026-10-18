@@ -1,0 +1,1 @@
+{"facts": [{"key": "top_feature", "source": "interpretation.csv", "unit": null, "value": "keep__pixel_43"}], "fits": [], "metrics": [], "outputs": [{"caption": "Frozen representation model interpretation", "kind": "table", "name": "interpretation.csv"}, {"caption": "Frozen representation model interpretation", "kind": "table", "name": "interpretation.parquet"}]}

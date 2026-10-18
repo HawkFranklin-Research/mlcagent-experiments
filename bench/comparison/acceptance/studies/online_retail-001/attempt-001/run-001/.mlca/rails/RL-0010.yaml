@@ -1,0 +1,17 @@
+id: RL-0010
+kind: instruction
+roles:
+- worker
+events:
+- preprocess
+problem_types:
+- all
+text: 'Before encoding, sort feature columns into types: numeric; low-cardinality categorical
+  (one-hot); text or code columns with more unique values than 5% of rows (drop, or use a
+  frequency encoding fitted on training rows, never one-hot); date or time strings (parse
+  with pandas.to_datetime, derive numeric parts such as hour, day of week and month, then
+  drop the raw string). Integer 0/1 indicator columns stay numeric.'
+reason: One-hot encoding codes or raw timestamps creates thousands of columns, exhausts memory
+  on large tables and memorises rows.
+ledger: L-0002
+added_in: rails-0.3

@@ -1,0 +1,2 @@
+rows=303 numeric=5 categorical=8
+summary_rows=39

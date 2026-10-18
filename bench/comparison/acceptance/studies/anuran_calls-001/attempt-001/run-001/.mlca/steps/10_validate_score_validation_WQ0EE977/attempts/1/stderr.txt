@@ -1,0 +1,19 @@
+/workspaces/mlcagent-experiments/bench/comparison/acceptance/studies/anuran_calls-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/metrics/_ranking.py:469: UndefinedMetricWarning: Only one class is present in y_true. ROC AUC score is not defined in that case.
+  warnings.warn(
+/workspaces/mlcagent-experiments/bench/comparison/acceptance/studies/anuran_calls-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/metrics/_ranking.py:469: UndefinedMetricWarning: Only one class is present in y_true. ROC AUC score is not defined in that case.
+  warnings.warn(
+/workspaces/mlcagent-experiments/bench/comparison/acceptance/studies/anuran_calls-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/metrics/_ranking.py:469: UndefinedMetricWarning: Only one class is present in y_true. ROC AUC score is not defined in that case.
+  warnings.warn(
+/workspaces/mlcagent-experiments/bench/comparison/acceptance/studies/anuran_calls-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/metrics/_ranking.py:469: UndefinedMetricWarning: Only one class is present in y_true. ROC AUC score is not defined in that case.
+  warnings.warn(
+/workspaces/mlcagent-experiments/bench/comparison/acceptance/studies/anuran_calls-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/metrics/_ranking.py:469: UndefinedMetricWarning: Only one class is present in y_true. ROC AUC score is not defined in that case.
+  warnings.warn(
+/workspaces/mlcagent-experiments/bench/comparison/acceptance/studies/anuran_calls-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/metrics/_ranking.py:469: UndefinedMetricWarning: Only one class is present in y_true. ROC AUC score is not defined in that case.
+  warnings.warn(
+Traceback (most recent call last):
+  File "/workspaces/mlcagent-experiments/bench/comparison/acceptance/studies/anuran_calls-001/attempt-001/run-001/.mlca/steps/10_validate_score_validation_WQ0EE977/attempts/1/script.py", line 77, in <module>
+    mlca_runtime.record_metric(f"val_{primary}_best", best_val, "val")
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspaces/mlcagent-experiments/bench/comparison/acceptance/studies/anuran_calls-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/mlca_runtime/__init__.py", line 143, in record_metric
+    raise ValueError("MLCA: Metrics require a finite scalar value")
+ValueError: MLCA: Metrics require a finite scalar value

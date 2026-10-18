@@ -1,0 +1,7 @@
+Traceback (most recent call last):
+  File "/workspaces/mlcagent-experiments/bench/comparison/acceptance/studies/dry_bean-001/attempt-001/run-001/.mlca/steps/06_features_select_features_RVKX3HX3/attempts/1/script.py", line 37, in <module>
+    mlca_runtime.record_metric("n_features_selected", float(n_selected), "train",
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                               source="selector.pkl")
+                               ^^^^^^^^^^^^^^^^^^^^^^
+TypeError: record_metric() got an unexpected keyword argument 'source'

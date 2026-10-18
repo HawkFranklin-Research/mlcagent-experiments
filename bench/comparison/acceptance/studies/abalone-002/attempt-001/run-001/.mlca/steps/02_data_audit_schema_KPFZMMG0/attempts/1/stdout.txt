@@ -1,0 +1,2 @@
+placeholders found: [] in 0 column(s)
+shape=(4177, 9) columns=9 missing_cells=0

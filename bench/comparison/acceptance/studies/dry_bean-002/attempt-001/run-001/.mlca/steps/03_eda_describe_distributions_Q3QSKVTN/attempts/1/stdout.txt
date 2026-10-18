@@ -1,0 +1,3 @@
+distributions.csv: 24 rows x 12 cols
+features: 16 numeric, 0 categorical
+placeholder tokens [] in 0 text columns

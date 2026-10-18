@@ -1,0 +1,3 @@
+Placeholders found: none in 0 columns
+Rows: 5620, Feature columns: 64
+Summarized: 50 numeric, 0 categorical

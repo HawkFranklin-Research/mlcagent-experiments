@@ -1,0 +1,1 @@
+rows=11 model=RandomForestRegressor features=8 top=num__Shell_weight rmse=2.219

@@ -1,0 +1,3 @@
+No placeholder tokens found in text feature columns.
+Transformed val shape: (1709, 22)
+Saved preprocessor.pkl

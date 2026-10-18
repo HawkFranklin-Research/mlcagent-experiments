@@ -1,0 +1,4 @@
+Feature columns: 13
+Numeric: 12, Categorical: 1
+Key-like excluded: 0
+Summary shape: (13, 10)

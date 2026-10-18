@@ -1,0 +1,3 @@
+features=54 rows=348605 target=Cover_Type
+steps=['preprocess', 'selectkbest', 'classifier']
+saved model.pkl

@@ -1,0 +1,28 @@
+id: train_alternative
+event: model
+title: Fit alternative
+params: {}
+prompt: 'Do: fit complete preprocessing + MiniBatchKMeans candidates for a bounded
+  cluster-count range using fit_record on the full frozen training index. Choose cluster
+  count using internal validation metrics and training-only stability, never labels.
+  For bootstrap stability, use sample-weight multiplicities on the full training index;
+  do not fit subsets or relabel rows.
+
+  Save: alternative_model.pkl (the selected full pipeline).'
+inputs:
+- ref: train
+- ref: val
+- ref: prior_outputs
+outputs:
+- name: alternative_model.pkl
+  kind: model
+  required: true
+fact_candidates: []
+reads_test: false
+timeout_s: 300
+methods_text: 'Fit alternative: fit complete preprocessing + MiniBatchKMeans candidates
+  for a bounded cluster-count range using fit_record on the full frozen training index.
+  Choose cluster count using internal validation metrics and training-only stability,
+  never labels. For bootstrap stability, use sample-weight multiplicities on the full
+  training index; do not fit subsets or relabel rows.'
+builtin: null

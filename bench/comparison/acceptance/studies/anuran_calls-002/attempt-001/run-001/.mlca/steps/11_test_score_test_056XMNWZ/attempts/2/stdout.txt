@@ -1,0 +1,2 @@
+model=alternative_model.pkl n_test=1193
+roc_auc_ovr=0.9353 CI=[0.9231,0.9451] f1=0.3006

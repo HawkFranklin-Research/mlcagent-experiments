@@ -1,0 +1,3 @@
+train/val shapes: (3372, 64) (1124, 64)
+features used: 64
+best MLPRegressor: 0.3506

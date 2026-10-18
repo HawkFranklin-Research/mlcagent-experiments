@@ -1,0 +1,4 @@
+Traceback (most recent call last):
+  File "/workspaces/mlcagent-experiments/bench/comparison/acceptance/studies/adult-001/attempt-001/run-001/.mlca/steps/10_test_score_test_FEQVWQMB/attempts/2/script.py", line 80, in <module>
+    raise ValueError("Missing frozen validation threshold in 09 manifest/metrics")
+ValueError: Missing frozen validation threshold in 09 manifest/metrics

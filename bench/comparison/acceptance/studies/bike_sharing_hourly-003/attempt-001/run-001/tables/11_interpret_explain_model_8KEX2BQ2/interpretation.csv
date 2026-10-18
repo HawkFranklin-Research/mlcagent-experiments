@@ -1,0 +1,26 @@
+section,item,value,source
+model,baseline_family,LinearRegression,07_model_train_baseline_V4Y4XVKZ/model.pkl
+model,baseline_pipeline_steps,fe > reg,07_model_train_baseline_V4Y4XVKZ/model.pkl
+model,alternative_family,DecisionTreeRegressor,08_model_train_alternative_DHX507BF/alternative_model.pkl
+model,alternative_pipeline_steps,single estimator,08_model_train_alternative_DHX507BF/alternative_model.pkl
+input,n_train_rows,1.043e+04,train.parquet
+input,n_val_rows,3475,val.parquet
+input,n_features,13,train.parquet
+input,target,cnt,_protocol
+input,primary_metric,rmse,_protocol
+hyperparameter,baseline_copy_X,1,07_model_train_baseline_V4Y4XVKZ/model.pkl
+hyperparameter,baseline_fit_intercept,1,07_model_train_baseline_V4Y4XVKZ/model.pkl
+hyperparameter,baseline_positive,0,07_model_train_baseline_V4Y4XVKZ/model.pkl
+hyperparameter,baseline_tol,1e-06,07_model_train_baseline_V4Y4XVKZ/model.pkl
+validation,rmse,182.4,09_validate_score_validation_T0YRBVEV/validation_metrics.csv
+validation,mae,141.3,09_validate_score_validation_T0YRBVEV/validation_metrics.csv
+validation,r2,0.2839,09_validate_score_validation_T0YRBVEV/validation_metrics.csv
+validation,macro_rmse,182.4,09_validate_score_validation_T0YRBVEV/validation_metrics.csv
+validation,macro_mae,141.3,09_validate_score_validation_T0YRBVEV/validation_metrics.csv
+validation,macro_r2,0.2839,09_validate_score_validation_T0YRBVEV/validation_metrics.csv
+interpretation,top_feature,feature_18,07_model_train_baseline_V4Y4XVKZ/model.pkl
+limitation,scope,Frozen fitted model; no refitting or test exposure in this step.,interpretation.csv
+limitation,time,Single chronological hourly series; validation evidence is not a future test.,interpretation.csv
+limitation,features,"Excluded leakage/index columns: casual, instant, registered.",interpretation.csv
+limitation,importance,"Importance is model-specific association, not causal effect.",interpretation.csv
+limitation,metrics,Only declared train/validation partitions are available.,interpretation.csv

@@ -1,0 +1,24 @@
+id: RL-0026
+kind: instruction
+roles:
+- worker
+events:
+- preprocess
+- features
+- model
+- validate
+- test
+- interpret
+problem_types:
+- all
+text: Persist the full row-preserving feature transformation contract, not just an estimator fitted after
+  transient DataFrame mutations. Parsing, derived features, column selection and ordering needed later
+  must be reproducible by the saved importable pipeline. Learned transforms fit only on the frozen training
+  rows. Deterministic table preparation may precede the split only through a declared prepared-data artifact.
+  Later steps pass the declared source feature schema to the saved pipeline, never assume derived columns
+  already exist in a freshly loaded partition. Inspect fitted input names; do not invent missing columns
+  or fit replacement preprocessing during evaluation.
+reason: A saved frontend expected derived inputs created only in an earlier script, so later feature selection
+  could not reproduce its input schema.
+ledger: L-0004
+added_in: rails-0.5

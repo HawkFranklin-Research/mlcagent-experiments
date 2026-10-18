@@ -1,0 +1,23 @@
+id: train_baseline
+event: model
+title: Fit baseline
+params: {}
+prompt: 'Do: fit a complete prediction/reconstruction pipeline with LinearRegression
+  via fit_record on the original training DataFrame; y is the numeric target DataFrame
+  (one or multiple targets). Reuse the declared feature contract and exclude all targets.
+
+  Save: model.pkl.'
+inputs:
+- ref: train
+- ref: val
+- ref: prior_outputs
+outputs:
+- name: model.pkl
+  kind: model
+  required: true
+fact_candidates: []
+reads_test: false
+timeout_s: 300
+methods_text: Follow the recorded task and saved model contract; all fitting uses
+  training rows only.
+builtin: null

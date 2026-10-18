@@ -1,0 +1,2 @@
+test rows: 2712 features: 16
+roc_auc_ovr 0.9949 ci [0.9935, 0.9961]

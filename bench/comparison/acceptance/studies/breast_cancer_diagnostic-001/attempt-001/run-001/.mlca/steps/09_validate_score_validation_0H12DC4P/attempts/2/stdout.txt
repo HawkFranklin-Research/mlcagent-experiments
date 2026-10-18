@@ -1,0 +1,2 @@
+train=341 val=113 features=30
+primary=roc_auc best=logistic value=0.9896

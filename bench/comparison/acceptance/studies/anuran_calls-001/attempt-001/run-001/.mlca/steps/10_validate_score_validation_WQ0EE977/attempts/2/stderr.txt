@@ -1,0 +1,17 @@
+Traceback (most recent call last):
+  File "/workspaces/mlcagent-experiments/bench/comparison/acceptance/studies/anuran_calls-001/attempt-001/run-001/.mlca/steps/10_validate_score_validation_WQ0EE977/attempts/2/script.py", line 83, in <module>
+    auc = roc_auc_score(
+        y_val, proba[:, col_idx],
+        multi_class="ovr", average="macro", labels=present,
+    )
+  File "/workspaces/mlcagent-experiments/bench/comparison/acceptance/studies/anuran_calls-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/utils/_param_validation.py", line 218, in wrapper
+    return func(*args, **kwargs)
+  File "/workspaces/mlcagent-experiments/bench/comparison/acceptance/studies/anuran_calls-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/metrics/_ranking.py", line 727, in roc_auc_score
+    return _multiclass_roc_auc_score(
+        y_true, y_score, labels, multi_class, average, sample_weight
+    )
+  File "/workspaces/mlcagent-experiments/bench/comparison/acceptance/studies/anuran_calls-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/metrics/_ranking.py", line 805, in _multiclass_roc_auc_score
+    raise ValueError(
+    ...<2 lines>...
+    )
+ValueError: Target scores need to be probabilities for multiclass roc_auc, i.e. they should sum up to 1.0 over classes

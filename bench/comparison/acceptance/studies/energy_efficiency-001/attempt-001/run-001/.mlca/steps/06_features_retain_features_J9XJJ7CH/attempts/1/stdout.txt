@@ -1,0 +1,2 @@
+rows=460 features=8
+saved selector_all.pkl

@@ -1,0 +1,3 @@
+placeholders: none in 0 columns
+features=8 numeric=7 categorical=1
+distributions rows=8

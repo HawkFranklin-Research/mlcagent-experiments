@@ -1,0 +1,5 @@
+Features: 30; key-like dropped: 0; high-card cat dropped: 0
+Excluded derived: none
+Correlation warnings: skipped categorical target
+Placeholder tokens in 0 text columns
+Transformed val shape: (113, 30)

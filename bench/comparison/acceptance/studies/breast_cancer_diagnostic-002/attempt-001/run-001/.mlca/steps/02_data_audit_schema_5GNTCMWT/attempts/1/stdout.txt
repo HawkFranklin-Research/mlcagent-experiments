@@ -1,0 +1,4 @@
+text placeholder/whitespace columns: 0
+rows=569 cols=31
+missing_total=0
+targets=['Diagnosis'] excluded=0 group=None

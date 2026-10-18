@@ -1,0 +1,24 @@
+id: audit_validation
+event: validate
+title: Save validation predictions for error analysis
+params: {}
+prompt: |
+  Do: for each validation row, save embedding_* coordinates per candidate model; no raw feature columns or fitting.
+  Save: validation_predictions.parquet with save_row_outputs; row_id = original source index, partition = "val"; keep rows local, never print or expose as facts.
+inputs:
+- ref: train
+- ref: val
+- ref: prior_outputs
+outputs:
+- name: validation_predictions.parquet
+  kind: data
+  row_partitions:
+  - val
+  required: true
+fact_candidates: []
+reads_test: false
+timeout_s: 300
+methods_text: Validation per-row embedding_* coordinates were saved locally as Parquet with source row
+  identifiers and partition labels; no fitting.
+builtin: null
+role: supporting

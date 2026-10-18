@@ -1,0 +1,1 @@
+{"facts": [{"key": "top_feature", "source": "interpretation.csv", "unit": null, "value": "area2"}], "fits": [], "metrics": [], "outputs": [{"caption": "Validation permutation importance (20 repeats)", "kind": "table", "name": "interpretation.csv"}, {"caption": "Validation permutation importance (20 repeats)", "kind": "table", "name": "interpretation.parquet"}]}

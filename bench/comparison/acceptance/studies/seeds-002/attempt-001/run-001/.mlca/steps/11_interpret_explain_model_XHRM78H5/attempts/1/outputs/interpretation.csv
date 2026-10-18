@@ -1,0 +1,14 @@
+item,value
+model_type,Pipeline
+baseline_hyperparameters,"{""n_clusters"": 2, ""random_state"": 42}"
+alternative_model_type,Pipeline
+alternative_hyperparameters,"{""n_clusters"": 3, ""random_state"": 42}"
+selected_cluster_count,2
+feature_count,7
+feature_columns,"area, perimeter, compactness, kernel_length, kernel_width, asymmetry_coefficient, groove_length"
+preprocessor_type,ColumnTransformer
+selector_type,Pipeline
+primary_metric,silhouette
+validation_score,nan
+limitations,No outcome; cluster count chosen only by internal criteria; labels are descriptive not predictive; ground-truth agronomic category absent.
+row_count_used_for_fit,126

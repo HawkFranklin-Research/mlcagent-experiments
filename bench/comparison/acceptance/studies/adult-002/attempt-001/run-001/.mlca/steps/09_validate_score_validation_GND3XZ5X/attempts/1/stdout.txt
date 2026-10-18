@@ -1,0 +1,2 @@
+train=(29275, 13) val=(9758, 13) features=12
+best_model=alternative_2548TA6F roc_auc=0.9215

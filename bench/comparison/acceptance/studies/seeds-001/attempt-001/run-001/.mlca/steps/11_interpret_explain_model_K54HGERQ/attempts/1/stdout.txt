@@ -1,0 +1,4 @@
+interpretation rows: 24
+selected model: MiniBatchKMeans
+top_feature: perimeter
+primary_metric: silhouette

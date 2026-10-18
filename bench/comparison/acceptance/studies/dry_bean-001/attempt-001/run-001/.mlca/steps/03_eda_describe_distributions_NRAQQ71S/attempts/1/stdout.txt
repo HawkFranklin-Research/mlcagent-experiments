@@ -1,0 +1,2 @@
+Rows in summary: 45
+Numeric columns: 16, Categorical columns: 1

@@ -1,0 +1,3 @@
+val roc_auc 0.9896
+train rows 341 val rows 113 features 30
+saved model.pkl

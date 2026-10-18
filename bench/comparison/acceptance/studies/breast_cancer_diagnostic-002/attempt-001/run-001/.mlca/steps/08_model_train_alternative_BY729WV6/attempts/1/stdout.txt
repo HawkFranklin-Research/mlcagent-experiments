@@ -1,0 +1,2 @@
+val roc_auc=0.9859
+n_features=30, train_shape=(341, 31)

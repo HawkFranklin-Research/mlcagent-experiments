@@ -1,0 +1,12 @@
+section,key,text_value,numeric_value,source
+model,model_type,RandomForestRegressor,,08_model_train_alternative_BG3XZYK8/alternative_model.pkl
+model,pipeline_steps,"['pre', 'rf']",,08_model_train_alternative_BG3XZYK8/alternative_model.pkl
+task,targets,"[""Rings""]",,_protocol
+task,primary_metric,rmse,,_protocol
+validation,rmse,,2.219,09_validate_score_validation_DBTDYA32/validation_metrics.csv
+inputs,n_features,,8.0,08_model_train_alternative_BG3XZYK8/alternative_model.pkl
+inputs,features,"[""Sex"", ""Length"", ""Diameter"", ""Height"", ""Whole_weight"", ""Shucked_weight"", ""Viscera_weight"", ""Shell_weight""]",,08_model_train_alternative_BG3XZYK8/alternative_model.pkl
+hyperparameters,selected,"{""facts"": [], ""fits"": [{""columns"": [""Sex"", ""Length"", ""Diameter"", ""Height"", ""Whole_weight"", ""Shucked_weight"", ""Viscera_weight"", ""Shell_weight""], ""estimator"": ""Pipeline"", ""index_sha256"": ""3e068cc3718457d11d5d55b4aa91e6032379779e31e32b57b4520be7d72d66b7"", ""partition"": ""train""}], ""metrics"": [{""ci"": null, ""name"": ""rmse"", ""split"": ""train"", ""value"": 0.8161281294644319}, {""ci"": null, ""name"": ""rmse"", ""split"": ""val"", ""value"": 2.1306330340414097}], ""outputs"": [{""caption"": """", ""kind"": ""model"", ""name"": ""alternative_model.pkl""}]}",,08_model_train_alternative_BG3XZYK8/manifest.json
+evidence,validation_file,09_validate_score_validation_DBTDYA32/validation_metrics.csv,,09_validate_score_validation_DBTDYA32/validation_metrics.csv
+limitations,note,Frozen model described without refitting; validation evidence is saved; feature names are model-declared.,,08_model_train_alternative_BG3XZYK8/manifest.json
+fact,top_feature,num__Shell_weight,,08_model_train_alternative_BG3XZYK8/alternative_model.pkl

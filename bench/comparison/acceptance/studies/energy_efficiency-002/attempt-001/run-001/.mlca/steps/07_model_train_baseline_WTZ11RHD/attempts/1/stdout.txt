@@ -1,0 +1,4 @@
+train rows=460 val rows=153
+features=8 targets=['Y1', 'Y2']
+val rmse per target: {'Y1': np.float64(3.0281), 'Y2': np.float64(3.6123)}
+val rmse mean: 3.3202

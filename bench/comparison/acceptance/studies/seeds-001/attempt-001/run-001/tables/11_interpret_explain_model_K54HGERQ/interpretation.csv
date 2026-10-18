@@ -1,0 +1,25 @@
+section,item,value,source
+model,selected_model,MiniBatchKMeans,08_model_train_alternative_A16CW8P2/alternative_model.pkl
+hyperparameters,estimator_params,"{""init"": ""k-means++"", ""max_iter"": 100, ""n_clusters"": 2, ""n_init"": 10, ""random_state"": 42, ""tol"": 0.0}",08_model_train_alternative_A16CW8P2/alternative_model.pkl
+manifest,baseline_manifest,"{""metrics"": [{""ci"": null, ""name"": ""silhouette"", ""split"": ""train"", ""value"": 0.47993692786723224}, {""ci"": null, ""name"": ""davies_bouldin"", ""split"": ""train"", ""value"": 0.772582880386315}, {""ci"": null, ""name"": ""calinski_harabasz"", ""split"": ""train"", ""value"": 168.75112657005474}, {""ci"": null, ""name"": ""stability_ari"", ""split"": ""train"", ""value"": 0.9622998673854244}, {""ci"": null, ""name"": ""n_clusters"", ""split"": ""train"", ""value"": 2.0}]}",07_model_train_baseline_FB68KDQ5/manifest.json
+manifest,alternative_manifest,"{""metrics"": [{""ci"": null, ""name"": ""silhouette_k2"", ""split"": ""train"", ""value"": 0.47993692786723235}, {""ci"": null, ""name"": ""davies_bouldin_k2"", ""split"": ""train"", ""value"": 0.772582880386315}, {""ci"": null, ""name"": ""calinski_harabasz_k2"", ""split"": ""train"", ""value"": 168.75112657005474}, {""ci"": null, ""name"": ""stability_k2"", ""split"": ""train"", ""value"": 0.8548964492737801}, {""ci"": null, ""name"": ""silhouette_k3"", ""split"": ""train"", ""value"": 0.42783007464989486}, {""ci"": null, ""name"": ""davies_bouldin_k3"", ""...",08_model_train_alternative_A16CW8P2/manifest.json
+manifest,validation_manifest,"{""metrics"": [{""ci"": null, ""name"": ""silhouette"", ""split"": ""val"", ""value"": 0.46387892009069304}]}",09_validate_score_validation_SVSGG8S9/manifest.json
+validation,metric:silhouette,0.4639,09_validate_score_validation_SVSGG8S9/validation_metrics.csv
+validation,metric:calinski_harabasz,45.23,09_validate_score_validation_SVSGG8S9/validation_metrics.csv
+validation,metric:davies_bouldin,0.7904,09_validate_score_validation_SVSGG8S9/validation_metrics.csv
+validation,metric:silhouette,0.4639,09_validate_score_validation_SVSGG8S9/validation_metrics.csv
+validation,metric:calinski_harabasz,45.23,09_validate_score_validation_SVSGG8S9/validation_metrics.csv
+validation,metric:davies_bouldin,0.7904,09_validate_score_validation_SVSGG8S9/validation_metrics.csv
+inputs,n_train_rows,126,train.parquet
+inputs,n_feature_columns,7,train.parquet
+inputs,feature_columns,"area, perimeter, compactness, kernel_length, kernel_width, asymmetry_coefficient, groove_length",train.parquet
+inputs,protocol_primary_metric,silhouette,_protocol
+inputs,protocol_targets,[],_protocol
+inputs,protocol_excluded_columns,[],_protocol
+limitations,no_outcome,No outcome/label column exists; the model is unsupervised over kernel geometry measurements.,_protocol
+limitations,cluster_count,"Cluster count is chosen from internal criteria only, not external labels.",_protocol
+limitations,silhouette,Silhouette is internal and scale-dependent; it does not by itself establish semantic kernel classes.,_protocol
+limitations,scope,Interpretation describes a frozen model without refitting or test exposure.,_protocol
+limitations,generalization,Validation evidence comes from the provided split; stability on new kernel batches is untested.,_protocol
+model,top_feature,perimeter,08_model_train_alternative_A16CW8P2/alternative_model.pkl
+model,top_feature_score,0.8105,08_model_train_alternative_A16CW8P2/alternative_model.pkl

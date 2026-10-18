@@ -1,0 +1,2 @@
+rows=569 columns=31 missing_total=0
+saved schema.json with 31 rows

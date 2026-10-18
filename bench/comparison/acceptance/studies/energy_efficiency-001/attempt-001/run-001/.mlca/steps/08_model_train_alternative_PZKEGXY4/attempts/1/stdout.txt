@@ -1,0 +1,2 @@
+features=8 targets=['Y1', 'Y2']
+train_rows=460

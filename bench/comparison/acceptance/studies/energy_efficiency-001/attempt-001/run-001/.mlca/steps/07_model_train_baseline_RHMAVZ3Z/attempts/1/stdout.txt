@@ -1,0 +1,3 @@
+train=(460, 10) val=(153, 10) features=8
+targets=['Y1', 'Y2']
+steps=['frontend', 'model']

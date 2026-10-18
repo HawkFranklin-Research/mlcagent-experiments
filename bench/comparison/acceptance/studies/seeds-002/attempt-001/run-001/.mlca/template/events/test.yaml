@@ -1,0 +1,37 @@
+id: test
+title: Test
+goal: Evaluate the frozen model once on the unlocked test partition.
+gate:
+- event_done: validate
+subgoals:
+- id: outputs_recorded
+  text: Test metrics table saved
+  check:
+    type: output_exists
+    action: score_test
+    output: test_metrics.csv
+- id: test_unlocked
+  text: Author unlocked the test partition with a reason
+  check:
+    type: test_unlocked
+- id: primary_metric
+  text: 'Primary metric recorded: silhouette'
+  check:
+    type: metric_present
+    name: primary
+    split: test
+actions:
+- score_test
+- audit_test
+default_options:
+- score_test
+done_when: all_subgoals
+custom_scope:
+  description: Score the frozen model and threshold. Nothing may be changed or refitted.
+  deny_patterns: []
+  readable_inputs:
+  - train
+  - val
+  - prior_outputs
+  - test
+max_options: 3

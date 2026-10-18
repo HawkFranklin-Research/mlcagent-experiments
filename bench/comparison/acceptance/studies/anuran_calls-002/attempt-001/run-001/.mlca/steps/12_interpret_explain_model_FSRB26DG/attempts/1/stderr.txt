@@ -1,0 +1,32 @@
+Traceback (most recent call last):
+  File "/workspaces/mlcagent-experiments/bench/comparison/acceptance/studies/anuran_calls-002/attempt-001/run-001/.mlca/steps/12_interpret_explain_model_FSRB26DG/attempts/1/script.py", line 88, in <module>
+    result = permutation_importance(
+        estimator,
+    ...<5 lines>...
+        n_jobs=1,
+    )
+  File "/workspaces/mlcagent-experiments/bench/comparison/acceptance/studies/anuran_calls-002/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/utils/_param_validation.py", line 218, in wrapper
+    return func(*args, **kwargs)
+  File "/workspaces/mlcagent-experiments/bench/comparison/acceptance/studies/anuran_calls-002/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/inspection/_permutation_importance.py", line 286, in permutation_importance
+    baseline_score = _weights_scorer(scorer, estimator, X, y, sample_weight)
+  File "/workspaces/mlcagent-experiments/bench/comparison/acceptance/studies/anuran_calls-002/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/inspection/_permutation_importance.py", line 28, in _weights_scorer
+    return scorer(estimator, X, y)
+  File "/workspaces/mlcagent-experiments/bench/comparison/acceptance/studies/anuran_calls-002/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/utils/validation.py", line 80, in inner_f
+    return f(*args, **kwargs)
+  File "/workspaces/mlcagent-experiments/bench/comparison/acceptance/studies/anuran_calls-002/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/metrics/_scorer.py", line 328, in __call__
+    return self._score(partial(_cached_call, None), estimator, X, y_true, **kwargs)
+           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspaces/mlcagent-experiments/bench/comparison/acceptance/studies/anuran_calls-002/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/metrics/_scorer.py", line 469, in _score
+    return self._sign * self._score_func(y_true, y_pred, **scoring_kwargs)
+                        ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspaces/mlcagent-experiments/bench/comparison/acceptance/studies/anuran_calls-002/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/utils/_param_validation.py", line 191, in wrapper
+    return func(*args, **kwargs)
+  File "/workspaces/mlcagent-experiments/bench/comparison/acceptance/studies/anuran_calls-002/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/metrics/_ranking.py", line 727, in roc_auc_score
+    return _multiclass_roc_auc_score(
+        y_true, y_score, labels, multi_class, average, sample_weight
+    )
+  File "/workspaces/mlcagent-experiments/bench/comparison/acceptance/studies/anuran_calls-002/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/metrics/_ranking.py", line 849, in _multiclass_roc_auc_score
+    raise ValueError(
+    ...<2 lines>...
+    )
+ValueError: Number of classes in y_true not equal to the number of columns in 'y_score'

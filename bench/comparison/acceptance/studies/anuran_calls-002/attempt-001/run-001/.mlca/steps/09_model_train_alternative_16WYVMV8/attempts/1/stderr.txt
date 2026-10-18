@@ -1,0 +1,6 @@
+/workspaces/mlcagent-experiments/bench/comparison/acceptance/studies/anuran_calls-002/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/metrics/_ranking.py:469: UndefinedMetricWarning: Only one class is present in y_true. ROC AUC score is not defined in that case.
+  warnings.warn(
+/workspaces/mlcagent-experiments/bench/comparison/acceptance/studies/anuran_calls-002/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/metrics/_ranking.py:469: UndefinedMetricWarning: Only one class is present in y_true. ROC AUC score is not defined in that case.
+  warnings.warn(
+/workspaces/mlcagent-experiments/bench/comparison/acceptance/studies/anuran_calls-002/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/metrics/_ranking.py:469: UndefinedMetricWarning: Only one class is present in y_true. ROC AUC score is not defined in that case.
+  warnings.warn(

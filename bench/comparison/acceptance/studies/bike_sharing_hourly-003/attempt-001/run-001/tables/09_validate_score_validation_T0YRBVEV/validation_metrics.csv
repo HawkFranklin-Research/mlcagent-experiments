@@ -1,0 +1,7 @@
+model,metric,value
+baseline,rmse,182.37715447973216
+baseline,mae,141.26318377318665
+baseline,r2,0.2839362101269658
+baseline,macro_rmse,182.37715447973216
+baseline,macro_mae,141.26318377318665
+baseline,macro_r2,0.2839362101269658

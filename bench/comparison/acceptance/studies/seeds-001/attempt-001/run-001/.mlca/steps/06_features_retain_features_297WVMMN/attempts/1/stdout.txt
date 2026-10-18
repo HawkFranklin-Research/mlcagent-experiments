@@ -1,0 +1,3 @@
+features: 7
+steps: ['preprocessor', 'passthrough_selector']
+saved selector_all.pkl

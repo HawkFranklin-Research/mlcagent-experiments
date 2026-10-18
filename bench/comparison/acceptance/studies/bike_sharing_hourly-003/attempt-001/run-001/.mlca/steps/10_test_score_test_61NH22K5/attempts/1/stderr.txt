@@ -1,0 +1,13 @@
+Traceback (most recent call last):
+  File "/workspaces/mlcagent-experiments/bench/comparison/acceptance/studies/bike_sharing_hourly-003/attempt-001/run-001/.mlca/steps/10_test_score_test_61NH22K5/attempts/1/script.py", line 112, in <module>
+    y_pred = np.asarray(pipe.predict(X_test))
+                        ~~~~~~~~~~~~^^^^^^^^
+  File "/workspaces/mlcagent-experiments/bench/comparison/acceptance/studies/bike_sharing_hourly-003/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/pipeline.py", line 794, in predict
+    Xt = transform.transform(Xt)
+  File "/workspaces/mlcagent-experiments/bench/comparison/acceptance/studies/bike_sharing_hourly-003/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/pipeline.py", line 1110, in transform
+    Xt = transform.transform(Xt, **routed_params[name].transform)
+  File "/workspaces/mlcagent-experiments/bench/comparison/acceptance/studies/bike_sharing_hourly-003/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/utils/_set_output.py", line 327, in wrapped
+    data_to_wrap = f(self, X, *args, **kwargs)
+  File "/workspaces/mlcagent-experiments/bench/comparison/acceptance/studies/bike_sharing_hourly-003/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/compose/_column_transformer.py", line 1066, in transform
+    raise ValueError(f"columns are missing: {diff}")
+ValueError: columns are missing: {'atemp', 'season', 'weekday', 'hum', 'yr', 'mnth', 'hr', 'windspeed', 'workingday', 'holiday', 'temp', 'weathersit'}

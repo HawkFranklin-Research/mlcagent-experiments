@@ -1,0 +1,2 @@
+no placeholder tokens in text columns
+shape=(7195, 26), missing=0

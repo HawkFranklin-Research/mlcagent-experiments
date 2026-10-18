@@ -1,0 +1,2 @@
+n_features=8 cat=1 num=7
+train_rows=2506 val_rows=835

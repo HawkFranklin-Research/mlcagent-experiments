@@ -1,0 +1,1 @@
+{"facts": [], "fits": [], "metrics": [], "outputs": [{"caption": "Counts and shares of target classes.", "kind": "table", "name": "target_counts.csv"}, {"caption": "Counts and shares of target classes.", "kind": "table", "name": "target_counts.parquet"}]}

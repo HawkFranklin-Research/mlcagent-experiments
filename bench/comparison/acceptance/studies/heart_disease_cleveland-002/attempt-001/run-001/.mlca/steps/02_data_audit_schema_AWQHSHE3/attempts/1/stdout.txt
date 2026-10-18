@@ -1,0 +1,2 @@
+rows=303 cols=14 missing_total=6
+columns_with_missing=2

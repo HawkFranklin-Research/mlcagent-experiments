@@ -1,0 +1,1 @@
+n=126 features=7 k=3 sil=0.428 stab=0.902 sub=126

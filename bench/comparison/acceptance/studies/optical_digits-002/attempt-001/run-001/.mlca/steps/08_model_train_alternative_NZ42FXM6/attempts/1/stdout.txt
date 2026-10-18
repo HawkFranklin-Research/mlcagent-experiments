@@ -1,0 +1,2 @@
+features=64 processed=64
+train reconstruction MSE in frontend feature space=0.3228

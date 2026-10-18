@@ -1,0 +1,4 @@
+rows=12
+primary=macro_f1
+val=0.5210439546947258
+top_feature=None

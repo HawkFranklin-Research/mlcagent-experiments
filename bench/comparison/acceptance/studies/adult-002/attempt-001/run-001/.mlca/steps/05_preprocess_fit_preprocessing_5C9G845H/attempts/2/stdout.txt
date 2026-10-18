@@ -1,0 +1,2 @@
+No placeholders found
+Transformed val shape: (9758, 100)

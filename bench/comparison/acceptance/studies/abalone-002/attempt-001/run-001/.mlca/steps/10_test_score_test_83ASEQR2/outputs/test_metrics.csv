@@ -1,0 +1,7 @@
+model,metric,value
+alternative,Rings_rmse,2.224
+alternative,Rings_mae,1.547
+alternative,Rings_r2,0.5712
+alternative,macro_rmse,2.224
+alternative,macro_mae,1.547
+alternative,macro_r2,0.5712

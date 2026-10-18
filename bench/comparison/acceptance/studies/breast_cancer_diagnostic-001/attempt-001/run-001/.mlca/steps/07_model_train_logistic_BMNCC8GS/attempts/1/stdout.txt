@@ -1,0 +1,3 @@
+train_rows=341 features=30
+frontend=saved_selector
+saved model.pkl

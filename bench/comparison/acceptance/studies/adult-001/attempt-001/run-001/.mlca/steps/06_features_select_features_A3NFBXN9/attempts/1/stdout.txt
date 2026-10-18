@@ -1,0 +1,2 @@
+train rows=29275, feature columns=12, transformed=97, k=20
+selected=20

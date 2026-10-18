@@ -1,0 +1,2 @@
+rows_train=181 rows_val=59 feats=13
+minority_frac=0.459 class_weight=None

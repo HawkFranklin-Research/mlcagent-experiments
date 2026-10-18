@@ -1,0 +1,19 @@
+/workspaces/mlcagent-experiments/bench/comparison/acceptance/studies/optical_digits-002/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/utils/validation.py:2830: UserWarning: X does not have valid feature names, but PCA was fitted with feature names
+  warnings.warn(
+/workspaces/mlcagent-experiments/bench/comparison/acceptance/studies/optical_digits-002/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/utils/validation.py:2830: UserWarning: X does not have valid feature names, but MLPRegressor was fitted with feature names
+  warnings.warn(
+/workspaces/mlcagent-experiments/bench/comparison/acceptance/studies/optical_digits-002/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/utils/validation.py:2830: UserWarning: X does not have valid feature names, but MLPRegressor was fitted with feature names
+  warnings.warn(
+/workspaces/mlcagent-experiments/bench/comparison/acceptance/studies/optical_digits-002/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/utils/validation.py:2830: UserWarning: X does not have valid feature names, but MLPRegressor was fitted with feature names
+  warnings.warn(
+Traceback (most recent call last):
+  File "/workspaces/mlcagent-experiments/bench/comparison/acceptance/studies/optical_digits-002/attempt-001/run-001/.mlca/steps/10_test_score_test_S0QXC3C8/attempts/1/script.py", line 159, in <module>
+    _, emb = compute_mse_and_embedding(sel_front, sel_est, df, sel_kind, need_embedding=True)
+             ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspaces/mlcagent-experiments/bench/comparison/acceptance/studies/optical_digits-002/attempt-001/run-001/.mlca/steps/10_test_score_test_S0QXC3C8/attempts/1/script.py", line 126, in compute_mse_and_embedding
+    emb = compute_bottleneck(est, X_arr) if need_embedding else None
+          ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "/workspaces/mlcagent-experiments/bench/comparison/acceptance/studies/optical_digits-002/attempt-001/run-001/.mlca/steps/10_test_score_test_S0QXC3C8/attempts/1/script.py", line 94, in compute_bottleneck
+    act = mlp.activation_
+          ^^^^^^^^^^^^^^^
+AttributeError: 'MLPRegressor' object has no attribute 'activation_'. Did you mean: 'activation'?

@@ -1,0 +1,5 @@
+Feature columns: 64
+Validation MSE: PCA=6.286730, MLPRegressor=0.350593
+Selected: MLPRegressor
+Test reconstruction_error: 0.354445
+Embedding dimension: 8

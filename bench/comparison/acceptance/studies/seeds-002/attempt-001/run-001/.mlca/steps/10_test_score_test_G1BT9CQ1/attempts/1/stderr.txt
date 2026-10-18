@@ -1,0 +1,2 @@
+/workspaces/mlcagent-experiments/bench/comparison/acceptance/studies/seeds-002/attempt-001/run-001/.mlca/steps/10_test_score_test_G1BT9CQ1/attempts/1/script.py:30: Pandas4Warning: is_categorical_dtype is deprecated and will be removed in a future version. Use isinstance(dtype, pd.CategoricalDtype) instead
+  if pd.api.types.is_object_dtype(s) or pd.api.types.is_string_dtype(s) or pd.api.types.is_categorical_dtype(s):

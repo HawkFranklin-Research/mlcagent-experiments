@@ -1,0 +1,22 @@
+# Content v0.2.0 (2026-10-06). Keep it short: see docs/templates.md, 'Writing content'.
+id: train_alternative
+event: model
+title: Train gradient boosting (prespecified alternative)
+params: {}
+prompt: |
+  Do: same pipeline with HistGradientBoostingClassifier(random_state=seed, default parameters); fit with fit_record on train.
+  Save: alternative_model.pkl (the full pipeline).
+inputs:
+- ref: train
+- ref: val
+- ref: prior_outputs
+outputs:
+- name: alternative_model.pkl
+  kind: model
+  required: true
+fact_candidates: []
+reads_test: false
+timeout_s: 300
+methods_text: Histogram gradient boosting with default parameters was fitted on training rows as the prespecified
+  alternative.
+builtin: null

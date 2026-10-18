@@ -1,0 +1,1 @@
+{"group_column": "CustomerID", "n_entities": 4372, "n_input_rows": 541909, "n_rows_used": 406829, "output": "entities.parquet", "return_rule": "Quantity<0 kept and netted in monetary totals; frequency counts non-return invoices only", "time_columns_preserved": []}

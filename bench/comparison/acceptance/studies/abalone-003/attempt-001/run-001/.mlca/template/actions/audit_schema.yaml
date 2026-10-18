@@ -1,0 +1,26 @@
+id: audit_schema
+event: data
+title: Audit columns, types and missingness
+params: {}
+prompt: 'Do: one row per column: name, dtype, n_unique, n_missing, pct_missing.
+
+  Save: schema.json (that table).
+
+  Record: facts n_rows, n_columns, missing.total (source schema.json).
+
+  '
+inputs:
+- ref: registered_data
+outputs:
+- name: schema.json
+  kind: table
+  required: true
+fact_candidates:
+- n_rows
+- n_columns
+- missing.total
+reads_test: false
+timeout_s: 300
+methods_text: Follow the recorded task and saved model contract; all fitting uses
+  training rows only.
+builtin: null

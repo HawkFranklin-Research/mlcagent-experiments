@@ -1,0 +1,1 @@
+{"facts":[],"figures":[],"fits":[],"metrics":[],"outputs":[{"caption":"","kind":"report","name":"split.json","path":".mlca/steps/04_split_freeze_group_24HPG48B/outputs/split.json","sha256":"a60ab7ac58e2b592c325fe15ff0641a3668ba95bbad3cc5d15b6437d0a15622b","size":1124}],"step_id":"04_split_freeze_group_24HPG48B","wall_time_s":2.2807470959996863}

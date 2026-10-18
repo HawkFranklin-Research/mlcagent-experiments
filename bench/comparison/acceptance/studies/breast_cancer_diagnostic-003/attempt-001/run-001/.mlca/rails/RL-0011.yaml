@@ -1,0 +1,24 @@
+id: RL-0011
+kind: instruction
+roles:
+- worker
+events:
+- features
+- model
+- validate
+- test
+- interpret
+problem_types:
+- all
+text: 'Saved transformers from earlier steps may already contain the earlier preprocessing. Before combining
+  them, check isinstance(obj, Pipeline) and obj.named_steps to see whether the later object includes the
+  earlier one; build on the most complete saved pipeline that accepts the raw feature DataFrame and append
+  only the new estimator. Never place a saved pipeline after a step it already contains, and never pass
+  NumPy arrays to a transformer that selects columns by name. Inspect feature_names_in_ for each loaded
+  object and preserve its exact input columns and order. A saved selector may already wrap preprocessing:
+  use that selector as the only frontend, or chain preprocessing once before a bare selector. Never feed
+  derived or renamed columns back into a raw-column frontend.'
+reason: Model steps chained a saved preprocessor before a saved selector that already contained it, applying
+  preprocessing twice and failing on arrays.
+ledger: L-0003
+added_in: rails-0.3

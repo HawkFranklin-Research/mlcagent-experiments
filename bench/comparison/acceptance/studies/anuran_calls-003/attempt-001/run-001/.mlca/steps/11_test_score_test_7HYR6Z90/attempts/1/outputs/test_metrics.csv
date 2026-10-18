@@ -1,0 +1,7 @@
+model,metric,value
+alternative,macro_f1,0.3666
+alternative,hamming_loss,0.2713
+alternative,subset_accuracy,0.6739
+alternative,macro_f1__Family,0.3839
+alternative,macro_f1__Genus,0.3671
+alternative,macro_f1__Species,0.3486

@@ -1,0 +1,1 @@
+selected k=2 silhouette=0.4799 stability=0.909

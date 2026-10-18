@@ -1,0 +1,2 @@
+rows train=3372 val=1124 features=64
+best=alternative reconstruction_error=0.242

@@ -1,0 +1,20 @@
+id: RL-0009
+kind: instruction
+roles:
+- worker
+events:
+- preprocess
+- features
+- model
+problem_types:
+- all
+text: Keep feature names through preprocessing. When the encoded output has at most 300 columns, call
+  set_output(transform='pandas') on ColumnTransformer and Pipeline objects and use OneHotEncoder(handle_unknown='ignore',
+  sparse_output=False). When it would be wider, keep sparse output inside one Pipeline that starts from
+  the raw feature DataFrame, take names from get_feature_names_out(), and never pass that output to a
+  transformer that selects columns by name. Use set_output only with components that support it; prefer
+  built-in sklearn transformers with get_feature_names_out rather than custom components.
+reason: Transformers that output NumPy arrays lose column names and the next name-based transformer fails;
+  dense output of very wide encodings exhausts memory on large tables.
+ledger: L-0003
+added_in: rails-0.3

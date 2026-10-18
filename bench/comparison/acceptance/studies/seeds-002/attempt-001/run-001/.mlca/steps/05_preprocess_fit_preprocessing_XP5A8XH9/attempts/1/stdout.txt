@@ -1,0 +1,2 @@
+features=7 numeric=7 log=0 cat=0
+dropped_key=0 dropped_high_card=0

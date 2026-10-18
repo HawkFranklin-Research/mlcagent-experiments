@@ -1,0 +1,3 @@
+train rows: 3372
+features: 64
+first/last feature: pixel_1 / pixel_64

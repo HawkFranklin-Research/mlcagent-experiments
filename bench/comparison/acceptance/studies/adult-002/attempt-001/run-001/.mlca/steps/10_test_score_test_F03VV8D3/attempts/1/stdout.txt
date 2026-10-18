@@ -1,0 +1,2 @@
+features=12 test_rows=9761 selected=alternative
+roc_auc=0.924900 ci=(0.919300,0.930400)

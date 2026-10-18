@@ -1,0 +1,2 @@
+train rows=29275 features=13
+saved alternative_model.pkl steps=['frontend', 'classifier']

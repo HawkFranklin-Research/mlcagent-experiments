@@ -1,0 +1,13 @@
+section,item,value,source
+protocol,targets,"Family,Genus,Species",_protocol
+protocol,primary_metric,macro_f1,_protocol
+protocol,task_type,multilabel,_protocol
+baseline,estimator,MultiOutputClassifier,08_model_train_baseline_SJFKVA7H/model.pkl
+alternative,estimator,MultiOutputClassifier,09_model_train_alternative_GFWY19ZA/alternative_model.pkl
+features,preprocessor,ColumnTransformer,06_preprocess_fit_preprocessing_D9KP7ADR/preprocessor.pkl
+features,selector,ColumnTransformer,07_features_retain_features_11DAHWEE/selector_all.pkl
+features,n_selected,22,07_features_retain_features_11DAHWEE/selector_all.pkl
+validation,macro_f1,0.521,10_validate_score_validation_7QPESJ10/validation_metrics.csv
+limitations,single_split,one hold-out validation; no cross-validation,10_validate_score_validation_7QPESJ10/validation_metrics.csv
+limitations,nested_labels,Family>Genus>Species; errors correlate across targets,_protocol
+limitations,no_refit,frozen interpretation only; model not refit,08_model_train_baseline_SJFKVA7H/model.pkl

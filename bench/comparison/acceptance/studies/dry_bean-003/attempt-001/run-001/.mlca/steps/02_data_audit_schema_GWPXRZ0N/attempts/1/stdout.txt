@@ -1,0 +1,2 @@
+placeholder tokens: none; text columns containing them: 0
+rows=13543 columns=17 missing_total=0

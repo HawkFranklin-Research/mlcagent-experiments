@@ -1,0 +1,4 @@
+alternative: predict failed (ValueError)
+latest_model: predict failed (ValueError)
+models scored: ['baseline']
+rows: 6, best: baseline (rmse=182.3772)

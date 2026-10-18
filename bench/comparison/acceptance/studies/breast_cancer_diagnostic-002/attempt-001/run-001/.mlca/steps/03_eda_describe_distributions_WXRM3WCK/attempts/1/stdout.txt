@@ -1,0 +1,3 @@
+No placeholder tokens found in text columns.
+n_numeric=30, n_categorical=0
+distributions.csv shape=(30, 11)
