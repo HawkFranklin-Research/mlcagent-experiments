@@ -1,0 +1,25 @@
+id: train_baseline
+event: model
+title: Fit baseline
+params: {}
+prompt: 'Do: fit a complete prediction/reconstruction pipeline with PCA(n_components=min(8,
+  number_of_features)) via fit_record on the original training DataFrame; no supervised
+  outcome is used. Reuse the declared feature contract and exclude all targets.
+
+  Save: model.pkl.'
+inputs:
+- ref: train
+- ref: val
+- ref: prior_outputs
+outputs:
+- name: model.pkl
+  kind: model
+  required: true
+fact_candidates: []
+reads_test: false
+timeout_s: 300
+methods_text: 'Fit baseline: fit a complete prediction/reconstruction pipeline with
+  PCA(n_components=min(8, number_of_features)) via fit_record on the original training
+  DataFrame; no supervised outcome is used. Reuse the declared feature contract and
+  exclude all targets.'
+builtin: null

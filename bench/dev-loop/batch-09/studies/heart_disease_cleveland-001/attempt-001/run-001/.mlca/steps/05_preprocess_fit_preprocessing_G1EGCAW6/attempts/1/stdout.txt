@@ -1,0 +1,2 @@
+placeholder cols: 0
+feature_cols=13 transformed_val=(59, 13)

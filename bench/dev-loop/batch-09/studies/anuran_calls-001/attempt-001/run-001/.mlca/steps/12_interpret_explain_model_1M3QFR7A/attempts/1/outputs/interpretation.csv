@@ -1,0 +1,14 @@
+item,value,source
+primary_metric,macro_f1,_protocol
+targets,"Family, Genus, Species",_protocol
+group_column,RecordID,_protocol
+n_train_rows,4293,train
+n_val_rows,1709,val
+n_features,22,train
+model_type,Pipeline,08_model_train_baseline_RDZRN5AQ/model.pkl
+final_estimator,MultiOutputClassifier,08_model_train_baseline_RDZRN5AQ/model.pkl
+baseline_hyperparameters,"{""n_jobs"": null}",08_model_train_baseline_RDZRN5AQ/manifest.json
+alternative_hyperparameters,"{""n_jobs"": null}",09_model_train_alternative_J8YMJGXB/manifest.json
+validation_macro_f1,0.521,10_validate_score_validation_3J1WH09P/validation_metrics.csv
+top_feature,num__MFCCs_ 3,08_model_train_baseline_RDZRN5AQ/model.pkl
+limitations,"Frozen interpretation only; no refitting or test exposure. Feature importance is model-derived, not causal. Nested taxonomic labels and RecordID grouping limit independence assumptions.",_protocol

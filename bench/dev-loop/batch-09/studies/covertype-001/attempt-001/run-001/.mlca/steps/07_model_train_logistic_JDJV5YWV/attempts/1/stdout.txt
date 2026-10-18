@@ -1,0 +1,3 @@
+n_train=348605 n_features=54 n_steps=3
+steps=['preprocessor', 'selector', 'classifier']
+classes=[np.int64(1), np.int64(2), np.int64(3), np.int64(4), np.int64(5), np.int64(6), np.int64(7)]

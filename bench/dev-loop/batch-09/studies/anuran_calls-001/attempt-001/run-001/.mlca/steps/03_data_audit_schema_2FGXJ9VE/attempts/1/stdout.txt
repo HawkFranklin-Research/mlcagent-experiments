@@ -1,0 +1,1 @@
+rows=7195 cols=26 missing=0

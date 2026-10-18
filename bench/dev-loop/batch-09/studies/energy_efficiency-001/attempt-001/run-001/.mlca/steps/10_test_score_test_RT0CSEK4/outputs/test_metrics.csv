@@ -1,0 +1,10 @@
+model,metric,value
+alternative,rmse_Y1,0.509
+alternative,mae_Y1,0.3556
+alternative,r2_Y1,0.9976
+alternative,rmse_Y2,1.684
+alternative,mae_Y2,1.081
+alternative,r2_Y2,0.9693
+alternative,rmse,1.097
+alternative,mae,0.7185
+alternative,r2,0.9834

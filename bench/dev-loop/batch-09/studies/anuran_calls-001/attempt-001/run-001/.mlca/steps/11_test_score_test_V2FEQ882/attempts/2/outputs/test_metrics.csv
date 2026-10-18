@@ -1,0 +1,4 @@
+model,metric,value
+alternative,macro_f1,0.3666
+alternative,hamming_loss,0.2713
+alternative,subset_accuracy,0.6739

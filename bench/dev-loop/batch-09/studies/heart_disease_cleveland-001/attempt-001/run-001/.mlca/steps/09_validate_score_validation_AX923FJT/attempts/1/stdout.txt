@@ -1,0 +1,4 @@
+train (181, 14) val (59, 14)
+features 13
+best alternative roc_auc=0.8981 roc_auc=0.8981
+saved validation_metrics.csv

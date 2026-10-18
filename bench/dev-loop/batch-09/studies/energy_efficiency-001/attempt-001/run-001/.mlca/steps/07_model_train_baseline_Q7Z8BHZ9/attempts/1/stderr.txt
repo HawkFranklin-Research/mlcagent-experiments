@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "/workspaces/mlcagent-experiments/bench/dev-loop/batch-09/studies/energy_efficiency-001/attempt-001/run-001/.mlca/steps/07_model_train_baseline_Q7Z8BHZ9/attempts/1/script.py", line 49, in <module>
+    fitted = mlca_runtime.fit_record(model, train, "train", y=train[targets])
+  File "/workspaces/mlcagent-experiments/bench/dev-loop/batch-09/studies/energy_efficiency-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/mlca_runtime/__init__.py", line 187, in fit_record
+    raise FitRuleError(
+    ...<2 lines>...
+    )
+mlca_runtime.FitRuleError: MLCA: Target, excluded or group columns cannot be fitted as inputs: ['Y1', 'Y2']; select the feature columns only (pass group values with groups=)

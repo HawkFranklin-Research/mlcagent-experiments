@@ -1,0 +1,27 @@
+id: build_entities
+event: eda
+title: Build entity-level features
+params: {}
+prompt: 'Do: if the registered table contains repeated transactions, create one row per entity using
+  deterministic aggregation (recency, frequency and monetary summaries as appropriate), with no fitted
+  transform and no outcome. Preserve an explicit entity identifier locally; do not print raw records.
+
+  Save: entities.parquet as a data artifact. Use save_json only for summaries; save Parquet directly
+  under output_dir for the declared data artifact. Retain _protocol["group_column"] as an explicit
+  column with its exact declared name, not a renamed entity_id or an index alone. Retain any declared
+  time_columns as documented entity-level ordering fields using one consistent per-entity reference
+  time; if this cannot represent the declared analysis, pause for revised setup rather than silently
+  dropping a constraint. Keep identifiers local and outside model features.'
+inputs:
+- ref: registered_data
+outputs:
+- name: entities.parquet
+  kind: data
+  required: true
+prepares_data: entities.parquet
+reads_test: false
+timeout_s: 300
+methods_text: 'Build entity-level features: if the registered table contains repeated transactions,
+  create one row per entity using deterministic aggregation (recency, frequency and monetary summaries
+  as appropriate), with no fitted transform and no outcome. Preserve an explicit entity identifier
+  locally; do not print raw records.'

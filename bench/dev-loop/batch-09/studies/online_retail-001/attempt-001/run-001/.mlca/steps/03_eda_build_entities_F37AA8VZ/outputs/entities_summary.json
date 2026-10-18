@@ -1,0 +1,1 @@
+{"columns": ["CustomerID", "recency_days", "frequency", "monetary_total", "monetary_mean", "n_lines", "n_returns", "last_purchase", "first_purchase"], "dropped_missing_entity_rows": 135080, "group_column": "CustomerID", "reference_time": "2011-12-09 12:50:00", "return_rows": 8905, "rows_in": 541909, "rows_out": 4372, "time_column": "InvoiceDate"}

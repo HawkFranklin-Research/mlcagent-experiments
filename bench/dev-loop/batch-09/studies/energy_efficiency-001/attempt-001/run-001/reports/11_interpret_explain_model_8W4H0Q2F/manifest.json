@@ -1,0 +1,1 @@
+{"facts": [{"key": "top_feature", "source": "interpretation.csv", "unit": null, "value": "features__X1"}], "fits": [], "metrics": [], "outputs": [{"caption": "Frozen multioutput regression model interpretation", "kind": "table", "name": "interpretation.csv"}, {"caption": "Frozen multioutput regression model interpretation", "kind": "table", "name": "interpretation.parquet"}]}

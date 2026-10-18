@@ -1,0 +1,4 @@
+Traceback (most recent call last):
+  File "/workspaces/mlcagent-experiments/bench/dev-loop/batch-09/studies/bike_sharing_hourly-001/attempt-001/run-001/.mlca/steps/09_validate_score_validation_08S6B52Y/attempts/1/script.py", line 6, in <module>
+    from sklearn.metrics import mean_squared_error, mean_absolute_error, r2_score, poisson_deviance
+ImportError: cannot import name 'poisson_deviance' from 'sklearn.metrics' (/workspaces/mlcagent-experiments/bench/dev-loop/batch-09/studies/bike_sharing_hourly-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/metrics/__init__.py)

@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "/workspaces/mlcagent-experiments/bench/dev-loop/batch-09/studies/heart_disease_cleveland-001/attempt-001/run-001/.mlca/steps/10_test_score_test_C44PFW21/attempts/1/script.py", line 86, in <module>
+    classes = mdl.named_steps['model'].classes_ if isinstance(mdl, Pipeline) else mdl.classes_
+              ~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/workspaces/mlcagent-experiments/bench/dev-loop/batch-09/studies/heart_disease_cleveland-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/utils/_bunch.py", line 42, in __getitem__
+    return super().__getitem__(key)
+           ~~~~~~~~~~~~~~~~~~~^^^^^
+KeyError: 'model'

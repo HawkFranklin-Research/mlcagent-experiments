@@ -1,0 +1,15 @@
+Traceback (most recent call last):
+  File "/workspaces/mlcagent-experiments/bench/dev-loop/batch-09/studies/anuran_calls-001/attempt-001/run-001/.mlca/steps/11_test_score_test_V2FEQ882/attempts/1/script.py", line 90, in <module>
+    preds = complete.predict(X_test)
+  File "/workspaces/mlcagent-experiments/bench/dev-loop/batch-09/studies/anuran_calls-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/pipeline.py", line 795, in predict
+    return self.steps[-1][1].predict(Xt, **params)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "/workspaces/mlcagent-experiments/bench/dev-loop/batch-09/studies/anuran_calls-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/pipeline.py", line 794, in predict
+    Xt = transform.transform(Xt)
+  File "/workspaces/mlcagent-experiments/bench/dev-loop/batch-09/studies/anuran_calls-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/pipeline.py", line 1110, in transform
+    Xt = transform.transform(Xt, **routed_params[name].transform)
+  File "/workspaces/mlcagent-experiments/bench/dev-loop/batch-09/studies/anuran_calls-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/utils/_set_output.py", line 327, in wrapped
+    data_to_wrap = f(self, X, *args, **kwargs)
+  File "/workspaces/mlcagent-experiments/bench/dev-loop/batch-09/studies/anuran_calls-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/compose/_column_transformer.py", line 1066, in transform
+    raise ValueError(f"columns are missing: {diff}")
+ValueError: columns are missing: {'MFCCs_ 4', 'MFCCs_15', 'MFCCs_18', 'MFCCs_13', 'MFCCs_10', 'MFCCs_19', 'MFCCs_22', 'MFCCs_ 5', 'MFCCs_ 3', 'MFCCs_16', 'MFCCs_17', 'MFCCs_20', 'MFCCs_ 2', 'MFCCs_ 6', 'MFCCs_21', 'MFCCs_ 9', 'MFCCs_14', 'MFCCs_ 8', 'MFCCs_12', 'MFCCs_11', 'MFCCs_ 1', 'MFCCs_ 7'}

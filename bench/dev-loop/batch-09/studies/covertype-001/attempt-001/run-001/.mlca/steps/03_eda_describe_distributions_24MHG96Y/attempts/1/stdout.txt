@@ -1,0 +1,2 @@
+text_placeholder_columns=0
+rows=41 numeric_features=10 categorical_features=2

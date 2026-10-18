@@ -1,0 +1,2 @@
+dropped: [('dteday', 'date')]
+fitted preprocessor: 12 features, encoded width 12

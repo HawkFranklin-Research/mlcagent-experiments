@@ -1,0 +1,2 @@
+val roc_auc_ovr: 0.9489
+train rows: 348605, features: 54

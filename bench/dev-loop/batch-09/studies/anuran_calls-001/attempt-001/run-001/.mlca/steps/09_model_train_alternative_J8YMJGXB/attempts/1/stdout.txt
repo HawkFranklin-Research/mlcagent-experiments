@@ -1,0 +1,3 @@
+rows=4293 features=22 targets=3
+frontend=selector
+saved=alternative_model.pkl

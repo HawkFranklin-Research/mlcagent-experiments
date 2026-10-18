@@ -1,0 +1,2 @@
+placeholders none
+num=16 cat=0 drop=0 keys=0 width~16 pandas_out=True

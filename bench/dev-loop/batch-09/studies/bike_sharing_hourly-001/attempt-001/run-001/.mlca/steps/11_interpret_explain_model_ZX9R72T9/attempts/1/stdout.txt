@@ -1,0 +1,2 @@
+rows 15 features 12
+poisson_deviance 71.34

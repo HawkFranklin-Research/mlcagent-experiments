@@ -1,0 +1,24 @@
+Traceback (most recent call last):
+  File "/workspaces/mlcagent-experiments/bench/dev-loop/batch-09/studies/online_retail-001/attempt-001/run-001/.mlca/steps/07_model_train_baseline_TPF4AZY5/attempts/1/script.py", line 109, in <module>
+    fitted = mlca_runtime.fit_record(make_pipe(k), X, "train")
+  File "/workspaces/mlcagent-experiments/bench/dev-loop/batch-09/studies/online_retail-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/mlca_runtime/__init__.py", line 192, in fit_record
+    estimator_or_pipeline.fit(X, y, **kwargs) if y is not None else estimator_or_pipeline.fit(X, **kwargs)
+                                                                    ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/workspaces/mlcagent-experiments/bench/dev-loop/batch-09/studies/online_retail-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/base.py", line 1403, in wrapper
+    return fit_method(estimator, *args, **kwargs)
+  File "/workspaces/mlcagent-experiments/bench/dev-loop/batch-09/studies/online_retail-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/pipeline.py", line 645, in fit
+    self._final_estimator.fit(Xt, y, **last_step_params["fit"])
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspaces/mlcagent-experiments/bench/dev-loop/batch-09/studies/online_retail-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/base.py", line 1403, in wrapper
+    return fit_method(estimator, *args, **kwargs)
+  File "/workspaces/mlcagent-experiments/bench/dev-loop/batch-09/studies/online_retail-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/cluster/_kmeans.py", line 1459, in fit
+    X = validate_data(
+        self,
+    ...<5 lines>...
+        accept_large_sparse=False,
+    )
+  File "/workspaces/mlcagent-experiments/bench/dev-loop/batch-09/studies/online_retail-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/utils/validation.py", line 3041, in validate_data
+    out = check_array(X, input_name="X", **check_params)
+  File "/workspaces/mlcagent-experiments/bench/dev-loop/batch-09/studies/online_retail-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/utils/validation.py", line 925, in check_array
+    dtype_orig = np.result_type(*dtypes_orig)
+numpy.exceptions.DTypePromotionError: The DType <class 'numpy.dtypes.DateTime64DType'> could not be promoted by <class 'numpy.dtypes.Float64DType'>. This means that no common DType exists for the given inputs. For example they cannot be stored in a single array unless the dtype is `object`. The full list of DTypes is: (<class 'numpy.dtypes.Int64DType'>, <class 'numpy.dtypes.Int64DType'>, <class 'numpy.dtypes.Float64DType'>, <class 'numpy.dtypes.Float64DType'>, <class 'numpy.dtypes.Int64DType'>, <class 'numpy.dtypes.Int64DType'>, <class 'numpy.dtypes.DateTime64DType'>, <class 'numpy.dtypes.DateTime64DType'>)

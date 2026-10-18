@@ -1,0 +1,22 @@
+id: count_target
+event: data
+title: Count target classes
+params: {}
+prompt: 'Do: count each target class; flag classes under 5% of rows.
+
+  Save: target_counts.csv (class, n, share).
+
+  '
+inputs:
+- ref: registered_data
+outputs:
+- name: target_counts.csv
+  kind: table
+  required: true
+fact_candidates: []
+reads_test: false
+timeout_s: 300
+methods_text: Follow the recorded task and saved model contract; all fitting uses
+  training rows only.
+builtin: null
+role: supporting

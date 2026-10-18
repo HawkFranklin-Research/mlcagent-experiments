@@ -1,0 +1,31 @@
+id: features
+title: Features
+goal: Decide which features enter the model, using training rows only.
+gate:
+- event_done: preprocess
+subgoals:
+- id: outputs_recorded
+  text: Feature set decided and saved
+  check:
+    type: output_exists
+    action: retain_features
+    output: selector_all.pkl
+- id: fit_verified
+  text: Every fit used the frozen training rows
+  check:
+    type: fit_on_train_only
+actions:
+- retain_features
+default_options:
+- retain_features
+done_when: all_subgoals
+custom_scope:
+  description: Feature selection fitted on training rows. No model training.
+  deny_patterns:
+  - (?i)\b(train|fit)\b.*\bmodel\b
+  - (?i)\btest (set|split|partition)\b
+  readable_inputs:
+  - train
+  - val
+  - prior_outputs
+max_options: 3

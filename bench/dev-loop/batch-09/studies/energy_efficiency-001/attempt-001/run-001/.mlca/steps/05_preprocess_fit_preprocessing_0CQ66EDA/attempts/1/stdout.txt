@@ -1,0 +1,2 @@
+Placeholder columns: 0
+Saved preprocessor: 6 features, ~6 output cols

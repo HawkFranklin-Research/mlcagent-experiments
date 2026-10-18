@@ -1,0 +1,3 @@
+rows=541909, entities=4372, dropped_missing_entity=135080, repeated_entities=4293
+Return rule: negative-quantity or negative-amount rows retained with signed monetary values.
+Saved entities.parquet rows=4372 cols=9

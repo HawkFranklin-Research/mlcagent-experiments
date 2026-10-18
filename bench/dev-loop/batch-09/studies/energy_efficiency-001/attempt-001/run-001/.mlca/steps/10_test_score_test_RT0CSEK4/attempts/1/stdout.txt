@@ -1,0 +1,4 @@
+train/test rows: 460/155
+selected: alternative
+test rmse: 1.09669
+saved test_metrics.csv rows=9

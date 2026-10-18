@@ -1,0 +1,1 @@
+rows=44 numeric=22 categorical=0

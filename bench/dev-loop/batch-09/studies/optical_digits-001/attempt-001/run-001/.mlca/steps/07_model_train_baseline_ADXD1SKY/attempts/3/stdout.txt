@@ -1,0 +1,2 @@
+rows train=3372 val=1124 feats=64
+recon_mse train=6.14412 val=6.28673 pca_dim=8

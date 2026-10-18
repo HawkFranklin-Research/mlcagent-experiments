@@ -1,0 +1,3 @@
+selected_model=alternative
+test_rows=3477 features=12 targets=1
+poisson_deviance=41.1632

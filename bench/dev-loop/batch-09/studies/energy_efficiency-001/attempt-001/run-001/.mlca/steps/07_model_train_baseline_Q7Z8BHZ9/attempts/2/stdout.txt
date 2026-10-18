@@ -1,0 +1,4 @@
+features: 8
+train/val: (460, 10) (153, 10)
+rmse: Y1=3.1568, Y2=3.6073
+rmse_mean: 3.3820

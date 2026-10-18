@@ -1,0 +1,9 @@
+Traceback (most recent call last):
+  File "/workspaces/mlcagent-experiments/bench/dev-loop/batch-09/studies/online_retail-001/attempt-001/run-001/.mlca/steps/03_eda_build_entities_F37AA8VZ/attempts/1/script.py", line 86, in <module>
+    mlca_runtime.record_metric("entity_count", float(len(entities)), "all")
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspaces/mlcagent-experiments/bench/dev-loop/batch-09/studies/online_retail-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/mlca_runtime/__init__.py", line 138, in record_metric
+    raise ValueError(
+    ...<2 lines>...
+    )
+ValueError: MLCA: Metric partition must be train, val, test or external; use sourced fact candidates for counts before the split, not event names.

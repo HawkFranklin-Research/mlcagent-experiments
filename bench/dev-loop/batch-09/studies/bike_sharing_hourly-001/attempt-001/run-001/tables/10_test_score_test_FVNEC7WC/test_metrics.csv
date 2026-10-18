@@ -1,0 +1,9 @@
+model,metric,value
+alternative,RMSE_cnt,114.2
+alternative,MAE_cnt,81.12
+alternative,R2_cnt,0.7316
+alternative,poisson_deviance_cnt,41.16
+alternative,RMSE_macro,114.2
+alternative,MAE_macro,81.12
+alternative,R2_macro,0.7316
+alternative,poisson_deviance,41.16

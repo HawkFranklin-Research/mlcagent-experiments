@@ -1,0 +1,1 @@
+rows=6 primary=roc_auc=0.8580 [0.7627,0.9369] threshold=0.500

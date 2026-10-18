@@ -1,0 +1,45 @@
+group,column,kind,n,mean,sd,min,median,max,n_missing,n_levels,top_share
+all,MFCCs_ 1,numeric,7195,0.9899,0.069,-0.2512,1.0,1.0,0.0,,
+all,MFCCs_ 2,numeric,7195,0.3236,0.2187,-0.673,0.3022,1.0,0.0,,
+all,MFCCs_ 3,numeric,7195,0.3112,0.2635,-0.436,0.2746,1.0,0.0,,
+all,MFCCs_ 4,numeric,7195,0.446,0.1603,-0.4727,0.4815,1.0,0.0,,
+all,MFCCs_ 5,numeric,7195,0.127,0.1627,-0.636,0.1614,0.7522,0.0,,
+all,MFCCs_ 6,numeric,7195,0.0979,0.1204,-0.4104,0.0721,0.9642,0.0,,
+all,MFCCs_ 7,numeric,7195,-0.0014,0.1714,-0.539,-0.0526,1.0,0.0,,
+all,MFCCs_ 8,numeric,7195,-0.0004,0.1163,-0.5765,0.0133,0.5518,0.0,,
+all,MFCCs_ 9,numeric,7195,0.1282,0.179,-0.5873,0.1893,0.738,0.0,,
+all,MFCCs_10,numeric,7195,0.056,0.1271,-0.9523,0.0635,0.5228,0.0,,
+all,MFCCs_11,numeric,7195,-0.1157,0.1868,-0.902,-0.1533,0.523,0.0,,
+all,MFCCs_12,numeric,7195,0.0434,0.156,-0.7994,0.0511,0.6909,0.0,,
+all,MFCCs_13,numeric,7195,0.1509,0.2069,-0.6441,0.1969,0.9457,0.0,,
+all,MFCCs_14,numeric,7195,-0.0392,0.1525,-0.5904,-0.0507,0.5757,0.0,,
+all,MFCCs_15,numeric,7195,-0.1017,0.1876,-0.7172,-0.1433,0.6689,0.0,,
+all,MFCCs_16,numeric,7195,0.0421,0.1199,-0.4987,0.0411,0.6707,0.0,,
+all,MFCCs_17,numeric,7195,0.0887,0.1381,-0.4215,0.1128,0.6812,0.0,,
+all,MFCCs_18,numeric,7195,0.0078,0.0847,-0.7593,0.0118,0.6141,0.0,,
+all,MFCCs_19,numeric,7195,-0.0495,0.0825,-0.6807,-0.0526,0.5742,0.0,,
+all,MFCCs_20,numeric,7195,-0.0532,0.0942,-0.3616,-0.0552,0.4678,0.0,,
+all,MFCCs_21,numeric,7195,0.0373,0.0795,-0.4308,0.0313,0.3898,0.0,,
+all,MFCCs_22,numeric,7195,0.0876,0.1234,-0.3793,0.1054,0.4322,0.0,,
+Leptodactylidae,Family,target_class,4420,,,,,,,,0.6143
+Hylidae,Family,target_class,2165,,,,,,,,0.3009
+Dendrobatidae,Family,target_class,542,,,,,,,,0.0753
+Bufonidae,Family,target_class,68,,,,,,,,0.0095
+Adenomera,Genus,target_class,4150,,,,,,,,0.5768
+Hypsiboas,Genus,target_class,1593,,,,,,,,0.2214
+Ameerega,Genus,target_class,542,,,,,,,,0.0753
+Dendropsophus,Genus,target_class,310,,,,,,,,0.0431
+Leptodactylus,Genus,target_class,270,,,,,,,,0.0375
+Scinax,Genus,target_class,148,,,,,,,,0.0206
+Osteocephalus,Genus,target_class,114,,,,,,,,0.0158
+Rhinella,Genus,target_class,68,,,,,,,,0.0095
+AdenomeraHylaedactylus,Species,target_class,3478,,,,,,,,0.4834
+HypsiboasCordobae,Species,target_class,1121,,,,,,,,0.1558
+AdenomeraAndre,Species,target_class,672,,,,,,,,0.0934
+Ameeregatrivittata,Species,target_class,542,,,,,,,,0.0753
+HypsiboasCinerascens,Species,target_class,472,,,,,,,,0.0656
+HylaMinuta,Species,target_class,310,,,,,,,,0.0431
+LeptodactylusFuscus,Species,target_class,270,,,,,,,,0.0375
+ScinaxRuber,Species,target_class,148,,,,,,,,0.0206
+OsteocephalusOophagus,Species,target_class,114,,,,,,,,0.0158
+Rhinellagranulosa,Species,target_class,68,,,,,,,,0.0095

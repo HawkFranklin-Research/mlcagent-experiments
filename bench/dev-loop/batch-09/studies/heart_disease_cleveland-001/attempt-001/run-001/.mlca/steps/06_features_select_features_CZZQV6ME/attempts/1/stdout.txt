@@ -1,0 +1,2 @@
+train rows=181 feature columns=13 transformed width=13 k=13
+saved selector.pkl selected=13

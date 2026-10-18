@@ -1,0 +1,2 @@
+Text placeholder columns: 0
+Saved preprocessor: 22 features (22 numeric, 0 categorical)

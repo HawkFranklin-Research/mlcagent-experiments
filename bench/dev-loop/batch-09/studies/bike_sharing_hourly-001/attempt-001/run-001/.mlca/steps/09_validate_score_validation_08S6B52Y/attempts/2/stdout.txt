@@ -1,0 +1,5 @@
+train/val shapes: (10427, 14), (3475, 14)
+targets: ['cnt']
+feature columns: 13
+best model: alternative
+best poisson_deviance: 31.32

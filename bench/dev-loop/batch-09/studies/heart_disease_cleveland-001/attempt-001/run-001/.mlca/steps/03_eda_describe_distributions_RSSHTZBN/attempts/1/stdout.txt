@@ -1,0 +1,2 @@
+placeholder columns: 0
+rows=39 numeric=13 categorical=0

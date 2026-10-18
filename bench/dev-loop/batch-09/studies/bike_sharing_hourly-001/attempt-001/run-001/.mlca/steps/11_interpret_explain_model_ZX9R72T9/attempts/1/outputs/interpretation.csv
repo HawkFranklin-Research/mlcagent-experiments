@@ -1,0 +1,16 @@
+section,key,value,numeric_value
+model,type,Pipeline,
+model,final_estimator,LinearRegression,
+model,hyperparameters_baseline,{},
+model,hyperparameters_alt,"{'n_estimators': 100, 'max_depth': None, 'min_samples_leaf': 1}",
+model,targets,cnt,
+model,primary_metric,poisson_deviance,
+inputs,n_features,number of features,12.0
+inputs,features,"season,yr,mnth,hr,holiday,weekday,workingday,weathersit,temp,atemp...",
+inputs,excluded_columns,"casual,instant,registered",
+inputs,group_column,,
+validation,poisson_deviance,poisson_deviance,71.34
+limitations,frozen_no_refit,True,
+limitations,validation_only,True,
+limitations,no_test_exposure,True,
+limitations,top_feature_source,07_model_train_baseline_4E4949CT/model.pkl,

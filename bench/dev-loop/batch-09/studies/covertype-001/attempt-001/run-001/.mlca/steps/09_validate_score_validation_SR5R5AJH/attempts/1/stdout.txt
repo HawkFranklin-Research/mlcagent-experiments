@@ -1,0 +1,2 @@
+n_val=116200 n_features=54
+aucs={'logistic': 0.9201827047728741, 'alternative': 0.9488630620037297} best=alternative

@@ -1,0 +1,2 @@
+val rows used: 10000; features scored: 54; metric: roc_auc_ovr
+top feature: Elevation (mean 0.3066)

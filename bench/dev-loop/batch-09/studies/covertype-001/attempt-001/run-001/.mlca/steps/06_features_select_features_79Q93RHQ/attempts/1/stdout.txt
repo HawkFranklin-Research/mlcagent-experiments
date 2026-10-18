@@ -1,0 +1,3 @@
+train rows=348605 raw_features=54 encoded_features=54 k=20
+metric=roc_auc_ovr selected=20
+saved selector.pkl
