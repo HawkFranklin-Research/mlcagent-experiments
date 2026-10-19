@@ -78,6 +78,7 @@ def test_process_queue_and_resume_never_repeat_finished_studies(tmp_path, monkey
     }
     monkeypatch.setattr(batch, "source_identity", lambda: identity)
     monkeypatch.setattr(batch, "entries", lambda: entries)
+    monkeypatch.setattr(batch, "disk_needed", lambda job: 0)  # host disk is not under test
     monkeypatch.setattr(batch, "git_head", lambda _: "fixture")
     monkeypatch.setattr(batch, "runtime_identity", lambda _: {})
     original_run = subprocess.run
@@ -172,3 +173,23 @@ def test_acceptance_and_ablation_require_prior_success(tmp_path):
         batch.validate_stage(
             target, {**identity, "code_commit": "v2"}, "model", list(ids), ids, 1, True
         )
+
+
+def test_scored_studies_drop_never_published_stores(tmp_path):
+    for project in ["setup-001", "run-001"]:
+        for name in [".mlca/private", ".mlca/env", ".mlca/log", ".mlca/llm"]:
+            (tmp_path / project / name).mkdir(parents=True)
+            (tmp_path / project / name / "file").write_text("x")
+    removed = batch.prune(tmp_path)
+    assert removed == [
+        "run-001/.mlca/private",
+        "run-001/.mlca/env",
+        "setup-001/.mlca/private",
+        "setup-001/.mlca/env",
+    ]
+    assert (tmp_path / "run-001/.mlca/log/file").is_file()
+    assert (tmp_path / "setup-001/.mlca/llm/file").is_file()
+
+
+def test_large_tables_need_more_free_disk_before_starting():
+    assert batch.disk_needed({"large": True}) > batch.disk_needed({"large": False}) >= 4 * 2**30

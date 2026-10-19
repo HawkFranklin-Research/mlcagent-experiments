@@ -47,6 +47,7 @@ def build_plan(
     runtime=None,
     deadline_s=5400,
     rpm=60,
+    max_output_tokens=32768,
 ):
     if provider not in PROVIDERS or not model or threads < 1:
         raise ValueError("Valid provider, model and positive thread count required")
@@ -85,7 +86,7 @@ def build_plan(
         "model": model,
         "reasoning_effort": effort,
         "temperature": 0,
-        "max_output_tokens": 16384,
+        "max_output_tokens": max_output_tokens,
         "structured_outputs": True,
         "sdk_timeout_s": 90,
         "sandbox": "A",

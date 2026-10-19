@@ -32,6 +32,27 @@ from mlca.paths import atomic_json
 from mlca.rails import load
 
 TERMINAL = {"finished"}
+# Free disk a study needs before it starts. A large table's private row-fingerprint store
+# reached 4.3 GB, built through a temporary copy of the same size, plus its environment.
+MIN_FREE_BYTES = 4 * 2**30
+LARGE_EXTRA_BYTES = 12 * 2**30
+# Never published (.gitignore) and unused once a study is scored.
+PRUNED_AFTER_SCORING = (".mlca/private", ".mlca/env")
+
+
+def disk_needed(job):
+    return MIN_FREE_BYTES + (LARGE_EXTRA_BYTES if job["large"] else 0)
+
+
+def prune(attempt):
+    removed = []
+    for project in sorted(p for p in attempt.iterdir() if p.is_dir()):
+        for name in PRUNED_AFTER_SCORING:
+            target = project / name
+            if target.is_dir() and not target.is_symlink():
+                shutil.rmtree(target)
+                removed.append(f"{project.name}/{name}")
+    return removed
 
 
 def batch_paths(parent):
@@ -306,6 +327,7 @@ def finish_job(folder, job, expected):
             else "evaluation_unavailable"
         )
     result["wall_s"] = max(0, time.time() - job["first_started"])
+    result["pruned_after_scoring"] = prune(attempt) if attempt.is_dir() else []
     job.update(
         status="interrupted"
         if job.get("stop_reason") == "interrupted_by_author"
@@ -465,6 +487,7 @@ def main():
     parser.add_argument("--concurrency", type=int, default=6, choices=range(1, 7))
     parser.add_argument("--deadline-s", type=float, default=5400)
     parser.add_argument("--rpm", type=float, default=60)
+    parser.add_argument("--max-output-tokens", type=int, default=32768)
     parser.add_argument("--tables", nargs="*")
     parser.add_argument("--replicates", type=int, choices=[1, 3], default=1)
     parser.add_argument("--rails-off", action="store_true")
@@ -674,7 +697,9 @@ def main():
                 "spending_ceiling_usd": None,
                 "model_call_deadline_s": 300,
                 "temperature": 0,
-                "max_output_tokens": 16384,
+                "max_output_tokens": plan["max_output_tokens"]
+                if plan
+                else args.max_output_tokens,
                 "structured_outputs": True,
                 "sdk_timeout_s": 90,
                 "script_timeout_s": 300,
@@ -830,6 +855,7 @@ def main():
                 write_report(folder, state)
                 return
             if not interrupted[0]:
+                launched = []
                 for job in choose_next(state["jobs"], active, state["concurrency"]):
                     if (
                         job.get("first_started")
@@ -837,6 +863,9 @@ def main():
                     ):
                         job["stop_reason"] = "study_deadline"
                         finish_job(folder, job, by_id[job["dataset"]])
+                        continue
+                    if shutil.disk_usage(folder).free < disk_needed(job):
+                        # Wait for running studies to finish and be pruned.
                         continue
                     entry = by_id[job["dataset"]]
                     if (
@@ -986,6 +1015,17 @@ def main():
                         cgroup=str(cgroup) if cgroup else None,
                     )
                     processes[job["id"]] = proc
+                    launched.append(job["id"])
+                if (
+                    not active
+                    and not launched
+                    and any(j["status"] == "queued" for j in state["jobs"])
+                ):
+                    # Nothing running can free space: stop clearly instead of waiting forever.
+                    state.update(status="stopped", stop_reason="insufficient_disk")
+                    write_report(folder, state)
+                    print(json.dumps({"stopped": "insufficient_disk"}), flush=True)
+                    return
             write_report(folder, state)
             time.sleep(3)
         state.update(status="finished", ended_at=utc())

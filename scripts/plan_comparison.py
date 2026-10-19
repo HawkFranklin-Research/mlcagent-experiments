@@ -22,6 +22,7 @@ def main():
     parser.add_argument("--memory-limit-mib", type=int)
     parser.add_argument("--deadline-s", type=float, default=5400)
     parser.add_argument("--rpm", type=float, default=60)
+    parser.add_argument("--max-output-tokens", type=int, default=32768)
     args = parser.parse_args()
     if args.out.exists():
         raise ValueError("Plan output must be a new file")
@@ -57,6 +58,7 @@ def main():
         runtime=runtime_identity(batch.CODE),
         deadline_s=args.deadline_s,
         rpm=args.rpm,
+        max_output_tokens=args.max_output_tokens,
     )
     # Evidence is research metadata; never passed to the agent.
     from comparison import digest
