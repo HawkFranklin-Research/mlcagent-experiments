@@ -1,0 +1,14 @@
+item,value,source
+frozen_model_source,latest_model,latest_model
+model_type,RandomForestRegressor,latest_model
+selected_hyperparameters,bootstrap=True; ccp_alpha=0.0; criterion=squared_error; max_depth=None; max_features=1.0; max_leaf_nodes=None; max_samples=None; min_impurity_decrease=0.0,latest_model
+input_feature_count,13.0,latest_model
+input_features,"dteday, season, yr, mnth, hr, holiday, weekday, workingday, weathersit, temp, atemp, hum, windspeed",latest_model
+validation_metric,rmse,09_validate_score_validation_PTFC7YN8/validation_metrics.csv
+validation_value,196.5,09_validate_score_validation_PTFC7YN8/validation_metrics.csv
+validation_rows,18.0,09_validate_score_validation_PTFC7YN8/validation_metrics.csv
+train_rows_used_for_descriptive_reference,10000.0,train
+val_rows_used_for_descriptive_reference,3475.0,val
+limitation,Observational hourly time series; temporal autocorrelation and weather/calendar confounding limit causal interpretation.,latest_model
+limitation,Interpretation uses the frozen fitted objects only; no new fitting or tuning was performed.,latest_model
+limitation,Validation evidence is from the declared validation split only; feature importance does not imply causality.,09_validate_score_validation_PTFC7YN8/validation_metrics.csv

@@ -1,0 +1,2 @@
+/workspaces/mlcagent-experiments/bench/dev-loop/batch-12/studies/bike_sharing_hourly-003/attempt-001/run-001/.mlca/steps/05_preprocess_fit_preprocessing_D4ZRP9PK/attempts/1/script.py:66: Pandas4Warning: is_categorical_dtype is deprecated and will be removed in a future version. Use isinstance(dtype, pd.CategoricalDtype) instead
+  if pd.api.types.is_numeric_dtype(y) and not pd.api.types.is_categorical_dtype(y):

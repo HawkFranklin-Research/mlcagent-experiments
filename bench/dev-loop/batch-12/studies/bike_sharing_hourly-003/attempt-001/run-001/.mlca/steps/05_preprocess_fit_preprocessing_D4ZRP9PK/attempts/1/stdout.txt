@@ -1,0 +1,2 @@
+placeholder cols: 0
+fitted: rows=10437 num=8 cat=5

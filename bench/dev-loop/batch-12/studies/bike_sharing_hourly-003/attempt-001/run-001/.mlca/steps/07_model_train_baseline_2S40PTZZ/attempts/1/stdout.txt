@@ -1,0 +1,2 @@
+features=12 numeric=12 cat=0 n_enc=12
+val_rmse_mean=184.7747 per_target=[184.7747]

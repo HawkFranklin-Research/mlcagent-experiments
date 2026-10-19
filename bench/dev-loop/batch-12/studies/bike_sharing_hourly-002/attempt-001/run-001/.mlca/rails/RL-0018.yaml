@@ -1,0 +1,25 @@
+id: RL-0018
+kind: instruction
+roles:
+- worker
+events:
+- model
+- validate
+- test
+- interpret
+problem_types:
+- multilabel
+text: Several categorical targets need MultiOutputClassifier or an estimator supporting multiple
+  outputs, with the target DataFrame in _protocol['targets'] order. predict_proba returns one array
+  per target. Do not pass the whole multiclass-multioutput categorical matrix to f1_score, accuracy_score
+  or hamming_loss; these do not support this target form. Compute each score on each target separately
+  and average the per-target values; compute subset accuracy directly as the mean of rows whose target
+  predictions all match. Compute f1_score(average='macro') separately on each target's one-dimensional
+  true and predicted labels, then report the unweighted mean and per-target values. Both vectors
+  must have the same native label type; an object array of encoded integers can be rejected as unknown.
+  Preserve categorical labels directly; target columns are never inputs to fit_record, which refuses
+  them, so do not fit target encoders. Never fit anything during validation or test.
+reason: Multi-output predictions have a different shape from single-output ones; metric code written
+  for one target fails or scores only the first.
+ledger: L-0009
+added_in: rails-0.3

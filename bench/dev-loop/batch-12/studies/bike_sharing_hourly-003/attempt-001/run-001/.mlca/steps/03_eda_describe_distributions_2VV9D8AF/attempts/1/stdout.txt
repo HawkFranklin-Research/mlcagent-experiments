@@ -1,0 +1,2 @@
+rows=13 cols=10
+n_numeric=12 n_categorical=0

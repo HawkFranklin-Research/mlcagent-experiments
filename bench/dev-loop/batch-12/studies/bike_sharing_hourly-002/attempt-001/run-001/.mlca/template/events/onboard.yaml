@@ -1,0 +1,32 @@
+id: onboard
+title: Project setup
+goal: 'Fix the question before touching the data: aim, task and unit of analysis.'
+gate: []
+subgoals:
+- id: study_fields
+  text: Main table, outcome columns and row meaning resolved
+  check:
+    type: study_fields_resolved
+- id: outputs_recorded
+  text: Brief and data inventory recorded
+  check:
+    type: output_exists
+    action: confirm_brief
+    output: brief.json
+- id: brief_confirmed
+  text: Author confirms aim, resolved columns and unit of analysis
+  check:
+    type: user_confirm
+actions:
+- confirm_brief
+default_options:
+- confirm_brief
+done_when: all_subgoals
+custom_scope:
+  description: Questions about the brief and the registered files only.
+  deny_patterns:
+  - (?i)\b(train|fit)\b.*\bmodel\b
+  - (?i)\btest (set|split|partition)\b
+  readable_inputs:
+  - registered_data
+max_options: 3

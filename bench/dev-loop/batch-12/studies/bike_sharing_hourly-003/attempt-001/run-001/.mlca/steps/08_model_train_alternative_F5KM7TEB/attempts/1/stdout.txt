@@ -1,0 +1,4 @@
+targets: ['cnt'] excluded: ['casual', 'instant', 'registered'] group: None
+features=12 numeric=7 categorical=5
+val rmse=115.5737
+saved alternative_model.pkl

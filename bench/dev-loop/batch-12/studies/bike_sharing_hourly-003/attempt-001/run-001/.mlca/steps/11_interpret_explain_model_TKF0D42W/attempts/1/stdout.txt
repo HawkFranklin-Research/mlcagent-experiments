@@ -1,0 +1,4 @@
+rows train/val: 10000 3478
+feature columns: 13
+saved interpretation.csv rows: 31
+top_feature: season

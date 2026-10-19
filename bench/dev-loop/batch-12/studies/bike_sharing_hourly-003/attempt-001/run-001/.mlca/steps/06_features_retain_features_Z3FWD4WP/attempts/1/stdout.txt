@@ -1,0 +1,3 @@
+train_rows=10437
+n_features=13
+selector_columns=['dteday', 'season', 'yr', 'mnth', 'hr']...

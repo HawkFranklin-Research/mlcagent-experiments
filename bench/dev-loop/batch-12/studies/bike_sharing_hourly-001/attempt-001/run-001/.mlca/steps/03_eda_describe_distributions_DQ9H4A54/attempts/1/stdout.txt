@@ -1,0 +1,3 @@
+rows=17379 features=13
+numeric=12 categorical=1 date_skipped=0
+text_columns_with_placeholders=0

@@ -1,0 +1,32 @@
+section,item,value,source
+model,frozen_model_class,Pipeline,latest_model
+model,final_estimator_class,TransformedTargetRegressor,latest_model
+hyperparameter,check_inverse,True,latest_model
+hyperparameter,func,<ufunc 'log1p'>,latest_model
+hyperparameter,inverse_func,<ufunc 'expm1'>,latest_model
+hyperparameter,regressor,RandomForestRegressor(random_state=42),latest_model
+hyperparameter,transformer,None,latest_model
+inputs,targets,cnt,_protocol
+inputs,excluded_columns,"casual, instant, registered",_protocol
+inputs,group_column,,_protocol
+inputs,train_rows,10000,train
+inputs,val_rows,3478,val
+inputs,feature_count,13,train
+inputs,feature_columns,"dteday, season, yr, mnth, hr, holiday, weekday, workingday, weathersit, temp, atemp, hum, windspeed",train
+validation,rmse_cnt,184.8,09_validate_score_validation_8GEY6C8C/validation_metrics.csv
+validation,mae_cnt,143,09_validate_score_validation_8GEY6C8C/validation_metrics.csv
+validation,r2_cnt,0.2659,09_validate_score_validation_8GEY6C8C/validation_metrics.csv
+validation,rmse_macro,184.8,09_validate_score_validation_8GEY6C8C/validation_metrics.csv
+validation,mae_macro,143,09_validate_score_validation_8GEY6C8C/validation_metrics.csv
+validation,r2_macro,0.2659,09_validate_score_validation_8GEY6C8C/validation_metrics.csv
+validation,rmse_cnt,115.6,09_validate_score_validation_8GEY6C8C/validation_metrics.csv
+validation,mae_cnt,83.57,09_validate_score_validation_8GEY6C8C/validation_metrics.csv
+validation,r2_cnt,0.7128,09_validate_score_validation_8GEY6C8C/validation_metrics.csv
+validation,rmse_macro,115.6,09_validate_score_validation_8GEY6C8C/validation_metrics.csv
+validation,mae_macro,83.57,09_validate_score_validation_8GEY6C8C/validation_metrics.csv
+validation,r2_macro,0.7128,09_validate_score_validation_8GEY6C8C/validation_metrics.csv
+model,top_feature,season,interpretation.csv
+limitation,note,No fitting was performed; this is a read-only interpretation.,08_model_train_alternative_F5KM7TEB/manifest.json
+limitation,note,Validation evidence is limited to the saved validation metrics.,08_model_train_alternative_F5KM7TEB/manifest.json
+limitation,note,Feature importance is model-specific and not causal.,08_model_train_alternative_F5KM7TEB/manifest.json
+limitation,note,Predictions require the frozen feature schema and saved preprocessing.,08_model_train_alternative_F5KM7TEB/manifest.json

@@ -1,0 +1,8 @@
+model,metric,value
+alternative,rmse_cnt,205.8
+alternative,mae_cnt,147.9
+alternative,r2_cnt,0.1283
+alternative,rmse_macro,205.8
+alternative,mae_macro,147.9
+alternative,r2_macro,0.1283
+alternative,rmse,205.8

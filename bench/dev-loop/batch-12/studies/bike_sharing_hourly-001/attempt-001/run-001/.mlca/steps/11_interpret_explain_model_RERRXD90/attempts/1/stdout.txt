@@ -1,0 +1,5 @@
+train_rows=10000 val_rows=3475
+model=Pipeline[pre,model] -> RandomForestRegressor
+validation_rmse=224.5
+top_feature=num__hr
+saved interpretation.csv

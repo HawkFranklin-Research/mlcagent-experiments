@@ -1,0 +1,7 @@
+model,metric,value
+alternative,rmse[cnt],114.2
+alternative,mae[cnt],81.12
+alternative,r2[cnt],0.7316
+alternative,rmse_macro,114.2
+alternative,mae_macro,81.12
+alternative,r2_macro,0.7316

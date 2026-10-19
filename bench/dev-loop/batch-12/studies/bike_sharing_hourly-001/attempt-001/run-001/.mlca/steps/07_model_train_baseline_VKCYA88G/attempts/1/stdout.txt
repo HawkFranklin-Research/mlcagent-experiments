@@ -1,0 +1,2 @@
+n_train 10427 n_val 3475 n_features 12
+val_rmse 224.478

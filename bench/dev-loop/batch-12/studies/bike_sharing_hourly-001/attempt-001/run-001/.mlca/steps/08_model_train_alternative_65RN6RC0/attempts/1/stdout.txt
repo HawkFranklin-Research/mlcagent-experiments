@@ -1,0 +1,2 @@
+train rows 10427, features 12, targets ['cnt']
+saved alternative_model.pkl

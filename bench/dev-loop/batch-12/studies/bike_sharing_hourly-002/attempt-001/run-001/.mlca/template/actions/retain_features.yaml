@@ -1,0 +1,22 @@
+id: retain_features
+event: features
+title: Keep all features (no selection)
+params: {}
+prompt: 'Do: fit a passthrough selector with fit_record on the full frozen training
+  index; preserve feature names and order.
+
+  Save: selector_all.pkl.'
+inputs:
+- ref: train
+- ref: val
+- ref: prior_outputs
+outputs:
+- name: selector_all.pkl
+  kind: model
+  required: true
+fact_candidates: []
+reads_test: false
+timeout_s: 300
+methods_text: Follow the recorded task and saved model contract; all fitting uses
+  training rows only.
+builtin: null

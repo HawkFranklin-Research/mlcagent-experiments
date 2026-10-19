@@ -1,0 +1,3 @@
+candidates: ['baseline', 'alternative', 'latest']
+primary_metric=rmse higher_better=False
+best=alternative score=187.3327

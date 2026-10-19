@@ -1,0 +1,15 @@
+column,kind,group,n_missing,mean,sd,min,median,max,n_levels,top_share
+dteday,categorical,feature,0,,,,,,731.0,0.001381
+season,categorical,feature,0,,,,,,4.0,0.2587
+yr,categorical,feature,0,,,,,,2.0,0.5026
+mnth,categorical,feature,0,,,,,,12.0,0.08562
+hr,categorical,feature,0,,,,,,24.0,0.042
+holiday,categorical,feature,0,,,,,,2.0,0.9712
+weekday,categorical,feature,0,,,,,,7.0,0.1445
+workingday,categorical,feature,0,,,,,,2.0,0.6827
+weathersit,categorical,feature,0,,,,,,4.0,0.6567
+temp,numeric,feature,0,0.497,0.1926,0.02,0.5,1.0,,
+atemp,numeric,feature,0,0.4758,0.1719,0.0,0.4848,1.0,,
+hum,numeric,feature,0,0.6272,0.1929,0.0,0.63,1.0,,
+windspeed,numeric,feature,0,0.1901,0.1223,0.0,0.194,0.8507,,
+cnt,numeric,target,0,189.5,181.4,1.0,142.0,977.0,,

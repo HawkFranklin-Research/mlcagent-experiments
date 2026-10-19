@@ -1,0 +1,3 @@
+features: 13
+train rows: 10427
+val rmse mean: 196.473

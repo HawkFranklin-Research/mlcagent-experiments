@@ -1,0 +1,19 @@
+aspect,detail,source
+primary_metric,rmse,_protocol
+targets,cnt,_protocol
+excluded_columns,"casual, instant, registered",_protocol
+task_type,regression,_protocol
+train_rows,10000,train
+val_rows,3475,val
+frozen_model_type,"Pipeline[pre,model] -> RandomForestRegressor",08_model_train_alternative_65RN6RC0/alternative_model.pkl
+selected_hyperparameters,ccp_alpha=0.0; criterion=squared_error; max_depth=None; max_leaf_nodes=None; min_impurity_decrease=0.0; min_samples_leaf=1; min_samples_split=2; min_weight_fraction_leaf=0.0,08_model_train_alternative_65RN6RC0/alternative_model.pkl
+model_input_feature_count,12,08_model_train_alternative_65RN6RC0/alternative_model.pkl
+model_input_features_preview,"season, yr, mnth, hr, holiday, weekday, workingday, weathersit, temp, atemp, hum, windspeed",08_model_train_alternative_65RN6RC0/alternative_model.pkl
+validation_metrics_shape,14 x 3,09_validate_score_validation_51H7Y4ST/validation_metrics.csv
+validation_primary_metric,rmse=224.5,09_validate_score_validation_51H7Y4ST/validation_metrics.csv
+baseline_model_type,"Pipeline[pre,reg] -> TransformedTargetRegressor",07_model_train_baseline_VKCYA88G/model.pkl
+baseline_hyperparameters,check_inverse=True; func=<ufunc 'log1p'>; inverse_func=<ufunc 'expm1'>,07_model_train_baseline_VKCYA88G/model.pkl
+alternative_model_type,"Pipeline[pre,model] -> RandomForestRegressor",08_model_train_alternative_65RN6RC0/alternative_model.pkl
+alternative_hyperparameters,ccp_alpha=0.0; criterion=squared_error; max_depth=None; max_leaf_nodes=None; min_impurity_decrease=0.0; min_samples_leaf=1; min_samples_split=2; min_weight_fraction_leaf=0.0,08_model_train_alternative_65RN6RC0/alternative_model.pkl
+top_feature,num__hr,08_model_train_alternative_65RN6RC0/alternative_model.pkl
+limitations,"Descriptive only; no refitting, no test exposure. Validation holdout may be small. Importances/coefficients are not causal. Count outcome may benefit from Poisson/log1p loss. Hyperparameters are as frozen in the saved model.",08_model_train_alternative_65RN6RC0/alternative_model.pkl

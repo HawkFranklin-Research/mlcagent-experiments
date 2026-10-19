@@ -1,0 +1,3 @@
+train rows: 10000, val rows: 3475
+validation rmse: 196.5
+saved interpretation.csv
