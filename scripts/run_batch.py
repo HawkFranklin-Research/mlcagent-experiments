@@ -462,7 +462,7 @@ def worker(spec_file):
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--batch", type=int, choices=range(1, 11))
+    parser.add_argument("--batch", type=int)
     parser.add_argument("--out", type=Path, required=True)
     parser.add_argument("--model")
     parser.add_argument("--provider", choices=list(PROVIDERS))
@@ -489,7 +489,7 @@ def main():
     parser.add_argument("--rpm", type=float, default=60)
     parser.add_argument("--max-output-tokens", type=int, default=32768)
     parser.add_argument("--tables", nargs="*")
-    parser.add_argument("--replicates", type=int, choices=[1, 3], default=1)
+    parser.add_argument("--replicates", type=int, choices=[1, 2, 3], default=1)
     parser.add_argument("--rails-off", action="store_true")
     parser.add_argument("--resume", action="store_true")
     parser.add_argument("--worker", type=Path)
@@ -629,8 +629,8 @@ def main():
                     "ablation"
                     if args.rails_off
                     else "acceptance"
-                    if args.replicates == 3
-                    else "development"
+                    if args.replicates == 3 and set(args.tables or by_id) == set(by_id)
+                    else "development"  # includes pooled reruns of tables that fell short
                 )
                 planned_jobs = None
                 selected = args.tables or list(by_id)
@@ -651,7 +651,11 @@ def main():
                     args.model,
                     selected,
                     set(by_id),
-                    args.replicates,
+                    args.replicates
+                    if args.rails_off
+                    else 3
+                    if stage == "acceptance"
+                    else 1,
                     args.rails_off,
                     args.reasoning_effort,
                     provider=args.provider or "openrouter",
