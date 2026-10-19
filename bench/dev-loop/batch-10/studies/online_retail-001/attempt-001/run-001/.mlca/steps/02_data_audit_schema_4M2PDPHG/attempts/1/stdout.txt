@@ -1,0 +1,3 @@
+shape=(541909, 7)
+missing.total=136534
+placeholders=none in text columns

@@ -1,0 +1,18 @@
+id: RL-0023
+kind: instruction
+roles:
+- worker
+events:
+- data
+- eda
+- preprocess
+problem_types:
+- all
+text: Check text columns for placeholder tokens that stand for missing values (a lone '?',
+  '-', 'NA', 'N/A', or whitespace-only strings) and for surrounding whitespace. Strip whitespace
+  and convert only such placeholders to missing inside the fitted preprocessing, and print
+  one line naming the placeholders found and how many columns contain them.
+reason: Published tables mark missing values with placeholder strings; left as text they become
+  spurious categories and hide the true amount of missing data.
+ledger: L-0002
+added_in: rails-0.3

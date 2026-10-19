@@ -1,0 +1,3 @@
+features=54 val_rows=116200 primary_metric=roc_auc_ovr
+scores={'logistic': 0.9202, 'alternative': 0.9489} best=alternative (max)
+classes_left_out={'logistic': [], 'alternative': []}

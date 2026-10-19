@@ -1,0 +1,3 @@
+train rows=2603, val rows=867
+primary_metric=silhouette, validation_value=0.9248
+top_feature=tmp_col_name_0_1

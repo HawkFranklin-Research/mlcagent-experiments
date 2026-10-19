@@ -1,0 +1,20 @@
+section,item,value,source
+model,selected_model,Pipeline,latest_model
+model,pipeline_steps,"preprocessor, mlp",latest_model
+model,final_estimator,MLPRegressor,latest_model
+model,selected_hyperparameters,"activation=relu; alpha=0.0001; hidden_layer_sizes=(16, 8, 16); learning_rate_init=0.001; max_iter=300; random_state=42; solver=adam; tol=0.0001",latest_model
+inputs,train_rows,126,train.parquet
+inputs,val_rows,42,val.parquet
+inputs,feature_count,7,train.parquet
+inputs,model_features_match_protocol,True,train.parquet
+inputs,feature_columns,"area, perimeter, compactness, kernel_length, kernel_width, asymmetry_coefficient, groove_length",train.parquet
+preprocessing,preprocessor_steps,ColumnTransformer,05_preprocess_fit_preprocessing_6DN7THMT/preprocessor.pkl
+preprocessing,selector_steps,FunctionTransformer,06_features_retain_features_AKTAEF6F/selector_all.pkl
+validation,primary_metric,reconstruction_error,09_validate_score_validation_GVTVRD4E/validation_metrics.csv
+validation,primary_metric_value,0.0,09_validate_score_validation_GVTVRD4E/validation_metrics.csv
+validation,reconstruction_error,1.3108262422253766e-31,09_validate_score_validation_GVTVRD4E/validation_metrics.csv
+validation,reconstruction_error,0.0775972751605934,09_validate_score_validation_GVTVRD4E/validation_metrics.csv
+limitations,outcome,No outcome column; representation learning only.,_protocol
+limitations,fitting,Frozen models described only; no refit after validation exposure.,latest_model
+limitations,validation_scope,Reconstruction evidence is in the frozen frontend feature space; inputs are capped samples.,09_validate_score_validation_GVTVRD4E/validation_metrics.csv
+fact,top_feature,unavailable,latest_model

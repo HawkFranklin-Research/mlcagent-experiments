@@ -1,0 +1,2 @@
+rows=4 models=2 metric=roc_auc_ovr
+best=alternative val_roc_auc_ovr=0.9489

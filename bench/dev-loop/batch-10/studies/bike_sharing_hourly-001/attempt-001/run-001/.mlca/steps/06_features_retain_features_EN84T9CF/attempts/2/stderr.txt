@@ -1,0 +1,12 @@
+/workspaces/mlcagent-experiments/bench/dev-loop/batch-10/studies/bike_sharing_hourly-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/preprocessing/_function_transformer.py:305: UserWarning: When `set_output` is configured to be 'pandas', `func` should return a pandas DataFrame to follow the `set_output` API  or `feature_names_out` should be defined.
+  warnings.warn(warn_msg.format("pandas"))
+/workspaces/mlcagent-experiments/bench/dev-loop/batch-10/studies/bike_sharing_hourly-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/preprocessing/_function_transformer.py:305: UserWarning: When `set_output` is configured to be 'pandas', `func` should return a pandas DataFrame to follow the `set_output` API  or `feature_names_out` should be defined.
+  warnings.warn(warn_msg.format("pandas"))
+/workspaces/mlcagent-experiments/bench/dev-loop/batch-10/studies/bike_sharing_hourly-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/preprocessing/_function_transformer.py:305: UserWarning: When `set_output` is configured to be 'pandas', `func` should return a pandas DataFrame to follow the `set_output` API  or `feature_names_out` should be defined.
+  warnings.warn(warn_msg.format("pandas"))
+/workspaces/mlcagent-experiments/bench/dev-loop/batch-10/studies/bike_sharing_hourly-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/preprocessing/_function_transformer.py:305: UserWarning: When `set_output` is configured to be 'pandas', `func` should return a pandas DataFrame to follow the `set_output` API  or `feature_names_out` should be defined.
+  warnings.warn(warn_msg.format("pandas"))
+/workspaces/mlcagent-experiments/bench/dev-loop/batch-10/studies/bike_sharing_hourly-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/preprocessing/_function_transformer.py:305: UserWarning: When `set_output` is configured to be 'pandas', `func` should return a pandas DataFrame to follow the `set_output` API  or `feature_names_out` should be defined.
+  warnings.warn(warn_msg.format("pandas"))
+/workspaces/mlcagent-experiments/bench/dev-loop/batch-10/studies/bike_sharing_hourly-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/preprocessing/_function_transformer.py:305: UserWarning: When `set_output` is configured to be 'pandas', `func` should return a pandas DataFrame to follow the `set_output` API  or `feature_names_out` should be defined.
+  warnings.warn(warn_msg.format("pandas"))

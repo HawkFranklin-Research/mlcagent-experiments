@@ -1,0 +1,2 @@
+rows=126 features=7
+reconstruction_error=0.089192

@@ -1,0 +1,21 @@
+id: RL-0019
+kind: instruction
+roles:
+- worker
+events:
+- model
+- validate
+- test
+- interpret
+problem_types:
+- regression
+- multioutput_regression
+text: Report every metric on the original scale of the targets. For non-negative counts or
+  strongly right-skewed outcomes, prefer a Poisson loss or TransformedTargetRegressor with
+  log1p and expm1, and invert before scoring. With several numeric targets, fit them together
+  in _protocol['targets'] order (natively or with MultiOutputRegressor), and report the metric
+  per target and their unweighted mean as the headline value.
+reason: Scores on a transformed scale are not comparable, and multi-output regression must
+  keep target order between fitting and scoring.
+ledger: L-0002
+added_in: rails-0.3

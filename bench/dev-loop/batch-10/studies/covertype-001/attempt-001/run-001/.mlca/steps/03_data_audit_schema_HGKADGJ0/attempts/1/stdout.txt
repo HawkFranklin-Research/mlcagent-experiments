@@ -1,0 +1,4 @@
+Placeholder tokens in 0 text columns: []
+Rows: 581012, Columns: 55
+Total missing: 0
+Saved /workspaces/mlcagent-experiments/bench/dev-loop/batch-10/studies/covertype-001/attempt-001/run-001/.mlca/steps/03_data_audit_schema_HGKADGJ0/attempts/1/outputs/schema.json

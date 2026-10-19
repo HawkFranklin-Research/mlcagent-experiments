@@ -1,0 +1,28 @@
+group,kind,variable,n,n_missing,mean,sd,min,median,max,n_levels,top_share
+all,numeric,Elevation,581012,0,2959.0,280.0,1859.0,2996.0,3858.0,,
+all,numeric,Aspect,581012,0,155.7,111.9,0.0,127.0,360.0,,
+all,numeric,Slope,581012,0,14.1,7.488,0.0,13.0,66.0,,
+all,numeric,Horizontal_Distance_To_Hydrology,581012,0,269.4,212.5,0.0,218.0,1397.0,,
+all,numeric,Vertical_Distance_To_Hydrology,581012,0,46.42,58.3,-173.0,30.0,601.0,,
+all,numeric,Horizontal_Distance_To_Roadways,581012,0,2350.0,1559.0,0.0,1997.0,7117.0,,
+all,numeric,Hillshade_9am,581012,0,212.1,26.77,0.0,218.0,254.0,,
+all,numeric,Hillshade_Noon,581012,0,223.3,19.77,0.0,226.0,254.0,,
+all,numeric,Hillshade_3pm,581012,0,142.5,38.27,0.0,143.0,254.0,,
+all,numeric,Horizontal_Distance_To_Fire_Points,581012,0,1980.0,1324.0,0.0,1710.0,7173.0,,
+all,numeric,Wilderness_Area group (4 cols),581012,0,0.25,0.433,0.0,0.0,1.0,,
+all,numeric,Soil_Type group (40 cols),581012,0,0.025,0.1561,0.0,0.0,1.0,,
+all,categorical,Cover_Type,581012,0,,,,,,7.0,0.4876
+1,class_count,Cover_Type,211840,0,,,,,,,0.3646
+2,class_count,Cover_Type,283301,0,,,,,,,0.4876
+3,class_count,Cover_Type,35754,0,,,,,,,0.06154
+4,class_count,Cover_Type,2747,0,,,,,,,0.004728
+5,class_count,Cover_Type,9493,0,,,,,,,0.01634
+6,class_count,Cover_Type,17367,0,,,,,,,0.02989
+7,class_count,Cover_Type,20510,0,,,,,,,0.0353
+1,numeric_class,"(continuous, k=10)",211840,0,881.4,1303.0,-156.0,217.0,7118.0,,
+2,numeric_class,"(continuous, k=10)",283301,0,859.2,1293.0,-173.0,219.0,7173.0,,
+3,numeric_class,"(continuous, k=10)",35754,0,527.7,747.7,-134.0,210.0,3436.0,,
+4,numeric_class,"(continuous, k=10)",2747,0,485.8,686.6,-25.0,202.5,2526.0,,
+5,numeric_class,"(continuous, k=10)",9493,0,669.8,995.7,-134.0,211.0,6321.0,,
+6,numeric_class,"(continuous, k=10)",17367,0,546.8,771.3,-126.0,202.0,3092.0,,
+7,numeric_class,"(continuous, k=10)",20510,0,933.8,1318.0,-84.0,220.0,5463.0,,

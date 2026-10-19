@@ -1,0 +1,14 @@
+column,type,n_levels,mean,sd,min,median,max,n_missing,top_share
+age,numeric,,38.6515,13.7088,17.0,37.0,90.0,0,
+fnlwgt,numeric,,189668.753,105617.1423,12285.0,178138.5,1490400.0,0,
+education-num,numeric,,10.0789,2.57,1.0,10.0,16.0,0,
+capital-gain,numeric,,1080.1291,7455.6067,0.0,0.0,99999.0,0,
+capital-loss,numeric,,87.5884,403.1934,0.0,0.0,4356.0,0,
+hours-per-week,numeric,,40.4261,12.3923,1.0,40.0,99.0,0,
+workclass,categorical,8.0,,,,,,2799,0.7362
+education,categorical,16.0,,,,,,0,0.3232
+occupation,categorical,14.0,,,,,,2809,0.1341
+relationship,categorical,6.0,,,,,,0,0.4038
+race,categorical,5.0,,,,,,0,0.855
+sex,categorical,2.0,,,,,,0,0.6685
+native-country,categorical,41.0,,,,,,856,0.9136

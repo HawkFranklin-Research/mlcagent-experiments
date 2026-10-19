@@ -1,0 +1,3 @@
+rows=2603, features=8, numeric=7, categorical=1
+metric_sample=2603, k_range=2-8, selected_k=2
+selected_silhouette=0.9094, stability=0.1651

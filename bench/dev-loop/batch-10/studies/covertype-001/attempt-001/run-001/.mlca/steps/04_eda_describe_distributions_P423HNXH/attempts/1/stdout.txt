@@ -1,0 +1,2 @@
+placeholder-like tokens in 0/1 categorical cols
+rows=27 n_numeric=12 n_categorical=1

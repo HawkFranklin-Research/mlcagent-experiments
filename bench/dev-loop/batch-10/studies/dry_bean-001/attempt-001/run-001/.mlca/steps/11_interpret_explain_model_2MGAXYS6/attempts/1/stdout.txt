@@ -1,0 +1,3 @@
+train rows=8124, val rows=2707, features=16
+scoring=roc_auc_ovr, repeats=20, pipeline=latest
+top feature=Roundness

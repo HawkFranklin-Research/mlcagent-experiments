@@ -1,0 +1,2 @@
+Validation rows: 867
+Best silhouette: baseline = 0.9248

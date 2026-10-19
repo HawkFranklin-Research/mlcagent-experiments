@@ -1,0 +1,44 @@
+/workspaces/mlcagent-experiments/bench/dev-loop/batch-10/studies/bike_sharing_hourly-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/preprocessing/_function_transformer.py:305: UserWarning: When `set_output` is configured to be 'pandas', `func` should return a pandas DataFrame to follow the `set_output` API  or `feature_names_out` should be defined.
+  warnings.warn(warn_msg.format("pandas"))
+/workspaces/mlcagent-experiments/bench/dev-loop/batch-10/studies/bike_sharing_hourly-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/preprocessing/_function_transformer.py:305: UserWarning: When `set_output` is configured to be 'pandas', `func` should return a pandas DataFrame to follow the `set_output` API  or `feature_names_out` should be defined.
+  warnings.warn(warn_msg.format("pandas"))
+/workspaces/mlcagent-experiments/bench/dev-loop/batch-10/studies/bike_sharing_hourly-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/preprocessing/_function_transformer.py:305: UserWarning: When `set_output` is configured to be 'pandas', `func` should return a pandas DataFrame to follow the `set_output` API  or `feature_names_out` should be defined.
+  warnings.warn(warn_msg.format("pandas"))
+/workspaces/mlcagent-experiments/bench/dev-loop/batch-10/studies/bike_sharing_hourly-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/preprocessing/_function_transformer.py:305: UserWarning: When `set_output` is configured to be 'pandas', `func` should return a pandas DataFrame to follow the `set_output` API  or `feature_names_out` should be defined.
+  warnings.warn(warn_msg.format("pandas"))
+/workspaces/mlcagent-experiments/bench/dev-loop/batch-10/studies/bike_sharing_hourly-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/preprocessing/_function_transformer.py:305: UserWarning: When `set_output` is configured to be 'pandas', `func` should return a pandas DataFrame to follow the `set_output` API  or `feature_names_out` should be defined.
+  warnings.warn(warn_msg.format("pandas"))
+/workspaces/mlcagent-experiments/bench/dev-loop/batch-10/studies/bike_sharing_hourly-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/preprocessing/_function_transformer.py:305: UserWarning: When `set_output` is configured to be 'pandas', `func` should return a pandas DataFrame to follow the `set_output` API  or `feature_names_out` should be defined.
+  warnings.warn(warn_msg.format("pandas"))
+/workspaces/mlcagent-experiments/bench/dev-loop/batch-10/studies/bike_sharing_hourly-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/preprocessing/_function_transformer.py:305: UserWarning: When `set_output` is configured to be 'pandas', `func` should return a pandas DataFrame to follow the `set_output` API  or `feature_names_out` should be defined.
+  warnings.warn(warn_msg.format("pandas"))
+/workspaces/mlcagent-experiments/bench/dev-loop/batch-10/studies/bike_sharing_hourly-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/preprocessing/_function_transformer.py:305: UserWarning: When `set_output` is configured to be 'pandas', `func` should return a pandas DataFrame to follow the `set_output` API  or `feature_names_out` should be defined.
+  warnings.warn(warn_msg.format("pandas"))
+/workspaces/mlcagent-experiments/bench/dev-loop/batch-10/studies/bike_sharing_hourly-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/preprocessing/_function_transformer.py:305: UserWarning: When `set_output` is configured to be 'pandas', `func` should return a pandas DataFrame to follow the `set_output` API  or `feature_names_out` should be defined.
+  warnings.warn(warn_msg.format("pandas"))
+/workspaces/mlcagent-experiments/bench/dev-loop/batch-10/studies/bike_sharing_hourly-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/preprocessing/_function_transformer.py:305: UserWarning: When `set_output` is configured to be 'pandas', `func` should return a pandas DataFrame to follow the `set_output` API  or `feature_names_out` should be defined.
+  warnings.warn(warn_msg.format("pandas"))
+/workspaces/mlcagent-experiments/bench/dev-loop/batch-10/studies/bike_sharing_hourly-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/preprocessing/_function_transformer.py:305: UserWarning: When `set_output` is configured to be 'pandas', `func` should return a pandas DataFrame to follow the `set_output` API  or `feature_names_out` should be defined.
+  warnings.warn(warn_msg.format("pandas"))
+/workspaces/mlcagent-experiments/bench/dev-loop/batch-10/studies/bike_sharing_hourly-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/preprocessing/_function_transformer.py:305: UserWarning: When `set_output` is configured to be 'pandas', `func` should return a pandas DataFrame to follow the `set_output` API  or `feature_names_out` should be defined.
+  warnings.warn(warn_msg.format("pandas"))
+Traceback (most recent call last):
+  File "/workspaces/mlcagent-experiments/bench/dev-loop/batch-10/studies/bike_sharing_hourly-001/attempt-001/run-001/.mlca/steps/07_model_train_baseline_EJMBYS73/attempts/1/script.py", line 86, in <module>
+    pred = np.asarray(fitted.predict(val[cols]))
+                      ~~~~~~~~~~~~~~^^^^^^^^^^^
+  File "/workspaces/mlcagent-experiments/bench/dev-loop/batch-10/studies/bike_sharing_hourly-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/pipeline.py", line 794, in predict
+    Xt = transform.transform(Xt)
+  File "/workspaces/mlcagent-experiments/bench/dev-loop/batch-10/studies/bike_sharing_hourly-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/pipeline.py", line 1110, in transform
+    Xt = transform.transform(Xt, **routed_params[name].transform)
+  File "/workspaces/mlcagent-experiments/bench/dev-loop/batch-10/studies/bike_sharing_hourly-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/pipeline.py", line 1110, in transform
+    Xt = transform.transform(Xt, **routed_params[name].transform)
+  File "/workspaces/mlcagent-experiments/bench/dev-loop/batch-10/studies/bike_sharing_hourly-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/utils/_set_output.py", line 327, in wrapped
+    data_to_wrap = f(self, X, *args, **kwargs)
+  File "/workspaces/mlcagent-experiments/bench/dev-loop/batch-10/studies/bike_sharing_hourly-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/compose/_column_transformer.py", line 1087, in transform
+    return self._hstack(list(Xs), n_samples=n_samples)
+           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspaces/mlcagent-experiments/bench/dev-loop/batch-10/studies/bike_sharing_hourly-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/compose/_column_transformer.py", line 1141, in _hstack
+    raise ValueError(
+    ...<5 lines>...
+    )
+ValueError: Concatenating DataFrames from the transformer's output lead to an inconsistent number of samples. The output may have Pandas Indexes that do not match, or that transformers are returning number of samples which are not the same as the number input samples.

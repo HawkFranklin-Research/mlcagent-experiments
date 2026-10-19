@@ -1,0 +1,3 @@
+train rows: 2603
+selector input columns: 8
+saved selector_all.pkl

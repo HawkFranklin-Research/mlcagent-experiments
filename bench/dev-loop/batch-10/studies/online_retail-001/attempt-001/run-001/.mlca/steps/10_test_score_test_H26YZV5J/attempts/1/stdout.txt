@@ -1,0 +1,2 @@
+selected=baseline, silhouette=0.9076
+test_rows=869, metric_sample=869

@@ -1,0 +1,4 @@
+train (29275, 14) val (9758, 14)
+features 13 primary roc_auc
+direction higher
+best alternative 0.9224782198332983

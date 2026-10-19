@@ -1,0 +1,5 @@
+train rows: 181
+val rows: 59
+pipeline: latest_model
+top feature: cp
+interpretation rows: 13

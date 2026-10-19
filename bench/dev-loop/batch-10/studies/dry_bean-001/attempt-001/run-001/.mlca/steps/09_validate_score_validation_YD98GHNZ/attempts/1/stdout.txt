@@ -1,0 +1,3 @@
+train (8124, 17) val (2707, 17)
+features 16
+best logistic roc_auc_ovr=0.9944

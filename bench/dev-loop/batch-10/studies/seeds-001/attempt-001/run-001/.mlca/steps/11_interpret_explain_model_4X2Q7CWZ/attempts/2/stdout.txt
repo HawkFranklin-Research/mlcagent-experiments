@@ -1,0 +1,5 @@
+train_rows=126 val_rows=42
+features=7 model_features=7
+model=Pipeline estimator=MLPRegressor
+reconstruction_error=1.3108262422253766e-31
+saved=interpretation.csv

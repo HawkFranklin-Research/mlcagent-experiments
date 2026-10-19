@@ -1,0 +1,2 @@
+train rows: 29275, features: 13
+positive label: >50K, positive rate: 0.2394

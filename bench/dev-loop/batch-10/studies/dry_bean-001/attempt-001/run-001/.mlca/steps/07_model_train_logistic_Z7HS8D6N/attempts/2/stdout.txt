@@ -1,0 +1,2 @@
+train rows=8124 feat_in=16 steps=['selector', 'clf']
+target=Class n_classes=7

@@ -1,0 +1,4 @@
+Total rows: 581012
+Target classes: 7
+Classes under 5%: 4 -> [4, 5, 6, 7]
+Saved target_counts.csv

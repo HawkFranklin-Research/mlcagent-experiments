@@ -1,0 +1,2 @@
+Placeholders in 3 columns: ['workclass', 'occupation', 'native-country']
+Fitted preprocessor; train shape (29275, 13), val encoded shape (9758, 98)

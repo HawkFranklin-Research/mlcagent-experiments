@@ -1,0 +1,5 @@
+Traceback (most recent call last):
+  File "/workspaces/mlcagent-experiments/bench/dev-loop/batch-10/studies/seeds-001/attempt-001/run-001/.mlca/steps/11_interpret_explain_model_4X2Q7CWZ/attempts/1/script.py", line 49, in <module>
+    model_features = list(getattr(latest_model, "feature_names_in_", feature_cols) or feature_cols)
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: The truth value of an array with more than one element is ambiguous. Use a.any() or a.all()

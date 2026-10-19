@@ -1,0 +1,1 @@
+feat_in=54 enc_out=54 k=20 selected=20 rows=348605

@@ -1,0 +1,11 @@
+Traceback (most recent call last):
+  File "/workspaces/mlcagent-experiments/bench/dev-loop/batch-10/studies/dry_bean-001/attempt-001/run-001/.mlca/steps/07_model_train_logistic_Z7HS8D6N/attempts/1/script.py", line 43, in <module>
+    steps.append(('clf', LogisticRegression(
+                         ~~~~~~~~~~~~~~~~~~^
+        C=1.0, class_weight='balanced', max_iter=2000, solver='lbfgs',
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        multi_class='auto' if hasattr(LogisticRegression(), 'multi_class') else None
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )))
+    ^
+TypeError: LogisticRegression.__init__() got an unexpected keyword argument 'multi_class'
