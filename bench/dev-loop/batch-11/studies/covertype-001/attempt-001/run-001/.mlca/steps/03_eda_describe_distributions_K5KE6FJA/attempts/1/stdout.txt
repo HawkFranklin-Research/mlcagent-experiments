@@ -1,0 +1,3 @@
+Placeholders [] in 0 text columns
+Saved distributions.csv rows=50
+n_numeric=50 n_categorical=0

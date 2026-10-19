@@ -1,0 +1,2 @@
+train rows=10000 val rows=10000
+scoring=roc_auc_ovr top_feature=Elevation

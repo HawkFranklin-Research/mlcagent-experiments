@@ -1,0 +1,2 @@
+Validation rows: 59
+Best model: logistic_AGQDNKZV with roc_auc = 0.9051

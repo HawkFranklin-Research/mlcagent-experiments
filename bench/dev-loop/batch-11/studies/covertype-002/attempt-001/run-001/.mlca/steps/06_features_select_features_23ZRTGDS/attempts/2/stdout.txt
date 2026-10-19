@@ -1,0 +1,2 @@
+n_feature_cols=54 preproc_out=54 k=20
+selected_sample_shape=(5, 20)

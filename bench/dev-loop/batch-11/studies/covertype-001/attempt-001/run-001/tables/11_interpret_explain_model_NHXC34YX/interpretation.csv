@@ -1,0 +1,16 @@
+feature,importance_mean,importance_sd
+Elevation,0.3015,0.004576
+Horizontal_Distance_To_Fire_Points,0.04758,0.002955
+Horizontal_Distance_To_Roadways,0.0365,0.003374
+Horizontal_Distance_To_Hydrology,0.02017,0.002877
+Wilderness_Area1,0.01804,0.00098
+Hillshade_9am,0.01651,0.002578
+Wilderness_Area4,0.0165,0.001847
+Wilderness_Area3,0.01132,0.00262
+Hillshade_Noon,0.01029,0.001066
+Slope,0.003833,0.002552
+Soil_Type22,0.002229,0.0002255
+Soil_Type4,0.002167,8.35e-05
+Soil_Type23,0.001991,0.0001555
+Soil_Type2,0.00178,8.288e-05
+Soil_Type12,0.001671,0.0007014

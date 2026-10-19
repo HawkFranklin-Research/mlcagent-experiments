@@ -1,0 +1,167 @@
+/workspaces/mlcagent-experiments/bench/dev-loop/batch-11/studies/covertype-002/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/joblib/externals/loky/backend/utils.py:63: UserWarning: Failed to kill subprocesses on this platform. Please installpsutil: https://github.com/giampaolo/psutil
+Details:
+Traceback (most recent call last):
+  File "/workspaces/mlcagent-experiments/bench/dev-loop/batch-11/studies/covertype-002/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/joblib/externals/loky/backend/utils.py", line 60, in _kill_process_tree_without_psutil
+    _posix_recursive_kill(process.pid)
+    ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/workspaces/mlcagent-experiments/bench/dev-loop/batch-11/studies/covertype-002/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/joblib/externals/loky/backend/utils.py", line 113, in _posix_recursive_kill
+    children_pids = subprocess.check_output(
+        ["pgrep", "-P", str(pid)], stderr=None, text=True
+    )
+  File "/home/codespace/.local/share/uv/python/cpython-3.13.12-linux-x86_64-gnu/lib/python3.13/subprocess.py", line 472, in check_output
+    return run(*popenargs, stdout=PIPE, timeout=timeout, check=True,
+           ~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+               **kwargs).stdout
+               ^^^^^^^^^
+  File "/home/codespace/.local/share/uv/python/cpython-3.13.12-linux-x86_64-gnu/lib/python3.13/subprocess.py", line 554, in run
+    with Popen(*popenargs, **kwargs) as process:
+         ~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/codespace/.local/share/uv/python/cpython-3.13.12-linux-x86_64-gnu/lib/python3.13/subprocess.py", line 1039, in __init__
+    self._execute_child(args, executable, preexec_fn, close_fds,
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                        pass_fds, cwd, env,
+                        ^^^^^^^^^^^^^^^^^^^
+    ...<5 lines>...
+                        gid, gids, uid, umask,
+                        ^^^^^^^^^^^^^^^^^^^^^^
+                        start_new_session, process_group)
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/codespace/.local/share/uv/python/cpython-3.13.12-linux-x86_64-gnu/lib/python3.13/subprocess.py", line 1859, in _execute_child
+    sys.audit("subprocess.Popen", executable, args, cwd, env)
+    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspaces/mlcagent-experiments/bench/dev-loop/batch-11/studies/covertype-002/attempt-001/run-001/.mlca/steps/11_interpret_explain_model_N4706MA8/attempts/1/hooks/sitecustomize.py", line 25, in guard
+    raise PermissionError("MLCA blocked child process creation")
+PermissionError: MLCA blocked child process creation
+
+  warnings.warn(
+Exception in thread ExecutorManagerThread:
+Traceback (most recent call last):
+  File "/workspaces/mlcagent-experiments/bench/dev-loop/batch-11/studies/covertype-002/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/joblib/externals/loky/backend/utils.py", line 60, in _kill_process_tree_without_psutil
+    _posix_recursive_kill(process.pid)
+    ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/workspaces/mlcagent-experiments/bench/dev-loop/batch-11/studies/covertype-002/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/joblib/externals/loky/backend/utils.py", line 113, in _posix_recursive_kill
+    children_pids = subprocess.check_output(
+        ["pgrep", "-P", str(pid)], stderr=None, text=True
+    )
+  File "/home/codespace/.local/share/uv/python/cpython-3.13.12-linux-x86_64-gnu/lib/python3.13/subprocess.py", line 472, in check_output
+    return run(*popenargs, stdout=PIPE, timeout=timeout, check=True,
+           ~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+               **kwargs).stdout
+               ^^^^^^^^^
+  File "/home/codespace/.local/share/uv/python/cpython-3.13.12-linux-x86_64-gnu/lib/python3.13/subprocess.py", line 554, in run
+    with Popen(*popenargs, **kwargs) as process:
+         ~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/codespace/.local/share/uv/python/cpython-3.13.12-linux-x86_64-gnu/lib/python3.13/subprocess.py", line 1039, in __init__
+    self._execute_child(args, executable, preexec_fn, close_fds,
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                        pass_fds, cwd, env,
+                        ^^^^^^^^^^^^^^^^^^^
+    ...<5 lines>...
+                        gid, gids, uid, umask,
+                        ^^^^^^^^^^^^^^^^^^^^^^
+                        start_new_session, process_group)
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/codespace/.local/share/uv/python/cpython-3.13.12-linux-x86_64-gnu/lib/python3.13/subprocess.py", line 1859, in _execute_child
+    sys.audit("subprocess.Popen", executable, args, cwd, env)
+    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspaces/mlcagent-experiments/bench/dev-loop/batch-11/studies/covertype-002/attempt-001/run-001/.mlca/steps/11_interpret_explain_model_N4706MA8/attempts/1/hooks/sitecustomize.py", line 25, in guard
+    raise PermissionError("MLCA blocked child process creation")
+PermissionError: MLCA blocked child process creation
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/codespace/.local/share/uv/python/cpython-3.13.12-linux-x86_64-gnu/lib/python3.13/threading.py", line 1044, in _bootstrap_inner
+    self.run()
+    ~~~~~~~~^^
+  File "/workspaces/mlcagent-experiments/bench/dev-loop/batch-11/studies/covertype-002/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/joblib/externals/loky/process_executor.py", line 635, in run
+    self.flag_executor_shutting_down()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/workspaces/mlcagent-experiments/bench/dev-loop/batch-11/studies/covertype-002/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/joblib/externals/loky/process_executor.py", line 868, in flag_executor_shutting_down
+    self.kill_workers(reason="executor shutting down")
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspaces/mlcagent-experiments/bench/dev-loop/batch-11/studies/covertype-002/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/joblib/externals/loky/process_executor.py", line 878, in kill_workers
+    kill_process_tree(p)
+    ~~~~~~~~~~~~~~~~~^^^
+  File "/workspaces/mlcagent-experiments/bench/dev-loop/batch-11/studies/covertype-002/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/joblib/externals/loky/backend/utils.py", line 21, in kill_process_tree
+    _kill_process_tree_without_psutil(process)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/workspaces/mlcagent-experiments/bench/dev-loop/batch-11/studies/covertype-002/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/joblib/externals/loky/backend/utils.py", line 73, in _kill_process_tree_without_psutil
+    process.kill()
+    ~~~~~~~~~~~~^^
+  File "/home/codespace/.local/share/uv/python/cpython-3.13.12-linux-x86_64-gnu/lib/python3.13/multiprocessing/process.py", line 140, in kill
+    self._popen.kill()
+    ^^^^^^^^^^^^^^^^
+AttributeError: 'Popen' object has no attribute 'kill'
+joblib.externals.loky.process_executor._RemoteTraceback: 
+"""
+Traceback (most recent call last):
+  File "/workspaces/mlcagent-experiments/bench/dev-loop/batch-11/studies/covertype-002/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/joblib/externals/loky/backend/queues.py", line 159, in _feed
+    obj_ = dumps(obj, reducers=reducers)
+  File "/workspaces/mlcagent-experiments/bench/dev-loop/batch-11/studies/covertype-002/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/joblib/externals/loky/backend/reduction.py", line 214, in dumps
+    dump(obj, buf, reducers=reducers, protocol=protocol)
+    ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspaces/mlcagent-experiments/bench/dev-loop/batch-11/studies/covertype-002/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/joblib/externals/loky/backend/reduction.py", line 207, in dump
+    _LokyPickler(file, reducers=reducers, protocol=protocol).dump(obj)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "/workspaces/mlcagent-experiments/bench/dev-loop/batch-11/studies/covertype-002/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/cloudpickle/cloudpickle.py", line 1313, in dump
+    return super().dump(obj)
+           ~~~~~~~~~~~~^^^^^
+  File "/workspaces/mlcagent-experiments/bench/dev-loop/batch-11/studies/covertype-002/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/joblib/_memmapping_reducer.py", line 497, in __call__
+    for dumped_filename in dump(a, filename):
+                           ~~~~^^^^^^^^^^^^^
+  File "/workspaces/mlcagent-experiments/bench/dev-loop/batch-11/studies/covertype-002/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/joblib/numpy_pickle.py", line 605, in dump
+    with open(filename, "wb") as f:
+         ~~~~^^^^^^^^^^^^^^^^
+  File "/workspaces/mlcagent-experiments/bench/dev-loop/batch-11/studies/covertype-002/attempt-001/run-001/.mlca/steps/11_interpret_explain_model_N4706MA8/attempts/1/hooks/sitecustomize.py", line 23, in guard
+    raise PermissionError("MLCA blocked an undeclared file access")
+PermissionError: MLCA blocked an undeclared file access
+"""
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/workspaces/mlcagent-experiments/bench/dev-loop/batch-11/studies/covertype-002/attempt-001/run-001/.mlca/steps/11_interpret_explain_model_N4706MA8/attempts/1/script.py", line 96, in <module>
+    res = permutation_importance(
+        model, X, y, scoring=scoring, n_repeats=20, random_state=seed, n_jobs=-1
+    )
+  File "/workspaces/mlcagent-experiments/bench/dev-loop/batch-11/studies/covertype-002/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/utils/_param_validation.py", line 218, in wrapper
+    return func(*args, **kwargs)
+  File "/workspaces/mlcagent-experiments/bench/dev-loop/batch-11/studies/covertype-002/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/inspection/_permutation_importance.py", line 288, in permutation_importance
+    scores = Parallel(n_jobs=n_jobs)(
+        delayed(_calculate_permutation_scores)(
+    ...<10 lines>...
+        for col_idx in range(X.shape[1])
+    )
+  File "/workspaces/mlcagent-experiments/bench/dev-loop/batch-11/studies/covertype-002/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/utils/parallel.py", line 91, in __call__
+    return super().__call__(iterable_with_config_and_warning_filters)
+           ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspaces/mlcagent-experiments/bench/dev-loop/batch-11/studies/covertype-002/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/joblib/parallel.py", line 2098, in __call__
+    return output if self.return_generator else list(output)
+                                                ~~~~^^^^^^^^
+  File "/workspaces/mlcagent-experiments/bench/dev-loop/batch-11/studies/covertype-002/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/joblib/parallel.py", line 1704, in _get_outputs
+    yield from self._retrieve()
+  File "/workspaces/mlcagent-experiments/bench/dev-loop/batch-11/studies/covertype-002/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/joblib/parallel.py", line 1806, in _retrieve
+    self._raise_error_fast()
+    ~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/workspaces/mlcagent-experiments/bench/dev-loop/batch-11/studies/covertype-002/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/joblib/parallel.py", line 1885, in _raise_error_fast
+    error_job.get_result(self.timeout)
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "/workspaces/mlcagent-experiments/bench/dev-loop/batch-11/studies/covertype-002/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/joblib/parallel.py", line 780, in get_result
+    return self._return_or_raise()
+           ~~~~~~~~~~~~~~~~~~~~~^^
+  File "/workspaces/mlcagent-experiments/bench/dev-loop/batch-11/studies/covertype-002/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/joblib/parallel.py", line 795, in _return_or_raise
+    raise self._result
+_pickle.PicklingError: Could not pickle the task to send it to the workers.
+/workspaces/mlcagent-experiments/bench/dev-loop/batch-11/studies/covertype-002/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/joblib/_memmapping_reducer.py:661: UserWarning: Failed to delete temporary folder: /dev/shm/joblib_memmapping_folder_2_8df0c72f6ba545ef867f328f36ff6b13_35cd9390f9d1482392ba5e5809478ccf
+  warnings.warn(
+/workspaces/mlcagent-experiments/bench/dev-loop/batch-11/studies/covertype-002/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/joblib/_memmapping_reducer.py:661: UserWarning: Failed to delete temporary folder: /dev/shm/joblib_memmapping_folder_2_8df0c72f6ba545ef867f328f36ff6b13_04ff0515c0394ccc9651907cba488b7f
+  warnings.warn(
+/workspaces/mlcagent-experiments/bench/dev-loop/batch-11/studies/covertype-002/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/joblib/externals/loky/backend/resource_tracker.py:444: UserWarning: resource_tracker: There appear to be 1 leaked file objects to clean up at shutdown: {'/dev/shm/joblib_memmapping_folder_2_8df0c72f6ba545ef867f328f36ff6b13_35cd9390f9d1482392ba5e5809478ccf/2-130064861756928-0336ae795c6746b3901986463c32a7af.pkl': 5}
+  warnings.warn(
+/workspaces/mlcagent-experiments/bench/dev-loop/batch-11/studies/covertype-002/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/joblib/externals/loky/backend/resource_tracker.py:444: UserWarning: resource_tracker: There appear to be 2 leaked folder objects to clean up at shutdown: {'/dev/shm/joblib_memmapping_folder_2_8df0c72f6ba545ef867f328f36ff6b13_04ff0515c0394ccc9651907cba488b7f': 1, '/dev/shm/joblib_memmapping_folder_2_8df0c72f6ba545ef867f328f36ff6b13_35cd9390f9d1482392ba5e5809478ccf': 1}
+  warnings.warn(
+/workspaces/mlcagent-experiments/bench/dev-loop/batch-11/studies/covertype-002/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/joblib/externals/loky/backend/resource_tracker.py:468: UserWarning: resource_tracker: /dev/shm/joblib_memmapping_folder_2_8df0c72f6ba545ef867f328f36ff6b13_04ff0515c0394ccc9651907cba488b7f: PermissionError('MLCA blocked an undeclared file access')
+  warnings.warn('resource_tracker: %s: %r' % (name, e))
+/workspaces/mlcagent-experiments/bench/dev-loop/batch-11/studies/covertype-002/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/joblib/externals/loky/backend/resource_tracker.py:468: UserWarning: resource_tracker: /dev/shm/joblib_memmapping_folder_2_8df0c72f6ba545ef867f328f36ff6b13_35cd9390f9d1482392ba5e5809478ccf: PermissionError('MLCA blocked an undeclared file access')
+  warnings.warn('resource_tracker: %s: %r' % (name, e))

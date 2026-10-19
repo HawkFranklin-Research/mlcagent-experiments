@@ -1,0 +1,5 @@
+Traceback (most recent call last):
+  File "/workspaces/mlcagent-experiments/bench/dev-loop/batch-11/studies/heart_disease_cleveland-001/attempt-001/run-001/.mlca/steps/06_features_select_features_TEGHQMDA/attempts/1/script.py", line 60, in <module>
+    ('select', SelectKBest(mutual_info_classif, k=k, random_state=42)),
+               ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: SelectKBest.__init__() got an unexpected keyword argument 'random_state'

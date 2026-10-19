@@ -1,0 +1,3 @@
+n_features: 13
+pre: ColumnTransformer []
+saved selector.pkl (fit_cols=13)

@@ -1,0 +1,31 @@
+train rows=10000 val rows=10000
+
+
+--------------------------------------------------------------------------------
+LokyProcess-1 failed with traceback: 
+--------------------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspaces/mlcagent-experiments/bench/dev-loop/batch-11/studies/covertype-002/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/joblib/externals/loky/backend/popen_loky_posix.py", line 176, in <module>
+    process_obj = pickle.load(from_parent)
+  File "/workspaces/mlcagent-experiments/bench/dev-loop/batch-11/studies/covertype-002/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/joblib/externals/loky/backend/synchronize.py", line 131, in __setstate__
+    self._semlock = _SemLock._rebuild(*state)
+                    ~~~~~~~~~~~~~~~~~^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory
+
+
+--------------------------------------------------------------------------------
+
+
+--------------------------------------------------------------------------------
+LokyProcess-2 failed with traceback: 
+--------------------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspaces/mlcagent-experiments/bench/dev-loop/batch-11/studies/covertype-002/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/joblib/externals/loky/backend/popen_loky_posix.py", line 176, in <module>
+    process_obj = pickle.load(from_parent)
+  File "/workspaces/mlcagent-experiments/bench/dev-loop/batch-11/studies/covertype-002/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/joblib/externals/loky/backend/synchronize.py", line 131, in __setstate__
+    self._semlock = _SemLock._rebuild(*state)
+                    ~~~~~~~~~~~~~~~~~^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory
+
+
+--------------------------------------------------------------------------------

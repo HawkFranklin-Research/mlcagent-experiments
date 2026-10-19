@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "/workspaces/mlcagent-experiments/bench/dev-loop/batch-11/studies/covertype-002/attempt-001/run-001/.mlca/steps/03_eda_describe_distributions_NTKCXXHY/attempts/1/script.py", line 68, in <module>
+    stacked = df[cols].stack(dropna=False)
+  File "/workspaces/mlcagent-experiments/bench/dev-loop/batch-11/studies/covertype-002/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/pandas/core/frame.py", line 11352, in stack
+    raise ValueError(
+    ...<3 lines>...
+    )
+ValueError: dropna must be unspecified as the new implementation does not introduce rows of NA values. This argument will be removed in a future version of pandas.

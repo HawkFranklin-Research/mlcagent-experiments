@@ -1,0 +1,4 @@
+train rows=10000 val rows=10000
+features=54 scoring=roc_auc_ovr
+pipeline=Pipeline
+top_feature=Elevation

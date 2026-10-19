@@ -1,0 +1,2 @@
+rows=348605 features=54
+saved=alternative_model.pkl

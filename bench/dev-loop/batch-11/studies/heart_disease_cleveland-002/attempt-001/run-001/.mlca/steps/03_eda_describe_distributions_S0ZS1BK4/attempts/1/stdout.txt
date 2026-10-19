@@ -1,0 +1,2 @@
+features=13 numeric=5 categorical=8
+distribution rows=39 groups=['overall', 'heart_disease_binary=0', 'heart_disease_binary=1']
