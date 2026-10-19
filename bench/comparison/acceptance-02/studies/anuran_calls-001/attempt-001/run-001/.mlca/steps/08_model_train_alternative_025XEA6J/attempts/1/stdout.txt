@@ -1,0 +1,4 @@
+train rows 4293 features 22 targets 3
+encoded width 22 dense True
+dropped non-modeled columns 0
+saved alternative_model.pkl

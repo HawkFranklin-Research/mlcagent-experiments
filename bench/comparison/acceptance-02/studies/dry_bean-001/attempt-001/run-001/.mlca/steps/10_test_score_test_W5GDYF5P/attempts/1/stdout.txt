@@ -1,0 +1,2 @@
+test rows=2712 features=16 selected=07
+roc_auc_ovr=0.9948 CI=(0.9935,0.9958)

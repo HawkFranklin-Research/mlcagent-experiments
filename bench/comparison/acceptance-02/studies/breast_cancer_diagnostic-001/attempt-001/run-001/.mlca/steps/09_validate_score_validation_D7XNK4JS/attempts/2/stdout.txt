@@ -1,0 +1,4 @@
+train (341, 31) val (113, 31)
+features 30 metric roc_auc
+best logistic roc_auc 0.9896
+saved validation_metrics.csv

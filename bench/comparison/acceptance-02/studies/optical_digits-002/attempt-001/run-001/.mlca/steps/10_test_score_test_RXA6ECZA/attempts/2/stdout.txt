@@ -1,0 +1,4 @@
+features: 64
+val: {'baseline': 0.4589, 'alternative': 1.0318}
+best: baseline
+test reconstruction_error: 0.4697  emb_dim: 8

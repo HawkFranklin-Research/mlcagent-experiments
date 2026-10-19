@@ -1,0 +1,1 @@
+summary rows=14 numeric=13 categorical=1

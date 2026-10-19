@@ -1,0 +1,16 @@
+feature,importance_mean,importance_sd
+area2,0.0105,0.0064
+radius2,0.0088,0.0056
+concave_points3,0.0044,0.0042
+smoothness3,0.0041,0.0033
+texture3,0.0029,0.0025
+radius3,0.002,0.0026
+area3,0.0018,0.0022
+compactness1,0.0016,0.0021
+perimeter2,0.0014,0.0013
+texture1,0.0009,0.0015
+concave_points1,0.0008,0.0021
+perimeter3,0.0007,0.0021
+concave_points2,0.0005,0.0016
+area1,0.0001,0.0011
+symmetry2,0.0,0.0

@@ -1,0 +1,4 @@
+train rows=3372 features=64
+processed_dim=64
+train reconstruction_error=0.3209
+val reconstruction_error=0.3315

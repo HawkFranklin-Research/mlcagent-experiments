@@ -1,0 +1,10 @@
+/workspaces/mlcagent-experiments/bench/comparison/acceptance-02/studies/dry_bean-003/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/joblib/_memmapping_reducer.py:661: UserWarning: Failed to delete temporary folder: /dev/shm/joblib_memmapping_folder_2_f59131c1616440589b04b1cc51e3a858_e55ff47b69f54c2c9c6e9f0e2ae6b300
+  warnings.warn(
+/workspaces/mlcagent-experiments/bench/comparison/acceptance-02/studies/dry_bean-003/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/joblib/_memmapping_reducer.py:661: UserWarning: Failed to delete temporary folder: /dev/shm/joblib_memmapping_folder_2_f59131c1616440589b04b1cc51e3a858_8db7a284d76b4d6494c11e05ccbc0857
+  warnings.warn(
+/workspaces/mlcagent-experiments/bench/comparison/acceptance-02/studies/dry_bean-003/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/joblib/externals/loky/backend/resource_tracker.py:444: UserWarning: resource_tracker: There appear to be 2 leaked folder objects to clean up at shutdown: {'/dev/shm/joblib_memmapping_folder_2_f59131c1616440589b04b1cc51e3a858_8db7a284d76b4d6494c11e05ccbc0857': 1, '/dev/shm/joblib_memmapping_folder_2_f59131c1616440589b04b1cc51e3a858_e55ff47b69f54c2c9c6e9f0e2ae6b300': 1}
+  warnings.warn(
+/workspaces/mlcagent-experiments/bench/comparison/acceptance-02/studies/dry_bean-003/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/joblib/externals/loky/backend/resource_tracker.py:468: UserWarning: resource_tracker: /dev/shm/joblib_memmapping_folder_2_f59131c1616440589b04b1cc51e3a858_8db7a284d76b4d6494c11e05ccbc0857: PermissionError('MLCA blocked an undeclared file access')
+  warnings.warn('resource_tracker: %s: %r' % (name, e))
+/workspaces/mlcagent-experiments/bench/comparison/acceptance-02/studies/dry_bean-003/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/joblib/externals/loky/backend/resource_tracker.py:468: UserWarning: resource_tracker: /dev/shm/joblib_memmapping_folder_2_f59131c1616440589b04b1cc51e3a858_e55ff47b69f54c2c9c6e9f0e2ae6b300: PermissionError('MLCA blocked an undeclared file access')
+  warnings.warn('resource_tracker: %s: %r' % (name, e))

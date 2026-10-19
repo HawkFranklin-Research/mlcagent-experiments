@@ -1,0 +1,3 @@
+shape: 569 x 31
+missing total: 0
+columns with missing: 0

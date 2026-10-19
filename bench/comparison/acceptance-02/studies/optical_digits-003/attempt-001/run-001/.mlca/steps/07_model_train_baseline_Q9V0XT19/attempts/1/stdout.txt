@@ -1,0 +1,2 @@
+features=64 train=(3372, 64) val=(1124, 64)
+n_components=8 val_reconstruction_error(pre-PCA space)=0.458891

@@ -1,0 +1,45 @@
+column,kind,mean,sd,min,median,max,n_missing,n_levels,top_share,target,klass,share
+MFCCs_ 1,numeric,0.9899,0.069,-0.2512,1.0,1.0,0.0,,,,,
+MFCCs_ 2,numeric,0.3236,0.2187,-0.673,0.3022,1.0,0.0,,,,,
+MFCCs_ 3,numeric,0.3112,0.2635,-0.436,0.2746,1.0,0.0,,,,,
+MFCCs_ 4,numeric,0.446,0.1603,-0.4727,0.4815,1.0,0.0,,,,,
+MFCCs_ 5,numeric,0.127,0.1627,-0.636,0.1614,0.7522,0.0,,,,,
+MFCCs_ 6,numeric,0.0979,0.1204,-0.4104,0.0721,0.9642,0.0,,,,,
+MFCCs_ 7,numeric,-0.0014,0.1714,-0.539,-0.0526,1.0,0.0,,,,,
+MFCCs_ 8,numeric,-0.0004,0.1163,-0.5765,0.0133,0.5518,0.0,,,,,
+MFCCs_ 9,numeric,0.1282,0.179,-0.5873,0.1893,0.738,0.0,,,,,
+MFCCs_10,numeric,0.056,0.1271,-0.9523,0.0635,0.5228,0.0,,,,,
+MFCCs_11,numeric,-0.1157,0.1868,-0.902,-0.1533,0.523,0.0,,,,,
+MFCCs_12,numeric,0.0434,0.156,-0.7994,0.0511,0.6909,0.0,,,,,
+MFCCs_13,numeric,0.1509,0.2069,-0.6441,0.1969,0.9457,0.0,,,,,
+MFCCs_14,numeric,-0.0392,0.1525,-0.5904,-0.0507,0.5757,0.0,,,,,
+MFCCs_15,numeric,-0.1017,0.1876,-0.7172,-0.1433,0.6689,0.0,,,,,
+MFCCs_16,numeric,0.0421,0.1199,-0.4987,0.0411,0.6707,0.0,,,,,
+MFCCs_17,numeric,0.0887,0.1381,-0.4215,0.1128,0.6812,0.0,,,,,
+MFCCs_18,numeric,0.0078,0.0847,-0.7593,0.0118,0.6141,0.0,,,,,
+MFCCs_19,numeric,-0.0495,0.0825,-0.6807,-0.0526,0.5742,0.0,,,,,
+MFCCs_20,numeric,-0.0532,0.0942,-0.3616,-0.0552,0.4678,0.0,,,,,
+MFCCs_21,numeric,0.0373,0.0795,-0.4308,0.0313,0.3898,0.0,,,,,
+MFCCs_22,numeric,0.0876,0.1234,-0.3793,0.1054,0.4322,0.0,,,,,
+Family,target_share,,,,,,,,,Family,Leptodactylidae,0.6143
+Family,target_share,,,,,,,,,Family,Hylidae,0.3009
+Family,target_share,,,,,,,,,Family,Dendrobatidae,0.0753
+Family,target_share,,,,,,,,,Family,Bufonidae,0.0095
+Genus,target_share,,,,,,,,,Genus,Adenomera,0.5768
+Genus,target_share,,,,,,,,,Genus,Hypsiboas,0.2214
+Genus,target_share,,,,,,,,,Genus,Ameerega,0.0753
+Genus,target_share,,,,,,,,,Genus,Dendropsophus,0.0431
+Genus,target_share,,,,,,,,,Genus,Leptodactylus,0.0375
+Genus,target_share,,,,,,,,,Genus,Scinax,0.0206
+Genus,target_share,,,,,,,,,Genus,Osteocephalus,0.0158
+Genus,target_share,,,,,,,,,Genus,Rhinella,0.0095
+Species,target_share,,,,,,,,,Species,AdenomeraHylaedactylus,0.4834
+Species,target_share,,,,,,,,,Species,HypsiboasCordobae,0.1558
+Species,target_share,,,,,,,,,Species,AdenomeraAndre,0.0934
+Species,target_share,,,,,,,,,Species,Ameeregatrivittata,0.0753
+Species,target_share,,,,,,,,,Species,HypsiboasCinerascens,0.0656
+Species,target_share,,,,,,,,,Species,HylaMinuta,0.0431
+Species,target_share,,,,,,,,,Species,LeptodactylusFuscus,0.0375
+Species,target_share,,,,,,,,,Species,ScinaxRuber,0.0206
+Species,target_share,,,,,,,,,Species,OsteocephalusOophagus,0.0158
+Species,target_share,,,,,,,,,Species,Rhinellagranulosa,0.0095

@@ -1,0 +1,4 @@
+train rows=2506 candidate features=8
+placeholders: none
+excluded derivations: none
+preprocessor numeric=7 categorical=1

@@ -1,0 +1,2 @@
+features=64 val_rows=1124
+best=MLPRegressor reconstruction_error=0.350593

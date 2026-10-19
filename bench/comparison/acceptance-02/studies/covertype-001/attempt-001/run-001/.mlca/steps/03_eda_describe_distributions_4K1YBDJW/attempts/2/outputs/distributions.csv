@@ -1,0 +1,14 @@
+column,kind,target_class,n_columns,mean,sd,min,median,max,n_missing,n_levels,top_share
+Elevation,numeric,all,1,2959.0,280.0,1859.0,2996.0,3858.0,0.0,,
+Aspect,numeric,all,1,155.7,111.9,0.0,127.0,360.0,0.0,,
+Slope,numeric,all,1,14.1,7.488,0.0,13.0,66.0,0.0,,
+Horizontal_Distance_To_Hydrology,numeric,all,1,269.4,212.5,0.0,218.0,1397.0,0.0,,
+Vertical_Distance_To_Hydrology,numeric,all,1,46.42,58.3,-173.0,30.0,601.0,0.0,,
+Horizontal_Distance_To_Roadways,numeric,all,1,2350.0,1559.0,0.0,1997.0,7117.0,0.0,,
+Hillshade_9am,numeric,all,1,212.1,26.77,0.0,218.0,254.0,0.0,,
+Hillshade_Noon,numeric,all,1,223.3,19.77,0.0,226.0,254.0,0.0,,
+Hillshade_3pm,numeric,all,1,142.5,38.27,0.0,143.0,254.0,0.0,,
+Horizontal_Distance_To_Fire_Points,numeric,all,1,1980.0,1324.0,0.0,1710.0,7173.0,0.0,,
+Wilderness_Area_binary_group,numeric,all,4,0.25,0.3646,0.0,0.0,1.0,0.0,,
+Soil_Type_binary_group,numeric,all,40,0.025,0.1191,0.0,0.0,1.0,0.0,,
+Cover_Type,categorical,all,1,,,,,,0.0,7.0,0.4876

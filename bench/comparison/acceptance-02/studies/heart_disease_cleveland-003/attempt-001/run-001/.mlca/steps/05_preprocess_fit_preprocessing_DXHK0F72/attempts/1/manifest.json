@@ -1,0 +1,1 @@
+{"facts": [], "fits": [{"columns": ["age", "sex", "trestbps", "chol", "fbs", "thalach", "exang", "oldpeak", "ca", "thal", "cp", "restecg", "slope"], "estimator": "ColumnTransformer", "index_sha256": "461a852b69cb2cadc3b4681e10850612fa1ddba558cb2dc4a67345fa828f7887", "partition": "train"}], "metrics": [], "outputs": [{"caption": "", "kind": "model", "name": "preprocessor.pkl"}]}

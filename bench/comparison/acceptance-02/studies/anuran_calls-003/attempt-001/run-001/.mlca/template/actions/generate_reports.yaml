@@ -1,0 +1,23 @@
+id: generate_reports
+event: report
+title: Generate methods, provenance and usage reports
+params: {}
+prompt: 'Do: engine report generation from the event log.
+
+  Save: report_index.json.
+
+  '
+inputs:
+- ref: train
+- ref: val
+- ref: prior_outputs
+outputs:
+- name: report_index.json
+  kind: report
+  required: true
+fact_candidates: []
+reads_test: false
+timeout_s: 300
+methods_text: Follow the recorded task and saved model contract; all fitting uses
+  training rows only.
+builtin: report

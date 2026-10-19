@@ -1,0 +1,4 @@
+train rows=8124 val rows=2707
+features=16 models=['logistic', 'alternative']
+best=logistic roc_auc_ovr=0.9944
+wrote validation_metrics.csv

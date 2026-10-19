@@ -1,0 +1,3 @@
+Placeholders none in 0 text columns
+features=7 saved=7 numeric=7 categorical=0
+rows=210 cols=7

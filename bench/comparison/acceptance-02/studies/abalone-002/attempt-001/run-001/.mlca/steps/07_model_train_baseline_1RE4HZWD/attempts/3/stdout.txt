@@ -1,0 +1,3 @@
+Val RMSE mean: 2.2186
+Saved model.pkl
+Features: 8  num=7  cat=1

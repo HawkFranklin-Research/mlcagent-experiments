@@ -1,0 +1,32 @@
+id: preprocess
+title: Preprocess
+goal: Fit imputation, encoding and scaling on training rows only.
+gate:
+- event_done: split
+subgoals:
+- id: outputs_recorded
+  text: Preprocessing pipeline saved
+  check:
+    type: output_exists
+    action: fit_preprocessing
+    output: preprocessor.pkl
+- id: fit_verified
+  text: Every fit used the frozen training rows
+  check:
+    type: fit_on_train_only
+actions:
+- fit_preprocessing
+- audit_preprocessing
+default_options:
+- fit_preprocessing
+done_when: all_subgoals
+custom_scope:
+  description: Preprocessing choices fitted on training rows. No model training.
+  deny_patterns:
+  - (?i)\b(train|fit)\b.*\bmodel\b
+  - (?i)\btest (set|split|partition)\b
+  readable_inputs:
+  - train
+  - val
+  - prior_outputs
+max_options: 3

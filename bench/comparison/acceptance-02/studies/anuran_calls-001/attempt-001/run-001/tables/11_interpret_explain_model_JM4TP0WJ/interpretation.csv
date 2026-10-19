@@ -1,0 +1,16 @@
+aspect,detail,text_value,numeric_value,source
+Model,baseline_pipeline_steps,"['selector', 'clf']",,07_model_train_baseline_R0Q02H91/model.pkl
+Model,alternative_pipeline_steps,"['preprocess', 'clf']",,08_model_train_alternative_025XEA6J/alternative_model.pkl
+Model,preprocessor_steps,[],,05_preprocess_fit_preprocessing_WHDXCN7B/preprocessor.pkl
+Model,selector_steps,[],,06_features_retain_features_J1HGBJXK/selector_all.pkl
+Inputs,n_train_rows,,4293.0,train
+Inputs,n_val_rows,,1709.0,val
+Inputs,n_features,,22.0,train
+Inputs,targets,"['Family', 'Genus', 'Species']",,_protocol
+Inputs,group_column,RecordID,,_protocol
+Inputs,excluded_columns,[],,_protocol
+Validation,macro_f1,,0.4415,09_validate_score_validation_Z1N606V7/validation_metrics.csv
+Validation,metric_reason,Multilabel workflow default metric is used; no numeric-outcome override applies.,,_protocol
+Limitations,no_fitting_during_interpretation,true,,script
+Top feature,name,MFCCs_19,,interpretation.csv
+Top feature,importance,,0.1064,interpretation.csv

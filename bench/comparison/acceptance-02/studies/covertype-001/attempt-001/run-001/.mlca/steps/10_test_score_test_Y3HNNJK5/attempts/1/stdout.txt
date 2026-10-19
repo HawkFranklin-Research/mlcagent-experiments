@@ -1,0 +1,4 @@
+test rows=116207
+selected=alternative
+features=54
+roc_auc_ovr=0.9480 ci=[0.9445,0.9512]

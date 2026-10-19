@@ -1,0 +1,3 @@
+train rows=29275, features=12
+steps=['selector', 'clf']
+saved model.pkl

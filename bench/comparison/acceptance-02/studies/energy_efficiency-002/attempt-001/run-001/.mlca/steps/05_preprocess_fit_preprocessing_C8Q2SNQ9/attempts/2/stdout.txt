@@ -1,0 +1,4 @@
+rows=460 numeric=8 categorical=0 encoded_width=8
+placeholder tokens found in 0 columns: []
+excluded features: none
+correlation warnings (>=0.98, kept): none

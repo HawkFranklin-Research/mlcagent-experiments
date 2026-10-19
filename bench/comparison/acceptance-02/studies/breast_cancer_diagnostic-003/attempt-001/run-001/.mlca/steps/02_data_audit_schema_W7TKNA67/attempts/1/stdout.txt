@@ -1,0 +1,3 @@
+rows=569 cols=31
+missing_total=0
+targets=['Diagnosis']

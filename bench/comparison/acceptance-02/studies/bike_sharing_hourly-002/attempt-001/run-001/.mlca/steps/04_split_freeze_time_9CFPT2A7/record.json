@@ -1,0 +1,1 @@
+{"facts":[],"figures":[],"fits":[],"metrics":[],"outputs":[{"caption":"","kind":"report","name":"split.json","path":".mlca/steps/04_split_freeze_time_9CFPT2A7/outputs/split.json","sha256":"95f24a25dc81b7315f4e562750db283a7cf26fe635fa839d67dc978c4bfd629c","size":1148}],"step_id":"04_split_freeze_time_9CFPT2A7","wall_time_s":6.335395891999724}

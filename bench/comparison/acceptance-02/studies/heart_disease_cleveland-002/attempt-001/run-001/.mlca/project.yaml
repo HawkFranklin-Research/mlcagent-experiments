@@ -1,0 +1,50 @@
+project_id: 01M58GDPWASDBA0984C9P9VV5A
+template_id: multilabel_classification
+template_version: 0.1.0
+template_sha256: e3225afe740f8c650a2fe879d94abecdacbfce87b7a0172da7207a033b28f2d5
+config:
+  measurement_arm: worker
+  rails_enabled: true
+  catalog:
+    selected: []
+  chatgpt_auth:
+    client_id: null
+  providers:
+    development:
+      kind: deepseek
+      oauth_client_id: null
+      base_url: https://api.deepseek.com
+      api_key_env: DEEPSEEK_API_KEY
+      script: null
+      structured_outputs: true
+      timeout_s: 90.0
+      call_deadline_s: 300.0
+      request_cost_bound_usd: null
+      requests_per_minute: 60.0
+      rate_limit_dir: /home/codespace/.cache/mlca-comparison-rate/630a2c978a05b22aed987178f2be5fc5de689b40a419e07396671cf91562b1b8
+  roles:
+    navigator:
+      provider: development
+      model: deepseek-flash
+      temperature: 0.0
+      reasoning_effort: low
+      max_output_tokens: 16384
+    worker:
+      provider: development
+      model: deepseek-flash
+      temperature: 0.0
+      reasoning_effort: low
+      max_output_tokens: 16384
+  privacy:
+    allow_sample_rows: false
+    store_payloads: true
+    provider_data_collection: null
+    zero_data_retention: false
+  budgets:
+    turn_max_usd: null
+    session_max_usd: null
+    worker_max_attempts: 3
+  sandbox:
+    allow_level_b: false
+  mcp:
+    mode: brain

@@ -1,0 +1,3 @@
+Placeholders found in 0 columns
+Features: 8 (numeric=7, categorical=0)
+Saved distributions.csv with 7 rows

@@ -1,0 +1,3 @@
+shape=(4177, 9)
+placeholders found: [] in 0 columns
+missing.total=0

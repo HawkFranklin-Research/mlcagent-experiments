@@ -1,0 +1,38 @@
+Traceback (most recent call last):
+  File "/workspaces/mlcagent-experiments/bench/comparison/acceptance-02/studies/optical_digits-001/attempt-001/run-001/.mlca/steps/11_interpret_explain_model_PSM5TN9X/attempts/1/script.py", line 177, in <module>
+    mlca_runtime.save_table(out, 'interpretation.csv', 'Frozen representation model interpretation')
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspaces/mlcagent-experiments/bench/comparison/acceptance-02/studies/optical_digits-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/mlca_runtime/__init__.py", line 112, in save_table
+    df.to_parquet(parquet, index=True)
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "/workspaces/mlcagent-experiments/bench/comparison/acceptance-02/studies/optical_digits-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/pandas/core/frame.py", line 3135, in to_parquet
+    return to_parquet(
+        self,
+    ...<7 lines>...
+        **kwargs,
+    )
+  File "/workspaces/mlcagent-experiments/bench/comparison/acceptance-02/studies/optical_digits-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/pandas/io/parquet.py", line 490, in to_parquet
+    impl.write(
+    ~~~~~~~~~~^
+        df,
+        ^^^
+    ...<6 lines>...
+        **kwargs,
+        ^^^^^^^^^
+    )
+    ^
+  File "/workspaces/mlcagent-experiments/bench/comparison/acceptance-02/studies/optical_digits-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/pandas/io/parquet.py", line 191, in write
+    table = self.api.Table.from_pandas(df, **from_pandas_kwargs)
+  File "pyarrow/table.pxi", line 4777, in pyarrow.lib.Table.from_pandas
+  File "/workspaces/mlcagent-experiments/bench/comparison/acceptance-02/studies/optical_digits-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/pyarrow/pandas_compat.py", line 658, in dataframe_to_arrays
+    arrays = [convert_column(c, f)
+              ~~~~~~~~~~~~~~^^^^^^
+  File "/workspaces/mlcagent-experiments/bench/comparison/acceptance-02/studies/optical_digits-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/pyarrow/pandas_compat.py", line 643, in convert_column
+    raise e
+  File "/workspaces/mlcagent-experiments/bench/comparison/acceptance-02/studies/optical_digits-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/pyarrow/pandas_compat.py", line 637, in convert_column
+    result = pa.array(col, type=type_, from_pandas=True, safe=safe)
+  File "pyarrow/array.pxi", line 414, in pyarrow.lib.array
+  File "pyarrow/array.pxi", line 97, in pyarrow.lib._ndarray_to_array
+    check_status(NdarrayToArrow(pool, values, mask, from_pandas,
+  File "pyarrow/error.pxi", line 92, in pyarrow.lib.check_status
+pyarrow.lib.ArrowTypeError: ("Expected bytes, got a 'int' object", 'Conversion failed for column value with type object')

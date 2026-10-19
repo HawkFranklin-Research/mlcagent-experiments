@@ -1,0 +1,49 @@
+# Content v0.2.0 (2026-10-06). Keep it short: see docs/templates.md, 'Writing content'.
+id: freeze_stratified
+event: split
+title: Stratified split by target (60/20/20, seed 42)
+params:
+  method:
+    type: enum
+    enum:
+    - stratified
+    - random
+    - group
+    - time
+    default: stratified
+  train_fraction:
+    type: number
+    default: 0.6
+    minimum: 0.1
+    maximum: 0.9
+  val_fraction:
+    type: number
+    default: 0.2
+    minimum: 0.05
+    maximum: 0.8
+  seed:
+    type: integer
+    default: 42
+  group_column:
+    type: string
+    default: ''
+    required: false
+  time_column:
+    type: string
+    default: ''
+    required: false
+prompt: |
+  Do: engine split stratified by the target column.
+  Save: split.json.
+inputs:
+- ref: registered_data
+outputs:
+- name: split.json
+  kind: report
+  required: true
+fact_candidates: []
+reads_test: false
+timeout_s: 300
+methods_text: Partitions (60/20/20) were frozen stratified by the target with a fixed seed; the test partition was
+  encrypted.
+builtin: split

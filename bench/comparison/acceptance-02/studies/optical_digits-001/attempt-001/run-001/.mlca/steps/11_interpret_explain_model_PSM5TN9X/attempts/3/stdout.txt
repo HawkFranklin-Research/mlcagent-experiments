@@ -1,0 +1,4 @@
+train/val rows: 3372/1124; features: 64
+selected model: MLPRegressor
+top feature: pixel_57
+wrote interpretation.csv (27 rows)

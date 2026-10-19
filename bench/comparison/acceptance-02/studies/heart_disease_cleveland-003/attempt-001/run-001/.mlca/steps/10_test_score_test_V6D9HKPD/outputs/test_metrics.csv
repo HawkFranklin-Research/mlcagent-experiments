@@ -1,0 +1,8 @@
+model,metric,value
+baseline,macro_f1,0.572
+baseline,macro_f1_num,0.306
+baseline,macro_f1_heart_disease_binary,0.838
+baseline,hamming_loss_num,0.4355
+baseline,hamming_loss_heart_disease_binary,0.1613
+baseline,hamming_loss_avg,0.2984
+baseline,subset_accuracy,0.5484

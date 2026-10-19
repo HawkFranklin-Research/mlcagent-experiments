@@ -1,0 +1,3 @@
+scored 2 candidates on val
+best_model=alternative macro_f1=0.5617
+saved validation_metrics.csv rows=18

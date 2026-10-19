@@ -1,0 +1,3 @@
+feature_columns=8
+train_rows=460
+selector_input_columns=8

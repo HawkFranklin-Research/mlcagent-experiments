@@ -1,0 +1,3 @@
+train/val rows: 460, 153; features: 8; targets: ['Y1', 'Y2']
+models scored: ['baseline', 'alternative']
+best validation rmse: alternative = 1.206

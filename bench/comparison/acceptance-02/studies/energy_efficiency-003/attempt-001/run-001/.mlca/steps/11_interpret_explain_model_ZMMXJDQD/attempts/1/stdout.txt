@@ -1,0 +1,4 @@
+features 8
+interpretation_rows 18
+top_feature X5
+validation_rows 18

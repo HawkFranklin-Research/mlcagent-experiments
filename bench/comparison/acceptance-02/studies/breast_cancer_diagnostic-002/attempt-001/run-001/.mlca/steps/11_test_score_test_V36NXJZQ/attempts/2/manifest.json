@@ -1,0 +1,1 @@
+{"facts": [{"key": "test_roc_auc", "source": "test_metrics.csv", "unit": null, "value": 0.9987}], "fits": [], "metrics": [{"ci": [0.9947, 1.0], "name": "roc_auc", "split": "test", "value": 0.9987}], "outputs": [{"caption": "", "kind": "table", "name": "test_metrics.csv"}, {"caption": "", "kind": "table", "name": "test_metrics.parquet"}]}

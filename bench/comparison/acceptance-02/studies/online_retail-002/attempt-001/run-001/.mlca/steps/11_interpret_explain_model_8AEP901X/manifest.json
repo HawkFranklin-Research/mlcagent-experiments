@@ -1,0 +1,1 @@
+{"facts": [{"key": "top_feature", "source": "interpretation.csv", "unit": null, "value": "not_applicable_no_supervised_ranking"}], "fits": [], "metrics": [], "outputs": [{"caption": "Frozen model interpretation", "kind": "table", "name": "interpretation.csv"}, {"caption": "Frozen model interpretation", "kind": "table", "name": "interpretation.parquet"}]}

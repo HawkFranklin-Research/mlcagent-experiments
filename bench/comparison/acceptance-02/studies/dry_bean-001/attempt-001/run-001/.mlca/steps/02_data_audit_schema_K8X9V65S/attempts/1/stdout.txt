@@ -1,0 +1,3 @@
+rows=13543 cols=17 missing_total=0
+schema_rows=17
+placeholders=none in 0 column(s); surrounding_whitespace=0 column(s)

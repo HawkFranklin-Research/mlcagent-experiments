@@ -1,0 +1,2 @@
+test rows 9761 pos_label >50K thr 0.2421
+primary roc_auc 0.9193 ci 0.9136 0.9252

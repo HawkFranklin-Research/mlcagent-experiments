@@ -1,0 +1,2 @@
+train=(460, 10) val=(153, 10) features=8
+val rmse mean=3.3820

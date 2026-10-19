@@ -1,0 +1,2 @@
+features=30 val_rows=113 repeats=20
+scoring=roc_auc top_feature=concave_points1

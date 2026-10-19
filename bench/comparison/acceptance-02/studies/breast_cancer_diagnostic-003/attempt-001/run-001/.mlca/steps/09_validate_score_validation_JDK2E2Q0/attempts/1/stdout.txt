@@ -1,0 +1,2 @@
+train_rows=341 val_rows=113 features=30
+best_model=logistic roc_auc=0.9896 val_roc_auc=0.9896

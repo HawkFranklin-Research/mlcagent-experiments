@@ -1,0 +1,4 @@
+Traceback (most recent call last):
+  File "/workspaces/mlcagent-experiments/bench/comparison/acceptance-02/studies/covertype-001/attempt-001/run-001/.mlca/steps/07_model_train_logistic_Z4Z606HV/attempts/1/script.py", line 26, in <module>
+    raise RuntimeError("preprocessor and selector both expect identical raw columns; cannot chain (RL-0027).")
+RuntimeError: preprocessor and selector both expect identical raw columns; cannot chain (RL-0027).

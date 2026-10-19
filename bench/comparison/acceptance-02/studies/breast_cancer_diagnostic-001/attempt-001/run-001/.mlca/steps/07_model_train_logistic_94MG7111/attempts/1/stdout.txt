@@ -1,0 +1,4 @@
+train shape: (341, 31)
+features: 30
+selector includes preprocessing: True
+saved: model.pkl

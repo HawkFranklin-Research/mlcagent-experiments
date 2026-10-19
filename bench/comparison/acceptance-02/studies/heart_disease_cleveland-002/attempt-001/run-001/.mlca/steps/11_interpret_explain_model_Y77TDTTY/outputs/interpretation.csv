@@ -1,0 +1,22 @@
+section,item,value,detail
+model,estimator,MultiOutputClassifier,MultiOutputClassifier(estimator=LogisticRegression(max_iter=2000))
+inputs,n_features,13,"age,sex,cp,trestbps,chol,fbs,restecg,thalach,exang,oldpeak..."
+inputs,targets,"num,heart_disease_binary",multilabel
+inputs,preprocessor_transformers,1,num
+validation,metrics_file,09_validate_score_validation_CWBDSN2A/validation_metrics.csv,14 rows
+validation,macro_f1,0.5341,primary metric
+validation,hamming_loss,0.3051,
+validation,subset_accuracy,0.5254,
+validation,f1_num,0.2235,
+validation,f1_heart_disease_binary,0.8446,
+validation,hamming_num,0.4576,
+validation,hamming_heart_disease_binary,0.1525,
+validation,hamming_loss,0.2712,
+validation,subset_accuracy,0.5593,
+validation,f1_num,0.2895,
+validation,f1_heart_disease_binary,0.8625,
+validation,hamming_num,0.4068,
+validation,hamming_heart_disease_binary,0.1356,
+limitations,single_center,Cleveland clinic,no external validation
+limitations,multilabel,Two targets,num and heart_disease_binary are recodings; no independent test
+limitations,frozen_model,No refit,Interpretation only; no new fitting

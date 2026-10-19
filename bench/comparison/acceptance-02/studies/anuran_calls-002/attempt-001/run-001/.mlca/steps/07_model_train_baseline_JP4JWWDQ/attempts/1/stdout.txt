@@ -1,0 +1,3 @@
+Train shape: (4293, 26), features: 22
+Targets: ['Family', 'Genus', 'Species']
+Model: Pipeline

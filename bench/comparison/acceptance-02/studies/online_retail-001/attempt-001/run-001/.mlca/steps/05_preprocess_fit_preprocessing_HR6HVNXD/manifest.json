@@ -1,0 +1,1 @@
+{"facts": [], "fits": [{"columns": ["frequency", "n_lines", "monetary_total", "monetary_mean", "recency_days"], "estimator": "ColumnTransformer", "index_sha256": "55b2f9b687084a4c2fdb80c2f8ebaa51845d5e4adb5bb57e21a7616455e394b6", "partition": "train"}], "metrics": [], "outputs": [{"caption": "", "kind": "model", "name": "preprocessor.pkl"}]}

@@ -1,0 +1,2 @@
+train shape: (181, 14)
+preprocessed features: 13; selected k: 13

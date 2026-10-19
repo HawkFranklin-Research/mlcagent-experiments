@@ -1,0 +1,9 @@
+Traceback (most recent call last):
+  File "/workspaces/mlcagent-experiments/bench/comparison/acceptance-02/studies/breast_cancer_diagnostic-002/attempt-001/run-001/.mlca/steps/02_data_count_target_AQ130TQ1/attempts/1/script.py", line 23, in <module>
+    mlca_runtime.record_metric(f"{target}_class_{label}_n", float(n), split="all")
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspaces/mlcagent-experiments/bench/comparison/acceptance-02/studies/breast_cancer_diagnostic-002/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/mlca_runtime/__init__.py", line 138, in record_metric
+    raise ValueError(
+    ...<2 lines>...
+    )
+ValueError: MLCA: Metric partition must be train, val, test or external; use sourced fact candidates for counts before the split, not event names.

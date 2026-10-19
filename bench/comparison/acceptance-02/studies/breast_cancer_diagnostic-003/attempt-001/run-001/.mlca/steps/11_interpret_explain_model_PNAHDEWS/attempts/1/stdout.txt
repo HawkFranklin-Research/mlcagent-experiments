@@ -1,0 +1,4 @@
+n_features=30
+val_rows=113
+pipeline=model
+top=area2 mean=0.0105

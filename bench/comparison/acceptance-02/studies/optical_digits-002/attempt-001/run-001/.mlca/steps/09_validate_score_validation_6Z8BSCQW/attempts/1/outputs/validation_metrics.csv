@@ -1,0 +1,3 @@
+model,metric,value
+07_model_train_baseline_EGH0EDWF,reconstruction_error,0.4589
+08_model_train_alternative_X1KB5C0A,reconstruction_error,7.163

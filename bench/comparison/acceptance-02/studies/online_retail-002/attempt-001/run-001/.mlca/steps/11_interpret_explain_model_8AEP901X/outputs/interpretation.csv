@@ -1,0 +1,17 @@
+aspect,detail,source
+task_type,clustering,_protocol
+primary_metric,silhouette,_protocol
+targets,[],_protocol
+excluded_columns,[],_protocol
+group_column,CustomerID,_protocol
+model_type,MiniBatchKMeans,latest_model
+model_steps,preprocessor -> passthrough -> kmeans,latest_model
+selected_hyperparameters,batch_size=1024; compute_labels=True; init='k-means++'; init_size=None; max_iter=100; max_no_improvement=10; n_clusters=2; n_init=3; random_state=42; reassignment_ratio=0.01; tol=0.0,latest_model
+input_feature_count,13,latest_model
+input_features,"n_lines, frequency, n_products, return_lines, return_rate, recency_days, monetary_total, monetary_mean, monetary_median, quantity_total, quantity_mean, n_countries, tenure_days",latest_model
+top_feature_candidate,not_applicable_no_supervised_ranking,interpretation.csv
+validation_value,41.23,09_validate_score_validation_ERHSD5DA/validation_metrics.csv
+limitation_no_supervised_outcome,No target; clustering is validated only with internal metrics.,interpretation.csv
+limitation_validation_only,Validation evidence is reported; no post-validation test refit is performed.,interpretation.csv
+limitation_frozen,Frozen pipeline is described without refitting on train or validation.,interpretation.csv
+limitation_grouping,Rows are grouped by CustomerID; entity-level aggregation must be preserved.,interpretation.csv

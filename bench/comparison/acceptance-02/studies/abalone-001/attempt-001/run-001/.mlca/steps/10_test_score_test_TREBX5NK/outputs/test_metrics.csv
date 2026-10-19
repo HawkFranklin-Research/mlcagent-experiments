@@ -1,0 +1,7 @@
+model,metric,value
+alternative,rmse[Rings],2.226
+alternative,mae[Rings],1.549
+alternative,r2[Rings],0.5705
+alternative,rmse,2.226
+alternative,mae,1.549
+alternative,r2,0.5705

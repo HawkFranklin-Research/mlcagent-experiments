@@ -1,0 +1,7 @@
+model,metric,value
+baseline,silhouette,0.3323
+baseline,calinski_harabasz,122.1
+baseline,davies_bouldin,1.273
+alternative,silhouette,0.3325
+alternative,calinski_harabasz,122.1
+alternative,davies_bouldin,1.272

@@ -1,0 +1,1 @@
+n 2623 k 2 silhouette 0.3311 stability 0.8139

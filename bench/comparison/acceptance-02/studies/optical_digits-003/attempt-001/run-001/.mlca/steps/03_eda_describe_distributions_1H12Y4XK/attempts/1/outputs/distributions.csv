@@ -1,0 +1,3 @@
+feature_type,n_columns,mean,sd,min,median,max,n_missing,n_levels,top_level_share
+numeric,64,4.911,3.686,0.0,2.5,16.0,0.0,,
+categorical,0,,,,,,,,

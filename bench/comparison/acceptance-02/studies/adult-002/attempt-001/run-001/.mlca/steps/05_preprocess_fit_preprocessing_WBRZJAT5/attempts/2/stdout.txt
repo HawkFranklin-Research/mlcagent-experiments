@@ -1,0 +1,4 @@
+excluded features: []
+placeholder columns: 3
+train features: 13 numeric=6 categorical=7
+val transformed shape: (9758, 98)

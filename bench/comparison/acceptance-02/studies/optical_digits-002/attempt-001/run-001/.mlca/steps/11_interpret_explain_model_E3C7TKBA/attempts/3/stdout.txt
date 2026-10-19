@@ -1,0 +1,5 @@
+train shape: (3372, 64)
+model: MLPRegressor
+top feature: pixel_33
+validation: reconstruction_error=0.4589
+saved interpretation.csv

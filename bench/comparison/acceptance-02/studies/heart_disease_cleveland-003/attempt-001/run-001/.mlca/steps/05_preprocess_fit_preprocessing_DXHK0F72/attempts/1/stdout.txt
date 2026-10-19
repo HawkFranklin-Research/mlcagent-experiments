@@ -1,0 +1,3 @@
+placeholders: none
+num=10 cat=3 dropped=[] pd_out=True est_w=23
+saved preprocessor.pkl out_width=20

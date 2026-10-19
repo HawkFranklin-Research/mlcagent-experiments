@@ -1,0 +1,2 @@
+fit rows: 2603, feature cols: 5
+first/last: frequency / recency_days

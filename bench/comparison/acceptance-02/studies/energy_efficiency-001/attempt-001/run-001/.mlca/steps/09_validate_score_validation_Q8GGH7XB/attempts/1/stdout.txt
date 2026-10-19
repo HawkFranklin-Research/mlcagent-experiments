@@ -1,0 +1,4 @@
+models evaluated: 2
+primary metric: rmse
+best model: alternative
+best validation score: 1.2061310185599463

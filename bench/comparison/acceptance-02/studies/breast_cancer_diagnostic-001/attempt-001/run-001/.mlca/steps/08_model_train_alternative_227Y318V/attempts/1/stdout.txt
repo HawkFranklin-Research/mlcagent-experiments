@@ -1,0 +1,5 @@
+target=Diagnosis type=binary metric=roc_auc
+train_rows=341 features=30
+base_steps=['selector', 'classifier']
+new_final=classifier:HistGradientBoostingClassifier
+saved alternative_model.pkl

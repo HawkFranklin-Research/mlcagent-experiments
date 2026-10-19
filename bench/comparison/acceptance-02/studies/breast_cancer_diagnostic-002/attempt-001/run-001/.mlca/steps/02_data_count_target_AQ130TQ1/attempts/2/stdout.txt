@@ -1,0 +1,3 @@
+rows=569 targets=['Diagnosis']
+classes={'B': 357, 'M': 212}
+flagged_under_5pct=[]

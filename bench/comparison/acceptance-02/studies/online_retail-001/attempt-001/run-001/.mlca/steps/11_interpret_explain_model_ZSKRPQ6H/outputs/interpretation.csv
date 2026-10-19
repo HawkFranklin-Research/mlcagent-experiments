@@ -1,0 +1,28 @@
+section,item,description,source
+model,frozen_model_class,Pipeline -> pre=ColumnTransformer -> km=KMeans,07_model_train_baseline_RA5A8N63/model.pkl
+model,alternative_model_class,Pipeline -> pre=ColumnTransformer -> km=MiniBatchKMeans,08_model_train_alternative_Q31ASHB4/alternative_model.pkl
+model,n_input_features,10,07_model_train_baseline_RA5A8N63/model.pkl
+model,input_features,"frequency, n_lines, monetary_total, monetary_mean, recency_days, num__frequency, num__n_lines, num__monetary_total, num__monetary_mean, num__recency_days",07_model_train_baseline_RA5A8N63/model.pkl
+hyperparameters,km__algorithm,lloyd,07_model_train_baseline_RA5A8N63/model.pkl
+hyperparameters,km__init,k-means++,07_model_train_baseline_RA5A8N63/model.pkl
+hyperparameters,km__max_iter,300,07_model_train_baseline_RA5A8N63/model.pkl
+hyperparameters,km__n_clusters,2,07_model_train_baseline_RA5A8N63/model.pkl
+hyperparameters,km__n_init,10,07_model_train_baseline_RA5A8N63/model.pkl
+hyperparameters,km__random_state,42,07_model_train_baseline_RA5A8N63/model.pkl
+hyperparameters,km__tol,0.0001,07_model_train_baseline_RA5A8N63/model.pkl
+inputs,train_rows,2603,train.parquet
+inputs,train_columns,7,train.parquet
+inputs,targets,[],_protocol
+inputs,excluded_columns,"['InvoiceNo', 'StockCode']",_protocol
+inputs,group_column,CustomerID,_protocol
+validation,primary_metric,silhouette,_protocol
+validation,validation_rows,6,09_validate_score_validation_DPY3PEM8/validation_metrics.csv
+validation,model,baseline,09_validate_score_validation_DPY3PEM8/validation_metrics.csv
+validation,metric,silhouette,09_validate_score_validation_DPY3PEM8/validation_metrics.csv
+validation,value,0.3454,09_validate_score_validation_DPY3PEM8/validation_metrics.csv
+model_selection,candidate_rows,7,07_model_train_baseline_RA5A8N63/kmeans_candidates.csv
+model_selection,best_silhouette,0.3541,07_model_train_baseline_RA5A8N63/kmeans_candidates.csv
+limitations,outcome,No outcome column declared; clustering uses internal structure only.,
+limitations,validation,Validation evidence is internal clustering metric(s); no held-out label exists.,
+limitations,model_freeze,Frozen artifacts were interpreted without refitting or test exposure.,
+limitations,feature_scope,Features come from saved selector/model schema; protocol targets and exclusions were respected.,

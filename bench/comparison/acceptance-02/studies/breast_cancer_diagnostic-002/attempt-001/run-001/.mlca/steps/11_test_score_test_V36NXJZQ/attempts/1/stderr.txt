@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "/workspaces/mlcagent-experiments/bench/comparison/acceptance-02/studies/breast_cancer_diagnostic-002/attempt-001/run-001/.mlca/steps/11_test_score_test_V36NXJZQ/attempts/1/script.py", line 50, in <module>
+    classes = list(pipe.named_steps['model'].classes_ if hasattr(pipe, 'named_steps') else pipe.classes_)
+                   ~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/workspaces/mlcagent-experiments/bench/comparison/acceptance-02/studies/breast_cancer_diagnostic-002/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/utils/_bunch.py", line 42, in __getitem__
+    return super().__getitem__(key)
+           ~~~~~~~~~~~~~~~~~~~^^^^^
+KeyError: 'model'

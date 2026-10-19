@@ -1,0 +1,1 @@
+{"facts": [], "fits": [], "metrics": [{"ci": null, "name": "n_input_rows", "split": "train", "value": 541909.0}, {"ci": null, "name": "n_rows_dropped_missing_key", "split": "train", "value": 135080.0}, {"ci": null, "name": "n_entities", "split": "train", "value": 4372.0}, {"ci": null, "name": "n_return_lines", "split": "train", "value": 8905.0}], "outputs": []}

@@ -1,0 +1,3 @@
+shape=(303, 15)
+missing_total=6
+saved schema.json

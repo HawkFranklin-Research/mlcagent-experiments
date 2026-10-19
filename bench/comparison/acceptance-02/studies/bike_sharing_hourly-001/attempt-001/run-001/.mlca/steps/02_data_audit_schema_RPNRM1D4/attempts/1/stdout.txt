@@ -1,0 +1,3 @@
+shape: 17379 rows x 14 cols
+targets=['cnt'] excluded=['casual', 'instant', 'registered']
+total missing=0

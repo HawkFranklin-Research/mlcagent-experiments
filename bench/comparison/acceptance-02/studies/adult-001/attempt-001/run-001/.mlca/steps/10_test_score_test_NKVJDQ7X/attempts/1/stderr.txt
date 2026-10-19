@@ -1,0 +1,7 @@
+Traceback (most recent call last):
+  File "/workspaces/mlcagent-experiments/bench/comparison/acceptance-02/studies/adult-001/attempt-001/run-001/.mlca/steps/10_test_score_test_NKVJDQ7X/attempts/1/script.py", line 81, in <module>
+    score_a = val_auc(pipe_a)
+  File "/workspaces/mlcagent-experiments/bench/comparison/acceptance-02/studies/adult-001/attempt-001/run-001/.mlca/steps/10_test_score_test_NKVJDQ7X/attempts/1/script.py", line 77, in val_auc
+    y = (val[target] == pos).astype(int).values
+         ^^^
+NameError: name 'val' is not defined. Did you mean: 'eval'?

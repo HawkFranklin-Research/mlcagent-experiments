@@ -1,0 +1,3 @@
+/workspaces/mlcagent-experiments/bench/comparison/acceptance-02/studies/online_retail-002/attempt-001/run-001/.mlca/steps/03_eda_build_entities_P2P1CE4V/attempts/1/script.py:19: Pandas4Warning: For backward compatibility, 'str' dtypes are included by select_dtypes when 'object' dtype is specified. This behavior is deprecated and will be removed in a future version. Explicitly pass 'str' to `include` to select them, or to `exclude` to remove them and silence this warning.
+See https://pandas.pydata.org/docs/user_guide/migration-3-strings.html#string-migration-select-dtypes for details on how to write code that works with pandas 2 and 3.
+  ph_cols = [c for c in df.select_dtypes(include='object').columns

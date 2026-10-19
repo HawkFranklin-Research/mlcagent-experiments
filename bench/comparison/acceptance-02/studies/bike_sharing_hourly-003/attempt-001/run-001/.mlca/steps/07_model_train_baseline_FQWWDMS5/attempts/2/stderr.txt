@@ -1,0 +1,39 @@
+Traceback (most recent call last):
+  File "/workspaces/mlcagent-experiments/bench/comparison/acceptance-02/studies/bike_sharing_hourly-003/attempt-001/run-001/.mlca/steps/07_model_train_baseline_FQWWDMS5/attempts/2/script.py", line 62, in <module>
+    fitted = mlca_runtime.fit_record(Pipeline(steps), train[feature_cols], "train", y=train[targets])
+  File "/workspaces/mlcagent-experiments/bench/comparison/acceptance-02/studies/bike_sharing_hourly-003/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/mlca_runtime/__init__.py", line 192, in fit_record
+    estimator_or_pipeline.fit(X, y, **kwargs) if y is not None else estimator_or_pipeline.fit(X, **kwargs)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "/workspaces/mlcagent-experiments/bench/comparison/acceptance-02/studies/bike_sharing_hourly-003/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/base.py", line 1403, in wrapper
+    return fit_method(estimator, *args, **kwargs)
+  File "/workspaces/mlcagent-experiments/bench/comparison/acceptance-02/studies/bike_sharing_hourly-003/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/pipeline.py", line 645, in fit
+    self._final_estimator.fit(Xt, y, **last_step_params["fit"])
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspaces/mlcagent-experiments/bench/comparison/acceptance-02/studies/bike_sharing_hourly-003/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/base.py", line 1403, in wrapper
+    return fit_method(estimator, *args, **kwargs)
+  File "/workspaces/mlcagent-experiments/bench/comparison/acceptance-02/studies/bike_sharing_hourly-003/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/linear_model/_base.py", line 681, in fit
+    X, y = validate_data(
+           ~~~~~~~~~~~~~^
+        self,
+        ^^^^^
+    ...<5 lines>...
+        force_writeable=True,
+        ^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/workspaces/mlcagent-experiments/bench/comparison/acceptance-02/studies/bike_sharing_hourly-003/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/utils/validation.py", line 3058, in validate_data
+    X, y = check_X_y(X, y, **check_params)
+           ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspaces/mlcagent-experiments/bench/comparison/acceptance-02/studies/bike_sharing_hourly-003/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/utils/validation.py", line 1330, in check_X_y
+    X = check_array(
+        X,
+    ...<12 lines>...
+        input_name="X",
+    )
+  File "/workspaces/mlcagent-experiments/bench/comparison/acceptance-02/studies/bike_sharing_hourly-003/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/utils/validation.py", line 1038, in check_array
+    array = _asarray_with_order(array, order=order, dtype=dtype, xp=xp)
+  File "/workspaces/mlcagent-experiments/bench/comparison/acceptance-02/studies/bike_sharing_hourly-003/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/utils/_array_api.py", line 983, in _asarray_with_order
+    array = numpy.asarray(array, order=order, dtype=dtype)
+  File "/workspaces/mlcagent-experiments/bench/comparison/acceptance-02/studies/bike_sharing_hourly-003/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/pandas/core/generic.py", line 2027, in __array__
+    arr = np.asarray(values, dtype=dtype)
+ValueError: could not convert string to float: '2011-01-01'

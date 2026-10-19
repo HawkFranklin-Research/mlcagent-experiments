@@ -1,0 +1,4 @@
+Traceback (most recent call last):
+  File "/workspaces/mlcagent-experiments/bench/comparison/acceptance-02/studies/bike_sharing_hourly-003/attempt-001/run-001/.mlca/steps/06_features_retain_features_CANXQVVF/attempts/1/script.py", line 45, in <module>
+    raise ValueError("Preprocessor feature columns do not match computed feature columns")
+ValueError: Preprocessor feature columns do not match computed feature columns

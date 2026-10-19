@@ -1,0 +1,3 @@
+features=16 selected=07_model_train_logistic_Q9WJ6BHH/model.pkl
+test roc_auc_ovr=0.9948 ci=(0.9935,0.9958)
+wrote test_metrics.csv

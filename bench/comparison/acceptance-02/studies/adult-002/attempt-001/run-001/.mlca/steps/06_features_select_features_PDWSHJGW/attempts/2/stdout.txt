@@ -1,0 +1,3 @@
+train rows=29275, feature cols=13
+preprocessed cols=98, k=20
+saved selector.pkl

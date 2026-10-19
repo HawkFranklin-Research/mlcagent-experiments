@@ -1,0 +1,26 @@
+id: eda
+title: Eda
+goal: Describe distributions and missingness that could bias the model.
+gate:
+- event_done: data
+subgoals:
+- id: outputs_recorded
+  text: Distribution summary recorded
+  check:
+    type: output_exists
+    action: describe_distributions
+    output: distributions.csv
+actions:
+- describe_distributions
+- plot_missingness
+default_options:
+- describe_distributions
+done_when: all_subgoals
+custom_scope:
+  description: Describe and plot the data. No fitting, scaling or feature selection.
+  deny_patterns:
+  - (?i)\b(train|fit)\b.*\bmodel\b
+  - (?i)\btest (set|split|partition)\b
+  readable_inputs:
+  - registered_data
+max_options: 3

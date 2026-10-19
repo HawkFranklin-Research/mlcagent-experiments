@@ -1,0 +1,2 @@
+val rows: 1124, candidates: 2
+best reconstruction_error: 0.4589 (07_model_train_baseline_EGH0EDWF)

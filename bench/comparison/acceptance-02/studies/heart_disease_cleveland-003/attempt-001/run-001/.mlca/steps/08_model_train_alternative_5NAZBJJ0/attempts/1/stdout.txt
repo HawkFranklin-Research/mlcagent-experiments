@@ -1,0 +1,3 @@
+features=13 numeric=10 categorical=3
+train_rows=181 targets=['num', 'heart_disease_binary']
+saved=alternative_model.pkl

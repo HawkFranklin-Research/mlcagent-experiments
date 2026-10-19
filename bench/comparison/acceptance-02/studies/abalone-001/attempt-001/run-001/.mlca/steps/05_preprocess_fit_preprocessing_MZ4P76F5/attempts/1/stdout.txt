@@ -1,0 +1,3 @@
+placeholders: none
+features=8 numeric=7 cat=1 dropped=0
+saved preprocessor.pkl

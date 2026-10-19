@@ -1,0 +1,5 @@
+Train shape: (3372, 64)
+Feature count: 64
+Processed feature count: 64
+Train reconstruction error: 0.3228
+Val reconstruction error: 0.3506

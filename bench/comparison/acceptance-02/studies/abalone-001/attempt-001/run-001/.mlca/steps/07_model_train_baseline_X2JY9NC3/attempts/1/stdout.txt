@@ -1,0 +1,3 @@
+train (2506, 9) val (835, 9)
+features 8 targets ['Rings']
+val mean_rmse 2.2186

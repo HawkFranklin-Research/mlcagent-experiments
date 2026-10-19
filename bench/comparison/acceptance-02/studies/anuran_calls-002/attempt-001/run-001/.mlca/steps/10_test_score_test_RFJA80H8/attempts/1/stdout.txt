@@ -1,0 +1,2 @@
+selected=alternative features=22 test_rows=1193
+macro_f1=0.3666 hamming=0.2713 subset=0.6739

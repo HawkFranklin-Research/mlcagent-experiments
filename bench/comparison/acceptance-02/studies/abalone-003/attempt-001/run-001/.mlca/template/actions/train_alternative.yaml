@@ -1,0 +1,24 @@
+id: train_alternative
+event: model
+title: Fit alternative
+params: {}
+prompt: 'Do: fit a complete prediction/reconstruction pipeline with RandomForestRegressor(n_estimators=100,
+  random_state=42) via fit_record on the original training DataFrame; y is the numeric
+  target DataFrame (one or multiple targets). Reuse the declared feature contract
+  and exclude all targets.
+
+  Save: alternative_model.pkl.'
+inputs:
+- ref: train
+- ref: val
+- ref: prior_outputs
+outputs:
+- name: alternative_model.pkl
+  kind: model
+  required: true
+fact_candidates: []
+reads_test: false
+timeout_s: 300
+methods_text: Follow the recorded task and saved model contract; all fitting uses
+  training rows only.
+builtin: null

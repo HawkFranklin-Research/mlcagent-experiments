@@ -1,0 +1,5 @@
+rows train/val/test 3372 1124 1124
+features 64
+selected alternative_MLPRegressor val_mse 0.350593
+test_mse 0.354445
+embeddings (4496, 10)

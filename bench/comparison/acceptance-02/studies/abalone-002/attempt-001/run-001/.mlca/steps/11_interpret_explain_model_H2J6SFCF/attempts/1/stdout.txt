@@ -1,0 +1,3 @@
+train_rows=2506 val_rows=835 features=8
+top_feature=Shell_weight
+interpretation_rows=34

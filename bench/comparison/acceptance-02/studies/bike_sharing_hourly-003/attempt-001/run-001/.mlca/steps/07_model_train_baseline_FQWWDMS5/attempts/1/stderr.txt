@@ -1,0 +1,4 @@
+Traceback (most recent call last):
+  File "/workspaces/mlcagent-experiments/bench/comparison/acceptance-02/studies/bike_sharing_hourly-003/attempt-001/run-001/.mlca/steps/07_model_train_baseline_FQWWDMS5/attempts/1/script.py", line 8, in <module>
+    from sklearn.metrics import poisson_deviance
+ImportError: cannot import name 'poisson_deviance' from 'sklearn.metrics' (/workspaces/mlcagent-experiments/bench/comparison/acceptance-02/studies/bike_sharing_hourly-003/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/metrics/__init__.py)

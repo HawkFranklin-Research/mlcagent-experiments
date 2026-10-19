@@ -1,0 +1,2 @@
+Test roc_auc: 0.8580 (CI 0.7620-0.9342)
+Threshold: 0.5, positive label: 1

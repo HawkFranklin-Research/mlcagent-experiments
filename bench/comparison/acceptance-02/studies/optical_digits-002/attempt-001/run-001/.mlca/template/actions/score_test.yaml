@@ -1,0 +1,46 @@
+id: score_test
+event: test
+title: Score the frozen model on test rows
+params: {}
+prompt: 'Do: Mean squared reconstruction error. Choose the lowest validation reconstruction error;
+  never train a supervised probe in this project. Inspect each candidate separately: PCA uses transform
+  then the final PCA inverse_transform; MLPRegressor uses predict, not inverse_transform. Compare
+  reconstructions with the same fitted frontend-space inputs, without applying preprocessing twice.
+  Score only test; do not fit. Freeze the validation-selected candidate before test.
+
+  Save: test_metrics.csv (model, metric, value).
+
+  Record: the exact declared metric _protocol[''task''][''primary_metric''] on test; fact test_score
+  (source test_metrics.csv).
+
+  Save: embeddings.parquet, one row per training and test source row; row_id = original DataFrame
+  index, partition = train/test, and embedding_0, embedding_1, ... numeric dimensions. Use save_row_outputs.
+  These are local-only evaluator artifacts; never expose them to an LLM. Read the declared metric
+  from _protocol[''task''][''primary_metric'']; compute and record that exact name, not a template
+  default. Other listed metrics are supplementary. Use its correct optimization direction and compare
+  candidates only on validation; test scores never select a model. Extract PCA coordinates or the
+  autoencoder bottleneck only for the declared embeddings.parquet. Include row_id and partition as
+  explicit columns; an index named row_id is not a row_id column. Never fit an external probe here.'
+inputs:
+- ref: train
+- ref: val
+- ref: prior_outputs
+- ref: test
+outputs:
+- name: test_metrics.csv
+  kind: table
+  required: true
+- name: embeddings.parquet
+  kind: data
+  row_partitions:
+  - train
+  - test
+  required: true
+fact_candidates:
+- test_score
+reads_test: true
+timeout_s: 300
+methods_text: 'Score the frozen model on test rows: Score the frozen candidates using the task-specific
+  declared primary metric and its direction; supplementary metrics do not replace it. Fit only on
+  training rows, select on validation, and evaluate the frozen choice on test.'
+builtin: null

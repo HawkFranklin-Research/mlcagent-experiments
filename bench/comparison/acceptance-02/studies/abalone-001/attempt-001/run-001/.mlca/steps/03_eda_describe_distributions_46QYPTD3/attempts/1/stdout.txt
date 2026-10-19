@@ -1,0 +1,2 @@
+features: n_numeric=7, n_categorical=1
+distribution rows: 40

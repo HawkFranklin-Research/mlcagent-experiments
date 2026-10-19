@@ -1,0 +1,35 @@
+section,item,value_text,numeric_value,source_file
+protocol,targets,Rings,,_protocol
+protocol,excluded_columns,none,,_protocol
+protocol,group_column,none,,_protocol
+protocol,primary_metric,rmse,,_protocol
+input,n_train_rows,,2506.0,train
+input,n_val_rows,,835.0,val
+input,n_feature_columns,,8.0,train
+input,feature_columns,"Sex, Length, Diameter, Height, Whole_weight, Shucked_weight, Viscera_weight, Shell_weight",,train
+input,preprocessor,ColumnTransformer,,05_preprocess_fit_preprocessing_NRNQX0TZ/preprocessor.pkl
+input,preprocessor_output_features,,10.0,05_preprocess_fit_preprocessing_NRNQX0TZ/preprocessor.pkl
+input,selector,ColumnTransformer,,06_features_retain_features_YTKXSJV5/selector_all.pkl
+input,selector_output_features,,8.0,06_features_retain_features_YTKXSJV5/selector_all.pkl
+model,baseline_model,Pipeline (final: LinearRegression),,07_model_train_baseline_1RE4HZWD/model.pkl
+model,baseline_hyperparameters,"{""copy_X"": true, ""fit_intercept"": true, ""n_jobs"": null, ""positive"": false, ""tol"": 1e-06}",,07_model_train_baseline_1RE4HZWD/manifest.json
+model,latest_model,Pipeline (final: RandomForestRegressor),,latest_model
+model,latest_hyperparameters,"{""bootstrap"": true, ""ccp_alpha"": 0.0, ""criterion"": ""squared_error"", ""max_depth"": null, ""max_features"": 1.0, ""max_leaf_nodes"": null, ""max_samples"": null, ""min_impurity_decrease"": 0.0, ""min_samples_leaf"": 1, ""min_samples_split"": 2, ""min_weight_fraction_leaf"": 0.0, ""monotonic_cst"": null, ""n_estimators"": 100, ""n_jobs"": null, ""oob_score"": false, ""random_state"": 42, ""verbose"": 0, ""warm_start"": false}",,08_model_train_alternative_22ZP3DFW/manifest.json
+model,top_feature,Shell_weight,,interpretation.csv
+validation,baseline:rmse_Rings,,2.219,09_validate_score_validation_RP1BFKWM/validation_metrics.csv
+validation,baseline:mae_Rings,,1.624,09_validate_score_validation_RP1BFKWM/validation_metrics.csv
+validation,baseline:r2_Rings,,0.5305,09_validate_score_validation_RP1BFKWM/validation_metrics.csv
+validation,baseline:rmse_macro,,2.219,09_validate_score_validation_RP1BFKWM/validation_metrics.csv
+validation,baseline:mae_macro,,1.624,09_validate_score_validation_RP1BFKWM/validation_metrics.csv
+validation,baseline:r2_macro,,0.5305,09_validate_score_validation_RP1BFKWM/validation_metrics.csv
+validation,alternative:rmse_Rings,,2.128,09_validate_score_validation_RP1BFKWM/validation_metrics.csv
+validation,alternative:mae_Rings,,1.543,09_validate_score_validation_RP1BFKWM/validation_metrics.csv
+validation,alternative:r2_Rings,,0.5679,09_validate_score_validation_RP1BFKWM/validation_metrics.csv
+validation,alternative:rmse_macro,,2.128,09_validate_score_validation_RP1BFKWM/validation_metrics.csv
+validation,alternative:mae_macro,,1.543,09_validate_score_validation_RP1BFKWM/validation_metrics.csv
+validation,alternative:r2_macro,,0.5679,09_validate_score_validation_RP1BFKWM/validation_metrics.csv
+limitations,no_refit,"No model fitting, selection, or threshold tuning performed in interpretation.",,interpretation.csv
+limitations,validation_only,Validation metrics are held-out evidence; no test data used.,,09_validate_score_validation_RP1BFKWM/validation_metrics.csv
+limitations,single_target,Only Rings is modeled; count outcome may favor Poisson/log1p alternatives not evaluated here.,,_protocol
+limitations,no_groups,No repeated-subject or group structure declared; rows treated as independent.,,_protocol
+limitations,feature_scope,"Feature list excludes targets, excluded columns, group column, and key-like columns from frozen train table.",,train

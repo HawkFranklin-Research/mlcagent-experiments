@@ -1,0 +1,3 @@
+frontend: selector-pipeline n_features_in: 30
+clf: HistGradientBoostingClassifier class_weight= None
+saved alternative_model.pkl

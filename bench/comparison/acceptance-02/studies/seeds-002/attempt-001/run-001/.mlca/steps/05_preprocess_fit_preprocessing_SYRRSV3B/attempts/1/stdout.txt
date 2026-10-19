@@ -1,0 +1,4 @@
+features 7 rows 126; numeric 7 categorical 0 highcard_dropped 0
+placeholders: none
+derived excluded: none
+saved preprocessor.pkl width 7

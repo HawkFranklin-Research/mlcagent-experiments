@@ -1,0 +1,3 @@
+train=460 val=153 features=8
+mean rmse=nan
+top_feature=X5

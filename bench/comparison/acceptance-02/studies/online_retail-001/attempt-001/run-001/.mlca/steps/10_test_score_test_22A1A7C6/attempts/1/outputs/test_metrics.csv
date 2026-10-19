@@ -1,0 +1,4 @@
+model,metric,value
+candidate,silhouette,0.358196
+candidate,calinski_harabasz,589.850763
+candidate,davies_bouldin,1.051241

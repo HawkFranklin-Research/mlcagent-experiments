@@ -1,0 +1,27 @@
+id: interpret
+title: Interpret
+goal: Explain what the frozen model relies on and where it fails.
+gate:
+- event_done: test
+subgoals:
+- id: outputs_recorded
+  text: Interpretation table saved
+  check:
+    type: output_exists
+    action: explain_model
+    output: interpretation.csv
+actions:
+- explain_model
+- plot_results
+default_options:
+- explain_model
+done_when: all_subgoals
+custom_scope:
+  description: Explanations and figures of the frozen model. No refitting.
+  deny_patterns: []
+  readable_inputs:
+  - train
+  - val
+  - prior_outputs
+  - test
+max_options: 3

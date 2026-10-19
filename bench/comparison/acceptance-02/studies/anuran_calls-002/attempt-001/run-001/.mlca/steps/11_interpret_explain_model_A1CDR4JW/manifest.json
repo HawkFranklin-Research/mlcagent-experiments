@@ -1,0 +1,1 @@
+{"facts": [], "fits": [], "metrics": [], "outputs": [{"caption": "Frozen multilabel model interpretation summary", "kind": "table", "name": "interpretation.csv"}, {"caption": "Frozen multilabel model interpretation summary", "kind": "table", "name": "interpretation.parquet"}]}

@@ -1,0 +1,1 @@
+{"facts": [{"key": "top_feature", "source": "interpretation.csv", "unit": null, "value": "X5"}], "fits": [], "metrics": [], "outputs": [{"caption": "Frozen model interpretation and validation evidence", "kind": "table", "name": "interpretation.csv"}, {"caption": "Frozen model interpretation and validation evidence", "kind": "table", "name": "interpretation.parquet"}]}

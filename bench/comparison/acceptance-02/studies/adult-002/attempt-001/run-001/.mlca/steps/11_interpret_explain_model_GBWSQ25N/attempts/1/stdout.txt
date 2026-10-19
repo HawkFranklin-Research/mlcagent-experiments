@@ -1,0 +1,4 @@
+validation rows: 9758, features: 13
+pipeline: Pipeline, steps: ['preprocess', 'selectkbest_final', 'hist_gradient_boosting']
+scoring: roc_auc, repeats: 20
+top feature: relationship mean=0.09208

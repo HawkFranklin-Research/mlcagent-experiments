@@ -1,0 +1,5 @@
+val rows=1124, features=64
+frontend=baseline_frontend, frontend shape=(1124, 64)
+PCA: 0.4589
+MLPRegressor: 0.3315
+selected=MLPRegressor, score=0.3315

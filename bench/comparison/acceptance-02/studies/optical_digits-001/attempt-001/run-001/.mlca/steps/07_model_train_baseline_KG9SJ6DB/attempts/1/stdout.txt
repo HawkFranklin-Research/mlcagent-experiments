@@ -1,0 +1,4 @@
+train rows=3372 input_features=64 pca_components=8
+train reconstruction_error=6.1441
+val reconstruction_error=6.2867
+saved model.pkl

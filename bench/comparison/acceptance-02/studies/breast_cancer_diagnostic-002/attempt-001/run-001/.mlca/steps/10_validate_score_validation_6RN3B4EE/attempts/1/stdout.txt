@@ -1,0 +1,2 @@
+roc_auc logistic=0.9896 alternative=0.9859
+best_model=logistic

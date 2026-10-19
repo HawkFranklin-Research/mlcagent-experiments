@@ -1,0 +1,4 @@
+Traceback (most recent call last):
+  File "/workspaces/mlcagent-experiments/bench/comparison/acceptance-02/studies/bike_sharing_hourly-001/attempt-001/run-001/.mlca/steps/06_features_retain_features_35P4XP7P/attempts/2/script.py", line 45, in <module>
+    raise ValueError(f"Preprocessor expects columns absent from train: {missing[:5]}")
+ValueError: Preprocessor expects columns absent from train: ['dteday_year', 'dteday_month', 'dteday_day', 'dteday_dayofweek']

@@ -1,0 +1,1 @@
+{"facts": [], "fits": [], "metrics": [], "outputs": [{"caption": "Frozen model test metrics with 95% bootstrap CI", "kind": "table", "name": "test_metrics.csv"}, {"caption": "Frozen model test metrics with 95% bootstrap CI", "kind": "table", "name": "test_metrics.parquet"}]}

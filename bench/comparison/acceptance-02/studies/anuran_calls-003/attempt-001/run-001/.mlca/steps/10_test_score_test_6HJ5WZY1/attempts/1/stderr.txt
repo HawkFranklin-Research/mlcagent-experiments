@@ -1,0 +1,5 @@
+Traceback (most recent call last):
+  File "/workspaces/mlcagent-experiments/bench/comparison/acceptance-02/studies/anuran_calls-003/attempt-001/run-001/.mlca/steps/10_test_score_test_6HJ5WZY1/attempts/1/script.py", line 36, in <module>
+    feat = list(getattr(model, 'feature_names_in_', []) or [])
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: The truth value of an array with more than one element is ambiguous. Use a.any() or a.all()

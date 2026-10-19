@@ -1,0 +1,2 @@
+Fitted RandomForest on 460 rows, 8 features.
+Saved alternative_model.pkl

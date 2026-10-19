@@ -1,0 +1,3 @@
+no placeholder tokens in text columns
+summary rows: 33
+n_numeric: 30, n_categorical: 1

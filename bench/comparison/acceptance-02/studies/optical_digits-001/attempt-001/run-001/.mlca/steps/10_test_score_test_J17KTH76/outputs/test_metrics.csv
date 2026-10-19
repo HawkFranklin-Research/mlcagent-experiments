@@ -1,0 +1,2 @@
+model,metric,value
+alternative_MLPRegressor,reconstruction_error,0.354445

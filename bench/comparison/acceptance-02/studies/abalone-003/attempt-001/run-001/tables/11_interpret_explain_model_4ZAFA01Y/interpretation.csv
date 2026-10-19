@@ -1,0 +1,17 @@
+section,item,value,source
+model,alternative_estimator,RandomForestRegressor,08_model_train_alternative_VF3B36TN/alternative_model.pkl
+model,baseline_estimator,LinearRegression,07_model_train_baseline_25GK6Z71/model.pkl
+model,alternative_hyperparameters,"{""bootstrap"": true, ""ccp_alpha"": 0.0, ""criterion"": ""squared_error"", ""max_depth"": null, ""max_features"": 1.0, ""max_leaf_nodes"": null, ""max_samples"": null, ""min_impurity_decrease"": 0.0, ""min_samples_leaf"": 1, ""min_samples_split"": 2, ""min_weight_fraction_leaf"": 0.0, ""monotonic_cst"": null, ""n_estimators"": 100, ""n_jobs"": null, ""oob_score"": false, ""random_state"": 42, ""verbose"": 0, ""warm_start"": false}",08_model_train_alternative_VF3B36TN/manifest.json
+model,baseline_hyperparameters,"{""copy_X"": true, ""fit_intercept"": true, ""n_jobs"": null, ""positive"": false, ""tol"": 1e-06}",07_model_train_baseline_25GK6Z71/manifest.json
+inputs,targets,"[""Rings""]",_protocol
+inputs,feature_count,8,train.parquet
+inputs,feature_columns,"[""Sex"", ""Length"", ""Diameter"", ""Height"", ""Whole_weight"", ""Shucked_weight"", ""Viscera_weight"", ""Shell_weight""]",train.parquet
+inputs,train_rows,2506,train.parquet
+inputs,val_rows,835,val.parquet
+validation,primary_metric,rmse,_protocol
+validation,model,baseline,09_validate_score_validation_8TJRCB1S/validation_metrics.csv
+validation,metric,rmse_Rings,09_validate_score_validation_8TJRCB1S/validation_metrics.csv
+validation,value,2.219,09_validate_score_validation_8TJRCB1S/validation_metrics.csv
+model,top_feature,num__Shell_weight,alternative_model.pkl
+limitations,no_refit,"Interpretation only; frozen models read, nothing refit or scored.",n/a
+limitations,single_target,"Analysis limited to declared target(s): [""Rings""]",_protocol

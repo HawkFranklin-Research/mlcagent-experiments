@@ -1,0 +1,4 @@
+train=(3372, 64); features=64
+model=MLPRegressor; top_feature=pixel_57
+reconstruction_error=0.4589
+saved interpretation.csv

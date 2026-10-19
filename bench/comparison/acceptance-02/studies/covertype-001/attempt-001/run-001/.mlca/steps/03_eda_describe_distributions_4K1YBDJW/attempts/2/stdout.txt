@@ -1,0 +1,3 @@
+Placeholders ['', '-', '?', 'N/A', 'NA'] found in 0 text columns
+rows=581012, summarised_features=54
+n_numeric=54, n_categorical=1

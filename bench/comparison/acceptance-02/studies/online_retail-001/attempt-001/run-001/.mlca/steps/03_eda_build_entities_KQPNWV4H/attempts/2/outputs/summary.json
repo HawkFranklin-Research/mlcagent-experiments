@@ -1,0 +1,1 @@
+{"columns": ["CustomerID", "frequency", "n_lines", "monetary_total", "monetary_mean", "recency_days"], "group_column": "CustomerID", "n_entities": 4339}

@@ -1,0 +1,4 @@
+interpretation rows: 16
+model: MiniBatchKMeans steps: preprocessor -> passthrough -> kmeans
+features: 13 primary_metric: silhouette
+validation metric columns: 1

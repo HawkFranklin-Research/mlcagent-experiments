@@ -1,0 +1,23 @@
+aspect,detail,value,source
+task_type,multilabel,,_protocol
+primary_metric,macro_f1,,_protocol
+targets,"Family,Genus,Species",3.0,_protocol
+excluded_columns,,0.0,_protocol
+group_column,RecordID,,_protocol
+n_train_rows,4293,4293.0,train
+n_features,22,22.0,train
+feature_schema,"MFCCs_ 1,MFCCs_ 2,MFCCs_ 3,MFCCs_ 4,MFCCs_ 5,MFCCs_ 6,MFCCs_ 7,MFCCs_ 8,MFCCs_ 9,MFCCs_10,MFCCs_11,MFCCs_12,MFCCs_13,MFCCs_14,MFCCs_15,MFCCs_16,MFCCs_17,MFCCs_18,MFCCs_19,MFCCs_20...",22.0,train
+model_class,Pipeline -> MultiOutputClassifier,,07_model_train_baseline_8KXAGBNQ/model.pkl
+baseline_hyperparameters,{},,07_model_train_baseline_8KXAGBNQ/manifest.json
+preprocessor_class,ColumnTransformer,,05_preprocess_fit_preprocessing_7F4HZTDJ/preprocessor.pkl
+selector_class,ColumnTransformer,,06_features_retain_features_2RG0T0WD/selector_all.pkl
+validation_primary_metric,macro_f1,0.521,09_validate_score_validation_DX8R1YJ4/validation_metrics.csv
+top_feature,None,,07_model_train_baseline_8KXAGBNQ/model.pkl
+limitation_repeated_subjects,Frames per RecordID not independent,,_protocol
+limitation_no_fit,Frozen model; no fitting performed,,_protocol
+limitation_validation_only,Validation evidence only; no test set,,09_validate_score_validation_DX8R1YJ4/validation_metrics.csv
+alternative_model_class,Pipeline -> MultiOutputClassifier,,08_model_train_alternative_K6DZGSFY/alternative_model.pkl
+alternative_hyperparameters,{},,08_model_train_alternative_K6DZGSFY/manifest.json
+feature_names_in_preprocessor,"n=22, match_raw_schema=True",,05_preprocess_fit_preprocessing_7F4HZTDJ/preprocessor.pkl
+feature_names_in_selector,"n=22, match_raw_schema=False",,06_features_retain_features_2RG0T0WD/selector_all.pkl
+feature_names_in_model,"n=22, match_raw_schema=True",,07_model_train_baseline_8KXAGBNQ/model.pkl

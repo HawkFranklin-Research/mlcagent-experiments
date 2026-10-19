@@ -1,0 +1,45 @@
+section,item,value,source
+model,baseline_class,Pipeline,07_model_train_baseline_X4GJNHE4/model.pkl
+model,latest_model_key,latest_model,latest_model
+model,latest_class,Pipeline,latest_model
+model,latest_steps,preprocessor -> classifier,latest_model
+model,latest_estimator,MultiOutputClassifier,latest_model
+model,latest_hyperparameters,"{""estimator__bootstrap"": true, ""estimator__ccp_alpha"": 0.0, ""estimator__class_weight"": null, ""estimator__criterion"": ""gini"", ""estimator__max_depth"": null, ""estimator__max_features"": ""sqrt"", ""estimator__max_leaf_nodes"": null, ""estimator__max_samples"": null, ""estimator__min_impurity_decrease"": 0.0, ""estimator__min_samples_leaf"": 1, ""estimator__min_samples_split"": 2, ""estimator__min_weight_fraction_leaf"": 0.0, ""estimator__monotonic_cst"": null, ""estimator__n_estimators"": 100, ""estimator__n_jobs"": null, ""estimator__oob_score"": false, ""estimator__random_state"": 42, ""estimator__verbose"": 0, ""estimator__warm_start"": false, ""estimator"": ""RandomForestClassifier(random_state=42)"", ""n_jobs"": null}",latest_model
+inputs,targets,"num, heart_disease_binary",_protocol
+inputs,excluded_columns,none,_protocol
+inputs,group_column,None,_protocol
+inputs,n_features,13,train.parquet
+inputs,feature:age,int64,train.parquet
+inputs,feature:sex,int64,train.parquet
+inputs,feature:cp,int64,train.parquet
+inputs,feature:trestbps,int64,train.parquet
+inputs,feature:chol,int64,train.parquet
+inputs,feature:fbs,int64,train.parquet
+inputs,feature:restecg,int64,train.parquet
+inputs,feature:thalach,int64,train.parquet
+inputs,feature:exang,int64,train.parquet
+inputs,feature:oldpeak,float64,train.parquet
+inputs,feature:slope,int64,train.parquet
+inputs,feature:ca,float64,train.parquet
+inputs,feature:thal,float64,train.parquet
+inputs,key_like_excluded,none,train.parquet
+validation,primary_metric,macro_f1,_protocol
+validation,f1_num,0.2709,09_validate_score_validation_QG0J48N2/validation_metrics.csv
+validation,hamming_loss_num,0.4333,09_validate_score_validation_QG0J48N2/validation_metrics.csv
+validation,f1_heart_disease_binary,0.899,09_validate_score_validation_QG0J48N2/validation_metrics.csv
+validation,hamming_loss_heart_disease_binary,0.1,09_validate_score_validation_QG0J48N2/validation_metrics.csv
+validation,macro_f1,0.585,09_validate_score_validation_QG0J48N2/validation_metrics.csv
+validation,hamming_loss,0.2667,09_validate_score_validation_QG0J48N2/validation_metrics.csv
+validation,subset_accuracy,0.5667,09_validate_score_validation_QG0J48N2/validation_metrics.csv
+validation,f1_num,0.2611,09_validate_score_validation_QG0J48N2/validation_metrics.csv
+validation,hamming_loss_num,0.4333,09_validate_score_validation_QG0J48N2/validation_metrics.csv
+validation,f1_heart_disease_binary,0.8316,09_validate_score_validation_QG0J48N2/validation_metrics.csv
+validation,hamming_loss_heart_disease_binary,0.1667,09_validate_score_validation_QG0J48N2/validation_metrics.csv
+validation,macro_f1,0.5464,09_validate_score_validation_QG0J48N2/validation_metrics.csv
+validation,hamming_loss,0.3,09_validate_score_validation_QG0J48N2/validation_metrics.csv
+validation,subset_accuracy,0.5333,09_validate_score_validation_QG0J48N2/validation_metrics.csv
+limitations,no_refit,Loaded frozen objects; no fitting or refitting was performed.,latest_model
+limitations,validation_only,Evidence is validation-only; test data was not used.,09_validate_score_validation_QG0J48N2/validation_metrics.csv
+limitations,target_dependency,heart_disease_binary is a deterministic coarsening of num; both are joint targets.,_protocol
+limitations,cohort_size,Cleveland cohort is modest; validation estimates may be unstable.,train.parquet
+facts,top_feature,fbs,interpretation.csv

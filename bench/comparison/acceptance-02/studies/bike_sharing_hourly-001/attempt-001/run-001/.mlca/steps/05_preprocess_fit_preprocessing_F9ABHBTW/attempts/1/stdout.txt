@@ -1,0 +1,2 @@
+placeholder/whitespace cleaned columns: 0
+fitted preprocessor: 16 features -> 16 encoded columns

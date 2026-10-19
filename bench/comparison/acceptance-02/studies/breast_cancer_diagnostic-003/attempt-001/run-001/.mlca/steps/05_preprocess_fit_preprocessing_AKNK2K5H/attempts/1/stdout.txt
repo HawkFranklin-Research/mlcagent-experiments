@@ -1,0 +1,2 @@
+placeholder_cols=0
+train_rows=341 features=30 num=30 cat=0 val_out=(113, 30)

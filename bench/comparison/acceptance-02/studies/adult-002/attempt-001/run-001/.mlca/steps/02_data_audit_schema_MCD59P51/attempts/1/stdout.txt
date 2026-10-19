@@ -1,0 +1,3 @@
+rows=48794 cols=14
+missing.total=2203
+targets=['income'] excluded=['marital-status']

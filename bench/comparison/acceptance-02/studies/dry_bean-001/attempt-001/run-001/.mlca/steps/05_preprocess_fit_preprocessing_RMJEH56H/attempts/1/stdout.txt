@@ -1,0 +1,3 @@
+Placeholders in object columns: none
+Features: 16 numeric, 0 categorical; encoded width 16
+Train transform rows 8124; val transform rows 2707

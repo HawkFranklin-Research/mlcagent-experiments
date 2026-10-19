@@ -1,0 +1,12 @@
+aspect,value,evidence_file
+task,regression (rmse),_protocol
+targets,Rings,_protocol
+n_train_rows,2506,train
+n_val_rows,835,val
+feature_count,8,train
+feature_columns,"Sex, Length, Diameter, Height, Whole_weight, Shucked_weight, Viscera_weight, Shell_weight",train
+model_class,RandomForestRegressor,latest_model
+selected_hyperparameters,"{""bootstrap"": true, ""ccp_alpha"": 0.0, ""criterion"": ""squared_error"", ""max_depth"": null, ""max_features"": 1.0, ""max_leaf_nodes"": null, ""max_samples"": null, ""min_impurity_decrease"": 0.0, ""min_samples_leaf"": 1, ""min_samples_split"": 2, ""min_weight_fraction_leaf"": 0.0, ""monotonic_cst"": null, ""n_estimators"": 100, ""n_jobs"": null, ""oob_score"": false, ""random_state"": 42, ""verbose"": 0, ""warm_start"": false}",latest_model
+validation_rmse,2.219,09_validate_score_validation_D3AGSKPV/validation_metrics.csv
+top_feature,num__Shell_weight,06_features_retain_features_Q9C0R6MS/selector_all.pkl
+limitations,Frozen model described without refitting; validation-only evidence; abalone Rings is an indirect age proxy and morphometric measurements can be noisy; no external/test evaluation reported here.,latest_model

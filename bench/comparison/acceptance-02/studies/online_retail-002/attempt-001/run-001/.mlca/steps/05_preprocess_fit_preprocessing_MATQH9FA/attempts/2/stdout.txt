@@ -1,0 +1,2 @@
+features=13 numeric=13 categorical=0 dropped_keylike=0
+high_card_dropped=0 date_dropped=0 pandas_out=True

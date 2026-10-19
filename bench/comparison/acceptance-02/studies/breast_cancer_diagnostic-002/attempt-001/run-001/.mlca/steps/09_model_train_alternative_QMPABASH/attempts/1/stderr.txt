@@ -1,0 +1,5 @@
+Traceback (most recent call last):
+  File "/workspaces/mlcagent-experiments/bench/comparison/acceptance-02/studies/breast_cancer_diagnostic-002/attempt-001/run-001/.mlca/steps/09_model_train_alternative_QMPABASH/attempts/1/script.py", line 89, in <module>
+    mlca_runtime.fit_record(pipeline, X, y, partition="train")
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: fit_record() got multiple values for argument 'partition'

@@ -1,0 +1,2 @@
+train rows=460 val rows=153 features=8
+val mean RMSE=3.3820

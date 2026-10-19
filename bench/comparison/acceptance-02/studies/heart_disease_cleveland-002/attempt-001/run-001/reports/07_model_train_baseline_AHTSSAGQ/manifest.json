@@ -1,0 +1,1 @@
+{"facts": [], "fits": [{"columns": ["age", "sex", "cp", "trestbps", "chol", "fbs", "restecg", "thalach", "exang", "oldpeak", "slope", "ca", "thal"], "estimator": "Pipeline", "index_sha256": "cedf8bcab7b3bb5bf31091f3f6eaf48a63dc65a86b02de6e6e19d50cb01e1fc3", "partition": "train"}], "metrics": [], "outputs": [{"caption": "", "kind": "model", "name": "model.pkl"}]}

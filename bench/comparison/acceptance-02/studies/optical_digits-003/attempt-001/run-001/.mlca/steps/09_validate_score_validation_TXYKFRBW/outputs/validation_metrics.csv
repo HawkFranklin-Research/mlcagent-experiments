@@ -1,0 +1,3 @@
+model,metric,value
+PCA,reconstruction_error,0.4589
+MLPRegressor,reconstruction_error,0.3315

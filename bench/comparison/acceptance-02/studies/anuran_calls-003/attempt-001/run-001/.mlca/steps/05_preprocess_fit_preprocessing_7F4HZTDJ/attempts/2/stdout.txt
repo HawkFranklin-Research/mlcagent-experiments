@@ -1,0 +1,1 @@
+Fitted preprocessor on 22 features (22 numeric, 0 categorical).

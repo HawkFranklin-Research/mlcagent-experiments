@@ -1,0 +1,2 @@
+rows=4177 cols=9 missing_total=0
+targets=['Rings']

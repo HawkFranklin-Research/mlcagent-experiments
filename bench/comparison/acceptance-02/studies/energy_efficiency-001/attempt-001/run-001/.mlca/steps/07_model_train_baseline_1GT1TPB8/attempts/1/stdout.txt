@@ -1,0 +1,1 @@
+train (460, 8) val (153, 8) rmse_mean=3.3820

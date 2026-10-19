@@ -1,0 +1,4 @@
+Placeholder tokens found in 3 columns: ['workclass', 'occupation', 'native-country']
+Numeric features: 6
+Categorical features: 7
+Summary rows: 39

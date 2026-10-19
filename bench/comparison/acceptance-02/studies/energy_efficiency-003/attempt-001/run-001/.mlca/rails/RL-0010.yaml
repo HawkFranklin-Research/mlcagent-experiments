@@ -1,0 +1,23 @@
+id: RL-0010
+kind: instruction
+roles:
+- worker
+events:
+- eda
+- preprocess
+- features
+- model
+problem_types:
+- all
+text: 'Before encoding, sort feature columns into types: numeric; low-cardinality categorical
+  (one-hot); text or code columns with more unique values than 5% of rows (drop, or use a
+  frequency encoding fitted on training rows, never one-hot); date or time strings (parse
+  with pandas.to_datetime, derive numeric parts such as hour, day of week and month, then
+  drop the raw string). Columns already of datetime type get the same treatment: numeric parts or days
+  elapsed since a fixed reference date, then drop the raw column; never pass a datetime column to an imputer,
+  scaler, encoder or model. This includes date columns created in earlier steps, such as first and last
+  dates in entity aggregates: check dtypes of the frame you fit on, not only of the raw table. Integer 0/1 indicator columns stay numeric.'
+reason: One-hot encoding codes or raw timestamps creates thousands of columns, exhausts memory
+  on large tables and memorises rows.
+ledger: L-0010
+added_in: rails-0.3

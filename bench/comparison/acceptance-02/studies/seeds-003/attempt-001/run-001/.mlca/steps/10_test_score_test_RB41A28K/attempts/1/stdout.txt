@@ -1,0 +1,3 @@
+features 7 train 126 test 42
+selected baseline
+test silhouette 0.38376915683452967

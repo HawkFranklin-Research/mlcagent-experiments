@@ -1,0 +1,4 @@
+Traceback (most recent call last):
+  File "/workspaces/mlcagent-experiments/bench/comparison/acceptance-02/studies/dry_bean-001/attempt-001/run-001/.mlca/steps/11_interpret_explain_model_J11J9MK4/attempts/3/script.py", line 35, in <module>
+    raise TypeError("Latest model is not a Pipeline")
+TypeError: Latest model is not a Pipeline

@@ -1,0 +1,2 @@
+features 16 rows 8124 classes 7
+saved model.pkl

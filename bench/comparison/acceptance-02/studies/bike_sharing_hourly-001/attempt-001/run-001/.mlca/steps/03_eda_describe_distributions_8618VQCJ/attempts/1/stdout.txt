@@ -1,0 +1,3 @@
+features=13 numeric=12 categorical=1
+placeholders: none; columns=0
+saved distributions.csv rows=13

@@ -1,0 +1,3 @@
+train rows=126, val rows=42, features=7
+validation metric rows=6
+best=baseline silhouette=0.4639

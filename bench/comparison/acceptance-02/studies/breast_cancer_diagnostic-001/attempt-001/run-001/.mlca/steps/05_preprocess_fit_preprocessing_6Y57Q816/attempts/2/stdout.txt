@@ -1,0 +1,4 @@
+train rows=341 model features=30 numeric=30 categorical=0
+derived excluded: none
+placeholder/whitespace columns: none
+val transformed shape=(113, 30)

@@ -1,0 +1,13 @@
+feature,importance_mean,importance_sd
+relationship,0.1031,0.003
+age,0.0759,0.0044
+capital-gain,0.0617,0.0019
+education,0.0241,0.0017
+capital-loss,0.0156,0.0011
+occupation,0.0154,0.0008
+hours-per-week,0.0147,0.0011
+sex,0.0088,0.0007
+fnlwgt,0.0013,0.0005
+workclass,0.0,0.0
+race,0.0,0.0
+native-country,0.0,0.0

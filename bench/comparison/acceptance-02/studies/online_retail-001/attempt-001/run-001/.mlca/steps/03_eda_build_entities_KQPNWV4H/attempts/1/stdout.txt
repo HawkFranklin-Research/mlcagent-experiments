@@ -1,0 +1,1 @@
+Rule: dropped 8905 reversing rows (Quantity<0); 397924/541909 kept.

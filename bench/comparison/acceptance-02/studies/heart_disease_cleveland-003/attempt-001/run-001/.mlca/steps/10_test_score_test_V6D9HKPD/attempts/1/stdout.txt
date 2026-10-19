@@ -1,0 +1,2 @@
+model=baseline n_test=62
+macro_f1=0.5720 hamming_avg=0.2984 subset_acc=0.5484

@@ -1,0 +1,2 @@
+test rows=115 features=30 classes=2
+roc_auc=0.9987 [0.9947,1.0000]

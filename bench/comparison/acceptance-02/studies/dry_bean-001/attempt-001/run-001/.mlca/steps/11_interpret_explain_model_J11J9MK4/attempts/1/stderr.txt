@@ -1,0 +1,4 @@
+Traceback (most recent call last):
+  File "/workspaces/mlcagent-experiments/bench/comparison/acceptance-02/studies/dry_bean-001/attempt-001/run-001/.mlca/steps/11_interpret_explain_model_J11J9MK4/attempts/1/script.py", line 43, in <module>
+    raise TypeError("Saved model is not a complete sklearn Pipeline")
+TypeError: Saved model is not a complete sklearn Pipeline

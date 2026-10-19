@@ -1,0 +1,3 @@
+train rows: 460
+feature columns: 8
+saved alternative_model.pkl

@@ -1,0 +1,4 @@
+placeholder tokens found in 1 text columns
+reversing rows (Quantity<0) kept and summarized; rule = explicit return flags, not silently dropped
+entities=4372 from 541909 rows; dropped_key=135080; cols=14
+ref_time=2011-12-09 12:50:00; group_column=CustomerID

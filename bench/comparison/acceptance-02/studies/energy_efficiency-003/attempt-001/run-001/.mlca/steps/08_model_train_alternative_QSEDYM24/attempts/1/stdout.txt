@@ -1,0 +1,3 @@
+Train shape: (460, 10)
+Numeric features: 8, Categorical features: 0
+Saved alternative_model.pkl

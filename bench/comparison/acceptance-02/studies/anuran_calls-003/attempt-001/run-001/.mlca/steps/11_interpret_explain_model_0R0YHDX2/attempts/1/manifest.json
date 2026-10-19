@@ -1,0 +1,1 @@
+{"facts": [], "fits": [], "metrics": [], "outputs": [{"caption": "Frozen model interpretation: hyperparameters, inputs, validation and limitations.", "kind": "table", "name": "interpretation.csv"}, {"caption": "Frozen model interpretation: hyperparameters, inputs, validation and limitations.", "kind": "table", "name": "interpretation.parquet"}]}

@@ -1,0 +1,25 @@
+Traceback (most recent call last):
+  File "/workspaces/mlcagent-experiments/bench/comparison/acceptance-02/studies/seeds-003/attempt-001/run-001/.mlca/steps/06_features_retain_features_MBXQM04A/attempts/1/script.py", line 30, in <module>
+    selector = mlca_runtime.fit_record(selector, X, 'train')
+  File "/workspaces/mlcagent-experiments/bench/comparison/acceptance-02/studies/seeds-003/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/mlca_runtime/__init__.py", line 192, in fit_record
+    estimator_or_pipeline.fit(X, y, **kwargs) if y is not None else estimator_or_pipeline.fit(X, **kwargs)
+                                                                    ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/workspaces/mlcagent-experiments/bench/comparison/acceptance-02/studies/seeds-003/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/base.py", line 1393, in wrapper
+    estimator._validate_params()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/workspaces/mlcagent-experiments/bench/comparison/acceptance-02/studies/seeds-003/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/base.py", line 554, in _validate_params
+    validate_parameter_constraints(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        self._parameter_constraints,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        self.get_params(deep=False),
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        caller_name=self.__class__.__name__,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/workspaces/mlcagent-experiments/bench/comparison/acceptance-02/studies/seeds-003/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/utils/_param_validation.py", line 98, in validate_parameter_constraints
+    raise InvalidParameterError(
+    ...<2 lines>...
+    )
+sklearn.utils._param_validation.InvalidParameterError: The 'threshold' parameter of VarianceThreshold must be a float in the range [0.0, inf). Got -1.0 instead.

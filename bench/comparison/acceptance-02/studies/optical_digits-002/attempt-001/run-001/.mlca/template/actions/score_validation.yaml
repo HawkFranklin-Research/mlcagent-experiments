@@ -1,0 +1,36 @@
+id: score_validation
+event: validate
+title: Score candidates on validation rows
+params: {}
+prompt: 'Do: Mean squared reconstruction error. Choose the lowest validation reconstruction error;
+  never train a supervised probe in this project. Inspect each candidate separately: PCA uses transform
+  then the final PCA inverse_transform; MLPRegressor uses predict, not inverse_transform. Compare
+  reconstructions with the same fitted frontend-space inputs, without applying preprocessing twice.
+  Score only val; do not fit. Freeze the validation-selected candidate before test.
+
+  Save: validation_metrics.csv (model, metric, value).
+
+  Record: the exact declared metric _protocol[''task''][''primary_metric''] on val; fact best_validation_score
+  (source validation_metrics.csv). Read the declared metric from _protocol[''task''][''primary_metric''];
+  compute and record that exact name, not a template default. Other listed metrics are supplementary.
+  Use its correct optimization direction and compare candidates only on validation; test scores never
+  select a model. Validation requires only the declared metric summary. Do not save models, embeddings,
+  per-row predictions or other undeclared files here; embedding extraction belongs to the declared
+  test output.'
+inputs:
+- ref: train
+- ref: val
+- ref: prior_outputs
+outputs:
+- name: validation_metrics.csv
+  kind: table
+  required: true
+fact_candidates:
+- best_model
+- best_validation_score
+reads_test: false
+timeout_s: 300
+methods_text: 'Score candidates on validation rows: Score the frozen candidates using the task-specific
+  declared primary metric and its direction; supplementary metrics do not replace it. Fit only on
+  training rows, select on validation, and evaluate the frozen choice on test.'
+builtin: null

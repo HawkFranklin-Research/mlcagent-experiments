@@ -1,0 +1,5 @@
+rows: train=126, val=42
+features: 7
+models described: baseline, alternative, latest
+silhouette val: 0.4639
+interpretation rows: 49

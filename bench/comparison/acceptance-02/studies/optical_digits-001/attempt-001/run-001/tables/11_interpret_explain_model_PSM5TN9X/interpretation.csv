@@ -1,0 +1,28 @@
+section,item,value,source
+protocol,primary_metric,reconstruction_error,_protocol
+protocol,targets,[],_protocol
+protocol,excluded_columns,[],_protocol
+protocol,group_column,None,_protocol
+data,train_rows,3372,train.parquet
+data,val_rows,1124,val.parquet
+data,feature_count,64,train.parquet
+data,constant_features,"pixel_1, pixel_40",train.parquet
+model,selected_source,latest_model,latest_model
+model,selected_class,MLPRegressor,latest_model
+model_params,activation,relu,latest_model
+model_params,alpha,0.0001,latest_model
+model_params,batch_size,auto,latest_model
+model_params,beta_1,0.9,latest_model
+model_params,beta_2,0.999,latest_model
+model_params,early_stopping,0,latest_model
+model_params,epsilon,1e-08,latest_model
+model_params,learning_rate,constant,latest_model
+model_params,learning_rate_init,0.001,latest_model
+model_params,loss,squared_error,latest_model
+validation,PCA:reconstruction_error,6.287,09_validate_score_validation_QC4M92J8/validation_metrics.csv
+validation,MLPRegressor:reconstruction_error,0.3506,09_validate_score_validation_QC4M92J8/validation_metrics.csv
+limitation,no_supervised_outcome,Reconstruction error only; no outcome column exists.,_protocol
+limitation,independent_rows,"No subject, time, event or repeated-measure identifiers are provided.",_protocol
+limitation,validation_only,Selection evidence is validation-only; no test exposure or post-test fitting.,09_validate_score_validation_QC4M92J8/validation_metrics.csv
+limitation,degenerate_pixels,Constant pixel features are noted as degenerate and are not interpreted as signal.,train.parquet
+inspection,top_feature,pixel_57,latest_model

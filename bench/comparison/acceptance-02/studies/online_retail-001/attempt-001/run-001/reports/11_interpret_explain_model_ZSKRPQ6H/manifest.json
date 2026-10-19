@@ -1,0 +1,1 @@
+{"facts": [{"key": "top_feature", "source": "interpretation.csv", "unit": null, "value": "frequency"}], "fits": [], "metrics": [], "outputs": [{"caption": "Frozen clustering interpretation", "kind": "table", "name": "interpretation.csv"}, {"caption": "Frozen clustering interpretation", "kind": "table", "name": "interpretation.parquet"}]}

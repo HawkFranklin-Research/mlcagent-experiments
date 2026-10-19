@@ -1,0 +1,19 @@
+aspect,detail,source
+task,"multioutput_regression; targets=['Y1', 'Y2']; primary_metric=rmse",_protocol
+frozen_model,Pipeline(preprocessor -> regressor); final_estimator=RandomForestRegressor,latest_model
+selected_hyperparameters,bootstrap=1; ccp_alpha=0; criterion=squared_error; max_depth=None; max_features=1; max_leaf_nodes=None; max_samples=None; min_impurity_decrease=0; min_samples_leaf=1; min_samples_split=2; min_weight_fraction_leaf=0; monotonic_cst=None; n_estimators=100; n_jobs=None; oob_score=0; random_state=42; verbose=0; warm_start=0,latest_model
+input_feature_count,8,train
+input_features,"X1, X2, X3, X4, X5, X6, X7, X8",train
+validation_evidence_0,model=baseline; metric=rmse_Y1; value=3.157,09_validate_score_validation_F12RYJBQ/validation_metrics.csv
+validation_evidence_1,model=baseline; metric=mae_Y1; value=2.354,09_validate_score_validation_F12RYJBQ/validation_metrics.csv
+validation_evidence_2,model=baseline; metric=r2_Y1; value=0.9036,09_validate_score_validation_F12RYJBQ/validation_metrics.csv
+validation_evidence_3,model=baseline; metric=rmse_Y2; value=3.607,09_validate_score_validation_F12RYJBQ/validation_metrics.csv
+validation_evidence_4,model=baseline; metric=mae_Y2; value=2.562,09_validate_score_validation_F12RYJBQ/validation_metrics.csv
+validation_evidence_5,model=baseline; metric=r2_Y2; value=0.863,09_validate_score_validation_F12RYJBQ/validation_metrics.csv
+validation_evidence_6,model=baseline; metric=rmse_macro; value=3.382,09_validate_score_validation_F12RYJBQ/validation_metrics.csv
+validation_evidence_7,model=baseline; metric=mae_macro; value=2.458,09_validate_score_validation_F12RYJBQ/validation_metrics.csv
+validation_evidence_8,model=baseline; metric=r2_macro; value=0.8833,09_validate_score_validation_F12RYJBQ/validation_metrics.csv
+validation_evidence_9,model=alternative; metric=rmse_Y1; value=0.4974,09_validate_score_validation_F12RYJBQ/validation_metrics.csv
+validation_evidence_10,model=alternative; metric=mae_Y1; value=0.3406,09_validate_score_validation_F12RYJBQ/validation_metrics.csv
+validation_evidence_11,model=alternative; metric=r2_Y1; value=0.9976,09_validate_score_validation_F12RYJBQ/validation_metrics.csv
+limitations,Frozen saved model interpreted without refitting; validation evidence comes from the provided metrics file; feature ranking is model-specific; no causal interpretation; unavailable importance is reported explicitly.,interpretation.csv

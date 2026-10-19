@@ -1,0 +1,3 @@
+train=(29275, 13) val=(9758, 13)
+primary=roc_auc; best=alternative; val_auc=0.9189
+metrics_rows=8

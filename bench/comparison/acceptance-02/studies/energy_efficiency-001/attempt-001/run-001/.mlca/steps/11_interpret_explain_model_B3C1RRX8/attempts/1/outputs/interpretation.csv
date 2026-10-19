@@ -1,0 +1,13 @@
+section,item,value
+model,estimator,"Pipeline(['pre', 'rf'])"
+model,n_features_in,8
+model,targets,"Y1, Y2"
+model,primary_metric,rmse
+inputs,train_rows,460
+inputs,val_rows,153
+inputs,feature_columns,8
+inputs,keylike_excluded,none
+validation,mean_rmse,
+limitations,note,No fitting performed; interpretation from frozen artifacts.
+limitations,note,Top feature from final estimator importances/coefficients.
+limitations,note,Hyperparameters read from saved model manifest.

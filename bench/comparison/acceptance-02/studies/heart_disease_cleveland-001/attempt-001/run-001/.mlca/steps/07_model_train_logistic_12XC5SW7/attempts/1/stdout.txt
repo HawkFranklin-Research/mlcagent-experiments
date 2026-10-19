@@ -1,0 +1,2 @@
+train=181 val=59 feats=13 sel_fronts_raw=True
+val_roc_auc=0.8912

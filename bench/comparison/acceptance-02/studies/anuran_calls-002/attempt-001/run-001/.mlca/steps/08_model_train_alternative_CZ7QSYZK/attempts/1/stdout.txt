@@ -1,0 +1,3 @@
+X_train shape: (4293, 22)
+y_train shape: (4293, 3)
+saved alternative_model.pkl

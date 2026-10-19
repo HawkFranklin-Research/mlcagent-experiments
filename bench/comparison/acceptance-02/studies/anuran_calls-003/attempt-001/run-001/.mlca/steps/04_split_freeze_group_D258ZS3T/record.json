@@ -1,0 +1,1 @@
+{"facts":[],"figures":[],"fits":[],"metrics":[],"outputs":[{"caption":"","kind":"report","name":"split.json","path":".mlca/steps/04_split_freeze_group_D258ZS3T/outputs/split.json","sha256":"286edb3961a55cd3b660ca9f31adc0fa3e23896840ab87476daf015c893105d0","size":1123}],"step_id":"04_split_freeze_group_D258ZS3T","wall_time_s":8.144565366999814}

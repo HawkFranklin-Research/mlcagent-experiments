@@ -1,0 +1,2 @@
+train rows=126 features=7
+saved selector_all.pkl

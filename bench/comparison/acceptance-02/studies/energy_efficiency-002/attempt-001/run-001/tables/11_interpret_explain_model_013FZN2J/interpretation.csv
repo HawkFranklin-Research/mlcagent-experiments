@@ -1,0 +1,41 @@
+section,item,value,source
+model,selected_model,08_model_train_alternative_3ESX6QWQ/alternative_model.pkl,08_model_train_alternative_3ESX6QWQ/alternative_model.pkl
+model,final_estimator,RandomForestRegressor,08_model_train_alternative_3ESX6QWQ/alternative_model.pkl
+model,pipeline_steps,"pre, rf",08_model_train_alternative_3ESX6QWQ/alternative_model.pkl
+model,preprocessor,ColumnTransformer,05_preprocess_fit_preprocessing_C8Q2SNQ9/preprocessor.pkl
+model,selector,Pipeline,06_features_retain_features_4S5ZAJJA/selector_all.pkl
+model,top_feature,num__X5,08_model_train_alternative_3ESX6QWQ/alternative_model.pkl
+hyperparameters,bootstrap,1,08_model_train_alternative_3ESX6QWQ/alternative_model.pkl
+hyperparameters,ccp_alpha,0,08_model_train_alternative_3ESX6QWQ/alternative_model.pkl
+hyperparameters,criterion,squared_error,08_model_train_alternative_3ESX6QWQ/alternative_model.pkl
+hyperparameters,max_depth,None,08_model_train_alternative_3ESX6QWQ/alternative_model.pkl
+hyperparameters,max_features,1,08_model_train_alternative_3ESX6QWQ/alternative_model.pkl
+hyperparameters,max_leaf_nodes,None,08_model_train_alternative_3ESX6QWQ/alternative_model.pkl
+hyperparameters,max_samples,None,08_model_train_alternative_3ESX6QWQ/alternative_model.pkl
+hyperparameters,min_impurity_decrease,0,08_model_train_alternative_3ESX6QWQ/alternative_model.pkl
+hyperparameters,min_samples_leaf,1,08_model_train_alternative_3ESX6QWQ/alternative_model.pkl
+hyperparameters,min_samples_split,2,08_model_train_alternative_3ESX6QWQ/alternative_model.pkl
+inputs,n_features,8,train.parquet
+inputs,feature_columns,"X1, X2, X3, X4, X5, X6, X7, X8",train.parquet
+inputs,targets,"Y1, Y2",train.parquet
+inputs,excluded_columns,(none),train.parquet
+inputs,group_column,(none),train.parquet
+inputs,primary_metric,rmse,train.parquet
+validation,rmse_Y1,3.157,09_validate_score_validation_JJ0ZPCSX/validation_metrics.csv
+validation,mae_Y1,2.354,09_validate_score_validation_JJ0ZPCSX/validation_metrics.csv
+validation,r2_Y1,0.9036,09_validate_score_validation_JJ0ZPCSX/validation_metrics.csv
+validation,rmse_Y2,3.607,09_validate_score_validation_JJ0ZPCSX/validation_metrics.csv
+validation,mae_Y2,2.562,09_validate_score_validation_JJ0ZPCSX/validation_metrics.csv
+validation,r2_Y2,0.863,09_validate_score_validation_JJ0ZPCSX/validation_metrics.csv
+validation,rmse_macro,3.382,09_validate_score_validation_JJ0ZPCSX/validation_metrics.csv
+validation,mae_macro,2.458,09_validate_score_validation_JJ0ZPCSX/validation_metrics.csv
+validation,r2_macro,0.8833,09_validate_score_validation_JJ0ZPCSX/validation_metrics.csv
+validation,rmse_Y1,0.4974,09_validate_score_validation_JJ0ZPCSX/validation_metrics.csv
+validation,mae_Y1,0.3406,09_validate_score_validation_JJ0ZPCSX/validation_metrics.csv
+validation,r2_Y1,0.9976,09_validate_score_validation_JJ0ZPCSX/validation_metrics.csv
+validation,rmse_Y2,1.915,09_validate_score_validation_JJ0ZPCSX/validation_metrics.csv
+validation,mae_Y2,1.132,09_validate_score_validation_JJ0ZPCSX/validation_metrics.csv
+validation,r2_Y2,0.9614,09_validate_score_validation_JJ0ZPCSX/validation_metrics.csv
+limitations,interpretation,frozen model inspected without fitting or refitting,08_model_train_alternative_3ESX6QWQ/alternative_model.pkl
+limitations,validation,evidence is from validation_metrics.csv only; no test exposure,09_validate_score_validation_JJ0ZPCSX/validation_metrics.csv
+limitations,scope,hyperparameters are those saved in the frozen model; no search performed,08_model_train_alternative_3ESX6QWQ/alternative_model.pkl

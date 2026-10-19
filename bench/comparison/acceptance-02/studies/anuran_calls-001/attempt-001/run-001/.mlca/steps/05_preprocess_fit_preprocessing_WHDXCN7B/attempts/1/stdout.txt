@@ -1,0 +1,3 @@
+train rows=4293 cols=26
+features numeric=22 cat=0 high_card_dropped=0
+saved preprocessor.pkl width=22

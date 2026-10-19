@@ -1,0 +1,46 @@
+section,item,value,source_file
+task,task_type,multilabel,_protocol
+task,primary_metric,macro_f1,_protocol
+task,targets,"Family, Genus, Species",_protocol
+task,group_column,RecordID,_protocol
+task,excluded_columns,,_protocol
+inputs,feature_count,22,train
+inputs,feature_names,"MFCCs_ 1, MFCCs_ 2, MFCCs_ 3, MFCCs_ 4, MFCCs_ 5, MFCCs_ 6, MFCCs_ 7, MFCCs_ 8, MFCCs_ 9, MFCCs_10, MFCCs_11, MFCCs_12, MFCCs_13, MFCCs_14, MFCCs_15, MFCCs_16, MFCCs_17, MFCCs_18, MFCCs_19, MFCCs_20, MFCCs_21, MFCCs_22",train
+model,frozen_source,latest_model,latest_model
+model,frozen_class,Pipeline,latest_model
+model,frozen_steps,frontend:Pipeline -> model:MultiOutputClassifier,latest_model
+model,frozen_final_estimator,MultiOutputClassifier,latest_model
+model,multioutput_base_estimator,RandomForestClassifier,latest_model
+model,baseline_class,Pipeline,07_model_train_baseline_JP4JWWDQ/model.pkl
+preprocessing,preprocessor_steps,ColumnTransformer,05_preprocess_fit_preprocessing_A8X1QVXT/preprocessor.pkl
+preprocessing,selector_class,Pipeline,06_features_retain_features_ZGB5PBQC/selector_all.pkl
+model,model_feature_names_in,"MFCCs_ 1, MFCCs_ 2, MFCCs_ 3, MFCCs_ 4, MFCCs_ 5, MFCCs_ 6, MFCCs_ 7, MFCCs_ 8, MFCCs_ 9, MFCCs_10, MFCCs_11, MFCCs_12, MFCCs_13, MFCCs_14, MFCCs_15, MFCCs_16, MFCCs_17, MFCCs_18, MFCCs_19, MFCCs_20, MFCCs_21, MFCCs_22",latest_model
+hyperparameters,final_class,MultiOutputClassifier,latest_model
+hyperparameters,base_class,RandomForestClassifier,latest_model
+hyperparameters,final.n_jobs,NaN,latest_model
+hyperparameters,base.bootstrap,True,latest_model
+hyperparameters,base.ccp_alpha,0,latest_model
+hyperparameters,base.class_weight,NaN,latest_model
+hyperparameters,base.criterion,gini,latest_model
+hyperparameters,base.max_depth,NaN,latest_model
+hyperparameters,base.max_features,sqrt,latest_model
+hyperparameters,base.max_leaf_nodes,NaN,latest_model
+hyperparameters,base.max_samples,NaN,latest_model
+hyperparameters,base.min_impurity_decrease,0,latest_model
+hyperparameters,base.min_samples_leaf,1,latest_model
+hyperparameters,base.min_samples_split,2,latest_model
+validation,validation_rows,18,09_validate_score_validation_6A3SAZRV/validation_metrics.csv
+validation,macro_f1,0.5617,09_validate_score_validation_6A3SAZRV/validation_metrics.csv
+validation,macro_f1,0.521,09_validate_score_validation_6A3SAZRV/validation_metrics.csv
+validation,macro_f1_Family,0.6528,09_validate_score_validation_6A3SAZRV/validation_metrics.csv
+validation,hamming_loss_Family,0.1808,09_validate_score_validation_6A3SAZRV/validation_metrics.csv
+validation,hamming_loss,0.2093,09_validate_score_validation_6A3SAZRV/validation_metrics.csv
+validation,hamming_loss_Species,0.1995,09_validate_score_validation_6A3SAZRV/validation_metrics.csv
+validation,macro_f1_Species,0.5169,09_validate_score_validation_6A3SAZRV/validation_metrics.csv
+validation,hamming_loss_Genus,0.2475,09_validate_score_validation_6A3SAZRV/validation_metrics.csv
+validation,macro_f1_Genus,0.4498,09_validate_score_validation_6A3SAZRV/validation_metrics.csv
+validation,macro_f1_Family,0.7185,09_validate_score_validation_6A3SAZRV/validation_metrics.csv
+limitations,grouping,RecordID groups call segments from the same recording; validation rows are not fully independent.,interpretation.csv
+limitations,targets,"Family, Genus and Species are nested taxonomic labels; coarse and fine label errors are correlated.",interpretation.csv
+limitations,evidence,Validation evidence is limited to the held-out validation split; no test or refitting is performed here.,09_validate_score_validation_6A3SAZRV/validation_metrics.csv
+limitations,scope,Interpretation is descriptive; feature importance does not imply causality.,interpretation.csv

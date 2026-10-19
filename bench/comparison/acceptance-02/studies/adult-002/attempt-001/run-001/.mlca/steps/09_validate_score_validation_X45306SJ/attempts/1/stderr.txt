@@ -1,0 +1,15 @@
+/workspaces/mlcagent-experiments/bench/comparison/acceptance-02/studies/adult-002/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/metrics/_ranking.py:469: UndefinedMetricWarning: Only one class is present in y_true. ROC AUC score is not defined in that case.
+  warnings.warn(
+/workspaces/mlcagent-experiments/bench/comparison/acceptance-02/studies/adult-002/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/metrics/_ranking.py:1192: UserWarning: No positive class found in y_true, recall is set to one for all thresholds.
+  warnings.warn(
+/workspaces/mlcagent-experiments/bench/comparison/acceptance-02/studies/adult-002/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/metrics/_ranking.py:1364: UndefinedMetricWarning: No positive samples in y_true, true positive value should be meaningless
+  warnings.warn(
+/workspaces/mlcagent-experiments/bench/comparison/acceptance-02/studies/adult-002/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/metrics/_classification.py:614: UserWarning: A single label was found in 'y_true' and 'y_pred'. For the confusion matrix to have the correct shape, use the 'labels' parameter to pass all known labels.
+  warnings.warn(
+Traceback (most recent call last):
+  File "/workspaces/mlcagent-experiments/bench/comparison/acceptance-02/studies/adult-002/attempt-001/run-001/.mlca/steps/09_validate_score_validation_X45306SJ/attempts/1/script.py", line 147, in <module>
+    mlca_runtime.record_metric(primary_metric, float(r[2]), "val")
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspaces/mlcagent-experiments/bench/comparison/acceptance-02/studies/adult-002/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/mlca_runtime/__init__.py", line 143, in record_metric
+    raise ValueError("MLCA: Metrics require a finite scalar value")
+ValueError: MLCA: Metrics require a finite scalar value

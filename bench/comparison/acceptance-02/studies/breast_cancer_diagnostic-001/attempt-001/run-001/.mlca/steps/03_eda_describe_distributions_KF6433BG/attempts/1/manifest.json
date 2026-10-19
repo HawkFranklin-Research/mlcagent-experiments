@@ -1,0 +1,1 @@
+{"facts": [{"key": "n_numeric", "source": "distributions.csv", "unit": null, "value": 30}, {"key": "n_categorical", "source": "distributions.csv", "unit": null, "value": 1}], "fits": [], "metrics": [], "outputs": [{"caption": "", "kind": "table", "name": "distributions.csv"}, {"caption": "", "kind": "table", "name": "distributions.parquet"}]}

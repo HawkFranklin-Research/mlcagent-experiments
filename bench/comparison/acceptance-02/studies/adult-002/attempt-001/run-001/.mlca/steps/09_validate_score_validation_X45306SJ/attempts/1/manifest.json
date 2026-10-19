@@ -1,0 +1,1 @@
+{"facts": [], "fits": [], "metrics": [], "outputs": [{"caption": "Validation metrics per model", "kind": "table", "name": "validation_metrics.csv"}, {"caption": "Validation metrics per model", "kind": "table", "name": "validation_metrics.parquet"}]}

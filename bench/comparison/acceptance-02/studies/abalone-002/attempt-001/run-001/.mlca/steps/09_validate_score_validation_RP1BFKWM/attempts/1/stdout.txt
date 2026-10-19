@@ -1,0 +1,2 @@
+val_rows=835 features=8 candidates=2
+primary=rmse direction=minimize best=alternative value=2.1284

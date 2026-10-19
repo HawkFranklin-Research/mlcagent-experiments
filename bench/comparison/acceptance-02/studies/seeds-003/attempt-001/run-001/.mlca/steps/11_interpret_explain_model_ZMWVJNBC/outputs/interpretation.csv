@@ -1,0 +1,50 @@
+section,item,value,source
+data,train_rows,126,train
+data,val_rows,42,val
+data,n_features,7,_protocol
+data,targets,[],_protocol
+data,excluded_columns,[],_protocol
+data,group_column,none,_protocol
+model,baseline_class,Pipeline,07_model_train_baseline_9FVS2S2P/manifest.json
+model,baseline_final_estimator,KMeans,07_model_train_baseline_9FVS2S2P/manifest.json
+hyperparameter,baseline.n_clusters,2,07_model_train_baseline_9FVS2S2P/manifest.json
+hyperparameter,baseline.init,k-means++,07_model_train_baseline_9FVS2S2P/manifest.json
+hyperparameter,baseline.n_init,10,07_model_train_baseline_9FVS2S2P/manifest.json
+hyperparameter,baseline.max_iter,300,07_model_train_baseline_9FVS2S2P/manifest.json
+hyperparameter,baseline.random_state,42,07_model_train_baseline_9FVS2S2P/manifest.json
+hyperparameter,baseline.algorithm,lloyd,07_model_train_baseline_9FVS2S2P/manifest.json
+hyperparameter,baseline.tol,0.0001,07_model_train_baseline_9FVS2S2P/manifest.json
+model,baseline_steps,"pre,km",07_model_train_baseline_9FVS2S2P/manifest.json
+input,baseline_feature_names,"7 columns: area, perimeter, compactness, kernel_length, kernel_width, asymmetry_coefficient, groove_length",07_model_train_baseline_9FVS2S2P/manifest.json
+model,baseline_n_clusters,2,07_model_train_baseline_9FVS2S2P/manifest.json
+metric,baseline_inertia,373.6,07_model_train_baseline_9FVS2S2P/manifest.json
+model,alternative_class,Pipeline,08_model_train_alternative_D2KDW4KS/manifest.json
+model,alternative_final_estimator,MiniBatchKMeans,08_model_train_alternative_D2KDW4KS/manifest.json
+hyperparameter,alternative.n_clusters,2,08_model_train_alternative_D2KDW4KS/manifest.json
+hyperparameter,alternative.init,k-means++,08_model_train_alternative_D2KDW4KS/manifest.json
+hyperparameter,alternative.n_init,10,08_model_train_alternative_D2KDW4KS/manifest.json
+hyperparameter,alternative.max_iter,100,08_model_train_alternative_D2KDW4KS/manifest.json
+hyperparameter,alternative.random_state,42,08_model_train_alternative_D2KDW4KS/manifest.json
+hyperparameter,alternative.tol,0,08_model_train_alternative_D2KDW4KS/manifest.json
+model,alternative_steps,"pre,kmeans",08_model_train_alternative_D2KDW4KS/manifest.json
+input,alternative_feature_names,"7 columns: area, perimeter, compactness, kernel_length, kernel_width, asymmetry_coefficient, groove_length",08_model_train_alternative_D2KDW4KS/manifest.json
+model,alternative_n_clusters,2,08_model_train_alternative_D2KDW4KS/manifest.json
+metric,alternative_inertia,373.8,08_model_train_alternative_D2KDW4KS/manifest.json
+model,latest_class,Pipeline,latest_model
+model,latest_final_estimator,MiniBatchKMeans,latest_model
+hyperparameter,latest.n_clusters,2,latest_model
+hyperparameter,latest.init,k-means++,latest_model
+hyperparameter,latest.n_init,10,latest_model
+hyperparameter,latest.max_iter,100,latest_model
+hyperparameter,latest.random_state,42,latest_model
+hyperparameter,latest.tol,0,latest_model
+model,latest_steps,"pre,kmeans",latest_model
+input,latest_feature_names,"7 columns: area, perimeter, compactness, kernel_length, kernel_width, asymmetry_coefficient, groove_length",latest_model
+model,latest_n_clusters,2,latest_model
+metric,latest_inertia,373.8,latest_model
+validation,primary_metric,silhouette,_protocol
+validation,silhouette_value,0.4639,09_validate_score_validation_R4H7PF4S/validation_metrics.csv
+limitation,unsupervised,No labelled outcome; grouping describes internal separation only.,_protocol
+limitation,generalisation,Small seed-morphology table; clusters may not transfer to other populations.,_protocol
+limitation,refitting,Frozen model was described without fitting; earlier selection is not re-evaluated here.,latest_model
+feature,top_feature,minibatchkmeans1,latest_model

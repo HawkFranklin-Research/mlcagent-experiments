@@ -1,0 +1,2 @@
+Selected model: alternative
+Test macro_f1: 0.3666

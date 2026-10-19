@@ -1,0 +1,2 @@
+placeholders found: none
+numeric=22 categorical=0 summary_rows=44

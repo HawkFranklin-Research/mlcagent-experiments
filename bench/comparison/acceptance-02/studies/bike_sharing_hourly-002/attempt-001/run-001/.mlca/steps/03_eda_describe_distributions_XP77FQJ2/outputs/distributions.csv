@@ -1,0 +1,15 @@
+variable,kind,mean,sd,min,median,max,n_missing,n_levels,top_share
+dteday,categorical,,,,,,0,731.0,0.001381
+season,numeric,2.502,1.107,1.0,3.0,4.0,0,,
+yr,numeric,0.5026,0.5,0.0,1.0,1.0,0,,
+mnth,numeric,6.538,3.439,1.0,7.0,12.0,0,,
+hr,numeric,11.55,6.914,0.0,12.0,23.0,0,,
+holiday,numeric,0.02877,0.1672,0.0,0.0,1.0,0,,
+weekday,numeric,3.004,2.006,0.0,3.0,6.0,0,,
+workingday,numeric,0.6827,0.4654,0.0,1.0,1.0,0,,
+weathersit,numeric,1.425,0.6394,1.0,1.0,4.0,0,,
+temp,numeric,0.497,0.1926,0.02,0.5,1.0,0,,
+atemp,numeric,0.4758,0.1719,0.0,0.4848,1.0,0,,
+hum,numeric,0.6272,0.1929,0.0,0.63,1.0,0,,
+windspeed,numeric,0.1901,0.1223,0.0,0.194,0.8507,0,,
+cnt,numeric,189.5,181.4,1.0,142.0,977.0,0,,

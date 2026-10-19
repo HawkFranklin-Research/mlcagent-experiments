@@ -1,0 +1,5 @@
+Rows: train=4293, val=1709
+Features: 22
+Targets: ['Family', 'Genus', 'Species']
+Primary metric (macro_f1): 0.4415
+Top feature: MFCCs_19

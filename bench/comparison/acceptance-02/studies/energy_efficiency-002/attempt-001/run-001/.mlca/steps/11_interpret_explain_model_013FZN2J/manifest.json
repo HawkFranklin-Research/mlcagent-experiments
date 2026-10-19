@@ -1,0 +1,1 @@
+{"facts": [{"key": "top_feature", "source": "08_model_train_alternative_3ESX6QWQ/alternative_model.pkl", "unit": null, "value": "num__X5"}], "fits": [], "metrics": [], "outputs": [{"caption": "Frozen model interpretation summary", "kind": "table", "name": "interpretation.csv"}, {"caption": "Frozen model interpretation summary", "kind": "table", "name": "interpretation.parquet"}]}

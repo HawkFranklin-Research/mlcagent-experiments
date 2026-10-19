@@ -1,0 +1,19 @@
+section,item,value,evidence
+model,frozen model,"Pipeline: imputer, scaler, mlp",latest_model
+model,final estimator,MLPRegressor,latest_model
+model,hyperparameters,"hidden_layer_sizes=(16, 8, 16); activation=relu; solver=adam; alpha=0.0001; learning_rate_init=0.001; max_iter=300; tol=0.0001; batch_size=auto; random_state=42",latest_model
+model,baseline comparison,PCA,07_model_train_baseline_Q9V0XT19/model.pkl
+inputs,training rows,3372,train.parquet
+inputs,feature columns,64,train.parquet
+inputs,preprocessor,"ColumnTransformer: log, num",05_preprocess_fit_preprocessing_4ZZYYY8Y/preprocessor.pkl
+inputs,selector,ColumnTransformer: passthrough,06_features_retain_features_E2FAAE9F/selector_all.pkl
+inputs,targets,[],_protocol
+inputs,excluded columns,[],_protocol
+validation,primary metric,reconstruction_error,09_validate_score_validation_TXYKFRBW/validation_metrics.csv
+validation,validation value,0.4589,09_validate_score_validation_TXYKFRBW/validation_metrics.csv
+validation,validation rows,2,09_validate_score_validation_TXYKFRBW/validation_metrics.csv
+interpretation,top feature (proxy),pixel_57,latest_model
+limitations,no outcome,unsupervised representation; no label used,_protocol
+limitations,validation only,no test exposure; metric is reconstruction error,09_validate_score_validation_TXYKFRBW/validation_metrics.csv
+limitations,top feature,"importance is a frozen-model proxy, not causal",interpretation.csv
+limitations,semantic meaning,pixel loadings do not identify digit class,interpretation.csv

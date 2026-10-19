@@ -1,0 +1,21 @@
+id: RL-0027
+kind: instruction
+roles:
+- worker
+events:
+- features
+- model
+- validate
+- test
+- interpret
+problem_types:
+- all
+text: Before combining saved transformers, compare their feature_names_in_. Two saved objects that both
+  expect the raw feature columns were fitted side by side, not in sequence; never chain one after the other,
+  because the second then receives transformed output instead of the raw columns. Use only the one the step
+  needs, normally the most complete, or place both side by side on the raw feature DataFrame (FeatureUnion).
+  Chain an object after another only when its feature_names_in_ match the other's output names.
+reason: A model step chained a saved preprocessor and a saved selector that had both been fitted on the raw
+  columns; the selector then could not find its input columns.
+ledger: L-0010
+added_in: rails-0.11

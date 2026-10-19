@@ -1,0 +1,4 @@
+selected=baseline
+test_rows=42 clusters=2
+silhouette=0.383769
+saved test_metrics.csv and assignments.parquet

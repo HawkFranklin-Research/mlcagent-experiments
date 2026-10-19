@@ -1,0 +1,8 @@
+aspect,detail,source_file
+model_file,08_model_train_alternative_X1KB5C0A/alternative_model.pkl,08_model_train_alternative_X1KB5C0A/manifest.json
+model_type,MLPRegressor,08_model_train_alternative_X1KB5C0A/manifest.json
+hyperparameters,"hidden_layer_sizes=(16, 8, 16); activation=relu; solver=adam; alpha=0.0001; learning_rate_init=0.001; max_iter=300; batch_size=auto; learning_rate=constant; tol=0.0001; random_state=42",08_model_train_alternative_X1KB5C0A/manifest.json
+input_features,64 features: pixel_1 ... pixel_64,06_features_retain_features_XVA92YG5/manifest.json
+validation_metric,reconstruction_error=0.4589,09_validate_score_validation_6Z8BSCQW/validation_metrics.csv
+limitations,Unsupervised reconstruction; no outcome column; no group or chronology field; constant columns removed by selector.,06_features_retain_features_XVA92YG5/manifest.json
+top_feature,pixel_33,08_model_train_alternative_X1KB5C0A/alternative_model.pkl

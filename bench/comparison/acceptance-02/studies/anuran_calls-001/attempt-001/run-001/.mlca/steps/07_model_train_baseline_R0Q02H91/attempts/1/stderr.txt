@@ -1,0 +1,5 @@
+Traceback (most recent call last):
+  File "/workspaces/mlcagent-experiments/bench/comparison/acceptance-02/studies/anuran_calls-001/attempt-001/run-001/.mlca/steps/07_model_train_baseline_R0Q02H91/attempts/1/script.py", line 21, in <module>
+    sel_cols = list(getattr(sel, "feature_names_in_", []) or [])
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: The truth value of an array with more than one element is ambiguous. Use a.any() or a.all()

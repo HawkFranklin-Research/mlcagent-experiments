@@ -1,0 +1,4 @@
+Traceback (most recent call last):
+  File "/workspaces/mlcagent-experiments/bench/comparison/acceptance-02/studies/abalone-002/attempt-001/run-001/.mlca/steps/10_test_score_test_SNWKHV5Q/attempts/1/script.py", line 50, in <module>
+    raise ValueError(f"no validation rows for primary metric {primary!r}")
+ValueError: no validation rows for primary metric 'rmse'

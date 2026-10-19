@@ -1,0 +1,2 @@
+Rule: dropped 10624 reversing rows (Quantity<0); 397924/541909 kept.
+entities shape: (4339, 6); group retained: 'CustomerID'
