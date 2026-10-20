@@ -124,10 +124,14 @@ def extract_predictions(events, project, output, spec, test_index):
     # proba__<class> in the model's class order), whose class names are in the column names.
     schema = spec.get("mlca_prediction_schema", {})
     standard = None
-    if not schema and "y_pred" in rows:
+    single = [c for c in rows.columns if c.startswith("y_pred__")]
+    prediction_column = (
+        "y_pred" if "y_pred" in rows else single[0] if len(single) == 1 else None
+    )
+    if not schema and prediction_column:
         probabilities = [c for c in rows.columns if c.startswith("proba__")]
         standard = {
-            "prediction_column": "y_pred",
+            "prediction_column": prediction_column,
             "probability_columns": probabilities,
             "classes": [c[len("proba__") :] for c in probabilities],
             "standard": True,
@@ -146,7 +150,7 @@ def extract_predictions(events, project, output, spec, test_index):
         and (
             c in requested
             or c in {"prediction", "y_pred", "probability", "proba"}
-            or c.startswith("proba_")
+            or c.startswith(("y_pred__", "proba_"))
         )
     ]
     if len(columns) == 1:
