@@ -1,0 +1,2 @@
+val rows 835; candidates 3; features 8
+best alternative rmse=2.12842

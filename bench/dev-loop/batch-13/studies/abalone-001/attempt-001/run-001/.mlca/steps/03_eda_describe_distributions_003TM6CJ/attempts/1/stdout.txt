@@ -1,0 +1,2 @@
+placeholder columns: 0; dropped key-like: 0
+numeric=7 categorical=1

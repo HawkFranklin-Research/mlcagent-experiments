@@ -1,0 +1,2 @@
+features: 8 num=7 cat=1
+val rmse mean: 2.1284

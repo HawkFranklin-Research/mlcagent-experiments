@@ -1,0 +1,10 @@
+aspect,value
+model_type,Pipeline
+estimator,LinearRegression
+hyperparameters,"{""copy_X"": true, ""fit_intercept"": true, ""n_jobs"": null, ""positive"": false}"
+raw_inputs,"Length, Diameter, Height, Whole_weight, Shucked_weight, Viscera_weight, Shell_weight, Sex"
+selected_features,"passthrough__Sex, passthrough__Length, passthrough__Diameter, passthrough__Height, passthrough__Whole_weight, passthrough__Shucked_weight, passthrough__Viscera_weight, passthrough__Shell_weight"
+top_feature,passthrough__Whole_weight
+validation_metric,rmse
+validation_value,2.219
+limitations,No test set evaluation; validation metrics only; model frozen; no hyperparameter tuning at interpretation; feature importance may be biased for correlated features.

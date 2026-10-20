@@ -1,0 +1,23 @@
+id: fit_preprocessing
+event: preprocess
+title: Fit imputation, encoding and scaling
+params: {}
+prompt: 'Do: fit a ColumnTransformer using only training feature columns, excluding
+  every target and identifier named in _protocol. Use median imputation, numeric scaling
+  and categorical encoding as needed.
+
+  Save: preprocessor.pkl.'
+inputs:
+- ref: train
+- ref: val
+- ref: prior_outputs
+outputs:
+- name: preprocessor.pkl
+  kind: model
+  required: true
+fact_candidates: []
+reads_test: false
+timeout_s: 300
+methods_text: Follow the recorded task and saved model contract; all fitting uses
+  training rows only.
+builtin: null

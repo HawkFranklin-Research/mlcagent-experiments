@@ -1,0 +1,2 @@
+placeholder-text columns: 0
+features=30, val_transformed=(113, 30)

@@ -1,0 +1,95 @@
+Traceback (most recent call last):
+  File "/workspaces/mlcagent-experiments/bench/dev-loop/batch-13/studies/abalone-001/attempt-001/run-001/.mlca/steps/05_preprocess_fit_preprocessing_XDGKSNK5/attempts/1/script.py", line 139, in <module>
+    mlca_runtime.fit_record(preprocessor, X_train, "train")
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspaces/mlcagent-experiments/bench/dev-loop/batch-13/studies/abalone-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/mlca_runtime/__init__.py", line 238, in fit_record
+    estimator_or_pipeline.fit(X, y, **kwargs) if y is not None else estimator_or_pipeline.fit(X, **kwargs)
+                                                                    ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/workspaces/mlcagent-experiments/bench/dev-loop/batch-13/studies/abalone-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/compose/_column_transformer.py", line 924, in fit
+    self.fit_transform(X, y=y, **params)
+    ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "/workspaces/mlcagent-experiments/bench/dev-loop/batch-13/studies/abalone-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/utils/_set_output.py", line 327, in wrapped
+    data_to_wrap = f(self, X, *args, **kwargs)
+  File "/workspaces/mlcagent-experiments/bench/dev-loop/batch-13/studies/abalone-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/base.py", line 1403, in wrapper
+    return fit_method(estimator, *args, **kwargs)
+  File "/workspaces/mlcagent-experiments/bench/dev-loop/batch-13/studies/abalone-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/compose/_column_transformer.py", line 977, in fit_transform
+    result = self._call_func_on_transformers(
+        X,
+    ...<3 lines>...
+        routed_params=routed_params,
+    )
+  File "/workspaces/mlcagent-experiments/bench/dev-loop/batch-13/studies/abalone-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/compose/_column_transformer.py", line 887, in _call_func_on_transformers
+    return Parallel(n_jobs=self.n_jobs)(jobs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "/workspaces/mlcagent-experiments/bench/dev-loop/batch-13/studies/abalone-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/utils/parallel.py", line 91, in __call__
+    return super().__call__(iterable_with_config_and_warning_filters)
+           ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspaces/mlcagent-experiments/bench/dev-loop/batch-13/studies/abalone-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/joblib/parallel.py", line 2012, in __call__
+    return output if self.return_generator else list(output)
+                                                ~~~~^^^^^^^^
+  File "/workspaces/mlcagent-experiments/bench/dev-loop/batch-13/studies/abalone-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/joblib/parallel.py", line 1940, in _get_sequential_output
+    res = func(*args, **kwargs)
+  File "/workspaces/mlcagent-experiments/bench/dev-loop/batch-13/studies/abalone-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/utils/parallel.py", line 184, in __call__
+    return self.function(*args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/workspaces/mlcagent-experiments/bench/dev-loop/batch-13/studies/abalone-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/pipeline.py", line 1566, in _fit_transform_one
+    res = transformer.fit_transform(X, y, **params.get("fit_transform", {}))
+  File "/workspaces/mlcagent-experiments/bench/dev-loop/batch-13/studies/abalone-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/base.py", line 1403, in wrapper
+    return fit_method(estimator, *args, **kwargs)
+  File "/workspaces/mlcagent-experiments/bench/dev-loop/batch-13/studies/abalone-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/pipeline.py", line 712, in fit_transform
+    Xt = self._fit(
+        X, y, routed_params, raw_params=params, callback_ctx=callback_ctx
+    )
+  File "/workspaces/mlcagent-experiments/bench/dev-loop/batch-13/studies/abalone-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/pipeline.py", line 561, in _fit
+    X, fitted_transformer = fit_transform_one_cached(
+                            ~~~~~~~~~~~~~~~~~~~~~~~~^
+        cloned_transformer,
+        ^^^^^^^^^^^^^^^^^^^
+    ...<7 lines>...
+        callback_ctx=subcontext,
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/workspaces/mlcagent-experiments/bench/dev-loop/batch-13/studies/abalone-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/joblib/memory.py", line 331, in __call__
+    return self.func(*args, **kwargs)
+           ~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/workspaces/mlcagent-experiments/bench/dev-loop/batch-13/studies/abalone-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/pipeline.py", line 1593, in _fit_transform_one_with_callbacks
+    Xt, transformer = _fit_transform_one(
+                      ~~~~~~~~~~~~~~~~~~^
+        transformer, X, y, weight, message_clsname, message, params
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/workspaces/mlcagent-experiments/bench/dev-loop/batch-13/studies/abalone-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/pipeline.py", line 1566, in _fit_transform_one
+    res = transformer.fit_transform(X, y, **params.get("fit_transform", {}))
+  File "/workspaces/mlcagent-experiments/bench/dev-loop/batch-13/studies/abalone-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/utils/_set_output.py", line 327, in wrapped
+    data_to_wrap = f(self, X, *args, **kwargs)
+  File "/workspaces/mlcagent-experiments/bench/dev-loop/batch-13/studies/abalone-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/base.py", line 969, in fit_transform
+    return self.fit(X, **fit_params).transform(X)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^
+  File "/workspaces/mlcagent-experiments/bench/dev-loop/batch-13/studies/abalone-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/utils/_set_output.py", line 327, in wrapped
+    data_to_wrap = f(self, X, *args, **kwargs)
+  File "/workspaces/mlcagent-experiments/bench/dev-loop/batch-13/studies/abalone-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/preprocessing/_function_transformer.py", line 254, in transform
+    out = self._transform(X, func=self.func, kw_args=self.kw_args)
+  File "/workspaces/mlcagent-experiments/bench/dev-loop/batch-13/studies/abalone-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/preprocessing/_function_transformer.py", line 381, in _transform
+    return func(X, **(kw_args if kw_args else {}))
+  File "/workspaces/mlcagent-experiments/bench/dev-loop/batch-13/studies/abalone-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/numpy/_core/strings.py", line 1076, in strip
+    return _strip_whitespace(a)
+  File "/workspaces/mlcagent-experiments/bench/dev-loop/batch-13/studies/abalone-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/pandas/core/generic.py", line 2048, in __array_ufunc__
+    return arraylike.array_ufunc(self, ufunc, method, *inputs, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspaces/mlcagent-experiments/bench/dev-loop/batch-13/studies/abalone-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/pandas/core/arraylike.py", line 409, in array_ufunc
+    result = mgr.apply(getattr(ufunc, method))
+  File "/workspaces/mlcagent-experiments/bench/dev-loop/batch-13/studies/abalone-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/pandas/core/internals/managers.py", line 443, in apply
+    applied = b.apply(f, **kwargs)
+  File "/workspaces/mlcagent-experiments/bench/dev-loop/batch-13/studies/abalone-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/pandas/core/internals/blocks.py", line 347, in apply
+    result = func(self.values, **kwargs)
+  File "/workspaces/mlcagent-experiments/bench/dev-loop/batch-13/studies/abalone-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/pandas/core/arrays/arrow/array.py", line 901, in __array_ufunc__
+    result = super().__array_ufunc__(ufunc, method, *inputs, **kwargs)
+  File "/workspaces/mlcagent-experiments/bench/dev-loop/batch-13/studies/abalone-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/pandas/core/arrays/base.py", line 2723, in __array_ufunc__
+    return arraylike.default_array_ufunc(self, ufunc, method, *inputs, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspaces/mlcagent-experiments/bench/dev-loop/batch-13/studies/abalone-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/pandas/core/arraylike.py", line 494, in default_array_ufunc
+    return getattr(ufunc, method)(*new_inputs, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+numpy._core._exceptions._UFuncNoLoopError: ufunc '_strip_whitespace' did not contain a loop with signature matching types <class 'numpy.dtypes.ObjectDType'> -> None

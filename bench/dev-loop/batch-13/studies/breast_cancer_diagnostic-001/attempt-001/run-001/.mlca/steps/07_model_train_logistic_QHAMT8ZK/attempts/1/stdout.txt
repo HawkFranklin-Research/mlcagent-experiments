@@ -1,0 +1,2 @@
+n_features=30 n_train=341
+steps=['sel', 'clf']

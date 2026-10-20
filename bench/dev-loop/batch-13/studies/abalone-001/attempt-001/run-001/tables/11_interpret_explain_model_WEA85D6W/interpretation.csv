@@ -1,0 +1,13 @@
+aspect,value
+model_class,Pipeline
+estimator,LinearRegression
+hyperparameters,"{""copy_X"": true, ""fit_intercept"": true, ""n_jobs"": null, ""positive"": false}"
+raw_inputs,"Length, Diameter, Height, Whole_weight, Shucked_weight, Viscera_weight, Shell_weight, Sex"
+selected_features,"num__Length, num__Diameter, num__Height, num__Whole_weight, num__Shucked_weight, num__Viscera_weight, num__Shell_weight, cat__Sex_F, cat__Sex_I, cat__Sex_M"
+n_selected_features,10
+top_feature,num__Shucked_weight
+validation_metric,rmse
+validation_value,nan
+train_rows,2506
+val_rows,835
+limitations,"Frozen model, no refit at interpretation; validation-only evidence; no test-set scoring performed; feature importance may be unstable for correlated predictors."

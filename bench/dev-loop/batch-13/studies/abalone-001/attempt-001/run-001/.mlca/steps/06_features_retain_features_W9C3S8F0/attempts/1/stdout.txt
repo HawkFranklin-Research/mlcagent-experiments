@@ -1,0 +1,2 @@
+Selected 8 features: ['Sex', 'Length', 'Diameter', 'Height', 'Whole_weight', 'Shucked_weight', 'Viscera_weight', 'Shell_weight']
+Training rows: 2506

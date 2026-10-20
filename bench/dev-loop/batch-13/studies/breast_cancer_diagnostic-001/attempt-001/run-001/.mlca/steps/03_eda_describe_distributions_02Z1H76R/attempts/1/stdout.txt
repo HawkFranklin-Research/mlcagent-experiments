@@ -1,0 +1,2 @@
+placeholders: none; columns=0
+numeric=30, categorical=1, rows=33

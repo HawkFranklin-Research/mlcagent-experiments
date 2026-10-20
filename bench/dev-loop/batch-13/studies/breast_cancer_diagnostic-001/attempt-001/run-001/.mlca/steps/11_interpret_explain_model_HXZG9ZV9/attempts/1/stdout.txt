@@ -1,0 +1,4 @@
+train rows 341, val rows 113
+features 30, task metric roc_auc, scoring roc_auc
+top feature area2, mean 0.01048
+saved interpretation.csv rows 15

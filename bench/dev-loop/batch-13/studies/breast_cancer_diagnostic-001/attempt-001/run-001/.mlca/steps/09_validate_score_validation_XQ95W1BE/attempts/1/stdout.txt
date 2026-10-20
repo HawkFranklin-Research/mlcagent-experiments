@@ -1,0 +1,4 @@
+logistic: roc_auc=0.9896 pos_label=M youden_thr=0.7248
+alternative: roc_auc=0.9859 pos_label=M youden_thr=0.7540
+primary=roc_auc best=logistic val=0.9896
+train=(341, 31) val=(113, 31)

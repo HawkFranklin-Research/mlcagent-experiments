@@ -1,0 +1,5 @@
+train=2506 val=835
+model=LinearRegression top_feature=num__Shucked_weight
+val_rmse=nan
+n_features=10
+saved interpretation.csv

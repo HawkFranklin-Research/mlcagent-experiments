@@ -1,0 +1,16 @@
+id: RL-0001
+kind: instruction
+roles:
+- navigator
+events:
+- onboard
+problem_types:
+- all
+text: During study-setup inference, give one concise proposal and a one-sentence justification.
+  Include an alternative only for a concrete unresolved scientific ambiguity; otherwise
+  return an empty alternatives list. Do not invent an unrelated prediction objective
+  to populate the list.
+reason: Avoid unnecessary alternative proposals and excessive setup output before
+  analysis can begin.
+ledger: L-0001
+added_in: rails-0.2
