@@ -1,0 +1,62 @@
+{
+  "status": "failed",
+  "task": "heart_disease_cleveland",
+  "framework": "autogluon",
+  "spec_sha256": "1e179f0595b580375dba5e1fc0796adb6a05aaaf6a3df322db37696738f65726",
+  "time_budget_s": 60.0,
+  "cpus": 2,
+  "seed": 42,
+  "versions": {
+    "python": "3.13.12 (main, Mar 24 2026, 22:49:35) [Clang 22.1.1 ]",
+    "executable": "/workspaces/mlcagent-experiments/automl/.venv/bin/python",
+    "autogluon.tabular": "1.5.0",
+    "flaml": "2.7.0",
+    "scikit-learn": "1.7.2",
+    "numpy": "2.3.5",
+    "pandas": "2.3.3",
+    "lightgbm": "4.6.0"
+  },
+  "run_label": "heart_disease_cleveland-001/attempt-001",
+  "split_hashes": {
+    "data": "d60c1050744de47db797974b237c3eca6cccb58742b2ccd7c619bb99b581873e",
+    "manifest": "7bae94d9929b3004d45c0b6bb5ff30790ba5a4718f35ea246baba4f8eb48d28b",
+    "train_index": "df46d1c768e0f91cded99fd78bef9c41c0f717732552267cffb0842d9c40e308",
+    "train": "aa58aae1d70557750833eafef0c37064e15f2e0619ff8b1c59dbdd6ef895cbfc",
+    "val": "44d9509e16c2bdd78192d85f8bedb50b60e2d2f07ec266ed519d319597f12550",
+    "test": "d8bc06055421e4b56d0e1c8bceb2df6317adc1664310fa31d0918c977bfb6d50"
+  },
+  "mlca_recorded_metrics": [
+    {
+      "ci": [
+        0.762049456879526,
+        0.9341698160745779
+      ],
+      "name": "roc_auc",
+      "split": "test",
+      "value": 0.8580121703853955,
+      "step_id": "10_test_score_test_50DGJTCS",
+      "source": "recorded"
+    }
+  ],
+  "mlca_code_commit": "d9a39e2abdd29c43f686b4d4da3d835a7f6ed8e4",
+  "rails": {
+    "sha256": "e6217303a1c3870f1133e71d665dd70431be63a2f44f0308a342eeecb569e46a",
+    "version": "rails-0.11"
+  },
+  "split_id": "04_split_freeze_stratified_QKMEG9E6",
+  "split_parameters": {
+    "group_column": "",
+    "method": "stratified",
+    "seed": 42,
+    "time_column": "",
+    "train_fraction": 0.6,
+    "val_fraction": 0.2
+  },
+  "mlca_log_verification": {
+    "ok": true,
+    "records": 370,
+    "head_sha256": "5780afb1f1fbe42f49395cd3f7abfa1350352e7b0ea3c82075b97934b07f5b7c"
+  },
+  "error_type": "ValueError",
+  "message": "Spec columns absent: ['num']"
+}

@@ -1,5 +1,5 @@
 {
-  "status": "failed",
+  "status": "completed",
   "task": "heart_disease_cleveland",
   "framework": "flaml",
   "spec_sha256": "1e179f0595b580375dba5e1fc0796adb6a05aaaf6a3df322db37696738f65726",
@@ -57,6 +57,106 @@
     "records": 370,
     "head_sha256": "5780afb1f1fbe42f49395cd3f7abfa1350352e7b0ea3c82075b97934b07f5b7c"
   },
-  "error_type": "ValueError",
-  "message": "Spec columns absent: ['num']"
+  "comparison_metric": "roc_auc",
+  "mlca_primary_metric": "roc_auc",
+  "features": [
+    "age",
+    "sex",
+    "cp",
+    "trestbps",
+    "chol",
+    "fbs",
+    "restecg",
+    "thalach",
+    "exang",
+    "oldpeak",
+    "slope",
+    "ca",
+    "thal"
+  ],
+  "feature_count": 13,
+  "excluded_absent": [
+    "num"
+  ],
+  "best_model": "extra_tree",
+  "best_config": {
+    "n_estimators": 6,
+    "max_features": 0.20801839634442137,
+    "max_leaves": 4,
+    "criterion": "entropy"
+  },
+  "validation_loss": 0.06307870370370372,
+  "settings": {
+    "task": "classification",
+    "metric": "roc_auc",
+    "time_budget": 60.0,
+    "n_jobs": 2,
+    "seed": 42,
+    "eval_method": "holdout",
+    "retrain_full": false,
+    "estimator_list": "auto",
+    "resolved_estimator_list": [
+      "lgbm",
+      "rf",
+      "xgboost",
+      "extra_tree",
+      "xgb_limitdepth",
+      "sgd",
+      "catboost",
+      "lrl1"
+    ]
+  },
+  "fit_seconds": 60.028204458000346,
+  "classes": [
+    0,
+    1
+  ],
+  "positive": 1,
+  "predict_seconds": {
+    "val": 0.025821468999765784,
+    "test": 0.02505893100033063
+  },
+  "val": {
+    "primary": {
+      "name": "roc_auc",
+      "value": 0.9369212962962963
+    },
+    "secondary": {
+      "balanced_accuracy": 0.8605324074074074,
+      "macro_f1": 0.8624708624708625,
+      "accuracy": 0.864406779661017
+    },
+    "n": 59,
+    "notes": []
+  },
+  "test": {
+    "primary": {
+      "name": "roc_auc",
+      "value": 0.8828600405679513
+    },
+    "secondary": {
+      "balanced_accuracy": 0.7738336713995944,
+      "macro_f1": 0.775,
+      "accuracy": 0.7777777777777778
+    },
+    "n": 63,
+    "notes": []
+  },
+  "mlca": {
+    "source": "recorded",
+    "metrics": [
+      {
+        "ci": [
+          0.762049456879526,
+          0.9341698160745779
+        ],
+        "name": "roc_auc",
+        "split": "test",
+        "value": 0.8580121703853955,
+        "step_id": "10_test_score_test_50DGJTCS",
+        "source": "recorded"
+      }
+    ],
+    "reason": "No explicit saved-prediction schema; class ordering is never guessed"
+  }
 }

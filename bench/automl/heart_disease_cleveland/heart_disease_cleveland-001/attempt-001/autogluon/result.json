@@ -1,5 +1,5 @@
 {
-  "status": "failed",
+  "status": "completed",
   "task": "heart_disease_cleveland",
   "framework": "autogluon",
   "spec_sha256": "1e179f0595b580375dba5e1fc0796adb6a05aaaf6a3df322db37696738f65726",
@@ -57,6 +57,95 @@
     "records": 370,
     "head_sha256": "5780afb1f1fbe42f49395cd3f7abfa1350352e7b0ea3c82075b97934b07f5b7c"
   },
-  "error_type": "ValueError",
-  "message": "Spec columns absent: ['num']"
+  "comparison_metric": "roc_auc",
+  "mlca_primary_metric": "roc_auc",
+  "features": [
+    "age",
+    "sex",
+    "cp",
+    "trestbps",
+    "chol",
+    "fbs",
+    "restecg",
+    "thalach",
+    "exang",
+    "oldpeak",
+    "slope",
+    "ca",
+    "thal"
+  ],
+  "feature_count": 13,
+  "excluded_absent": [
+    "num"
+  ],
+  "best_model": "RandomForestEntr",
+  "settings": {
+    "eval_metric": "roc_auc",
+    "presets": "medium_quality",
+    "num_cpus": 2,
+    "refit_full": false,
+    "num_bag_folds": 0,
+    "num_stack_levels": 0,
+    "fit_weighted_ensemble": false,
+    "feature_generator_fit": "training_only",
+    "excluded_model_types": [
+      "NN_TORCH",
+      "FASTAI"
+    ],
+    "seed": 42,
+    "determinism": "AutoGluon may not be fully deterministic"
+  },
+  "fit_seconds": 3.236800812999718,
+  "classes": [
+    0,
+    1
+  ],
+  "positive": 1,
+  "predict_seconds": {
+    "val": 0.06495922699969015,
+    "test": 0.06091301700007534
+  },
+  "val": {
+    "primary": {
+      "name": "roc_auc",
+      "value": 0.9143518518518519
+    },
+    "secondary": {
+      "balanced_accuracy": 0.7951388888888888,
+      "macro_f1": 0.7951388888888888,
+      "accuracy": 0.7966101694915254
+    },
+    "n": 59,
+    "notes": []
+  },
+  "test": {
+    "primary": {
+      "name": "roc_auc",
+      "value": 0.8782961460446248
+    },
+    "secondary": {
+      "balanced_accuracy": 0.776369168356998,
+      "macro_f1": 0.776369168356998,
+      "accuracy": 0.7777777777777778
+    },
+    "n": 63,
+    "notes": []
+  },
+  "mlca": {
+    "source": "recorded",
+    "metrics": [
+      {
+        "ci": [
+          0.762049456879526,
+          0.9341698160745779
+        ],
+        "name": "roc_auc",
+        "split": "test",
+        "value": 0.8580121703853955,
+        "step_id": "10_test_score_test_50DGJTCS",
+        "source": "recorded"
+      }
+    ],
+    "reason": "No explicit saved-prediction schema; class ordering is never guessed"
+  }
 }

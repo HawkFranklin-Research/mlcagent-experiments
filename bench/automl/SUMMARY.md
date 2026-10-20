@@ -34,15 +34,15 @@ flaml: 3/3 completed; 2 matched scores; matched medians MLCA=0.922362, AutoML=0.
 
 | Run | Tool | MLCA (source) | AutoML | Status |
 |---|---|---|---|---|
-| bike_sharing_hourly-001/attempt-001 | autogluon | None (mlca_metric_unavailable) | None | failed |
-| bike_sharing_hourly-001/attempt-001 | flaml | None (mlca_metric_unavailable) | None | failed |
-| bike_sharing_hourly-002/attempt-001 | autogluon | None (mlca_metric_unavailable) | None | failed |
-| bike_sharing_hourly-002/attempt-001 | flaml | None (mlca_metric_unavailable) | None | failed |
-| bike_sharing_hourly-003/attempt-001 | autogluon | None (mlca_metric_unavailable) | None | failed |
-| bike_sharing_hourly-003/attempt-001 | flaml | None (mlca_metric_unavailable) | None | failed |
+| bike_sharing_hourly-001/attempt-001 | autogluon | None (mlca_metric_unavailable) | 92.2528105516981 | completed |
+| bike_sharing_hourly-001/attempt-001 | flaml | None (mlca_metric_unavailable) | 87.96086498853482 | completed |
+| bike_sharing_hourly-002/attempt-001 | autogluon | None (mlca_metric_unavailable) | 92.2528105516981 | completed |
+| bike_sharing_hourly-002/attempt-001 | flaml | None (mlca_metric_unavailable) | 87.96086498853482 | completed |
+| bike_sharing_hourly-003/attempt-001 | autogluon | None (mlca_metric_unavailable) | 92.2528105516981 | completed |
+| bike_sharing_hourly-003/attempt-001 | flaml | None (mlca_metric_unavailable) | 87.96086498853482 | completed |
 
-autogluon: 0/3 completed; 0 matched scores; matched medians MLCA=unavailable, AutoML=unavailable; median paired difference: unavailable.
-flaml: 0/3 completed; 0 matched scores; matched medians MLCA=unavailable, AutoML=unavailable; median paired difference: unavailable.
+autogluon: 3/3 completed; 0 matched scores; matched medians MLCA=unavailable, AutoML=unavailable; median paired difference: unavailable.
+flaml: 3/3 completed; 0 matched scores; matched medians MLCA=unavailable, AutoML=unavailable; median paired difference: unavailable.
 
 ## breast_cancer_diagnostic
 
@@ -88,13 +88,13 @@ flaml: 3/3 completed; 3 matched scores; matched medians MLCA=0.9947503479557779,
 
 | Run | Tool | MLCA (source) | AutoML | Status |
 |---|---|---|---|---|
-| heart_disease_cleveland-001/attempt-001 | autogluon | 0.8580121703853955 (recorded) | None | failed |
-| heart_disease_cleveland-001/attempt-001 | flaml | 0.8580121703853955 (recorded) | None | failed |
+| heart_disease_cleveland-001/attempt-001 | autogluon | 0.8580121703853955 (recorded) | 0.8782961460446248 | completed |
+| heart_disease_cleveland-001/attempt-001 | flaml | 0.8580121703853955 (recorded) | 0.8828600405679513 | completed |
 | heart_disease_cleveland-002/attempt-001 | autogluon | None (mlca_metric_unavailable) | 0.8833333333333334 | completed |
 | heart_disease_cleveland-002/attempt-001 | flaml | None (mlca_metric_unavailable) | 0.8803921568627451 | completed |
 | heart_disease_cleveland-003/attempt-001 | autogluon | None (mlca_metric_unavailable) | 0.9208333333333334 | completed |
 | heart_disease_cleveland-003/attempt-001 | flaml | None (mlca_metric_unavailable) | 0.9177083333333333 | completed |
 
-autogluon: 2/3 completed; 0 matched scores; matched medians MLCA=unavailable, AutoML=unavailable; median paired difference: unavailable.
-flaml: 2/3 completed; 0 matched scores; matched medians MLCA=unavailable, AutoML=unavailable; median paired difference: unavailable.
+autogluon: 3/3 completed; 1 matched scores; matched medians MLCA=0.8580121703853955, AutoML=0.8782961460446248; median paired difference: 0.020283975659229347.
+flaml: 3/3 completed; 1 matched scores; matched medians MLCA=0.8580121703853955, AutoML=0.8828600405679513; median paired difference: 0.024847870182555853.
 

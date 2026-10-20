@@ -11,12 +11,12 @@ adult,adult-002/attempt-001,autogluon,roc_auc,roc_auc,0.9254,recorded,0.93050756
 adult,adult-002/attempt-001,flaml,roc_auc,roc_auc,0.9254,recorded,0.927473508762708,0.002073508762707954,60.05899198199995,completed,
 adult,adult-003/attempt-001,autogluon,roc_auc,roc_auc,,mlca_metric_unavailable,0.9305075629306657,,60.252652037999724,completed,
 adult,adult-003/attempt-001,flaml,roc_auc,roc_auc,,mlca_metric_unavailable,0.927473508762708,,60.044069370000216,completed,
-bike_sharing_hourly,bike_sharing_hourly-001/attempt-001,autogluon,,,,mlca_metric_unavailable,,,,failed,"Spec columns absent: ['casual', 'instant', 'registered']"
-bike_sharing_hourly,bike_sharing_hourly-001/attempt-001,flaml,,,,mlca_metric_unavailable,,,,failed,"Spec columns absent: ['casual', 'instant', 'registered']"
-bike_sharing_hourly,bike_sharing_hourly-002/attempt-001,autogluon,,,,mlca_metric_unavailable,,,,failed,"Spec columns absent: ['casual', 'instant', 'registered']"
-bike_sharing_hourly,bike_sharing_hourly-002/attempt-001,flaml,,,,mlca_metric_unavailable,,,,failed,"Spec columns absent: ['casual', 'instant', 'registered']"
-bike_sharing_hourly,bike_sharing_hourly-003/attempt-001,autogluon,,,,mlca_metric_unavailable,,,,failed,"Spec columns absent: ['casual', 'instant', 'registered']"
-bike_sharing_hourly,bike_sharing_hourly-003/attempt-001,flaml,,,,mlca_metric_unavailable,,,,failed,"Spec columns absent: ['casual', 'instant', 'registered']"
+bike_sharing_hourly,bike_sharing_hourly-001/attempt-001,autogluon,rmse,rmse,,mlca_metric_unavailable,92.2528105516981,,24.232215422999616,completed,
+bike_sharing_hourly,bike_sharing_hourly-001/attempt-001,flaml,rmse,rmse,,mlca_metric_unavailable,87.96086498853482,,59.97466985300025,completed,
+bike_sharing_hourly,bike_sharing_hourly-002/attempt-001,autogluon,rmse,rmse,,mlca_metric_unavailable,92.2528105516981,,25.30072083999994,completed,
+bike_sharing_hourly,bike_sharing_hourly-002/attempt-001,flaml,rmse,rmse,,mlca_metric_unavailable,87.96086498853482,,60.01216479599998,completed,
+bike_sharing_hourly,bike_sharing_hourly-003/attempt-001,autogluon,rmse,poisson_deviance,,mlca_metric_unavailable,92.2528105516981,,30.037249543000144,completed,
+bike_sharing_hourly,bike_sharing_hourly-003/attempt-001,flaml,rmse,poisson_deviance,,mlca_metric_unavailable,87.96086498853482,,60.01512033500012,completed,
 breast_cancer_diagnostic,breast_cancer_diagnostic-001/attempt-001,autogluon,roc_auc,roc_auc,0.9987080103359173,recorded,0.9996770025839794,0.0009689922480621282,4.829337419000012,completed,
 breast_cancer_diagnostic,breast_cancer_diagnostic-001/attempt-001,flaml,roc_auc,roc_auc,0.9987080103359173,recorded,0.999031007751938,0.0003229974160207094,60.03204601399989,completed,
 breast_cancer_diagnostic,breast_cancer_diagnostic-002/attempt-001,autogluon,roc_auc,roc_auc,0.9987,recorded,0.9996770025839794,0.0009770025839793695,4.6391021249999085,completed,
@@ -33,8 +33,8 @@ dry_bean,dry_bean-002/attempt-001,autogluon,roc_auc_ovr,roc_auc_ovr,0.9947503479
 dry_bean,dry_bean-002/attempt-001,flaml,roc_auc_ovr,roc_auc_ovr,0.9947503479557779,recorded,0.9954276538442907,0.0006773058885127803,59.97997600200006,completed,
 dry_bean,dry_bean-003/attempt-001,autogluon,roc_auc_ovr,roc_auc_ovr,0.9947503479557779,recorded,0.9955612989979784,0.000810951042200525,50.029581690000214,completed,
 dry_bean,dry_bean-003/attempt-001,flaml,roc_auc_ovr,roc_auc_ovr,0.9947503479557779,recorded,0.9954276538442907,0.0006773058885127803,60.160448480000014,completed,
-heart_disease_cleveland,heart_disease_cleveland-001/attempt-001,autogluon,roc_auc,,0.8580121703853955,recorded,,,,failed,Spec columns absent: ['num']
-heart_disease_cleveland,heart_disease_cleveland-001/attempt-001,flaml,roc_auc,,0.8580121703853955,recorded,,,,failed,Spec columns absent: ['num']
+heart_disease_cleveland,heart_disease_cleveland-001/attempt-001,autogluon,roc_auc,roc_auc,0.8580121703853955,recorded,0.8782961460446248,0.020283975659229347,3.236800812999718,completed,
+heart_disease_cleveland,heart_disease_cleveland-001/attempt-001,flaml,roc_auc,roc_auc,0.8580121703853955,recorded,0.8828600405679513,0.024847870182555853,60.028204458000346,completed,
 heart_disease_cleveland,heart_disease_cleveland-002/attempt-001,autogluon,roc_auc,macro_f1,,mlca_metric_unavailable,0.8833333333333334,,2.749011289000009,completed,
 heart_disease_cleveland,heart_disease_cleveland-002/attempt-001,flaml,roc_auc,macro_f1,,mlca_metric_unavailable,0.8803921568627451,,60.00723806399992,completed,
 heart_disease_cleveland,heart_disease_cleveland-003/attempt-001,autogluon,roc_auc,macro_f1,,mlca_metric_unavailable,0.9208333333333334,,3.0355214230003185,completed,

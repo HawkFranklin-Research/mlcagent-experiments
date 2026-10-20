@@ -1,5 +1,5 @@
 {
-  "status": "failed",
+  "status": "completed",
   "task": "bike_sharing_hourly",
   "framework": "autogluon",
   "spec_sha256": "cad2f87701aaafa58e52c607ea4ad96ee567df39391fb407ad9465ebebb1db17",
@@ -49,6 +49,80 @@
     "records": 200,
     "head_sha256": "38d502857857366b37da5125a080e483671f3dedd6273be061b5e2aa0af10f86"
   },
-  "error_type": "ValueError",
-  "message": "Spec columns absent: ['casual', 'instant', 'registered']"
+  "comparison_metric": "rmse",
+  "mlca_primary_metric": "rmse",
+  "features": [
+    "dteday",
+    "season",
+    "yr",
+    "mnth",
+    "hr",
+    "holiday",
+    "weekday",
+    "workingday",
+    "weathersit",
+    "temp",
+    "atemp",
+    "hum",
+    "windspeed"
+  ],
+  "feature_count": 13,
+  "excluded_absent": [
+    "casual",
+    "instant",
+    "registered"
+  ],
+  "best_model": "XGBoost",
+  "settings": {
+    "eval_metric": "root_mean_squared_error",
+    "presets": "medium_quality",
+    "num_cpus": 2,
+    "refit_full": false,
+    "num_bag_folds": 0,
+    "num_stack_levels": 0,
+    "fit_weighted_ensemble": false,
+    "feature_generator_fit": "training_only",
+    "excluded_model_types": [
+      "NN_TORCH",
+      "FASTAI"
+    ],
+    "seed": 42,
+    "determinism": "AutoGluon may not be fully deterministic"
+  },
+  "fit_seconds": 25.30072083999994,
+  "classes": null,
+  "positive": null,
+  "predict_seconds": {
+    "val": 0.04174544999978025,
+    "test": 0.041889959999934945
+  },
+  "val": {
+    "primary": {
+      "name": "rmse",
+      "value": 74.15221359642611
+    },
+    "secondary": {
+      "mae": 51.065765380859375,
+      "r2": 0.881625235080719
+    },
+    "n": 3475,
+    "notes": []
+  },
+  "test": {
+    "primary": {
+      "name": "rmse",
+      "value": 92.2528105516981
+    },
+    "secondary": {
+      "mae": 64.60298156738281,
+      "r2": 0.8248848915100098
+    },
+    "n": 3477,
+    "notes": []
+  },
+  "mlca": {
+    "source": "mlca_metric_unavailable",
+    "metrics": [],
+    "reason": "No explicit saved-prediction schema; class ordering is never guessed"
+  }
 }

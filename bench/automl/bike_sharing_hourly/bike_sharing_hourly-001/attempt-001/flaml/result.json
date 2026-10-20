@@ -1,5 +1,5 @@
 {
-  "status": "failed",
+  "status": "completed",
   "task": "bike_sharing_hourly",
   "framework": "flaml",
   "spec_sha256": "cad2f87701aaafa58e52c607ea4ad96ee567df39391fb407ad9465ebebb1db17",
@@ -49,6 +49,95 @@
     "records": 194,
     "head_sha256": "aec63221758cae7b9ba71798e64b7cdf9ee720313776153818eb303eaf975885"
   },
-  "error_type": "ValueError",
-  "message": "Spec columns absent: ['casual', 'instant', 'registered']"
+  "comparison_metric": "rmse",
+  "mlca_primary_metric": "rmse",
+  "features": [
+    "dteday",
+    "season",
+    "yr",
+    "mnth",
+    "hr",
+    "holiday",
+    "weekday",
+    "workingday",
+    "weathersit",
+    "temp",
+    "atemp",
+    "hum",
+    "windspeed"
+  ],
+  "feature_count": 13,
+  "excluded_absent": [
+    "casual",
+    "instant",
+    "registered"
+  ],
+  "best_model": "xgb_limitdepth",
+  "best_config": {
+    "n_estimators": 420,
+    "max_depth": 5,
+    "min_child_weight": 6.629455755652865,
+    "learning_rate": 0.2049566728768065,
+    "subsample": 0.8112303659848759,
+    "colsample_bylevel": 1.0,
+    "colsample_bytree": 0.9095974555115259,
+    "reg_alpha": 0.0014693334687403462,
+    "reg_lambda": 0.02065411964351687
+  },
+  "validation_loss": 67.4430785748712,
+  "settings": {
+    "task": "regression",
+    "metric": "rmse",
+    "time_budget": 60.0,
+    "n_jobs": 2,
+    "seed": 42,
+    "eval_method": "holdout",
+    "retrain_full": false,
+    "estimator_list": "auto",
+    "resolved_estimator_list": [
+      "lgbm",
+      "rf",
+      "xgboost",
+      "extra_tree",
+      "xgb_limitdepth",
+      "sgd",
+      "catboost"
+    ]
+  },
+  "fit_seconds": 59.97466985300025,
+  "classes": null,
+  "positive": null,
+  "predict_seconds": {
+    "val": 0.03577272600023207,
+    "test": 0.029352577999816276
+  },
+  "val": {
+    "primary": {
+      "name": "rmse",
+      "value": 67.4430785748712
+    },
+    "secondary": {
+      "mae": 47.51446533203125,
+      "r2": 0.9020768404006958
+    },
+    "n": 3475,
+    "notes": []
+  },
+  "test": {
+    "primary": {
+      "name": "rmse",
+      "value": 87.96086498853482
+    },
+    "secondary": {
+      "mae": 62.619544982910156,
+      "r2": 0.840799868106842
+    },
+    "n": 3477,
+    "notes": []
+  },
+  "mlca": {
+    "source": "mlca_metric_unavailable",
+    "metrics": [],
+    "reason": "No explicit saved-prediction schema; class ordering is never guessed"
+  }
 }
