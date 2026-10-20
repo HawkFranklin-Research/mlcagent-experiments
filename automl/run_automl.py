@@ -38,6 +38,13 @@ except ImportError:
     )
     from score import score
 
+# Both sides are scored on one fixed metric per task type, whatever MLCA's navigator chose.
+COMPARISON_METRIC = {
+    "binary": "roc_auc",
+    "multiclass": "roc_auc_ovr",
+    "regression": "rmse",
+}
+
 METRICS = {
     "autogluon": {
         "roc_auc": "roc_auc",
@@ -171,13 +178,16 @@ def prediction_table(frame, truth, prediction, probabilities):
     return rows
 
 
-def rescore_mlca(work, metadata, spec, truth):
+def rescore_mlca(work, metadata, spec, truth, metric):
     schema = spec.get("mlca_prediction_schema")
     prediction = metadata.get("mlca_predictions", {})
     if not schema or prediction.get("status") != "copied":
+        recorded = [
+            m for m in metadata.get("mlca_recorded_metrics", []) if m["name"] == metric
+        ]
         return {
-            "source": "recorded",
-            "metrics": metadata.get("mlca_recorded_metrics", []),
+            "source": "recorded" if recorded else "mlca_metric_unavailable",
+            "metrics": recorded,
             "reason": "No explicit saved-prediction schema; class ordering is never guessed",
         }
     rows = pd.read_parquet(checked(work / prediction["file"], prediction["sha256"]))
@@ -194,7 +204,7 @@ def rescore_mlca(work, metadata, spec, truth):
     probabilities = rows[proba_columns].to_numpy() if proba_columns else None
     result = score(
         spec["problem_type"],
-        metadata["primary_metric"],
+        metric,
         truth,
         y_pred=rows[schema["prediction_column"]]
         if schema.get("prediction_column")
@@ -268,13 +278,11 @@ def run(spec, work, framework, seconds, cpus, seed, output):
         ):
             raise ValueError("Partition columns differ")
         labels = {name: label(frame, spec) for name, frame in parts.items()}
-        kind, metric = spec["problem_type"], metadata["primary_metric"]
-        if (
-            (kind == "binary" and metric != "roc_auc")
-            or (kind == "multiclass" and metric != "roc_auc_ovr")
-            or (kind == "regression" and metric != "rmse")
-        ):
-            raise ValueError("Primary metric is not supported for this task type")
+        kind = spec["problem_type"]
+        metric = COMPARISON_METRIC[kind]
+        result.update(
+            comparison_metric=metric, mlca_primary_metric=metadata["primary_metric"]
+        )
         result["features"], result["feature_count"] = columns, len(columns)
         random.seed(seed)
         np.random.seed(seed)
@@ -331,7 +339,7 @@ def run(spec, work, framework, seconds, cpus, seed, output):
                 prediction_table(
                     parts[partition], labels[partition], prediction, probabilities
                 ).to_parquet(output / "test_predictions.parquet", index=False)
-        result["mlca"] = rescore_mlca(work, metadata, spec, labels["test"])
+        result["mlca"] = rescore_mlca(work, metadata, spec, labels["test"], metric)
         if metadata.get("external"):
             descriptor = metadata["external"]
             cohort = pd.read_parquet(

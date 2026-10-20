@@ -13,12 +13,17 @@ def comparison(result):
     if mlca.get("source") == "shared_scorer":
         primary = mlca["score"]["primary"]
         return primary["name"], primary["value"], "shared_scorer"
-    metrics = result.get("mlca_recorded_metrics", [])
+    metric = result.get("comparison_metric")
+    metrics = [
+        m
+        for m in result.get("mlca_recorded_metrics", [])
+        if metric is None or m["name"] == metric
+    ]
     distinct = {(m["name"], m["value"]) for m in metrics}
     if len(distinct) == 1:
         name, value = distinct.pop()
         return name, value, "recorded"
-    return None, None, "ambiguous_recorded" if distinct else "unavailable"
+    return None, None, "ambiguous_recorded" if distinct else "mlca_metric_unavailable"
 
 
 def summarize(root):
@@ -43,6 +48,7 @@ def summarize(root):
                 "run": result.get("run_label", "/".join(path.parts[-4:-2])),
                 "framework": result["framework"],
                 "metric": primary.get("name", metric),
+                "mlca_primary_metric": result.get("mlca_primary_metric"),
                 "mlca_test": baseline,
                 "mlca_source": source,
                 "automl_test": value,
@@ -58,6 +64,7 @@ def summarize(root):
         "run",
         "framework",
         "metric",
+        "mlca_primary_metric",
         "mlca_test",
         "mlca_source",
         "automl_test",

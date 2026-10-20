@@ -188,7 +188,7 @@ def export(spec, project, output, run_label):
             for r in events
             if r["type"] == "StepCompleted"
             for m in r["payload"].get("metrics", [])
-            if m.get("split") == "test" and m["name"] == task["primary_metric"]
+            if m.get("split") == "test"
         ]
         registered = [
             r["payload"]
@@ -284,7 +284,7 @@ def export(spec, project, output, run_label):
             for r in events
             if r["type"] == "StepCompleted"
             for m in r["payload"].get("metrics", [])
-            if m.get("split") == "test" and m["name"] == task["primary_metric"]
+            if m.get("split") == "test"
         ]
         base.update(
             status="verified",

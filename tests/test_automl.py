@@ -12,6 +12,7 @@ from mlca.log.store import Store
 from sklearn.metrics import mean_squared_error, roc_auc_score
 
 from automl import export_split, make_specs, run_automl
+from automl import summarize as summarize_module
 from automl.common import digest, label, write_json
 from automl.score import score
 from automl.summarize import summarize
@@ -505,7 +506,7 @@ def test_shared_rescoring_of_explicit_mlca_prediction_schema(tmp_path):
         },
     }
     result = run_automl.rescore_mlca(
-        work, metadata, spec, pd.Series(["a", "b"], index=[1, 2])
+        work, metadata, spec, pd.Series(["a", "b"], index=[1, 2]), "roc_auc"
     )
     assert (
         result["source"] == "shared_scorer" and result["score"]["primary"]["value"] == 1
@@ -611,3 +612,55 @@ def test_external_requires_unlock(project):
     spec["external"] = {"data": "/must/not/be/opened", "sha256": "x"}
     result = export_split.export(spec, root, work, "run")
     assert result["status"] == "failed" and "remains locked" in result["message"]
+
+
+@pytest.mark.parametrize("chosen", ["average_precision", "poisson_deviance"])
+def test_comparison_uses_fixed_metric_whatever_mlca_chose(
+    project, monkeypatch, tmp_path, chosen
+):
+    root, spec, work, _, _ = project
+    export_split.export(spec, root, work, "synthetic-001/attempt-001")
+    metadata = json.loads((work / "split.json").read_text())
+    metadata["primary_metric"] = chosen
+    metadata["mlca_recorded_metrics"] = [
+        {"name": chosen, "value": 0.4, "split": "test"},
+        {"name": "roc_auc", "value": 0.9, "split": "test"},
+    ]
+    (work / "split.json").write_text(json.dumps(metadata))
+    model = FakePredictor()
+    monkeypatch.setattr(
+        run_automl,
+        "fit_framework",
+        lambda *a, **k: (
+            model,
+            ["a", "b"],
+            {"best_model": "fake", "settings": {}},
+            None,
+        ),
+    )
+    output = tmp_path / "public/synthetic/synthetic-001/attempt-001/flaml"
+    result = run_automl.run(spec, work, "flaml", 20, 2, 42, output)
+    assert result["status"] == "completed", result
+    assert (
+        result["comparison_metric"] == "roc_auc"
+        and result["mlca_primary_metric"] == chosen
+    )
+    assert result["test"]["primary"]["name"] == "roc_auc"
+    assert result["mlca"]["metrics"] == [
+        {"name": "roc_auc", "value": 0.9, "split": "test"}
+    ]
+    row = summarize(tmp_path / "public")[0]
+    assert row["mlca_test"] == 0.9 and row["mlca_source"] == "recorded"
+    assert row["mlca_primary_metric"] == chosen
+
+
+def test_missing_comparison_metric_on_mlca_side_is_reported_not_guessed():
+    result = {
+        "comparison_metric": "rmse",
+        "mlca_recorded_metrics": [{"name": "poisson_deviance", "value": 1.2}],
+    }
+    assert summarize_module.comparison(result) == (
+        None,
+        None,
+        "mlca_metric_unavailable",
+    )
