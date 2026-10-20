@@ -1,0 +1,14 @@
+id: RL-0012
+kind: instruction
+roles:
+- worker
+events:
+- all
+problem_types:
+- all
+text: 'Summary tables have one type per column: use NaN, not empty strings, for values that
+  do not apply, or put numeric and categorical summaries in separate columns. Keep at most
+  50 rows and 12 columns; for wide summaries, place variables in rows and statistics in columns.'
+reason: An EDA summary mixed empty strings into a numeric column and could not be saved.
+ledger: L-0002
+added_in: rails-0.3

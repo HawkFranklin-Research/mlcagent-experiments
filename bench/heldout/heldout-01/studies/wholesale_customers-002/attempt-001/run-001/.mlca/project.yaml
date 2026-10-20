@@ -1,0 +1,50 @@
+project_id: 01M5C2MG9A04RB6K1YHG99Q8YF
+template_id: clustering
+template_version: 0.1.0
+template_sha256: 428d5f7bd70a52209e98fa99e45fe6b5573fc2f3de3e00173d484d13dee0212c
+config:
+  measurement_arm: worker
+  rails_enabled: true
+  catalog:
+    selected: []
+  chatgpt_auth:
+    client_id: null
+  providers:
+    development:
+      kind: deepseek
+      oauth_client_id: null
+      base_url: https://api.deepseek.com
+      api_key_env: DEEPSEEK_API_KEY
+      script: null
+      structured_outputs: true
+      timeout_s: 90.0
+      call_deadline_s: 300.0
+      request_cost_bound_usd: null
+      requests_per_minute: 60.0
+      rate_limit_dir: /workspaces/mlcagent-experiments/bench/heldout/heldout-01/.control/rate
+  roles:
+    navigator:
+      provider: development
+      model: deepseek-flash
+      temperature: 0.0
+      reasoning_effort: low
+      max_output_tokens: 32768
+    worker:
+      provider: development
+      model: deepseek-flash
+      temperature: 0.0
+      reasoning_effort: low
+      max_output_tokens: 32768
+  privacy:
+    allow_sample_rows: false
+    store_payloads: true
+    provider_data_collection: null
+    zero_data_retention: false
+  budgets:
+    turn_max_usd: null
+    session_max_usd: null
+    worker_max_attempts: 3
+  sandbox:
+    allow_level_b: false
+  mcp:
+    mode: brain

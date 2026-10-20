@@ -1,0 +1,2 @@
+features 12 train_rows 3189
+val_auc 0.7712

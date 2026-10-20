@@ -1,0 +1,4 @@
+train=(264, 6) val=(88, 6) features=6
+candidates=2 metric_rows=6
+val_sample=88
+best=baseline silhouette=0.306565

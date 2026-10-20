@@ -1,0 +1,2 @@
+val_rows=388 models=['baseline', 'alternative']
+best=alternative macro_f1=0.8435

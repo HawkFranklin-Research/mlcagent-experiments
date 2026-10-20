@@ -1,0 +1,5 @@
+model: Pipeline(ct:ColumnTransformer -> km:MiniBatchKMeans)
+rows: 264 train / 88 val
+features: 6
+top_feature: num__Grocery
+validation_silhouette: NA

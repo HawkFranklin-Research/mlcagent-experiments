@@ -1,0 +1,3 @@
+features_in=12 train_rows=3189
+pre_out=13 k=13 selected=13
+saved selector.pkl

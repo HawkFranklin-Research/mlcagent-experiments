@@ -1,0 +1,7 @@
+feature,type,n_missing,mean,sd,min,median,max,n_levels,top_share
+Fresh,numeric,0,12000.2977,12647.3289,3,8504.0,112151,,
+Milk,numeric,0,5796.2659,7380.3772,55,3627.0,73498,,
+Grocery,numeric,0,7951.2773,9503.1628,3,4755.5,92780,,
+Frozen,numeric,0,3071.9318,4854.6733,25,1526.0,60869,,
+Detergents_Paper,numeric,0,2881.4932,4767.8544,3,816.5,40827,,
+Delicassen,numeric,0,1524.8705,2820.1059,3,965.5,47943,,

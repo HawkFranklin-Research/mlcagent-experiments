@@ -1,0 +1,2 @@
+placeholders found in 0 text columns
+rows=31 numeric=24 categorical=0

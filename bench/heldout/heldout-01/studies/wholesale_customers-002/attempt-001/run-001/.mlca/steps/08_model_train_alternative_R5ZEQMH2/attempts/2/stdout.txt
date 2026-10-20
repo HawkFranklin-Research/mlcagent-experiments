@@ -1,0 +1,4 @@
+train (264, 6) feat 6 num 6 cat 0
+diag subsample 264
+best_k 2 silhouette 0.6684
+saved alternative_model.pkl

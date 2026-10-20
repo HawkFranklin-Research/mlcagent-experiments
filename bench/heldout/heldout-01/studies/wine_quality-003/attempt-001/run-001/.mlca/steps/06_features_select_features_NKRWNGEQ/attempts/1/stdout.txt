@@ -1,0 +1,5 @@
+targets=['quality']
+features=12
+transformed=13
+k=13
+saved selector.pkl

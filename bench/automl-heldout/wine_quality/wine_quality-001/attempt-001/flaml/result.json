@@ -1,0 +1,167 @@
+{
+  "status": "completed",
+  "task": "wine_quality",
+  "framework": "flaml",
+  "spec_sha256": "37d74da08b58817b7189635fdf0ffda2da7496e97c21afc4dbbf737ce7f2cc44",
+  "time_budget_s": 600.0,
+  "cpus": 2,
+  "seed": 42,
+  "versions": {
+    "python": "3.13.12 (main, Mar 24 2026, 22:49:35) [Clang 22.1.1 ]",
+    "executable": "/workspaces/mlcagent-experiments/automl/.venv/bin/python",
+    "autogluon.tabular": "1.5.0",
+    "flaml": "2.7.0",
+    "scikit-learn": "1.7.2",
+    "numpy": "2.3.5",
+    "pandas": "2.3.3",
+    "lightgbm": "4.6.0"
+  },
+  "run_label": "wine_quality-001/attempt-001",
+  "split_hashes": {
+    "data": "c0fca2ca864220c74a5ce85e63f8ba3cf11c401aa3dedfc4c3cca5f7a29d99cd",
+    "manifest": "4dc6156580f8ee8e8c7772de0a44ec0608cc2412e3b8341c318e8dc887aa4c49",
+    "train_index": "9c84f18da000e11ead3e8603bf10638167c18bdb05ad90335736416932e95233",
+    "train": "ccbbcc7d7844e37602bc6ecc244772692eb6fdf84f66bbe7fc24344811535946",
+    "val": "5a9784d95f95235981b3d1d8c208746c845e757a6708e73b07a117b1968ea4ed",
+    "test": "e896c5763f07be28730f08566f7c1c5cef02487950f49d6229f92fa73b5bc19c"
+  },
+  "mlca_recorded_metrics": [
+    {
+      "ci": [
+        0.7295707885680207,
+        0.8209926845016109
+      ],
+      "name": "roc_auc_ovr",
+      "split": "test",
+      "value": 0.786759151598608,
+      "step_id": "11_test_score_test_V1WX5D4W",
+      "source": "recorded"
+    },
+    {
+      "ci": [
+        0.2150907098200956,
+        0.2615137486381124
+      ],
+      "name": "macro_f1",
+      "split": "test",
+      "value": 0.2368335142633112,
+      "step_id": "11_test_score_test_V1WX5D4W",
+      "source": "recorded"
+    }
+  ],
+  "mlca_code_commit": "a9f4e359d10a411ca253ea339e2d516cec435201",
+  "rails": {
+    "sha256": "e318207e56f192585ebb81ee521c8b4bc51255a8a33c8889ad8683dd66b6a8a8",
+    "version": "rails-0.13"
+  },
+  "split_id": "05_split_freeze_stratified_S7YJKD9B",
+  "split_parameters": {
+    "group_column": "",
+    "method": "stratified",
+    "seed": 42,
+    "time_column": "",
+    "train_fraction": 0.6,
+    "val_fraction": 0.2
+  },
+  "mlca_log_verification": {
+    "ok": true,
+    "records": 409,
+    "head_sha256": "e3f1426e5cdc181e6343481e075e00456ef4a4041c04fe98e069edda75d6fc71"
+  },
+  "comparison_metric": "rmse",
+  "mlca_primary_metric": "roc_auc_ovr",
+  "features": [
+    "fixed acidity",
+    "volatile acidity",
+    "citric acid",
+    "residual sugar",
+    "chlorides",
+    "free sulfur dioxide",
+    "total sulfur dioxide",
+    "density",
+    "pH",
+    "sulphates",
+    "alcohol",
+    "color"
+  ],
+  "feature_count": 12,
+  "excluded_absent": [],
+  "best_model": "xgb_limitdepth",
+  "best_config": {
+    "n_estimators": 728,
+    "max_depth": 6,
+    "min_child_weight": 0.03502094760887322,
+    "learning_rate": 0.011007196313127484,
+    "subsample": 0.8863023849025242,
+    "colsample_bylevel": 0.7960267223743323,
+    "colsample_bytree": 0.8904849029372849,
+    "reg_alpha": 0.7815683963739491,
+    "reg_lambda": 25.529346634098264
+  },
+  "validation_loss": 0.6961503713337059,
+  "settings": {
+    "task": "regression",
+    "metric": "rmse",
+    "time_budget": 600.0,
+    "n_jobs": 2,
+    "seed": 42,
+    "eval_method": "holdout",
+    "retrain_full": false,
+    "estimator_list": "auto",
+    "resolved_estimator_list": [
+      "lgbm",
+      "rf",
+      "xgboost",
+      "extra_tree",
+      "xgb_limitdepth",
+      "sgd",
+      "catboost"
+    ]
+  },
+  "fit_seconds": 600.0148675599994,
+  "classes": null,
+  "positive": null,
+  "predict_seconds": {
+    "val": 0.02751271600027394,
+    "test": 0.029873436000343645
+  },
+  "val": {
+    "primary": {
+      "name": "rmse",
+      "value": 0.6961503713337059
+    },
+    "secondary": {
+      "mae": 0.5314461588859558,
+      "r2": 0.37177687883377075
+    },
+    "n": 1062,
+    "notes": []
+  },
+  "test": {
+    "primary": {
+      "name": "rmse",
+      "value": 0.6925308435160957
+    },
+    "secondary": {
+      "mae": 0.5336201786994934,
+      "r2": 0.3855241537094116
+    },
+    "n": 1069,
+    "notes": []
+  },
+  "mlca": {
+    "source": "shared_scorer",
+    "score": {
+      "primary": {
+        "name": "rmse",
+        "value": 0.8126686340075636
+      },
+      "secondary": {
+        "mae": 0.5257249766136576,
+        "r2": 0.15383787444249852
+      },
+      "n": 1069,
+      "notes": []
+    }
+  }
+}

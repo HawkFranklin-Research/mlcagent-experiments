@@ -1,0 +1,2 @@
+selected=alternative n_test=9044 threshold=0.12590342595460532
+roc_auc=0.7840 ci=(0.7667,0.8004)

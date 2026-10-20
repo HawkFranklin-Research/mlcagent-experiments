@@ -1,0 +1,4 @@
+target=quality metric=roc_auc_ovr
+train rows=3189 features=12
+selector_has_preprocessing=True
+val roc_auc_ovr=0.7314

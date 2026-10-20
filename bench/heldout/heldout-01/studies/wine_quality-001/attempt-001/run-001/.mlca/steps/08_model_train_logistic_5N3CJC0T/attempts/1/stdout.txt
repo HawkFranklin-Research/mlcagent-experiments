@@ -1,0 +1,2 @@
+features=12 steps=['selector', 'model']
+saved model.pkl

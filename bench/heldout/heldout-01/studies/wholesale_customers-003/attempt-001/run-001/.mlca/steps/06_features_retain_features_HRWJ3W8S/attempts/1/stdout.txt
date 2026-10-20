@@ -1,0 +1,4 @@
+train rows: 264
+feature cols: 6
+feature names: ['Fresh', 'Milk', 'Grocery', 'Frozen', 'Detergents_Paper', 'Delicassen']
+saved selector_all.pkl

@@ -1,0 +1,5 @@
+Traceback (most recent call last):
+  File "/workspaces/mlcagent-experiments/bench/heldout/heldout-01/studies/bank_marketing-001/attempt-001/run-001/.mlca/steps/10_validate_score_validation_DNJF8B36/attempts/1/script.py", line 95, in <module>
+    idx = int(np.where(classes == positive_label)[0][0]) if classes is not None else 1
+              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^
+IndexError: index 0 is out of bounds for axis 0 with size 0

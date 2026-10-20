@@ -1,0 +1,3 @@
+Test macro_f1: 0.8590
+Test hamming_loss: 0.0661
+Test subset_accuracy: 0.6478

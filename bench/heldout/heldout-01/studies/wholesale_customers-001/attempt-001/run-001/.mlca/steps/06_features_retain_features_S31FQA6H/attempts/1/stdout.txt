@@ -1,0 +1,3 @@
+Train shape: (264, 6)
+Feature count: 6
+Saved selector_all.pkl

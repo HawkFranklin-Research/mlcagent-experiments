@@ -1,0 +1,2 @@
+n_features=27 n_targets=7
+val_macro_f1=0.6600 val_subset_acc=0.3763

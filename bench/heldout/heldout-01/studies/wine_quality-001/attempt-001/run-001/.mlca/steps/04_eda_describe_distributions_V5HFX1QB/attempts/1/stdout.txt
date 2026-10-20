@@ -1,0 +1,2 @@
+features: 11 numeric, 1 categorical
+rows: 47; saved distributions.csv

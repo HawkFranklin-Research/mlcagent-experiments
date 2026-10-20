@@ -1,0 +1,3 @@
+Placeholder columns found: 0
+Features: 12 (numeric=11, categorical=1)
+Summary rows: 47

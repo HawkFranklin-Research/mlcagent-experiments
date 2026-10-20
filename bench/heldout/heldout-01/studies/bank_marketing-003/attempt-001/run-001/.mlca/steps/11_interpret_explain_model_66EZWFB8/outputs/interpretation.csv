@@ -1,0 +1,14 @@
+feature,importance_mean,importance_sd
+contact,0.0644,0.0042
+month,0.0529,0.0043
+poutcome,0.0253,0.0015
+housing,0.0156,0.0027
+age,0.01,0.0031
+balance,0.0086,0.0029
+campaign,0.0084,0.0025
+marital,0.0079,0.0019
+previous,0.0054,0.0013
+loan,0.0031,0.0013
+education,0.0019,0.0008
+job,0.0004,0.001
+default,0.0,0.0001

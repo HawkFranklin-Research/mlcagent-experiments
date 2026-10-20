@@ -1,0 +1,7 @@
+Traceback (most recent call last):
+  File "/workspaces/mlcagent-experiments/bench/heldout/heldout-01/studies/wholesale_customers-002/attempt-001/run-001/.mlca/steps/08_model_train_alternative_R5ZEQMH2/attempts/1/script.py", line 147, in <module>
+    mlca_runtime.save_row_outputs(assign, "train_clusters.parquet")
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspaces/mlcagent-experiments/bench/heldout/heldout-01/studies/wholesale_customers-002/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/mlca_runtime/__init__.py", line 262, in save_row_outputs
+    raise ValueError("MLCA: row outputs require row_id and partition")
+ValueError: MLCA: row outputs require row_id and partition

@@ -1,0 +1,14 @@
+item,detail,evidence_file
+frozen_model,Pipeline loaded from latest_model,latest_model
+selected_hyperparameters,null,08_model_train_alternative_QF453D1M/manifest.json
+baseline_hyperparameters,null,07_model_train_baseline_2DXYNCH8/manifest.json
+input_features,"25 columns: X_Minimum, X_Maximum, Pixels_Areas, X_Perimeter, Y_Perimeter, Sum_of_Luminosity, Minimum_of_Luminosity, Maximum_of_Luminosity, Length_of_Conveyer, TypeOfSteel_A300, TypeOfSteel_A400, Steel_Plate_Thickness, Edges_Index, Empty_Index, Square_Index, Outside_X_Index, Edges_X_Index, Edges_Y_Index, Outside_Global_Index, LogOfAreas, Log_X_Index, Log_Y_Index, Orientation_Index, Luminosity_Index, SigmoidOfAreas",latest_model
+excluded_columns,"Y_Maximum, Y_Minimum",_protocol
+targets,"Pastry, Z_Scratch, K_Scatch, Stains, Dirtiness, Bumps, Other_Faults",_protocol
+primary_metric,macro_f1,_protocol
+validation_primary_metric,macro_f1=0.6588,09_validate_score_validation_FQ87WBM2/validation_metrics.csv
+validation_evidence,validation metrics and manifest; task=multilabel,09_validate_score_validation_FQ87WBM2/manifest.json
+limitation,Interpretation only; no estimator was refit and no validation/test rows were used for fitting.,09_validate_score_validation_FQ87WBM2/validation_metrics.csv
+limitation,Y_Minimum/Y_Maximum are near-unique record identifiers and excluded; model inputs are the saved pipeline's declared feature columns.,_protocol
+limitation,"Multilabel targets are seven binary fault indicators; macro F1 is averaged per target, not a single multiclass score.",_protocol
+top_feature,Pixels_Areas,latest_model

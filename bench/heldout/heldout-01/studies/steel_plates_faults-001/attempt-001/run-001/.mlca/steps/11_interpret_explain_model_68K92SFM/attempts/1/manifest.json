@@ -1,0 +1,1 @@
+{"facts": [], "fits": [], "metrics": [{"ci": null, "name": "macro_f1", "split": "val", "value": 0.7989}], "outputs": [{"caption": "Frozen model interpretation summary", "kind": "table", "name": "interpretation.csv"}]}

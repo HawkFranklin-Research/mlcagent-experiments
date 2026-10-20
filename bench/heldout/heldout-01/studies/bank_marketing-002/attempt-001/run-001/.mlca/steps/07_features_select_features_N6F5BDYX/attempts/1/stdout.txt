@@ -1,0 +1,1 @@
+train_rows 27126 feature_cols 12 k 12

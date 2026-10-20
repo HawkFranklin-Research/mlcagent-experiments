@@ -1,0 +1,3 @@
+test rows: 1069 classes: 7
+roc_auc_ovr: 0.7868 CI [0.7296, 0.8210]
+macro_f1: 0.2368 CI [0.2151, 0.2615]

@@ -1,0 +1,4 @@
+train rows=264, val rows=88
+model=MiniBatchKMeans, features=6
+silhouette=0.3066
+top_feature=not available (clustering model has no feature importance)

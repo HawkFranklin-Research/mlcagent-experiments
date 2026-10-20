@@ -1,0 +1,5 @@
+train/val rows: 1164 388
+targets: 7 primary: macro_f1
+top_feature: num__Length_of_Conveyer
+val macro_f1 0.7989
+saved interpretation.csv

@@ -1,0 +1,4 @@
+Traceback (most recent call last):
+  File "/workspaces/mlcagent-experiments/bench/heldout/heldout-01/studies/bank_marketing-001/attempt-001/run-001/.mlca/steps/10_validate_score_validation_DNJF8B36/attempts/3/script.py", line 108, in <module>
+    raise ValueError(f"{name}: cannot align target values to classes {cls.tolist()}")
+ValueError: alternative: cannot align target values to classes [0, 1]

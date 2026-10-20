@@ -1,0 +1,15 @@
+/workspaces/mlcagent-experiments/bench/heldout/heldout-01/studies/bank_marketing-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/metrics/_ranking.py:469: UndefinedMetricWarning: Only one class is present in y_true. ROC AUC score is not defined in that case.
+  warnings.warn(
+/workspaces/mlcagent-experiments/bench/heldout/heldout-01/studies/bank_marketing-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/metrics/_ranking.py:1192: UserWarning: No positive class found in y_true, recall is set to one for all thresholds.
+  warnings.warn(
+/workspaces/mlcagent-experiments/bench/heldout/heldout-01/studies/bank_marketing-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/metrics/_ranking.py:1364: UndefinedMetricWarning: No positive samples in y_true, true positive value should be meaningless
+  warnings.warn(
+/workspaces/mlcagent-experiments/bench/heldout/heldout-01/studies/bank_marketing-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/metrics/_classification.py:2939: UserWarning: y_pred contains classes not in y_true
+  warnings.warn("y_pred contains classes not in y_true")
+Traceback (most recent call last):
+  File "/workspaces/mlcagent-experiments/bench/heldout/heldout-01/studies/bank_marketing-001/attempt-001/run-001/.mlca/steps/10_validate_score_validation_DNJF8B36/attempts/2/script.py", line 117, in <module>
+    mlca_runtime.record_metric(primary, prim_val, "val")
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspaces/mlcagent-experiments/bench/heldout/heldout-01/studies/bank_marketing-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/mlca_runtime/__init__.py", line 189, in record_metric
+    raise ValueError("MLCA: Metrics require a finite scalar value")
+ValueError: MLCA: Metrics require a finite scalar value

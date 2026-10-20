@@ -1,0 +1,3 @@
+Candidates: 2
+Best model: alternative
+Best roc_auc: 0.7456

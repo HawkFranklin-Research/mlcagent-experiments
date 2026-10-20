@@ -1,0 +1,1 @@
+rows=5320 classes=7 under5pct=[3, 4, 8, 9]

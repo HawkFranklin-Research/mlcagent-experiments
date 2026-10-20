@@ -1,0 +1,4 @@
+Placeholders found in 0 text columns
+Rows: 440, features: 6
+Numeric: 6, categorical: 0
+Saved distributions.csv rows=6

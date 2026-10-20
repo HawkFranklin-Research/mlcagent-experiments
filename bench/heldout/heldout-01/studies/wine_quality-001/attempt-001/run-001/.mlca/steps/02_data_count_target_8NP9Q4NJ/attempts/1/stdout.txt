@@ -1,0 +1,3 @@
+rows=5320 classes=7
+flagged=4 classes under 5%
+flagged classes: [3, 4, 8, 9]

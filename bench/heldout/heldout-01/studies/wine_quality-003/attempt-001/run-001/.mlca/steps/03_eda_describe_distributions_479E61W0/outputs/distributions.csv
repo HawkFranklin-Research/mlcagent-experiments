@@ -1,0 +1,20 @@
+variable,type,n,n_missing,mean,sd,min,median,max,n_levels,top_share,top_level
+fixed acidity,numeric,5320,0,7.215179,1.319671,3.8,7.0,15.9,,,
+volatile acidity,numeric,5320,0,0.34413,0.168248,0.08,0.3,1.58,,,
+citric acid,numeric,5320,0,0.318494,0.147157,0.0,0.31,1.66,,,
+residual sugar,numeric,5320,0,5.048477,4.50018,0.6,2.7,65.8,,,
+chlorides,numeric,5320,0,0.05669,0.036863,0.009,0.047,0.611,,,
+free sulfur dioxide,numeric,5320,0,30.036654,17.805045,1.0,28.0,289.0,,,
+total sulfur dioxide,numeric,5320,0,114.109023,56.774223,6.0,116.0,440.0,,,
+density,numeric,5320,0,0.994535,0.002966,0.98711,0.99465,1.03898,,,
+pH,numeric,5320,0,3.224664,0.160379,2.72,3.21,4.01,,,
+sulphates,numeric,5320,0,0.533357,0.149743,0.22,0.51,2.0,,,
+alcohol,numeric,5320,0,10.549241,1.185933,8.0,10.4,14.9,,,
+color,categorical,5320,0,,,,,,2.0,0.744549,white
+quality,target_class,2323,0,,,,,,,0.436654,6
+quality,target_class,1752,0,,,,,,,0.329323,5
+quality,target_class,856,0,,,,,,,0.160902,7
+quality,target_class,206,0,,,,,,,0.038722,4
+quality,target_class,148,0,,,,,,,0.02782,8
+quality,target_class,30,0,,,,,,,0.005639,3
+quality,target_class,5,0,,,,,,,0.00094,9

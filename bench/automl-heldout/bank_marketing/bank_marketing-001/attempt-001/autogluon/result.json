@@ -1,0 +1,122 @@
+{
+  "status": "completed",
+  "task": "bank_marketing",
+  "framework": "autogluon",
+  "spec_sha256": "06d635145bacb17edad7643b335cee2fbac69777b56356e1d20f646fc070ea56",
+  "time_budget_s": 600.0,
+  "cpus": 2,
+  "seed": 42,
+  "versions": {
+    "python": "3.13.12 (main, Mar 24 2026, 22:49:35) [Clang 22.1.1 ]",
+    "executable": "/workspaces/mlcagent-experiments/automl/.venv/bin/python",
+    "autogluon.tabular": "1.5.0",
+    "flaml": "2.7.0",
+    "scikit-learn": "1.7.2",
+    "numpy": "2.3.5",
+    "pandas": "2.3.3",
+    "lightgbm": "4.6.0"
+  },
+  "run_label": "bank_marketing-001/attempt-001",
+  "split_hashes": {
+    "data": "b44507c26634736d4a0619ec2d7c4b6ff56a2c63cbeb5176d3134e7b25e416f0",
+    "manifest": "0a509bca9ea01f95ecfb2e6f1d3e0849d86359c1e1926d18c14dcf2e26c072ff",
+    "train_index": "4c774ee4ac3032c69a9fbeca6337198c29f3ae4233501f6c316fb9d3b8d78d49",
+    "train": "04d534375e93780bee3b4ff67c5f11cf7024b1f02caaedc63516c99262d015ff",
+    "val": "f7fbd1319904547dcf2b5f980717b93c00b273fc8c6d73460ac4914e6c947095",
+    "test": "846ccca484031786e3fede098a53abae58fa770956218183e4b186aef9a3d5a4"
+  },
+  "mlca_recorded_metrics": [],
+  "mlca_code_commit": "a9f4e359d10a411ca253ea339e2d516cec435201",
+  "rails": {
+    "sha256": "e318207e56f192585ebb81ee521c8b4bc51255a8a33c8889ad8683dd66b6a8a8",
+    "version": "rails-0.13"
+  },
+  "split_id": "04_split_freeze_stratified_4SFZBT5F",
+  "split_parameters": {
+    "group_column": "",
+    "method": "stratified",
+    "seed": 42,
+    "time_column": "",
+    "train_fraction": 0.6,
+    "val_fraction": 0.2
+  },
+  "mlca_log_verification": {
+    "ok": true,
+    "records": 314,
+    "head_sha256": "8d87864abe69ea77e2da29c5d7a338a3aba3efd7abde98394e439b38d7758bba"
+  },
+  "comparison_metric": "roc_auc",
+  "mlca_primary_metric": "roc_auc",
+  "features": [
+    "age",
+    "job",
+    "marital",
+    "education",
+    "default",
+    "balance",
+    "housing",
+    "loan",
+    "contact",
+    "month"
+  ],
+  "feature_count": 10,
+  "excluded_absent": [],
+  "best_model": "LightGBMXT",
+  "settings": {
+    "eval_metric": "roc_auc",
+    "presets": "medium_quality",
+    "num_cpus": 2,
+    "refit_full": false,
+    "num_bag_folds": 0,
+    "num_stack_levels": 0,
+    "fit_weighted_ensemble": false,
+    "feature_generator_fit": "training_only",
+    "excluded_model_types": [
+      "NN_TORCH",
+      "FASTAI"
+    ],
+    "seed": 42,
+    "determinism": "AutoGluon may not be fully deterministic"
+  },
+  "fit_seconds": 38.838922253999954,
+  "classes": [
+    "no",
+    "yes"
+  ],
+  "positive": "yes",
+  "predict_seconds": {
+    "val": 0.07109560700018847,
+    "test": 0.06934531500019148
+  },
+  "val": {
+    "primary": {
+      "name": "roc_auc",
+      "value": 0.7642191905096853
+    },
+    "secondary": {
+      "balanced_accuracy": 0.5485538247734826,
+      "macro_f1": 0.5599863746120863,
+      "accuracy": 0.8833093684326955
+    },
+    "n": 9041,
+    "notes": []
+  },
+  "test": {
+    "primary": {
+      "name": "roc_auc",
+      "value": 0.770860850402342
+    },
+    "secondary": {
+      "balanced_accuracy": 0.5496678439212334,
+      "macro_f1": 0.5618475459087044,
+      "accuracy": 0.8860017691287041
+    },
+    "n": 9044,
+    "notes": []
+  },
+  "mlca": {
+    "source": "mlca_metric_unavailable",
+    "metrics": [],
+    "reason": "No explicit saved-prediction schema; class ordering is never guessed"
+  }
+}

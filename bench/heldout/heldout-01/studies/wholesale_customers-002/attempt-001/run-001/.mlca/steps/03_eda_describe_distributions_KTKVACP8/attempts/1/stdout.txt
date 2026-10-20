@@ -1,0 +1,3 @@
+Placeholders found in 0 text columns
+Numeric features: 6, Categorical features: 0
+Rows summarized: 6

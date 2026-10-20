@@ -1,0 +1,33 @@
+id: score_test
+event: test
+title: Score the frozen model on test rows
+params: {}
+prompt: 'Do: Per-label macro F1, per-target Hamming loss averaged across targets and subset accuracy
+  computed by exact row-wise comparison; encode each categorical label consistently using training-fitted
+  encoders. Choose highest macro F1. Score only test; do not fit. Freeze the validation-selected
+  candidate before test.
+
+  Save: test_metrics.csv (model, metric, value).
+
+  Record: the exact declared metric _protocol[''task''][''primary_metric''] on test; fact test_score
+  (source test_metrics.csv). Read the declared metric from _protocol[''task''][''primary_metric''];
+  compute and record that exact name, not a template default. Other listed metrics are supplementary.
+  Use its correct optimization direction and compare candidates only on validation; test scores never
+  select a model.'
+inputs:
+- ref: train
+- ref: val
+- ref: prior_outputs
+- ref: test
+outputs:
+- name: test_metrics.csv
+  kind: table
+  required: true
+fact_candidates:
+- test_score
+reads_test: true
+timeout_s: 300
+methods_text: 'Score the frozen model on test rows: Score the frozen candidates using the task-specific
+  declared primary metric and its direction; supplementary metrics do not replace it. Fit only on
+  training rows, select on validation, and evaluate the frozen choice on test.'
+builtin: null

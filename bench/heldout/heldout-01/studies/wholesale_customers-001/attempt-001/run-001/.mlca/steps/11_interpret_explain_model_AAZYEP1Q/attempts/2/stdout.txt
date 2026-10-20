@@ -1,0 +1,4 @@
+train_rows=264 val_rows=88
+features=6 model=MiniBatchKMeans clusters=6
+top_feature=Fresh
+silhouette=0.3066

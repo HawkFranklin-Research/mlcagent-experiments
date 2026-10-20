@@ -1,0 +1,3 @@
+train rows: 27126; features: 12
+selector wrapped preprocessing: True
+saved model.pkl

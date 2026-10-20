@@ -1,0 +1,4 @@
+train=(27126, 14) val=(9041, 14) primary=roc_auc target=y
+logistic: roc_auc=0.7271 threshold=0.5415
+alternative: roc_auc=0.7456 threshold=0.1227
+best=alternative roc_auc=0.7456

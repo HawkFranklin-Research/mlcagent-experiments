@@ -1,0 +1,3 @@
+train rows: 10000
+val rows: 9041
+top feature: contact

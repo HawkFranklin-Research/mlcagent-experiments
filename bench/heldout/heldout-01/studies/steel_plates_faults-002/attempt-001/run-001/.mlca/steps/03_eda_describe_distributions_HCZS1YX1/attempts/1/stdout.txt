@@ -1,0 +1,1 @@
+rows=1941 features=25 numeric=25 categorical=0

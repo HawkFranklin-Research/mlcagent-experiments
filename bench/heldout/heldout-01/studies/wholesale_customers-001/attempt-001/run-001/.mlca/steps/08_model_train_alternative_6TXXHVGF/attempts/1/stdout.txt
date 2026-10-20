@@ -1,0 +1,2 @@
+rows=264 features=6 numeric=6 categorical=0 dropped=0
+selected_k=6 silhouette=0.3180 stability=0.6290

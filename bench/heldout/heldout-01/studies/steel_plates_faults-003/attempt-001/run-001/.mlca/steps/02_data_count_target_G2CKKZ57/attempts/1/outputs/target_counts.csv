@@ -1,0 +1,8 @@
+class,n,share,under_5pct
+Pastry,158,0.0814,False
+Z_Scratch,190,0.0979,False
+K_Scatch,391,0.2014,False
+Stains,72,0.0371,True
+Dirtiness,55,0.0283,True
+Bumps,402,0.2071,False
+Other_Faults,673,0.3467,False

@@ -1,0 +1,3 @@
+train_shape=(1164, 34) val_shape=(388, 34) targets=7
+features=26 candidates=2
+best_model=alternative macro_f1=0.8398

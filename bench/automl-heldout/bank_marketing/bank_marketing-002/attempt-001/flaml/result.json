@@ -1,0 +1,218 @@
+{
+  "status": "completed",
+  "task": "bank_marketing",
+  "framework": "flaml",
+  "spec_sha256": "06d635145bacb17edad7643b335cee2fbac69777b56356e1d20f646fc070ea56",
+  "time_budget_s": 600.0,
+  "cpus": 2,
+  "seed": 42,
+  "versions": {
+    "python": "3.13.12 (main, Mar 24 2026, 22:49:35) [Clang 22.1.1 ]",
+    "executable": "/workspaces/mlcagent-experiments/automl/.venv/bin/python",
+    "autogluon.tabular": "1.5.0",
+    "flaml": "2.7.0",
+    "scikit-learn": "1.7.2",
+    "numpy": "2.3.5",
+    "pandas": "2.3.3",
+    "lightgbm": "4.6.0"
+  },
+  "run_label": "bank_marketing-002/attempt-001",
+  "split_hashes": {
+    "data": "b44507c26634736d4a0619ec2d7c4b6ff56a2c63cbeb5176d3134e7b25e416f0",
+    "manifest": "0a509bca9ea01f95ecfb2e6f1d3e0849d86359c1e1926d18c14dcf2e26c072ff",
+    "train_index": "4c774ee4ac3032c69a9fbeca6337198c29f3ae4233501f6c316fb9d3b8d78d49",
+    "train": "97a3991aa5980620ff613ba743ba1d687b876f04139a8619352191a9203b7ef4",
+    "val": "cfd1c0464826a0a809d841bdbbb966c21fbeab4ed5d35996958909c5301bc3ca",
+    "test": "437662c3a4677df3615b8ad702884efea0fa05c6c302e548a16e86188888946b"
+  },
+  "mlca_recorded_metrics": [
+    {
+      "ci": [
+        0.7140801265054209,
+        0.74833998125327
+      ],
+      "name": "roc_auc",
+      "split": "test",
+      "value": 0.7318327624446923,
+      "step_id": "12_test_score_test_X80AWWYE",
+      "source": "recorded"
+    },
+    {
+      "ci": [
+        0.30864775568881364,
+        0.371614575477946
+      ],
+      "name": "pr_auc",
+      "split": "test",
+      "value": 0.33808636326951375,
+      "step_id": "12_test_score_test_X80AWWYE",
+      "source": "recorded"
+    },
+    {
+      "ci": [
+        0.6446526215061086,
+        0.6773384637727674
+      ],
+      "name": "balanced_accuracy",
+      "split": "test",
+      "value": 0.6608936846294072,
+      "step_id": "12_test_score_test_X80AWWYE",
+      "source": "recorded"
+    },
+    {
+      "ci": [
+        0.1957546792219585,
+        0.20181567964419594
+      ],
+      "name": "brier_score",
+      "split": "test",
+      "value": 0.1987546949287562,
+      "step_id": "12_test_score_test_X80AWWYE",
+      "source": "recorded"
+    },
+    {
+      "ci": [
+        0.6289180869236205,
+        0.6875071740128558
+      ],
+      "name": "sensitivity",
+      "split": "test",
+      "value": 0.6581680830972616,
+      "step_id": "12_test_score_test_X80AWWYE",
+      "source": "recorded"
+    },
+    {
+      "ci": [
+        0.6526888556751447,
+        0.6738488522979033
+      ],
+      "name": "specificity",
+      "split": "test",
+      "value": 0.6636192861615529,
+      "step_id": "12_test_score_test_X80AWWYE",
+      "source": "recorded"
+    }
+  ],
+  "mlca_code_commit": "a9f4e359d10a411ca253ea339e2d516cec435201",
+  "rails": {
+    "sha256": "e318207e56f192585ebb81ee521c8b4bc51255a8a33c8889ad8683dd66b6a8a8",
+    "version": "rails-0.13"
+  },
+  "split_id": "05_split_freeze_stratified_WDC0Z3NE",
+  "split_parameters": {
+    "group_column": "",
+    "method": "stratified",
+    "seed": 42,
+    "time_column": "",
+    "train_fraction": 0.6,
+    "val_fraction": 0.2
+  },
+  "mlca_log_verification": {
+    "ok": true,
+    "records": 427,
+    "head_sha256": "fe7b0af001fbf78a773489481cac08beb3bf9a9591be700381f036cec68903fe"
+  },
+  "comparison_metric": "roc_auc",
+  "mlca_primary_metric": "roc_auc",
+  "features": [
+    "age",
+    "job",
+    "marital",
+    "education",
+    "default",
+    "balance",
+    "housing",
+    "loan",
+    "contact",
+    "month",
+    "campaign",
+    "previous",
+    "poutcome"
+  ],
+  "feature_count": 13,
+  "excluded_absent": [],
+  "best_model": "lgbm",
+  "best_config": {
+    "n_estimators": 92,
+    "num_leaves": 19,
+    "min_child_samples": 13,
+    "learning_rate": 0.06959194985707905,
+    "log_max_bin": 8,
+    "colsample_bytree": 0.6317862400654394,
+    "reg_alpha": 0.0024730621560112216,
+    "reg_lambda": 4.834870431112717
+  },
+  "validation_loss": 0.21552779162866886,
+  "settings": {
+    "task": "classification",
+    "metric": "roc_auc",
+    "time_budget": 600.0,
+    "n_jobs": 2,
+    "seed": 42,
+    "eval_method": "holdout",
+    "retrain_full": false,
+    "estimator_list": "auto",
+    "resolved_estimator_list": [
+      "lgbm",
+      "rf",
+      "xgboost",
+      "extra_tree",
+      "xgb_limitdepth",
+      "sgd",
+      "catboost",
+      "lrl1"
+    ]
+  },
+  "fit_seconds": 600.110477401,
+  "classes": [
+    "no",
+    "yes"
+  ],
+  "positive": "yes",
+  "predict_seconds": {
+    "val": 0.06279432399969664,
+    "test": 0.06327907700006108
+  },
+  "val": {
+    "primary": {
+      "name": "roc_auc",
+      "value": 0.7844722083713311
+    },
+    "secondary": {
+      "balanced_accuracy": 0.5952312619562683,
+      "macro_f1": 0.6266780162208252,
+      "accuracy": 0.8932640194668732
+    },
+    "n": 9041,
+    "notes": []
+  },
+  "test": {
+    "primary": {
+      "name": "roc_auc",
+      "value": 0.7880041839544518
+    },
+    "secondary": {
+      "balanced_accuracy": 0.5881381698333099,
+      "macro_f1": 0.618042264752791,
+      "accuracy": 0.8931888544891641
+    },
+    "n": 9044,
+    "notes": []
+  },
+  "mlca": {
+    "source": "shared_scorer",
+    "score": {
+      "primary": {
+        "name": "roc_auc",
+        "value": 0.7318327624446923
+      },
+      "secondary": {
+        "balanced_accuracy": 0.6608936846294072,
+        "macro_f1": 0.5452302225112864,
+        "accuracy": 0.6629809818664307
+      },
+      "n": 9044,
+      "notes": []
+    }
+  }
+}

@@ -1,0 +1,4 @@
+model,metric,value
+alternative,silhouette,0.4147
+alternative,calinski_harabasz,18.12
+alternative,davies_bouldin,1.385

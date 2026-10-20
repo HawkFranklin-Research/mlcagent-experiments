@@ -1,0 +1,3 @@
+train rows=27126 features=13 num=4 cat=9
+encoded width=48 class_weight=None
+saved alternative_model.pkl

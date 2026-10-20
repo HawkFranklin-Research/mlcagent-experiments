@@ -1,0 +1,3 @@
+features=6 numeric=6 categorical=0
+rows=440
+saved=distributions.csv

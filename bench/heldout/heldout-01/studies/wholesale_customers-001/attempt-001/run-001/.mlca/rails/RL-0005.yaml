@@ -1,0 +1,16 @@
+id: RL-0005
+kind: instruction
+roles:
+- navigator
+events:
+- model
+- validate
+problem_types:
+- all
+text: Reach one complete, scored baseline before exploring. Try at most one alternative kind
+  of model before freezing a candidate for test, and stop tuning once both have a recorded
+  validation metric. Finishing the workflow comes before further optimisation.
+reason: Each extra model turn costs requests, time and new failure chances; the study measures
+  completion of a valid workflow, not leaderboard performance.
+ledger: L-0002
+added_in: rails-0.3

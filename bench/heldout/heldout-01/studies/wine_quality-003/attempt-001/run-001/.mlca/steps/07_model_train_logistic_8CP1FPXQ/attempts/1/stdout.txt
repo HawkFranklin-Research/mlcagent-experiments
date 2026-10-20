@@ -1,0 +1,1 @@
+fitted pipeline on 3189 rows, 12 raw features; classes=[np.int64(3), np.int64(4), np.int64(5), np.int64(6), np.int64(7), np.int64(8), np.int64(9)]

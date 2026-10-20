@@ -1,0 +1,5 @@
+train/val rows: 1164 388
+raw/selected features: 26 27
+model: Pipeline[preprocessor:ColumnTransformer,model:MultiOutputClassifier]
+top_feature: LogOfAreas
+val macro_f1: 0.66

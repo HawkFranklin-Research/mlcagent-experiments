@@ -1,0 +1,3 @@
+placeholders: none
+features: 6 (num=6, cat=0, date=0, high_card_dropped=0)
+preprocessor.pkl saved

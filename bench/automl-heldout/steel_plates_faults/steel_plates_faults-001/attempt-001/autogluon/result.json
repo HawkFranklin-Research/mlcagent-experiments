@@ -1,0 +1,150 @@
+{
+  "status": "completed",
+  "task": "steel_plates_faults",
+  "framework": "autogluon",
+  "spec_sha256": "6bb070176f213adc4e67a3fca952849c0b89e301d4604ccf21534dc9b10ca0f5",
+  "time_budget_s": 600.0,
+  "cpus": 2,
+  "seed": 42,
+  "versions": {
+    "python": "3.13.12 (main, Mar 24 2026, 22:49:35) [Clang 22.1.1 ]",
+    "executable": "/workspaces/mlcagent-experiments/automl/.venv/bin/python",
+    "autogluon.tabular": "1.5.0",
+    "flaml": "2.7.0",
+    "scikit-learn": "1.7.2",
+    "numpy": "2.3.5",
+    "pandas": "2.3.3",
+    "lightgbm": "4.6.0"
+  },
+  "run_label": "steel_plates_faults-001/attempt-001",
+  "split_hashes": {
+    "data": "315b45ecd2b7ab441335dc83efa0daed49eb97e6eee59f9612b4b7a1048aeb03",
+    "manifest": "058c2a11df524bf3805bf25112ce1eb150347cf5a0a5b477fc9ec48a19cc7b6a",
+    "train_index": "199ede589ae9c4d30573d13c244b8c31858e9cf588174809e74ac1d5ab71ef5a",
+    "train": "998ff5b234e4d0fa6dd3e70a2d8c1f8c51fae95295eeb5bcce16e81cc56f9a84",
+    "val": "41b9cb5cc5fbf847fa0d4b9a0e85398617ab3696e991bdc3fffd542ad8163b7e",
+    "test": "f2c879276e1de8a7900c2defd7fa2de7859ec1667a1f3ed6cbaff4de3e2c07b6"
+  },
+  "mlca_recorded_metrics": [
+    {
+      "ci": null,
+      "name": "macro_f1",
+      "split": "test",
+      "value": 0.8435891583539367,
+      "step_id": "10_test_score_test_YXKFGE9P",
+      "source": "recorded"
+    }
+  ],
+  "mlca_code_commit": "a9f4e359d10a411ca253ea339e2d516cec435201",
+  "rails": {
+    "sha256": "e318207e56f192585ebb81ee521c8b4bc51255a8a33c8889ad8683dd66b6a8a8",
+    "version": "rails-0.13"
+  },
+  "split_id": "04_split_freeze_stratified_D849HAKC",
+  "split_parameters": {
+    "group_column": "",
+    "method": "random",
+    "seed": 42,
+    "time_column": "",
+    "train_fraction": 0.6,
+    "val_fraction": 0.2
+  },
+  "mlca_log_verification": {
+    "ok": true,
+    "records": 377,
+    "head_sha256": "6ad42431b593a64bfb88bdfc609ca1b174c3dd15517b72a4a5a846a974f38e0a"
+  },
+  "comparison_metric": "roc_auc_ovr",
+  "mlca_primary_metric": "macro_f1",
+  "features": [
+    "X_Minimum",
+    "X_Maximum",
+    "Pixels_Areas",
+    "X_Perimeter",
+    "Y_Perimeter",
+    "Sum_of_Luminosity",
+    "Minimum_of_Luminosity",
+    "Maximum_of_Luminosity",
+    "Length_of_Conveyer",
+    "TypeOfSteel_A300",
+    "Steel_Plate_Thickness",
+    "Edges_Index",
+    "Empty_Index",
+    "Square_Index",
+    "Outside_X_Index",
+    "Edges_X_Index",
+    "Edges_Y_Index",
+    "Outside_Global_Index",
+    "LogOfAreas",
+    "Log_X_Index",
+    "Log_Y_Index",
+    "Orientation_Index",
+    "Luminosity_Index",
+    "SigmoidOfAreas"
+  ],
+  "feature_count": 24,
+  "excluded_absent": [],
+  "best_model": "LightGBMXT",
+  "settings": {
+    "eval_metric": "roc_auc_ovr_macro",
+    "presets": "medium_quality",
+    "num_cpus": 2,
+    "refit_full": false,
+    "num_bag_folds": 0,
+    "num_stack_levels": 0,
+    "fit_weighted_ensemble": false,
+    "feature_generator_fit": "training_only",
+    "excluded_model_types": [
+      "NN_TORCH",
+      "FASTAI"
+    ],
+    "seed": 42,
+    "determinism": "AutoGluon may not be fully deterministic"
+  },
+  "fit_seconds": 41.72169184100039,
+  "classes": [
+    "Bumps",
+    "Dirtiness",
+    "K_Scatch",
+    "Other_Faults",
+    "Pastry",
+    "Stains",
+    "Z_Scratch"
+  ],
+  "positive": null,
+  "predict_seconds": {
+    "val": 0.06260542099971644,
+    "test": 0.05687532000047213
+  },
+  "val": {
+    "primary": {
+      "name": "roc_auc_ovr",
+      "value": 0.9642938629411082
+    },
+    "secondary": {
+      "balanced_accuracy": 0.8139001216968504,
+      "macro_f1": 0.8139795967182896,
+      "accuracy": 0.7963917525773195
+    },
+    "n": 388,
+    "notes": []
+  },
+  "test": {
+    "primary": {
+      "name": "roc_auc_ovr",
+      "value": 0.9592372869859179
+    },
+    "secondary": {
+      "balanced_accuracy": 0.8055724086401091,
+      "macro_f1": 0.7968711369891027,
+      "accuracy": 0.7763496143958869
+    },
+    "n": 389,
+    "notes": []
+  },
+  "mlca": {
+    "source": "mlca_metric_unavailable",
+    "metrics": [],
+    "reason": "No explicit saved-prediction schema; class ordering is never guessed"
+  }
+}

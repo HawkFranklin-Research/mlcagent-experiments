@@ -1,0 +1,3 @@
+placeholders found none
+corr>=0.98 kept: none
+train rows 1164 features 27 saved preprocessor.pkl

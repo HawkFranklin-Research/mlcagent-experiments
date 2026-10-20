@@ -1,0 +1,1 @@
+Fitted 27126 rows -> 48 encoded cols; val (9041, 48)

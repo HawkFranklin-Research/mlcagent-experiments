@@ -1,0 +1,2 @@
+rows=27126 features_in=10 preprocessed=42
+selector=SelectKBest(k=20)

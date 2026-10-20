@@ -1,0 +1,17 @@
+id: RL-0006
+kind: instruction
+roles:
+- worker
+events:
+- all
+problem_types:
+- all
+text: 'Read outcomes and exclusions only from the _protocol JSON: targets in _protocol[''targets''],
+  dropped columns in _protocol[''excluded_columns''], the group in _protocol[''group_column''],
+  task details in _protocol[''task'']. The Brief in this order is a different object; never
+  index _protocol with Brief keys. If a needed key is missing, raise an error that lists the
+  available top-level keys instead of guessing a nested path.'
+reason: A model-step script failed with a KeyError after reading the protocol through keys
+  that exist only in the Brief.
+ledger: L-0002
+added_in: rails-0.3

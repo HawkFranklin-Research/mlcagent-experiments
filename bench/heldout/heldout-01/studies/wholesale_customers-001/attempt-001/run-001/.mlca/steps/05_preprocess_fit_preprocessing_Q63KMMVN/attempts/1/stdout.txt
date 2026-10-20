@@ -1,0 +1,2 @@
+Placeholders found in 0 columns: []
+Fitted preprocessor: 6 features, 6 encoded columns

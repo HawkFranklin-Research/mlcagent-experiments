@@ -1,0 +1,13 @@
+section,item,value,source
+model,selected_estimator,MiniBatchKMeans,latest_model
+model,pipeline_steps,pre -> km,latest_model
+model,hyperparameters,batch_size=1024; compute_labels=True; init=k-means++; init_size=None; max_iter=100; max_no_improvement=10; n_clusters=2; n_init=5; random_state=42; reassignment_ratio=0.01; tol=0; verbose=0,latest_model
+inputs,train_rows,264,train
+inputs,val_rows,88,val
+inputs,feature_count,6,latest_model
+inputs,feature_columns,"Fresh, Milk, Grocery, Frozen, Detergents_Paper, Delicassen",latest_model
+validation,primary_metric,silhouette,_protocol
+validation,value,0.3066,09_validate_score_validation_FBYY3QH9/validation_metrics.csv
+limitations,no_outcome,Clustering only: no label/outcome column; validation is internal.,_protocol
+limitations,silhouette_scope,"Silhouette is an internal separation score, not external accuracy.",09_validate_score_validation_FBYY3QH9/validation_metrics.csv
+limitations,frozen,Interpretation only; no refitting or post-validation fitting performed.,latest_model

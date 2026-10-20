@@ -1,0 +1,2 @@
+features=25 numeric=25 categorical=0 width=25
+saved alternative_model.pkl

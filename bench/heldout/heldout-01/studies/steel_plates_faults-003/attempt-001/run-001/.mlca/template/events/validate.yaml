@@ -1,0 +1,37 @@
+id: validate
+title: Validate
+goal: Compare candidates on validation rows; freeze one model and its selection.
+gate:
+- event_done: model
+subgoals:
+- id: outputs_recorded
+  text: Validation metrics table saved
+  check:
+    type: output_exists
+    action: score_validation
+    output: validation_metrics.csv
+- id: primary_metric
+  text: 'Primary metric recorded: macro_f1'
+  check:
+    type: metric_present
+    name: primary
+    split: val
+- id: model_selected
+  text: Author freezes model and threshold before test
+  check:
+    type: user_confirm
+actions:
+- score_validation
+- audit_validation
+default_options:
+- score_validation
+done_when: all_subgoals
+custom_scope:
+  description: Validation metrics, calibration and error analysis. No refitting.
+  deny_patterns:
+  - (?i)\btest (set|split|partition)\b
+  readable_inputs:
+  - train
+  - val
+  - prior_outputs
+max_options: 3

@@ -1,0 +1,3 @@
+Placeholders found: none
+Dropped date/datetime columns: 1
+Preprocessor fit; train (27126, 12), val transformed (9041, 36)

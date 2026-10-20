@@ -1,0 +1,2 @@
+test rows=9044 selected=model threshold=0.5000
+roc_auc=0.7318 CI=(0.7141,0.7483)

@@ -1,0 +1,2 @@
+train rows=264 features=6
+selected k=2 silhouette=0.2756 stability=0.7558

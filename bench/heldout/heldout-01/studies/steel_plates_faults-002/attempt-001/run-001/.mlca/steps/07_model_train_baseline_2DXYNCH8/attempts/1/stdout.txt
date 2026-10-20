@@ -1,0 +1,1 @@
+Fitted pipeline with 25 features. Train shape: (1164, 25)

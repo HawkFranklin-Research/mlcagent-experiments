@@ -1,0 +1,5 @@
+train rows=1164 val rows=388
+model=Pipeline features=25
+top_feature=Pixels_Areas
+validation_macro_f1=0.6588
+saved interpretation.csv

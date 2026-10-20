@@ -1,0 +1,1 @@
+train shape (1164, 31); features 24; encoded width ~24

@@ -1,0 +1,2 @@
+placeholders: ['', '-', '?', 'N/A', 'NA', 'n/a', 'na'] in 0 columns []
+rows=39 num=4 cat=9 groups=3

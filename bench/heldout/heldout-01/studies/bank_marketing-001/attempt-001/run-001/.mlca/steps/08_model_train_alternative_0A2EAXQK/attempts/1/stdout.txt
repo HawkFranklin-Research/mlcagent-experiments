@@ -1,0 +1,1 @@
+rows=27126 feats=10 pos=yes cw=None pipeline_steps=['selector', 'model']

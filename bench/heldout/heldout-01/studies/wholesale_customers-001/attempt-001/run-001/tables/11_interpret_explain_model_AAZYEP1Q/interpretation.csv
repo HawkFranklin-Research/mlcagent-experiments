@@ -1,0 +1,19 @@
+variable,value,source
+model_type,MiniBatchKMeans,latest_model
+cluster_count,6,latest_model
+selected_hyperparameters,"{""batch_size"": 264, ""init"": ""k-means++"", ""max_iter"": 100, ""n_clusters"": 6, ""n_init"": 10, ""random_state"": 42, ""tol"": 0.0}",latest_model
+pipeline_steps,"pre, km",latest_model
+feature_input_count,6,latest_model
+feature_inputs,"Fresh, Milk, Grocery, Frozen, Detergents_Paper, Delicassen",latest_model
+top_feature,Fresh,latest_model
+train_rows,264,train
+val_rows,88,val
+primary_metric,silhouette,09_validate_score_validation_QM40WVM3/validation_metrics.csv
+primary_metric_value,0.3066,09_validate_score_validation_QM40WVM3/validation_metrics.csv
+validation_metrics_columns,"model, metric, value",09_validate_score_validation_QM40WVM3/validation_metrics.csv
+validation_metrics_rows,6,09_validate_score_validation_QM40WVM3/validation_metrics.csv
+validation_evidence,"[{""model"": ""baseline"", ""metric"": ""silhouette"", ""value"": 0.3066}, {""model"": ""baseline"", ""metric"": ""calinski_harabasz"", ""value"": 40.96}, {""model"": ""baseline"", ""metric"": ""davies_bouldin"", ""value"": 1.285}, {""model"": ""alternative"", ""metric"": ""silhouette"", ""value"": 0.261}, {""model"": ""alternative"", ""metric"": ""calinski_harabasz"", ""value"": 37.91}, {""model"": ""alternative"", ""metric"": ""davies_bouldin"", ""value"": 1.087}]",09_validate_score_validation_QM40WVM3/validation_metrics.csv
+limitation_labels,Unsupervised clustering; no outcome or label column was used.,interpretation.csv
+limitation_metric,"Silhouette reflects internal separation only, not predictive accuracy.",interpretation.csv
+limitation_preprocessing,Cluster interpretation depends on the frozen preprocessing and selected features.,interpretation.csv
+limitation_scope,Results describe the frozen partitions; no refitting or test exposure.,interpretation.csv
