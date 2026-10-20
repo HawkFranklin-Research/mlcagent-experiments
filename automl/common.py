@@ -90,9 +90,11 @@ def label(frame, spec):
 
 def feature_columns(frame, spec):
     excluded = set(spec["targets"]) | set(spec.get("excluded", []))
-    missing = excluded - set(frame.columns)
+    # Targets must be present; excluded columns may already be absent, because MLCA's
+    # prepared table can drop declared leakage or identifier columns before the split.
+    missing = set(spec["targets"]) - set(frame.columns)
     if missing:
-        raise ValueError(f"Spec columns absent: {sorted(missing)}")
+        raise ValueError(f"Target columns absent: {sorted(missing)}")
     columns = [c for c in frame.columns if c not in excluded]
     if not columns:
         raise ValueError("No eligible features")

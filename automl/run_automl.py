@@ -284,6 +284,9 @@ def run(spec, work, framework, seconds, cpus, seed, output):
             comparison_metric=metric, mlca_primary_metric=metadata["primary_metric"]
         )
         result["features"], result["feature_count"] = columns, len(columns)
+        result["excluded_absent"] = sorted(
+            set(spec.get("excluded", [])) - set(parts["train"].columns)
+        )
         random.seed(seed)
         np.random.seed(seed)
         for variable in [

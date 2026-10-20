@@ -11,7 +11,7 @@ import pytest
 from mlca.log.store import Store
 from sklearn.metrics import mean_squared_error, roc_auc_score
 
-from automl import export_split, make_specs, run_automl
+from automl import common, export_split, make_specs, run_automl
 from automl import summarize as summarize_module
 from automl.common import digest, label, write_json
 from automl.score import score
@@ -776,3 +776,11 @@ def test_split_on_mlca_prepared_table_is_rebuilt_from_that_table(tmp_path):
         spec, root, tmp_path / "work2", "synthetic-001/attempt-001"
     )
     assert missing["status"] != "verified"
+
+
+def test_excluded_columns_dropped_by_mlca_preparation_are_not_an_error():
+    frame = pd.DataFrame({"x": [1, 2], "target": ["a", "b"]})
+    spec = {"targets": ["target"], "excluded": ["leak", "id"]}
+    assert common.feature_columns(frame, spec) == ["x"]
+    with pytest.raises(ValueError, match="Target columns absent"):
+        common.feature_columns(frame.drop(columns="target"), spec)
