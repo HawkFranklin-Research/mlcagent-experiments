@@ -55,6 +55,65 @@ def prune(attempt):
     return removed
 
 
+def preserve_split_manifests(attempt):
+    """Retain hash-checked row membership outside ignored .mlca/data directories."""
+    import csv
+
+    from mlca.log.store import Store
+
+    retained = []
+    for project in sorted(p for p in Path(attempt).iterdir() if p.is_dir()):
+        if not (project / ".mlca/log/events.jsonl").is_file():
+            continue
+        store = Store(project)
+        store.verify()
+        records = store.read()
+        unlock = next(
+            (i for i, r in enumerate(records) if r.type.value == "TestUnlocked"),
+            len(records),
+        )
+        splits = [r.payload for r in records[:unlock] if r.type.value == "SplitFrozen"]
+        if not splits:
+            continue
+        split = splits[-1]
+        source = (project / split["manifest"]["path"]).resolve()
+        if not source.is_relative_to(project.resolve()):
+            raise ValueError("Split manifest escapes project")
+        destination = Path(attempt) / f"split_manifest-{project.name}.csv"
+        if not source.exists() and destination.is_file():
+            source = destination
+        actual = hashlib.sha256(source.read_bytes()).hexdigest()
+        if actual != split["sha256"] or actual != split["manifest"]["sha256"]:
+            raise ValueError("Split manifest hash mismatch")
+        with source.open(newline="") as stream:
+            reader = csv.DictReader(stream)
+            if reader.fieldnames != ["row_id", "partition"]:
+                raise ValueError("Unexpected split manifest columns")
+            rows = list(reader)
+        if len({r["row_id"] for r in rows}) != len(rows) or any(
+            not r["row_id"] or r["partition"] not in {"train", "val", "test"}
+            for r in rows
+        ):
+            raise ValueError("Invalid split membership")
+        if dict(Counter(r["partition"] for r in rows)) != split["counts"]:
+            raise ValueError("Split manifest counts mismatch")
+        if source != destination.resolve():
+            temporary = destination.with_suffix(".csv.tmp")
+            shutil.copyfile(source, temporary)
+            if hashlib.sha256(temporary.read_bytes()).hexdigest() != actual:
+                raise ValueError("Copied split manifest hash mismatch")
+            temporary.replace(destination)
+        retained.append(
+            {
+                "project": project.name,
+                "split_id": split["split_id"],
+                "path": destination.name,
+                "sha256": actual,
+            }
+        )
+    return retained
+
+
 def batch_paths(parent):
     """Accept arbitrary output folder names as well as historical batch-NN folders."""
     return sorted(Path(parent).glob("*/batch.json"))
@@ -327,6 +386,15 @@ def finish_job(folder, job, expected):
             else "evaluation_unavailable"
         )
     result["wall_s"] = max(0, time.time() - job["first_started"])
+    if attempt.is_dir():
+        try:
+            result["split_manifests"] = preserve_split_manifests(attempt)
+        except Exception as exc:  # noqa: BLE001 -- record retention errors without rewriting measured outcomes
+            # Retention failure does not rewrite the agent's measured outcome.
+            result["split_manifest_error"] = {
+                "error_type": type(exc).__name__,
+                "message": str(exc).splitlines()[0],
+            }
     result["pruned_after_scoring"] = prune(attempt) if attempt.is_dir() else []
     job.update(
         status="interrupted"

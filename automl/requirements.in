@@ -1,0 +1,10 @@
+# Python 3.13: newest supported by AutoGluon 1.5.0.
+# 1.5.0 shares FLAML's xgboost distribution; 1.6.3 installs a conflicting xgboost-cpu module.
+autogluon.tabular[lightgbm,catboost,xgboost]==1.5.0
+flaml[automl]==2.7.0
+pandas==2.3.3
+pyarrow==20.0.0
+scikit-learn==1.7.2
+pyyaml==6.0.3
+# AutoGluon 1.5 imports Self from typing_extensions on Python 3.13.
+typing-extensions==4.16.0

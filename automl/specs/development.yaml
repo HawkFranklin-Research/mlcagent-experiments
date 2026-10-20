@@ -1,0 +1,67 @@
+- id: breast_cancer_diagnostic
+  data: ../mlca-revized/benchmarks/datasets/breast_cancer_diagnostic_uci.csv
+  sha256: 5c2238c5d8c38eefbbe1238b1c88f25cdee5299ad5010eb2103dd4b1e6a1c715
+  problem_type: binary
+  targets:
+  - Diagnosis
+  label_from_one_hot: false
+  excluded: []
+  external: null
+- id: heart_disease_cleveland
+  data: ../mlca-revized/benchmarks/datasets/heart_disease_cleveland_uci.csv
+  sha256: d60c1050744de47db797974b237c3eca6cccb58742b2ccd7c619bb99b581873e
+  problem_type: binary
+  targets:
+  - heart_disease_binary
+  label_from_one_hot: false
+  excluded:
+  - num
+  external: null
+- id: adult
+  data: ../mlca-revized/benchmarks/datasets/adult_census_uci.csv
+  sha256: 82682cd3606b1c0592975abff21db758baed235950a2a9c02931c56f1b8157ee
+  problem_type: binary
+  targets:
+  - income
+  label_from_one_hot: false
+  excluded: []
+  external: null
+- id: dry_bean
+  data: ../mlca-revized/benchmarks/datasets/dry_bean_uci.csv
+  sha256: 1330e4ccc5c54a925e43daf60d1409ac62dad2a21de9a25213765bee4b655787
+  problem_type: multiclass
+  targets:
+  - Class
+  label_from_one_hot: false
+  excluded: []
+  external: null
+- id: covertype
+  data: ../mlca-revized/benchmarks/datasets/covertype_uci.csv
+  sha256: ea35ca6820fcbe0bdc6707e9ed31e11a9de84f07d88da73b511c737383c271a6
+  problem_type: multiclass
+  targets:
+  - Cover_Type
+  label_from_one_hot: false
+  excluded: []
+  external: null
+- id: abalone
+  data: ../mlca-revized/benchmarks/datasets/abalone_uci.csv
+  sha256: add76d88a9dd9c7a9f147dd005725ce19dbfdf352877df9d28703486742d35a2
+  problem_type: regression
+  targets:
+  - Rings
+  label_from_one_hot: false
+  excluded: []
+  external: null
+- id: bike_sharing_hourly
+  data: ../mlca-revized/benchmarks/datasets/bike_sharing_hourly_uci.csv
+  sha256: b03a2d02e8c10f435c43c7f0b358b7e34a003afea53dbc37f0183f2763295133
+  problem_type: regression
+  targets:
+  - cnt
+  label_from_one_hot: false
+  excluded:
+  - casual
+  - instant
+  - registered
+  external: null

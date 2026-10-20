@@ -1,0 +1,33 @@
+- id: bank_marketing
+  data: ../mlca-revized/benchmarks/heldout/bank_marketing_uci.csv
+  sha256: b44507c26634736d4a0619ec2d7c4b6ff56a2c63cbeb5176d3134e7b25e416f0
+  problem_type: binary
+  targets:
+  - y
+  label_from_one_hot: false
+  excluded: []
+  external: null
+- id: steel_plates_faults
+  data: ../mlca-revized/benchmarks/heldout/steel_plates_faults_uci.csv
+  sha256: 315b45ecd2b7ab441335dc83efa0daed49eb97e6eee59f9612b4b7a1048aeb03
+  problem_type: multiclass
+  targets:
+  - Pastry
+  - Z_Scratch
+  - K_Scatch
+  - Stains
+  - Dirtiness
+  - Bumps
+  - Other_Faults
+  label_from_one_hot: true
+  excluded: []
+  external: null
+- id: wine_quality
+  data: ../mlca-revized/benchmarks/heldout/wine_quality_uci.csv
+  sha256: c0fca2ca864220c74a5ce85e63f8ba3cf11c401aa3dedfc4c3cca5f7a29d99cd
+  problem_type: regression
+  targets:
+  - quality
+  label_from_one_hot: false
+  excluded: []
+  external: null

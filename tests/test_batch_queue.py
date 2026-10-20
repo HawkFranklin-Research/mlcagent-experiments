@@ -193,3 +193,47 @@ def test_scored_studies_drop_never_published_stores(tmp_path):
 
 def test_large_tables_need_more_free_disk_before_starting():
     assert batch.disk_needed({"large": True}) > batch.disk_needed({"large": False}) >= 4 * 2**30
+
+
+def test_preserve_split_manifest_before_pruning(tmp_path):
+    import pytest
+    from mlca.log.store import Store
+
+    project = tmp_path / "run-001"
+    source = project / ".mlca/data/splits/one/split_manifest.csv"
+    source.parent.mkdir(parents=True)
+    source.write_text("row_id,partition\n0,train\n1,val\n2,test\n")
+    sha = hashlib.sha256(source.read_bytes()).hexdigest()
+    store = Store(project)
+    store.append(
+        "ProjectCreated",
+        {
+            "project_id": "synthetic",
+            "mlca_version": "test",
+            "template_id": "test",
+            "template_version": "1",
+            "template_sha256": "x",
+        },
+    )
+    store.append(
+        "SplitFrozen",
+        {
+            "split_id": "one",
+            "sha256": sha,
+            "manifest": {"path": str(source.relative_to(project)), "sha256": sha},
+            "train": {},
+            "val": {},
+            "vault": {},
+            "parameters": {},
+            "train_index_sha256": "x",
+            "counts": {"train": 1, "val": 1, "test": 1},
+        },
+    )
+    retained = batch.preserve_split_manifests(tmp_path)
+    assert retained[0]["sha256"] == sha
+    assert (tmp_path / "split_manifest-run-001.csv").read_bytes() == source.read_bytes()
+    batch.prune(tmp_path)
+    assert (tmp_path / "split_manifest-run-001.csv").is_file()
+    source.write_text("row_id,partition\n0,train\n")
+    with pytest.raises(ValueError, match="hash mismatch"):
+        batch.preserve_split_manifests(tmp_path)
