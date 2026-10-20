@@ -37,3 +37,13 @@ Finalize S3 harmonisation/Normal-class handling and S4 clustering rule/repeats b
 runs. Placeholder wording in draft instructions is not permission for an agent to invent choices.
 S1 source citation and label definition remain author provenance items. Raw inputs are unchanged.
 Neither this draft nor preparatory manifests are scientific results or journal-ready claims.
+
+## Phase 1b: held-out tables (2026-10-20)
+
+- freeze freeze-v1 = a9f4e35, rails-0.13;
+- model deepseek-flash (direct DeepSeek API), reasoning effort low, temperature 0, max output tokens 32768;
+- 3 runs per table, concurrency 2, threads 2, sandbox A, 5400 s deadline per study;
+- tables: bank_marketing, steel_plates_faults, wine_quality, wholesale_customers;
+- AutoML: AutoGluon 1.5.0 and FLAML 2.7.0, 600 s and 2 CPUs per framework per run, seed 42, on the 3 ★ tables (not wholesale_customers, which is clustering);
+- comparison metrics: binary ROC-AUC, multiclass one-vs-rest macro ROC-AUC, regression RMSE.
+
