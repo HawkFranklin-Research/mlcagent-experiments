@@ -98,7 +98,8 @@ def extract_predictions(events, project, output, spec, test_index):
             continue
         payload = record["payload"]
         start = starts.get(payload.get("step_id", record.get("step_id")), {})
-        if start.get("action_id") != "audit_test":
+        # score_test saves them in MLCA's standard schema; audit_test is the older optional action.
+        if start.get("action_id") not in {"audit_test", "score_test"}:
             continue
         for artifact in payload.get("outputs", []):
             if artifact.get("name") == "test_predictions.parquet":
@@ -106,7 +107,7 @@ def extract_predictions(events, project, output, spec, test_index):
     if not candidates:
         return {
             "status": "unavailable",
-            "reason": "No completed audit_test predictions",
+            "reason": "No completed test predictions",
         }
     artifact = candidates[-1]
     path = checked(project_path(project, artifact["path"]), artifact["sha256"])
@@ -119,8 +120,19 @@ def extract_predictions(events, project, output, spec, test_index):
         raise ValueError("MLCA predictions do not cover exactly the frozen test rows")
     if "partition" in rows and not rows["partition"].eq("test").all():
         raise ValueError("MLCA test predictions contain a non-test partition")
-    # Only explicitly named prediction fields. No guessing class ordering from columns.
+    # Only explicitly named fields: the task spec's schema, or MLCA's standard one (y_true, y_pred,
+    # proba__<class> in the model's class order), whose class names are in the column names.
     schema = spec.get("mlca_prediction_schema", {})
+    standard = None
+    if not schema and "y_pred" in rows:
+        probabilities = [c for c in rows.columns if c.startswith("proba__")]
+        standard = {
+            "prediction_column": "y_pred",
+            "probability_columns": probabilities,
+            "classes": [c[len("proba__") :] for c in probabilities],
+            "standard": True,
+        }
+        schema = standard
     requested = schema.get("probability_columns", [])
     requested = [requested] if isinstance(requested, str) else list(requested)
     if schema.get("prediction_column"):
@@ -151,7 +163,8 @@ def extract_predictions(events, project, output, spec, test_index):
         "sha256": digest(destination),
         "columns": columns,
         "source_sha256": artifact["sha256"],
-        "scoring": "Requires explicit mlca_prediction_schema in task spec; recorded metric retained otherwise",
+        "schema": standard,
+        "scoring": "Task spec schema or MLCA's standard schema; recorded metric retained otherwise",
     }
 
 

@@ -179,8 +179,8 @@ def prediction_table(frame, truth, prediction, probabilities):
 
 
 def rescore_mlca(work, metadata, spec, truth, metric):
-    schema = spec.get("mlca_prediction_schema")
     prediction = metadata.get("mlca_predictions", {})
+    schema = spec.get("mlca_prediction_schema") or prediction.get("schema")
     if not schema or prediction.get("status") != "copied":
         recorded = [
             m for m in metadata.get("mlca_recorded_metrics", []) if m["name"] == metric
@@ -202,16 +202,24 @@ def rescore_mlca(work, metadata, spec, truth, metric):
     rows = rows.loc[truth.index]
     proba_columns = schema.get("probability_columns")
     probabilities = rows[proba_columns].to_numpy() if proba_columns else None
+    predicted = (
+        rows[schema["prediction_column"]] if schema.get("prediction_column") else None
+    )
+    if schema.get("standard") and spec["problem_type"] != "regression":
+        # Standard-schema class names come from column names, so labels are compared as text.
+        truth = truth.astype(str)
+        predicted = predicted.astype(str) if predicted is not None else None
+    positive = spec.get("positive")
+    if schema.get("standard") and positive is not None:
+        positive = str(positive)
     result = score(
         spec["problem_type"],
         metric,
         truth,
-        y_pred=rows[schema["prediction_column"]]
-        if schema.get("prediction_column")
-        else None,
+        y_pred=predicted,
         proba=probabilities,
         classes=schema.get("classes"),
-        positive=spec.get("positive"),
+        positive=positive,
     )
     return {"source": "shared_scorer", "score": result}
 

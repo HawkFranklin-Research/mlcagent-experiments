@@ -95,8 +95,8 @@ def score(project, expected):
     from mlca.paths import sha256
     from mlca.project.inventory import read_table
 
-    if expected["role"] != "development":
-        raise ValueError("Development scorer refuses non-development tables")
+    if expected["role"] not in {"development", "heldout", "evaluation"}:
+        raise ValueError("Unknown table role")
     project = Path(project)
     store = Store(project)
     store.verify()

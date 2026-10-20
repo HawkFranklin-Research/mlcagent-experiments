@@ -42,8 +42,8 @@ def main():
         raise ValueError("No recorded inference")
     entries = yaml.safe_load(args.manifest.read_text())
     expected = next(e for e in entries if e["id"] == args.dataset_id)
-    if expected["role"] != "development":
-        raise ValueError("This development scorer refuses non-development entries")
+    if expected["role"] not in {"development", "heldout", "evaluation"}:
+        raise ValueError("Unknown table role")
     result = score(proposals[-1], expected)
     if args.out.exists():
         raise ValueError("Use a fresh scoring output")

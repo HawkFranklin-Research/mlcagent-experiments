@@ -240,7 +240,7 @@ def test_planned_controller_routes_provider_and_keeps_each_arm_fixed(
     monkeypatch.setattr(batch, "ROOT", tmp_path)
     monkeypatch.setattr(batch, "source_identity", lambda: plan["identity"])
     monkeypatch.setattr(batch, "runtime_identity", lambda _: plan["runtime"])
-    monkeypatch.setattr(batch, "entries", lambda: datasets)
+    monkeypatch.setattr(batch, "entries", lambda *a, **k: datasets)
     monkeypatch.setattr("mlca.sandbox.level.detect", lambda *_: "A")
     monkeypatch.setenv("DEEPSEEK_API_KEY", "SYNTHETIC_NO_NETWORK")
     monkeypatch.delenv("OPENROUTER_API_KEY", raising=False)
@@ -355,7 +355,7 @@ def test_plan_creation_offline_with_development_evidence(plan, tmp_path, monkeyp
     }
     atomic_json(development / "batch-01/batch.json", state)
     monkeypatch.setattr(batch, "source_identity", lambda: plan["identity"])
-    monkeypatch.setattr(batch, "entries", lambda: plan["datasets"])
+    monkeypatch.setattr(batch, "entries", lambda *a, **k: plan["datasets"])
     monkeypatch.setattr(plan_comparison, "runtime_identity", lambda _: plan["runtime"])
     monkeypatch.setattr(
         sys,

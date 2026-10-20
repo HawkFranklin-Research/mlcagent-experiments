@@ -1,0 +1,176 @@
+# Biomedical evaluation tasks (role evaluation). Files are relative to the folder written by
+# scripts/fetch_bio_bench.py (Hugging Face HawkFranklin-Research/mlcagent-bio-bench, revision 111de16).
+# Draft: every task stays approved: false until the preregistration. targets, problem_type,
+# identifier/leakage columns are the external scorer's reference and are never given to the agent.
+- id: s1_anemia
+  study: S1
+  role: evaluation
+  file: prepared/S1/anemia.csv
+  sha256: 705a9b88c01d56fa11f4670ef029a784fc6ab0e5124c8c9f7c01f1549bbb5017
+  rows: 1421
+  columns: 6
+  problem_type: binary
+  targets:
+  - Result
+  identifier_columns: []
+  leakage_columns: []
+  evaluation_only: []
+  group_column: null
+  time_columns: []
+  brief_file: bio-bench/briefs/s1_anemia.md
+  approved: false
+  notes: Label provenance and haemoglobin handling are author decisions; leakage_columns stays empty until
+    decided.
+- id: s2_rna_er
+  study: S2
+  role: evaluation
+  file: prepared/S2/rna_er.csv
+  sha256: b1c73a28b7073088e4da9b3b55dc39cbaef24b1756810a9daca8e308d7b6c169
+  rows: 120
+  columns: 23123
+  problem_type: binary
+  targets:
+  - label
+  identifier_columns:
+  - sample_id
+  leakage_columns: []
+  evaluation_only: []
+  group_column: null
+  time_columns: []
+  brief_file: bio-bench/briefs/s2_rna_er.md
+  approved: false
+- id: s2_rna_pr
+  study: S2
+  role: evaluation
+  file: prepared/S2/rna_pr.csv
+  sha256: 0e07190cf824b2243a9d3b5df26210c935a28e3cc2dea1a1617d292370a5defa
+  rows: 115
+  columns: 23123
+  problem_type: binary
+  targets:
+  - label
+  identifier_columns:
+  - sample_id
+  leakage_columns: []
+  evaluation_only: []
+  group_column: null
+  time_columns: []
+  brief_file: bio-bench/briefs/s2_rna_pr.md
+  approved: false
+- id: s2_rna_her2
+  study: S2
+  role: evaluation
+  file: prepared/S2/rna_her2.csv
+  sha256: c6d67ecb7193455e6cfc5218e5d0921fbc4d809680f1566f29baa7932ecf48b8
+  rows: 122
+  columns: 23123
+  problem_type: binary
+  targets:
+  - label
+  identifier_columns:
+  - sample_id
+  leakage_columns: []
+  evaluation_only: []
+  group_column: null
+  time_columns: []
+  brief_file: bio-bench/briefs/s2_rna_her2.md
+  approved: false
+  notes: HER2 definition is an author decision.
+- id: s2_proteome_er
+  study: S2
+  role: evaluation
+  file: prepared/S2/proteome_er.csv
+  sha256: dc7126fb1b2e4b1b21ff6de2a74b687c4f3d26a9bf34c435fc2a16b30b83927e
+  rows: 120
+  columns: 12623
+  problem_type: binary
+  targets:
+  - label
+  identifier_columns:
+  - sample_id
+  leakage_columns: []
+  evaluation_only: []
+  group_column: null
+  time_columns: []
+  brief_file: bio-bench/briefs/s2_proteome_er.md
+  approved: false
+- id: s2_proteome_pr
+  study: S2
+  role: evaluation
+  file: prepared/S2/proteome_pr.csv
+  sha256: 3ff14dbdab9b1594110d55382556fc4614e5b4aef93d68380c9760f286bc2983
+  rows: 115
+  columns: 12623
+  problem_type: binary
+  targets:
+  - label
+  identifier_columns:
+  - sample_id
+  leakage_columns: []
+  evaluation_only: []
+  group_column: null
+  time_columns: []
+  brief_file: bio-bench/briefs/s2_proteome_pr.md
+  approved: false
+- id: s2_proteome_her2
+  study: S2
+  role: evaluation
+  file: prepared/S2/proteome_her2.csv
+  sha256: 9cdf81692da404bef73e53be3d0699100b0e210c6f72b90b68bee88f03723fab
+  rows: 122
+  columns: 12623
+  problem_type: binary
+  targets:
+  - label
+  identifier_columns:
+  - sample_id
+  leakage_columns: []
+  evaluation_only: []
+  group_column: null
+  time_columns: []
+  brief_file: bio-bench/briefs/s2_proteome_her2.md
+  approved: false
+  notes: HER2 definition is an author decision.
+- id: s3_pam50
+  study: S3
+  role: evaluation
+  file: prepared/S3/discovery.csv
+  sha256: 28b8b432e8698bd24fde48fd4ca695cbd276deb68f6de34e66d143f9b1f72b26
+  rows: 981
+  columns: 18244
+  problem_type: multiclass
+  targets:
+  - PAM50
+  identifier_columns:
+  - sample_id
+  leakage_columns: []
+  evaluation_only: []
+  group_column: null
+  time_columns: []
+  brief_file: bio-bench/briefs/s3_pam50.md
+  approved: false
+  external: prepared/S3/external.csv
+  external_sha256: 719c5eba9b5268a3896368145aba4dfdf51d433f45fe8e6dfb487482d268085c
+  notes: Normal-class inclusion is an author decision. The external cohort (CPTAC) stays sealed until
+    the test unlock.
+- id: s4_hnscc
+  study: S4
+  role: evaluation
+  file: prepared/S4/discovery.csv
+  sha256: 46d19b8d9431ebea1aa70504e85ff2fddfb6d3572b916b820dee967ff4e93260
+  rows: 415
+  columns: 520
+  problem_type: undecided
+  targets: []
+  identifier_columns:
+  - PatientID
+  leakage_columns: []
+  evaluation_only: []
+  group_column: null
+  time_columns: []
+  brief_file: bio-bench/briefs/s4_hnscc.md
+  approved: false
+  external: prepared/S4/external.csv
+  external_sha256: 847c6417113fc858ff2859a274836a7d0ee7f0ac61a274259e8eebcff531a6e9
+  notes: Clustering and survival design are author decisions; the runner refuses this task until problem_type
+    and targets are set.

@@ -784,3 +784,38 @@ def test_excluded_columns_dropped_by_mlca_preparation_are_not_an_error():
     assert common.feature_columns(frame, spec) == ["x"]
     with pytest.raises(ValueError, match="Target columns absent"):
         common.feature_columns(frame.drop(columns="target"), spec)
+
+
+def test_mlca_standard_prediction_schema_is_rescored_without_a_spec_schema(tmp_path):
+    rows = pd.DataFrame(
+        {
+            "row_id": [1, 2, 3, 4],
+            "partition": "test",
+            "y_true": [0, 1, 0, 1],
+            "y_pred": [0, 1, 1, 1],
+            "proba__0": [0.9, 0.2, 0.4, 0.1],
+            "proba__1": [0.1, 0.8, 0.6, 0.9],
+        }
+    )
+    rows.to_parquet(tmp_path / "mlca.parquet", index=False)
+    metadata = {
+        "mlca_predictions": {
+            "status": "copied",
+            "file": "mlca.parquet",
+            "sha256": digest(tmp_path / "mlca.parquet"),
+            "schema": {
+                "prediction_column": "y_pred",
+                "probability_columns": ["proba__0", "proba__1"],
+                "classes": ["0", "1"],
+                "standard": True,
+            },
+        }
+    }
+    truth = pd.Series([0, 1, 0, 1], index=[1, 2, 3, 4])
+    result = run_automl.rescore_mlca(
+        tmp_path, metadata, {"problem_type": "binary"}, truth, "roc_auc"
+    )
+    assert result["source"] == "shared_scorer"
+    assert result["score"]["primary"]["value"] == roc_auc_score(
+        [0, 1, 0, 1], [0.1, 0.8, 0.6, 0.9]
+    )

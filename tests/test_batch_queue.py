@@ -77,8 +77,10 @@ def test_process_queue_and_resume_never_repeat_finished_studies(tmp_path, monkey
         "rails": {"version": "rails-0.3", "sha256": load(code / "rails").sha256},
     }
     monkeypatch.setattr(batch, "source_identity", lambda: identity)
-    monkeypatch.setattr(batch, "entries", lambda: entries)
-    monkeypatch.setattr(batch, "disk_needed", lambda job: 0)  # host disk is not under test
+    monkeypatch.setattr(batch, "entries", lambda *a, **k: entries)
+    monkeypatch.setattr(
+        batch, "disk_needed", lambda job: 0
+    )  # host disk is not under test
     monkeypatch.setattr(batch, "git_head", lambda _: "fixture")
     monkeypatch.setattr(batch, "runtime_identity", lambda _: {})
     original_run = subprocess.run
@@ -192,7 +194,11 @@ def test_scored_studies_drop_never_published_stores(tmp_path):
 
 
 def test_large_tables_need_more_free_disk_before_starting():
-    assert batch.disk_needed({"large": True}) > batch.disk_needed({"large": False}) >= 4 * 2**30
+    assert (
+        batch.disk_needed({"large": True})
+        > batch.disk_needed({"large": False})
+        >= 4 * 2**30
+    )
 
 
 def test_preserve_split_manifest_before_pruning(tmp_path):

@@ -218,12 +218,55 @@ def validate_stage(
             )
 
 
-def entries():
-    return [
-        e
-        for e in yaml.safe_load((CODE / "benchmarks/manifest.yaml").read_text())
-        if e["role"] == "development"
-    ]
+ROLES = {"development", "heldout", "evaluation"}
+
+
+def entries(manifest=None, role="development"):
+    """Tables of one role. Development and held-out tables are in MLCA's manifest;
+    the biomedical evaluation has its own manifest (role evaluation)."""
+    if role not in ROLES:
+        raise ValueError("Unknown table role")
+    path = Path(manifest) if manifest else CODE / "benchmarks/manifest.yaml"
+    return [e for e in yaml.safe_load(path.read_text()) if e["role"] == role]
+
+
+def data_file(entry, data_root=None):
+    return Path(data_root or CODE / "benchmarks") / entry["file"]
+
+
+def validate_evaluation(entries, data_root, allow_draft):
+    """Evaluation tables run only from a verified data folder, with an approved task
+    and a starting brief written before the run."""
+    if not data_root:
+        raise ValueError("Evaluation runs need --data-root (see fetch_bio_bench.py)")
+    for entry in entries:
+        if not allow_draft and not entry.get("approved"):
+            raise ValueError("Task not approved in the preregistration: " + entry["id"])
+        if entry.get("problem_type") in {None, "", "undecided"}:
+            raise ValueError("Problem type undecided: " + entry["id"])
+        brief = ROOT / entry["brief_file"]
+        if not brief.is_file() or not brief.read_text().strip():
+            raise ValueError("Starting brief missing: " + entry["brief_file"])
+        for name in ["file", "external"]:
+            if entry.get(name):
+                path = Path(data_root) / entry[name]
+                key = "sha256" if name == "file" else "external_sha256"
+                if (
+                    not path.is_file()
+                    or hashlib.sha256(path.read_bytes()).hexdigest() != entry[key]
+                ):
+                    raise ValueError("Data file missing or changed: " + entry[name])
+
+
+def frozen(code):
+    """The evaluation runs on a tagged freeze of the agent."""
+    tags = subprocess.run(
+        ["git", "-C", str(code), "tag", "--points-at", "HEAD"],
+        capture_output=True,
+        text=True,
+        check=True,
+    ).stdout.split()
+    return [tag for tag in tags if tag.startswith("freeze")]
 
 
 def choose_next(jobs, active, concurrency):
@@ -512,9 +555,11 @@ def worker(spec_file):
         result = run(
             Path(spec["data"]),
             attempt,
+            brief=spec.get("brief", ""),
             config=spec["config"],
             exclude_columns=spec["exclude_columns"],
             halt_window=0,
+            external=[spec["external"]] if spec.get("external") else (),
         )
         result = result["runs"][0]
     except (Exception, KeyboardInterrupt) as exc:  # noqa: BLE001 - isolate one study, retaining its outcome
@@ -559,6 +604,20 @@ def main():
     parser.add_argument("--tables", nargs="*")
     parser.add_argument("--replicates", type=int, choices=[1, 2, 3], default=1)
     parser.add_argument("--rails-off", action="store_true")
+    parser.add_argument("--role", choices=sorted(ROLES), default="development")
+    parser.add_argument(
+        "--manifest",
+        type=Path,
+        help="Task manifest (default: MLCA's benchmarks manifest)",
+    )
+    parser.add_argument(
+        "--data-root", type=Path, help="Folder holding the manifest's files"
+    )
+    parser.add_argument(
+        "--allow-draft",
+        action="store_true",
+        help="Smoke tests only: unapproved tasks, untagged code",
+    )
     parser.add_argument("--resume", action="store_true")
     parser.add_argument("--worker", type=Path)
     args = parser.parse_args()
@@ -580,7 +639,18 @@ def main():
             "Comparison stage, sharding and concurrent ablation require --comparison-plan"
         )
     identity = source_identity()
-    all_entries = entries()
+    all_entries = entries(args.manifest, args.role)
+    if args.role != "development":
+        if args.comparison_plan or args.rails_off or args.stage:
+            raise ValueError(
+                "Held-out and evaluation runs use the frozen agent with rails on"
+            )
+        if not args.allow_draft and not frozen(CODE):
+            raise ValueError(
+                "Held-out and evaluation runs need a freeze tag on the MLCA commit"
+            )
+    if args.role == "evaluation":
+        validate_evaluation(all_entries, args.data_root, args.allow_draft)
     plan = read_plan(args.comparison_plan) if args.comparison_plan else None
     if plan:
         validate_plan(plan, identity, all_entries, runtime_identity(CODE))
@@ -623,6 +693,10 @@ def main():
                     raise ValueError("Stored comparison identity differs")
             if args.rails_off and state["rails_enabled"]:
                 raise ValueError("Resume cannot change the recorded rail setting")
+            if state.get("role", "development") != args.role or state.get(
+                "manifest"
+            ) != (str(args.manifest) if args.manifest else None):
+                raise ValueError("Resume cannot change the table role or manifest")
             if plan and plan["plan_sha256"] != state.get("comparison_plan_sha256"):
                 raise ValueError("Resume cannot change comparison plan")
             for name in ["provider", "model", "reasoning_effort", "stage", "shard"]:
@@ -694,7 +768,9 @@ def main():
                     )
             else:
                 stage = (
-                    "ablation"
+                    args.role
+                    if args.role != "development"
+                    else "ablation"
                     if args.rails_off
                     else "acceptance"
                     if args.replicates == 3 and set(args.tables or by_id) == set(by_id)
@@ -705,6 +781,7 @@ def main():
             if (
                 not set(selected) <= set(by_id)
                 or not plan
+                and args.role == "development"
                 and args.batch == 1
                 and set(selected) != set(by_id)
                 or len(selected) != len(set(selected))
@@ -712,7 +789,7 @@ def main():
                 raise ValueError(
                     "Only development tables; batch-01 must include all twelve"
                 )
-            if not plan:
+            if not plan and args.role == "development":
                 validate_stage(
                     folder,
                     identity,
@@ -735,6 +812,10 @@ def main():
                 **identity,
                 "batch": args.batch or stage,
                 "stage": stage,
+                "role": args.role,
+                "manifest": str(args.manifest) if args.manifest else None,
+                "data_root": str(args.data_root) if args.data_root else None,
+                "allow_draft": args.allow_draft,
                 "provider": plan["provider"] if plan else args.provider or "openrouter",
                 "endpoint": plan["endpoint"]
                 if plan
@@ -942,7 +1023,7 @@ def main():
                     entry = by_id[job["dataset"]]
                     if (
                         hashlib.sha256(
-                            (CODE / "benchmarks" / entry["file"]).read_bytes()
+                            data_file(entry, state.get("data_root")).read_bytes()
                         ).hexdigest()
                         != entry["sha256"]
                     ):
@@ -1052,7 +1133,13 @@ def main():
                             continue
                     state["memory_limit"] = "cgroup_v2" if cgroup else "not_enforced"
                     spec = {
-                        "data": str(CODE / "benchmarks" / entry["file"]),
+                        "data": str(data_file(entry, state.get("data_root"))),
+                        "brief": (ROOT / entry["brief_file"]).read_text().strip()
+                        if entry.get("brief_file")
+                        else "",
+                        "external": str(Path(state["data_root"]) / entry["external"])
+                        if entry.get("external")
+                        else None,
                         "attempt": str(attempt),
                         "exclude_columns": entry.get("evaluation_only", []),
                         "config": cfg,
