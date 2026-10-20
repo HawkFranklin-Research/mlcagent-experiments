@@ -174,7 +174,20 @@ def export(spec, project, output, run_label):
             base.update(status="no_mlca_split")
             write_json(output / "split.json", base)
             return base
-        if any(r["type"] == "DataPrepared" for r in prefix):
+        registered = [
+            r["payload"]
+            for r in prefix
+            if r["type"] == "DataRegistered"
+            and r["payload"]["name"] == split["primary_data"]
+        ]
+        if not registered:
+            raise ValueError("Split primary_data is not registered")
+        registered = registered[-1]
+        if any(
+            r["type"] == "DataPrepared"
+            and r["payload"].get("source_sha256") != registered["sha256"]
+            for r in prefix
+        ):
             raise ValueError(
                 "Prepared-data split is not eligible for a registered-table comparison"
             )
@@ -190,15 +203,6 @@ def export(spec, project, output, run_label):
             for m in r["payload"].get("metrics", [])
             if m.get("split") == "test"
         ]
-        registered = [
-            r["payload"]
-            for r in prefix
-            if r["type"] == "DataRegistered"
-            and r["payload"]["name"] == split["primary_data"]
-        ]
-        if not registered:
-            raise ValueError("Split primary_data is not registered")
-        registered = registered[-1]
         path = checked(data_path(spec["data"]), spec["sha256"])
         checked(path, registered["sha256"])
         frame = read_table(path)
