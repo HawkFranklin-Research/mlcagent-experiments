@@ -1,5 +1,5 @@
 {
-  "status": "unavailable",
+  "status": "completed",
   "task": "dry_bean",
   "framework": "flaml",
   "spec_sha256": "64481feb9fe695bced64ef8f79cc8a457342ab40767f56c9ab4efd86b9c24e92",
@@ -17,7 +17,14 @@
     "lightgbm": "4.6.0"
   },
   "run_label": "dry_bean-003/attempt-001",
-  "split_hashes": null,
+  "split_hashes": {
+    "data": "1330e4ccc5c54a925e43daf60d1409ac62dad2a21de9a25213765bee4b655787",
+    "manifest": "5810bfd8c1c92712224c1bbe50b0e4929a7270c9a16cdecaffa3e7ea9228c0a4",
+    "train_index": "14eeaedf81a6dba555b1618d0da6cb5e65d0fdc1eb357b1b75fac1f91e763d8f",
+    "train": "e815aa6ae921a7ac2225d53aa928fe1bcb784baa30b3189fc2e5359347465be8",
+    "val": "00855de58d91e513303b7f3fba7b75d5354d0afa6fe22cce7a0e5e2bc5f52b0e",
+    "test": "66cfb5e8e0dac262a0d01485ff5f2124d91e86727354e18e768109688d8bb365"
+  },
   "mlca_recorded_metrics": [
     {
       "ci": [
@@ -42,15 +49,129 @@
       "source": "recorded"
     }
   ],
-  "mlca_code_commit": null,
-  "rails": null,
-  "split_id": null,
-  "split_parameters": null,
+  "mlca_code_commit": "d9a39e2abdd29c43f686b4d4da3d835a7f6ed8e4",
+  "rails": {
+    "sha256": "e6217303a1c3870f1133e71d665dd70431be63a2f44f0308a342eeecb569e46a",
+    "version": "rails-0.11"
+  },
+  "split_id": "04_split_freeze_stratified_Q9BMJSCP",
+  "split_parameters": {
+    "group_column": "",
+    "method": "stratified",
+    "seed": 42,
+    "time_column": "",
+    "train_fraction": 0.6,
+    "val_fraction": 0.2
+  },
   "mlca_log_verification": {
     "ok": true,
     "records": 383,
     "head_sha256": "226180c9e8c2f07b15bc255114bad7f9d89de7df15f411a92b7715f335534cb5"
   },
-  "reason": "failed",
-  "export_error": "Manifest does not cover exactly the registered rows"
+  "comparison_metric": "roc_auc_ovr",
+  "mlca_primary_metric": "roc_auc_ovr",
+  "features": [
+    "Area",
+    "Perimeter",
+    "MajorAxisLength",
+    "MinorAxisLength",
+    "AspectRatio",
+    "Eccentricity",
+    "ConvexArea",
+    "EquivDiameter",
+    "Extent",
+    "Solidity",
+    "Roundness",
+    "Compactness",
+    "ShapeFactor1",
+    "ShapeFactor2",
+    "ShapeFactor3",
+    "ShapeFactor4"
+  ],
+  "feature_count": 16,
+  "best_model": "catboost",
+  "best_config": {
+    "early_stopping_rounds": 10,
+    "learning_rate": 0.04958255707980075,
+    "n_estimators": 8192
+  },
+  "validation_loss": 0.004719506828913422,
+  "settings": {
+    "task": "classification",
+    "metric": "roc_auc_ovr",
+    "time_budget": 60.0,
+    "n_jobs": 2,
+    "seed": 42,
+    "eval_method": "holdout",
+    "retrain_full": false,
+    "estimator_list": "auto",
+    "resolved_estimator_list": [
+      "lgbm",
+      "rf",
+      "xgboost",
+      "extra_tree",
+      "xgb_limitdepth",
+      "sgd",
+      "catboost",
+      "lrl1"
+    ]
+  },
+  "fit_seconds": 60.160448480000014,
+  "classes": [
+    "BARBUNYA",
+    "BOMBAY",
+    "CALI",
+    "DERMASON",
+    "HOROZ",
+    "SEKER",
+    "SIRA"
+  ],
+  "positive": null,
+  "predict_seconds": {
+    "val": 0.0255995380002787,
+    "test": 0.01862765900023078
+  },
+  "val": {
+    "primary": {
+      "name": "roc_auc_ovr",
+      "value": 0.9952804931710866
+    },
+    "secondary": {
+      "balanced_accuracy": 0.9365193837546651,
+      "macro_f1": 0.9366605157288198,
+      "accuracy": 0.9235315847801995
+    },
+    "n": 2707,
+    "notes": []
+  },
+  "test": {
+    "primary": {
+      "name": "roc_auc_ovr",
+      "value": 0.9954276538442907
+    },
+    "secondary": {
+      "balanced_accuracy": 0.9364753746837804,
+      "macro_f1": 0.9372452914676533,
+      "accuracy": 0.9240412979351033
+    },
+    "n": 2712,
+    "notes": []
+  },
+  "mlca": {
+    "source": "recorded",
+    "metrics": [
+      {
+        "ci": [
+          0.9935328455005016,
+          0.9958240271245246
+        ],
+        "name": "roc_auc_ovr",
+        "split": "test",
+        "value": 0.9947503479557779,
+        "step_id": "10_test_score_test_5NQP39S8",
+        "source": "recorded"
+      }
+    ],
+    "reason": "No explicit saved-prediction schema; class ordering is never guessed"
+  }
 }

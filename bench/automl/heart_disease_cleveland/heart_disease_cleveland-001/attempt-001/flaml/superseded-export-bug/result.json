@@ -1,0 +1,45 @@
+{
+  "status": "unavailable",
+  "task": "heart_disease_cleveland",
+  "framework": "flaml",
+  "spec_sha256": "1e179f0595b580375dba5e1fc0796adb6a05aaaf6a3df322db37696738f65726",
+  "time_budget_s": 60.0,
+  "cpus": 2,
+  "seed": 42,
+  "versions": {
+    "python": "3.13.12 (main, Mar 24 2026, 22:49:35) [Clang 22.1.1 ]",
+    "executable": "/workspaces/mlcagent-experiments/automl/.venv/bin/python",
+    "autogluon.tabular": "1.5.0",
+    "flaml": "2.7.0",
+    "scikit-learn": "1.7.2",
+    "numpy": "2.3.5",
+    "pandas": "2.3.3",
+    "lightgbm": "4.6.0"
+  },
+  "run_label": "heart_disease_cleveland-001/attempt-001",
+  "split_hashes": null,
+  "mlca_recorded_metrics": [
+    {
+      "ci": [
+        0.762049456879526,
+        0.9341698160745779
+      ],
+      "name": "roc_auc",
+      "split": "test",
+      "value": 0.8580121703853955,
+      "step_id": "10_test_score_test_50DGJTCS",
+      "source": "recorded"
+    }
+  ],
+  "mlca_code_commit": null,
+  "rails": null,
+  "split_id": null,
+  "split_parameters": null,
+  "mlca_log_verification": {
+    "ok": true,
+    "records": 370,
+    "head_sha256": "5780afb1f1fbe42f49395cd3f7abfa1350352e7b0ea3c82075b97934b07f5b7c"
+  },
+  "reason": "failed",
+  "export_error": "DataFrame are different"
+}

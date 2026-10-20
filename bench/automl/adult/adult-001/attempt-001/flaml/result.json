@@ -1,5 +1,5 @@
 {
-  "status": "unavailable",
+  "status": "completed",
   "task": "adult",
   "framework": "flaml",
   "spec_sha256": "4b28d34a76ed38df8be19a81545802c943d1f1a0ba70f62c5e74b08be35e5401",
@@ -17,7 +17,14 @@
     "lightgbm": "4.6.0"
   },
   "run_label": "adult-001/attempt-001",
-  "split_hashes": null,
+  "split_hashes": {
+    "data": "82682cd3606b1c0592975abff21db758baed235950a2a9c02931c56f1b8157ee",
+    "manifest": "c3fb4cb33538e0b1f0df210d83b87d13e604659cdae7bbe219c00a3b9a2f68a9",
+    "train_index": "3c6d1d8bfc9aa3dc0d5993687560e74f42db1ea0aa3f2b3abe26cc0ac940ead9",
+    "train": "9d8a65f503a54667f005c1e599063632c0c19c84f7d9c08165bcd950e66a8a6f",
+    "val": "9af0914dfbeb6e0b9519c8411f88241666ba286f252569e9d069ffbdf62e4562",
+    "test": "25f2d829b52b2ba394d62297e5cde831e46b49e0cf99071a9c7702babd971ae6"
+  },
   "mlca_recorded_metrics": [
     {
       "ci": [
@@ -31,15 +38,125 @@
       "source": "recorded"
     }
   ],
-  "mlca_code_commit": null,
-  "rails": null,
-  "split_id": null,
-  "split_parameters": null,
+  "mlca_code_commit": "d9a39e2abdd29c43f686b4d4da3d835a7f6ed8e4",
+  "rails": {
+    "sha256": "e6217303a1c3870f1133e71d665dd70431be63a2f44f0308a342eeecb569e46a",
+    "version": "rails-0.11"
+  },
+  "split_id": "04_split_freeze_stratified_DH3PFT6Q",
+  "split_parameters": {
+    "group_column": "",
+    "method": "stratified",
+    "seed": 42,
+    "time_column": "",
+    "train_fraction": 0.6,
+    "val_fraction": 0.2
+  },
   "mlca_log_verification": {
     "ok": true,
     "records": 395,
     "head_sha256": "9cbe92f582855640767ced1d93d730c45da3983a2f969bd5ab59908f953e8b22"
   },
-  "reason": "failed",
-  "export_error": "SHA-256 mismatch: adult_census_uci.csv"
+  "comparison_metric": "roc_auc",
+  "mlca_primary_metric": "roc_auc",
+  "features": [
+    "age",
+    "workclass",
+    "fnlwgt",
+    "education",
+    "occupation",
+    "relationship",
+    "race",
+    "sex",
+    "capital-gain",
+    "capital-loss",
+    "hours-per-week",
+    "native-country"
+  ],
+  "feature_count": 12,
+  "best_model": "lgbm",
+  "best_config": {
+    "n_estimators": 1895,
+    "num_leaves": 4,
+    "min_child_samples": 39,
+    "learning_rate": 0.07142335279730488,
+    "log_max_bin": 8,
+    "colsample_bytree": 0.7902822656139816,
+    "reg_alpha": 0.4258703476952726,
+    "reg_lambda": 0.2813834448817336
+  },
+  "validation_loss": 0.07156969584131612,
+  "settings": {
+    "task": "classification",
+    "metric": "roc_auc",
+    "time_budget": 60.0,
+    "n_jobs": 2,
+    "seed": 42,
+    "eval_method": "holdout",
+    "retrain_full": false,
+    "estimator_list": "auto",
+    "resolved_estimator_list": [
+      "lgbm",
+      "rf",
+      "xgboost",
+      "extra_tree",
+      "xgb_limitdepth",
+      "sgd",
+      "catboost",
+      "lrl1"
+    ]
+  },
+  "fit_seconds": 62.07242018300008,
+  "classes": [
+    "<=50K",
+    ">50K"
+  ],
+  "positive": ">50K",
+  "predict_seconds": {
+    "val": 0.27888944999995147,
+    "test": 0.2817529049998484
+  },
+  "val": {
+    "primary": {
+      "name": "roc_auc",
+      "value": 0.9284303041586839
+    },
+    "secondary": {
+      "balanced_accuracy": 0.7928032012380816,
+      "macro_f1": 0.8107730999920342,
+      "accuracy": 0.8706702193072351
+    },
+    "n": 9758,
+    "notes": []
+  },
+  "test": {
+    "primary": {
+      "name": "roc_auc",
+      "value": 0.9294613890302923
+    },
+    "secondary": {
+      "balanced_accuracy": 0.7919679078043615,
+      "macro_f1": 0.8121417492319989,
+      "accuracy": 0.8726564901137178
+    },
+    "n": 9761,
+    "notes": []
+  },
+  "mlca": {
+    "source": "recorded",
+    "metrics": [
+      {
+        "ci": [
+          0.913648,
+          0.925188
+        ],
+        "name": "roc_auc",
+        "split": "test",
+        "value": 0.919324,
+        "step_id": "10_test_score_test_NKVJDQ7X",
+        "source": "recorded"
+      }
+    ],
+    "reason": "No explicit saved-prediction schema; class ordering is never guessed"
+  }
 }

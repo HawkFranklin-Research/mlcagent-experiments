@@ -5,18 +5,18 @@ abalone,abalone-002/attempt-001,autogluon,rmse,rmse,2.226,recorded,2.20223429104
 abalone,abalone-002/attempt-001,flaml,rmse,rmse,2.226,recorded,2.2532709041775,0.02727090417750011,60.542064083999776,completed,
 abalone,abalone-003/attempt-001,autogluon,rmse,rmse,2.226,recorded,2.2022342910440176,-0.0237657089559824,5.913738925999951,completed,
 abalone,abalone-003/attempt-001,flaml,rmse,rmse,2.226,recorded,2.2532709041775,0.02727090417750011,60.00852969000016,completed,
-adult,adult-001/attempt-001,autogluon,roc_auc,,0.919324,recorded,,,,unavailable,failed
-adult,adult-001/attempt-001,flaml,roc_auc,,0.919324,recorded,,,,unavailable,failed
-adult,adult-002/attempt-001,autogluon,roc_auc,,0.9254,recorded,,,,unavailable,failed
-adult,adult-002/attempt-001,flaml,roc_auc,,0.9254,recorded,,,,unavailable,failed
-adult,adult-003/attempt-001,autogluon,,,,mlca_metric_unavailable,,,,unavailable,failed
-adult,adult-003/attempt-001,flaml,,,,mlca_metric_unavailable,,,,unavailable,failed
-bike_sharing_hourly,bike_sharing_hourly-001/attempt-001,autogluon,,,,mlca_metric_unavailable,,,,unavailable,failed
-bike_sharing_hourly,bike_sharing_hourly-001/attempt-001,flaml,,,,mlca_metric_unavailable,,,,unavailable,failed
-bike_sharing_hourly,bike_sharing_hourly-002/attempt-001,autogluon,,,,mlca_metric_unavailable,,,,unavailable,failed
-bike_sharing_hourly,bike_sharing_hourly-002/attempt-001,flaml,,,,mlca_metric_unavailable,,,,unavailable,failed
-bike_sharing_hourly,bike_sharing_hourly-003/attempt-001,autogluon,,,,mlca_metric_unavailable,,,,unavailable,failed
-bike_sharing_hourly,bike_sharing_hourly-003/attempt-001,flaml,,,,mlca_metric_unavailable,,,,unavailable,failed
+adult,adult-001/attempt-001,autogluon,roc_auc,roc_auc,0.919324,recorded,0.9308356918499991,0.011511691849999117,63.98306049400003,completed,
+adult,adult-001/attempt-001,flaml,roc_auc,roc_auc,0.919324,recorded,0.9294613890302923,0.010137389030292265,62.07242018300008,completed,
+adult,adult-002/attempt-001,autogluon,roc_auc,roc_auc,0.9254,recorded,0.9305075629306657,0.005107562930665721,60.211234559999866,completed,
+adult,adult-002/attempt-001,flaml,roc_auc,roc_auc,0.9254,recorded,0.927473508762708,0.002073508762707954,60.05899198199995,completed,
+adult,adult-003/attempt-001,autogluon,roc_auc,roc_auc,,mlca_metric_unavailable,0.9305075629306657,,60.252652037999724,completed,
+adult,adult-003/attempt-001,flaml,roc_auc,roc_auc,,mlca_metric_unavailable,0.927473508762708,,60.044069370000216,completed,
+bike_sharing_hourly,bike_sharing_hourly-001/attempt-001,autogluon,,,,mlca_metric_unavailable,,,,failed,"Spec columns absent: ['casual', 'instant', 'registered']"
+bike_sharing_hourly,bike_sharing_hourly-001/attempt-001,flaml,,,,mlca_metric_unavailable,,,,failed,"Spec columns absent: ['casual', 'instant', 'registered']"
+bike_sharing_hourly,bike_sharing_hourly-002/attempt-001,autogluon,,,,mlca_metric_unavailable,,,,failed,"Spec columns absent: ['casual', 'instant', 'registered']"
+bike_sharing_hourly,bike_sharing_hourly-002/attempt-001,flaml,,,,mlca_metric_unavailable,,,,failed,"Spec columns absent: ['casual', 'instant', 'registered']"
+bike_sharing_hourly,bike_sharing_hourly-003/attempt-001,autogluon,,,,mlca_metric_unavailable,,,,failed,"Spec columns absent: ['casual', 'instant', 'registered']"
+bike_sharing_hourly,bike_sharing_hourly-003/attempt-001,flaml,,,,mlca_metric_unavailable,,,,failed,"Spec columns absent: ['casual', 'instant', 'registered']"
 breast_cancer_diagnostic,breast_cancer_diagnostic-001/attempt-001,autogluon,roc_auc,roc_auc,0.9987080103359173,recorded,0.9996770025839794,0.0009689922480621282,4.829337419000012,completed,
 breast_cancer_diagnostic,breast_cancer_diagnostic-001/attempt-001,flaml,roc_auc,roc_auc,0.9987080103359173,recorded,0.999031007751938,0.0003229974160207094,60.03204601399989,completed,
 breast_cancer_diagnostic,breast_cancer_diagnostic-002/attempt-001,autogluon,roc_auc,roc_auc,0.9987,recorded,0.9996770025839794,0.0009770025839793695,4.6391021249999085,completed,
@@ -27,14 +27,14 @@ covertype,covertype-001/attempt-001,autogluon,roc_auc_ovr,roc_auc_ovr,0.94798507
 covertype,covertype-001/attempt-001,flaml,roc_auc_ovr,roc_auc_ovr,0.9479850773732762,recorded,0.9660998615791748,0.018114784205898626,81.01649906300008,completed,
 covertype,covertype-002/attempt-001,autogluon,roc_auc_ovr,roc_auc_ovr,,mlca_metric_unavailable,0.9809753371947194,,66.77922464799985,completed,
 covertype,covertype-002/attempt-001,flaml,roc_auc_ovr,roc_auc_ovr,,mlca_metric_unavailable,0.9660998615791748,,85.62759243900018,completed,
-dry_bean,dry_bean-001/attempt-001,autogluon,,,,ambiguous_recorded,,,,unavailable,failed
-dry_bean,dry_bean-001/attempt-001,flaml,,,,ambiguous_recorded,,,,unavailable,failed
-dry_bean,dry_bean-002/attempt-001,autogluon,roc_auc_ovr,,0.9947503479557779,recorded,,,,unavailable,failed
-dry_bean,dry_bean-002/attempt-001,flaml,roc_auc_ovr,,0.9947503479557779,recorded,,,,unavailable,failed
-dry_bean,dry_bean-003/attempt-001,autogluon,,,,ambiguous_recorded,,,,unavailable,failed
-dry_bean,dry_bean-003/attempt-001,flaml,,,,ambiguous_recorded,,,,unavailable,failed
-heart_disease_cleveland,heart_disease_cleveland-001/attempt-001,autogluon,roc_auc,,0.8580121703853955,recorded,,,,unavailable,failed
-heart_disease_cleveland,heart_disease_cleveland-001/attempt-001,flaml,roc_auc,,0.8580121703853955,recorded,,,,unavailable,failed
+dry_bean,dry_bean-001/attempt-001,autogluon,roc_auc_ovr,roc_auc_ovr,0.9948,recorded,0.9955612989979784,0.000761298997978388,49.87815289800028,completed,
+dry_bean,dry_bean-001/attempt-001,flaml,roc_auc_ovr,roc_auc_ovr,0.9948,recorded,0.9954276538442907,0.0006276538442906432,60.05330959999992,completed,
+dry_bean,dry_bean-002/attempt-001,autogluon,roc_auc_ovr,roc_auc_ovr,0.9947503479557779,recorded,0.9955612989979784,0.000810951042200525,49.662024527000085,completed,
+dry_bean,dry_bean-002/attempt-001,flaml,roc_auc_ovr,roc_auc_ovr,0.9947503479557779,recorded,0.9954276538442907,0.0006773058885127803,59.97997600200006,completed,
+dry_bean,dry_bean-003/attempt-001,autogluon,roc_auc_ovr,roc_auc_ovr,0.9947503479557779,recorded,0.9955612989979784,0.000810951042200525,50.029581690000214,completed,
+dry_bean,dry_bean-003/attempt-001,flaml,roc_auc_ovr,roc_auc_ovr,0.9947503479557779,recorded,0.9954276538442907,0.0006773058885127803,60.160448480000014,completed,
+heart_disease_cleveland,heart_disease_cleveland-001/attempt-001,autogluon,roc_auc,,0.8580121703853955,recorded,,,,failed,Spec columns absent: ['num']
+heart_disease_cleveland,heart_disease_cleveland-001/attempt-001,flaml,roc_auc,,0.8580121703853955,recorded,,,,failed,Spec columns absent: ['num']
 heart_disease_cleveland,heart_disease_cleveland-002/attempt-001,autogluon,roc_auc,macro_f1,,mlca_metric_unavailable,0.8833333333333334,,2.749011289000009,completed,
 heart_disease_cleveland,heart_disease_cleveland-002/attempt-001,flaml,roc_auc,macro_f1,,mlca_metric_unavailable,0.8803921568627451,,60.00723806399992,completed,
 heart_disease_cleveland,heart_disease_cleveland-003/attempt-001,autogluon,roc_auc,macro_f1,,mlca_metric_unavailable,0.9208333333333334,,3.0355214230003185,completed,

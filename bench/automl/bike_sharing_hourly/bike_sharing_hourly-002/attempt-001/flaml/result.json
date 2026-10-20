@@ -1,5 +1,5 @@
 {
-  "status": "unavailable",
+  "status": "failed",
   "task": "bike_sharing_hourly",
   "framework": "flaml",
   "spec_sha256": "cad2f87701aaafa58e52c607ea4ad96ee567df39391fb407ad9465ebebb1db17",
@@ -17,17 +17,38 @@
     "lightgbm": "4.6.0"
   },
   "run_label": "bike_sharing_hourly-002/attempt-001",
-  "split_hashes": null,
+  "split_hashes": {
+    "data": "b03a2d02e8c10f435c43c7f0b358b7e34a003afea53dbc37f0183f2763295133",
+    "manifest": "3e15b48d8f1f500dfe6e6e639def41ab0381a586fb4fc98c69b11c7030b9455f",
+    "train_index": "d63c0ea95ecd3dc8596261aca289f4029b05a9de5cdf4b621b2f51eef2b25a0d",
+    "train": "2333ff876be77c2dc2d491ee1ed9ff59c7859ee3752a1895a3b2a755e42c930d",
+    "val": "0517fb9500bd6cd67b9e8a698abfe004c4f37fa0babfa103951babebfb61317a",
+    "test": "41b222a862808466d98de7ba9f78cf8e596f90470e9246df6d18fd30f0dd63f3"
+  },
   "mlca_recorded_metrics": [],
-  "mlca_code_commit": null,
-  "rails": null,
-  "split_id": null,
-  "split_parameters": null,
+  "mlca_code_commit": "d9a39e2abdd29c43f686b4d4da3d835a7f6ed8e4",
+  "rails": {
+    "sha256": "e6217303a1c3870f1133e71d665dd70431be63a2f44f0308a342eeecb569e46a",
+    "version": "rails-0.11"
+  },
+  "split_id": "04_split_freeze_time_9CFPT2A7",
+  "split_parameters": {
+    "group_column": "",
+    "method": "time",
+    "seed": 42,
+    "time_column": "",
+    "time_columns": [
+      "dteday",
+      "hr"
+    ],
+    "train_fraction": 0.6,
+    "val_fraction": 0.2
+  },
   "mlca_log_verification": {
     "ok": true,
     "records": 200,
     "head_sha256": "38d502857857366b37da5125a080e483671f3dedd6273be061b5e2aa0af10f86"
   },
-  "reason": "failed",
-  "export_error": "DataFrame are different"
+  "error_type": "ValueError",
+  "message": "Spec columns absent: ['casual', 'instant', 'registered']"
 }

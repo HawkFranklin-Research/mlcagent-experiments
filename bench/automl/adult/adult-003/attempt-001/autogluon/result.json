@@ -1,5 +1,5 @@
 {
-  "status": "unavailable",
+  "status": "completed",
   "task": "adult",
   "framework": "autogluon",
   "spec_sha256": "4b28d34a76ed38df8be19a81545802c943d1f1a0ba70f62c5e74b08be35e5401",
@@ -17,17 +17,108 @@
     "lightgbm": "4.6.0"
   },
   "run_label": "adult-003/attempt-001",
-  "split_hashes": null,
+  "split_hashes": {
+    "data": "82682cd3606b1c0592975abff21db758baed235950a2a9c02931c56f1b8157ee",
+    "manifest": "c3fb4cb33538e0b1f0df210d83b87d13e604659cdae7bbe219c00a3b9a2f68a9",
+    "train_index": "3c6d1d8bfc9aa3dc0d5993687560e74f42db1ea0aa3f2b3abe26cc0ac940ead9",
+    "train": "60d6749c3f314076829bfab33ef1e009daed01b544afa4f815ed713d2735b6f6",
+    "val": "60c4ceaf9b351c703d2269d6bcc3243bba1dd78b57970a55fe70d14650d3a412",
+    "test": "d25a224018d658f4f8d002954a60a8a7588e54641824c3a3e2a8217bb53be6e0"
+  },
   "mlca_recorded_metrics": [],
-  "mlca_code_commit": null,
-  "rails": null,
-  "split_id": null,
-  "split_parameters": null,
+  "mlca_code_commit": "d9a39e2abdd29c43f686b4d4da3d835a7f6ed8e4",
+  "rails": {
+    "sha256": "e6217303a1c3870f1133e71d665dd70431be63a2f44f0308a342eeecb569e46a",
+    "version": "rails-0.11"
+  },
+  "split_id": "04_split_freeze_stratified_Q3WS1AGG",
+  "split_parameters": {
+    "group_column": "",
+    "method": "stratified",
+    "seed": 42,
+    "time_column": "",
+    "train_fraction": 0.6,
+    "val_fraction": 0.2
+  },
   "mlca_log_verification": {
     "ok": true,
     "records": 176,
     "head_sha256": "1bb31e087cf3b1b317a5f1b88192dc82e258bae54b323b5eb92dd7db35778d73"
   },
-  "reason": "failed",
-  "export_error": "SHA-256 mismatch: adult_census_uci.csv"
+  "comparison_metric": "roc_auc",
+  "mlca_primary_metric": "roc_auc",
+  "features": [
+    "age",
+    "workclass",
+    "fnlwgt",
+    "education",
+    "education-num",
+    "occupation",
+    "relationship",
+    "race",
+    "sex",
+    "capital-gain",
+    "capital-loss",
+    "hours-per-week",
+    "native-country"
+  ],
+  "feature_count": 13,
+  "best_model": "CatBoost",
+  "settings": {
+    "eval_metric": "roc_auc",
+    "presets": "medium_quality",
+    "num_cpus": 2,
+    "refit_full": false,
+    "num_bag_folds": 0,
+    "num_stack_levels": 0,
+    "fit_weighted_ensemble": false,
+    "feature_generator_fit": "training_only",
+    "excluded_model_types": [
+      "NN_TORCH",
+      "FASTAI"
+    ],
+    "seed": 42,
+    "determinism": "AutoGluon may not be fully deterministic"
+  },
+  "fit_seconds": 60.252652037999724,
+  "classes": [
+    "<=50K",
+    ">50K"
+  ],
+  "positive": ">50K",
+  "predict_seconds": {
+    "val": 0.06602310600010242,
+    "test": 0.06940429499991296
+  },
+  "val": {
+    "primary": {
+      "name": "roc_auc",
+      "value": 0.9288366131050597
+    },
+    "secondary": {
+      "balanced_accuracy": 0.7922719340501951,
+      "macro_f1": 0.8108074690360312,
+      "accuracy": 0.8709776593564255
+    },
+    "n": 9758,
+    "notes": []
+  },
+  "test": {
+    "primary": {
+      "name": "roc_auc",
+      "value": 0.9305075629306657
+    },
+    "secondary": {
+      "balanced_accuracy": 0.7939131941370456,
+      "macro_f1": 0.814607517763241,
+      "accuracy": 0.8745005634668579
+    },
+    "n": 9761,
+    "notes": []
+  },
+  "mlca": {
+    "source": "mlca_metric_unavailable",
+    "metrics": [],
+    "reason": "No explicit saved-prediction schema; class ordering is never guessed"
+  }
 }
