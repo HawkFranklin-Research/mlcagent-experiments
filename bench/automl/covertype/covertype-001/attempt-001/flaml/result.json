@@ -1,0 +1,215 @@
+{
+  "status": "completed",
+  "task": "covertype",
+  "framework": "flaml",
+  "spec_sha256": "15a2139c27e799ca458d1a358cb3334169b7d7c3dc84f413d1a823ee59bb2f97",
+  "time_budget_s": 60.0,
+  "cpus": 2,
+  "seed": 42,
+  "versions": {
+    "python": "3.13.12 (main, Mar 24 2026, 22:49:35) [Clang 22.1.1 ]",
+    "executable": "/workspaces/mlcagent-experiments/automl/.venv/bin/python",
+    "autogluon.tabular": "1.5.0",
+    "flaml": "2.7.0",
+    "scikit-learn": "1.7.2",
+    "numpy": "2.3.5",
+    "pandas": "2.3.3",
+    "lightgbm": "4.6.0"
+  },
+  "run_label": "covertype-001/attempt-001",
+  "split_hashes": {
+    "data": "ea35ca6820fcbe0bdc6707e9ed31e11a9de84f07d88da73b511c737383c271a6",
+    "manifest": "c9fbfb9ae46cdd6e062022e9a54709ba11a3d74e83e7d09572def5e2de18a1a5",
+    "train_index": "225a2dc321f882f046a75684bd48db4997e1ee10329b380f562363edfc6cb17d",
+    "train": "8c5ad176f90e74e4d7bf73e87002c02738fcb2bde02e0100aa73d2a5865cc599",
+    "val": "588adec6c031c1f4bd10b2be8271342ccff56b434de0e91f6fd3c9db88ba07de",
+    "test": "713e10432a8bce055e3c031a050743b6606bbd811871be33297723eb6225106d"
+  },
+  "mlca_recorded_metrics": [
+    {
+      "ci": [
+        0.9445380578158581,
+        0.9512113245988223
+      ],
+      "name": "roc_auc_ovr",
+      "split": "test",
+      "value": 0.9479850773732762,
+      "step_id": "10_test_score_test_Y3HNNJK5",
+      "source": "recorded"
+    },
+    {
+      "ci": [
+        0.6938309525024965,
+        0.7068411782054271
+      ],
+      "name": "f1_macro",
+      "split": "test",
+      "value": 0.7006246379311941,
+      "step_id": "10_test_score_test_Y3HNNJK5",
+      "source": "recorded"
+    }
+  ],
+  "mlca_code_commit": "d9a39e2abdd29c43f686b4d4da3d835a7f6ed8e4",
+  "rails": {
+    "sha256": "e6217303a1c3870f1133e71d665dd70431be63a2f44f0308a342eeecb569e46a",
+    "version": "rails-0.11"
+  },
+  "split_id": "04_split_freeze_stratified_Z07Y28PA",
+  "split_parameters": {
+    "group_column": "",
+    "method": "stratified",
+    "seed": 42,
+    "time_column": "",
+    "train_fraction": 0.6,
+    "val_fraction": 0.2
+  },
+  "mlca_log_verification": {
+    "ok": true,
+    "records": 381,
+    "head_sha256": "0927152d0c3c928251894c67547e39ef3ef3ed690ec4a5245e4676800769a5e4"
+  },
+  "comparison_metric": "roc_auc_ovr",
+  "mlca_primary_metric": "roc_auc_ovr",
+  "features": [
+    "Elevation",
+    "Aspect",
+    "Slope",
+    "Horizontal_Distance_To_Hydrology",
+    "Vertical_Distance_To_Hydrology",
+    "Horizontal_Distance_To_Roadways",
+    "Hillshade_9am",
+    "Hillshade_Noon",
+    "Hillshade_3pm",
+    "Horizontal_Distance_To_Fire_Points",
+    "Wilderness_Area1",
+    "Wilderness_Area2",
+    "Wilderness_Area3",
+    "Wilderness_Area4",
+    "Soil_Type1",
+    "Soil_Type2",
+    "Soil_Type3",
+    "Soil_Type4",
+    "Soil_Type5",
+    "Soil_Type6",
+    "Soil_Type7",
+    "Soil_Type8",
+    "Soil_Type9",
+    "Soil_Type10",
+    "Soil_Type11",
+    "Soil_Type12",
+    "Soil_Type13",
+    "Soil_Type14",
+    "Soil_Type15",
+    "Soil_Type16",
+    "Soil_Type17",
+    "Soil_Type18",
+    "Soil_Type19",
+    "Soil_Type20",
+    "Soil_Type21",
+    "Soil_Type22",
+    "Soil_Type23",
+    "Soil_Type24",
+    "Soil_Type25",
+    "Soil_Type26",
+    "Soil_Type27",
+    "Soil_Type28",
+    "Soil_Type29",
+    "Soil_Type30",
+    "Soil_Type31",
+    "Soil_Type32",
+    "Soil_Type33",
+    "Soil_Type34",
+    "Soil_Type35",
+    "Soil_Type36",
+    "Soil_Type37",
+    "Soil_Type38",
+    "Soil_Type39",
+    "Soil_Type40"
+  ],
+  "feature_count": 54,
+  "best_model": "catboost",
+  "best_config": {
+    "early_stopping_rounds": 10,
+    "learning_rate": 0.09999999999999996,
+    "n_estimators": 8192
+  },
+  "validation_loss": 0.03371504638971434,
+  "settings": {
+    "task": "classification",
+    "metric": "roc_auc_ovr",
+    "time_budget": 60.0,
+    "n_jobs": 2,
+    "seed": 42,
+    "eval_method": "holdout",
+    "retrain_full": false,
+    "estimator_list": "auto",
+    "resolved_estimator_list": [
+      "lgbm",
+      "rf",
+      "xgboost",
+      "extra_tree",
+      "xgb_limitdepth",
+      "sgd",
+      "catboost",
+      "lrl1"
+    ]
+  },
+  "fit_seconds": 81.01649906300008,
+  "classes": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7
+  ],
+  "positive": null,
+  "predict_seconds": {
+    "val": 0.20631159999993542,
+    "test": 0.2182627029997093
+  },
+  "val": {
+    "primary": {
+      "name": "roc_auc_ovr",
+      "value": 0.9662849536102857
+    },
+    "secondary": {
+      "balanced_accuracy": 0.621903077261251,
+      "macro_f1": 0.6710511171880472,
+      "accuracy": 0.7981669535283993
+    },
+    "n": 116200,
+    "notes": []
+  },
+  "test": {
+    "primary": {
+      "name": "roc_auc_ovr",
+      "value": 0.9660998615791748
+    },
+    "secondary": {
+      "balanced_accuracy": 0.6266401206713327,
+      "macro_f1": 0.6768341911152346,
+      "accuracy": 0.7983770340857264
+    },
+    "n": 116207,
+    "notes": []
+  },
+  "mlca": {
+    "source": "recorded",
+    "metrics": [
+      {
+        "ci": [
+          0.9445380578158581,
+          0.9512113245988223
+        ],
+        "name": "roc_auc_ovr",
+        "split": "test",
+        "value": 0.9479850773732762,
+        "step_id": "10_test_score_test_Y3HNNJK5",
+        "source": "recorded"
+      }
+    ],
+    "reason": "No explicit saved-prediction schema; class ordering is never guessed"
+  }
+}

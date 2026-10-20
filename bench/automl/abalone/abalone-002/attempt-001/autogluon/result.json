@@ -1,0 +1,132 @@
+{
+  "status": "completed",
+  "task": "abalone",
+  "framework": "autogluon",
+  "spec_sha256": "83e2db01b132d68480d0e1109c957dd0e1089575e3c5da2f3fa82dd04f51fa73",
+  "time_budget_s": 60.0,
+  "cpus": 2,
+  "seed": 42,
+  "versions": {
+    "python": "3.13.12 (main, Mar 24 2026, 22:49:35) [Clang 22.1.1 ]",
+    "executable": "/workspaces/mlcagent-experiments/automl/.venv/bin/python",
+    "autogluon.tabular": "1.5.0",
+    "flaml": "2.7.0",
+    "scikit-learn": "1.7.2",
+    "numpy": "2.3.5",
+    "pandas": "2.3.3",
+    "lightgbm": "4.6.0"
+  },
+  "run_label": "abalone-002/attempt-001",
+  "split_hashes": {
+    "data": "add76d88a9dd9c7a9f147dd005725ce19dbfdf352877df9d28703486742d35a2",
+    "manifest": "9ed8d81363b05a49f48bcba8f2031e63b27615faedc19925a3cf668fa08dc1e5",
+    "train_index": "3e068cc3718457d11d5d55b4aa91e6032379779e31e32b57b4520be7d72d66b7",
+    "train": "f5b55eef28a7bb49dd57347edcf559c095bc401fedb6d6c419fd1da4f683513b",
+    "val": "bd2ddbf5c53f3a15f05ced56c52742a442406d5f0aac09b73506a9ba76137469",
+    "test": "4f8d47ae4462321b9f679172ab66e978a2763ed30d53e4660c197c7f5fdb8bd5"
+  },
+  "mlca_recorded_metrics": [
+    {
+      "ci": null,
+      "name": "rmse",
+      "split": "test",
+      "value": 2.226,
+      "step_id": "10_test_score_test_SNWKHV5Q",
+      "source": "recorded"
+    }
+  ],
+  "mlca_code_commit": "d9a39e2abdd29c43f686b4d4da3d835a7f6ed8e4",
+  "rails": {
+    "sha256": "e6217303a1c3870f1133e71d665dd70431be63a2f44f0308a342eeecb569e46a",
+    "version": "rails-0.11"
+  },
+  "split_id": "04_split_freeze_stratified_JWH1KGJM",
+  "split_parameters": {
+    "group_column": "",
+    "method": "random",
+    "seed": 42,
+    "time_column": "",
+    "train_fraction": 0.6,
+    "val_fraction": 0.2
+  },
+  "mlca_log_verification": {
+    "ok": true,
+    "records": 386,
+    "head_sha256": "e193945b4ed65e96e29eb034e1432fe20c9330aeb2f12343ed2bb2d327c21627"
+  },
+  "comparison_metric": "rmse",
+  "mlca_primary_metric": "rmse",
+  "features": [
+    "Sex",
+    "Length",
+    "Diameter",
+    "Height",
+    "Whole_weight",
+    "Shucked_weight",
+    "Viscera_weight",
+    "Shell_weight"
+  ],
+  "feature_count": 8,
+  "best_model": "LightGBMXT",
+  "settings": {
+    "eval_metric": "root_mean_squared_error",
+    "presets": "medium_quality",
+    "num_cpus": 2,
+    "refit_full": false,
+    "num_bag_folds": 0,
+    "num_stack_levels": 0,
+    "fit_weighted_ensemble": false,
+    "feature_generator_fit": "training_only",
+    "excluded_model_types": [
+      "NN_TORCH",
+      "FASTAI"
+    ],
+    "seed": 42,
+    "determinism": "AutoGluon may not be fully deterministic"
+  },
+  "fit_seconds": 5.330966863000413,
+  "classes": null,
+  "positive": null,
+  "predict_seconds": {
+    "val": 0.04017641900009039,
+    "test": 0.04103438899983303
+  },
+  "val": {
+    "primary": {
+      "name": "rmse",
+      "value": 2.1104765099955896
+    },
+    "secondary": {
+      "mae": 1.5216974020004272,
+      "r2": 0.5751433968544006
+    },
+    "n": 835,
+    "notes": []
+  },
+  "test": {
+    "primary": {
+      "name": "rmse",
+      "value": 2.2022342910440176
+    },
+    "secondary": {
+      "mae": 1.5332915782928467,
+      "r2": 0.5795477628707886
+    },
+    "n": 836,
+    "notes": []
+  },
+  "mlca": {
+    "source": "recorded",
+    "metrics": [
+      {
+        "ci": null,
+        "name": "rmse",
+        "split": "test",
+        "value": 2.226,
+        "step_id": "10_test_score_test_SNWKHV5Q",
+        "source": "recorded"
+      }
+    ],
+    "reason": "No explicit saved-prediction schema; class ordering is never guessed"
+  }
+}

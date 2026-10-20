@@ -1,0 +1,165 @@
+{
+  "status": "completed",
+  "task": "breast_cancer_diagnostic",
+  "framework": "autogluon",
+  "spec_sha256": "9f2c3c6b65619fe13a567fb40818cc0bcaf8f6a1c6689acb033e2bae0288b976",
+  "time_budget_s": 60.0,
+  "cpus": 2,
+  "seed": 42,
+  "versions": {
+    "python": "3.13.12 (main, Mar 24 2026, 22:49:35) [Clang 22.1.1 ]",
+    "executable": "/workspaces/mlcagent-experiments/automl/.venv/bin/python",
+    "autogluon.tabular": "1.5.0",
+    "flaml": "2.7.0",
+    "scikit-learn": "1.7.2",
+    "numpy": "2.3.5",
+    "pandas": "2.3.3",
+    "lightgbm": "4.6.0"
+  },
+  "run_label": "breast_cancer_diagnostic-002/attempt-001",
+  "split_hashes": {
+    "data": "5c2238c5d8c38eefbbe1238b1c88f25cdee5299ad5010eb2103dd4b1e6a1c715",
+    "manifest": "1e43b61a82d6441d9ff283fb4ca65ef88b35fb4ddd799b10b76a9f9f2a254393",
+    "train_index": "504deef2488a0212dc7e31c54145bfb1f594dba73de6d2f580a75ab579caafb3",
+    "train": "e9e810562982bfeb21c1d51031e5eb806b02f02cbb4f5314ac1ff7bfd17e088b",
+    "val": "746a2ca1cf6f262be9e122612c95297097f898eeb5b6aad485544f5808fad898",
+    "test": "613c569166a8d8d83c93a8c2f999704f789d920971d6009898b274e23adc0b04"
+  },
+  "mlca_recorded_metrics": [
+    {
+      "ci": [
+        0.9947,
+        1.0
+      ],
+      "name": "roc_auc",
+      "split": "test",
+      "value": 0.9987,
+      "step_id": "11_test_score_test_V36NXJZQ",
+      "source": "recorded"
+    }
+  ],
+  "mlca_code_commit": "d9a39e2abdd29c43f686b4d4da3d835a7f6ed8e4",
+  "rails": {
+    "sha256": "e6217303a1c3870f1133e71d665dd70431be63a2f44f0308a342eeecb569e46a",
+    "version": "rails-0.11"
+  },
+  "split_id": "05_split_freeze_stratified_1QG06GVJ",
+  "split_parameters": {
+    "group_column": "",
+    "method": "stratified",
+    "seed": 42,
+    "time_column": "",
+    "train_fraction": 0.6,
+    "val_fraction": 0.2
+  },
+  "mlca_log_verification": {
+    "ok": true,
+    "records": 412,
+    "head_sha256": "ee4cbf0d3e7a78a838246545899723354bbfac75e8f38f219bf84d251a4a6407"
+  },
+  "comparison_metric": "roc_auc",
+  "mlca_primary_metric": "roc_auc",
+  "features": [
+    "radius1",
+    "texture1",
+    "perimeter1",
+    "area1",
+    "smoothness1",
+    "compactness1",
+    "concavity1",
+    "concave_points1",
+    "symmetry1",
+    "fractal_dimension1",
+    "radius2",
+    "texture2",
+    "perimeter2",
+    "area2",
+    "smoothness2",
+    "compactness2",
+    "concavity2",
+    "concave_points2",
+    "symmetry2",
+    "fractal_dimension2",
+    "radius3",
+    "texture3",
+    "perimeter3",
+    "area3",
+    "smoothness3",
+    "compactness3",
+    "concavity3",
+    "concave_points3",
+    "symmetry3",
+    "fractal_dimension3"
+  ],
+  "feature_count": 30,
+  "best_model": "LightGBMXT",
+  "settings": {
+    "eval_metric": "roc_auc",
+    "presets": "medium_quality",
+    "num_cpus": 2,
+    "refit_full": false,
+    "num_bag_folds": 0,
+    "num_stack_levels": 0,
+    "fit_weighted_ensemble": false,
+    "feature_generator_fit": "training_only",
+    "excluded_model_types": [
+      "NN_TORCH",
+      "FASTAI"
+    ],
+    "seed": 42,
+    "determinism": "AutoGluon may not be fully deterministic"
+  },
+  "fit_seconds": 4.6391021249999085,
+  "classes": [
+    "B",
+    "M"
+  ],
+  "positive": "M",
+  "predict_seconds": {
+    "val": 0.013893464999910066,
+    "test": 0.013657985000008921
+  },
+  "val": {
+    "primary": {
+      "name": "roc_auc",
+      "value": 0.9849094567404426
+    },
+    "secondary": {
+      "balanced_accuracy": 0.9572434607645876,
+      "macro_f1": 0.9617208672086721,
+      "accuracy": 0.9646017699115044
+    },
+    "n": 113,
+    "notes": []
+  },
+  "test": {
+    "primary": {
+      "name": "roc_auc",
+      "value": 0.9996770025839794
+    },
+    "secondary": {
+      "balanced_accuracy": 0.9767441860465116,
+      "macro_f1": 0.981245923026745,
+      "accuracy": 0.9826086956521739
+    },
+    "n": 115,
+    "notes": []
+  },
+  "mlca": {
+    "source": "recorded",
+    "metrics": [
+      {
+        "ci": [
+          0.9947,
+          1.0
+        ],
+        "name": "roc_auc",
+        "split": "test",
+        "value": 0.9987,
+        "step_id": "11_test_score_test_V36NXJZQ",
+        "source": "recorded"
+      }
+    ],
+    "reason": "No explicit saved-prediction schema; class ordering is never guessed"
+  }
+}

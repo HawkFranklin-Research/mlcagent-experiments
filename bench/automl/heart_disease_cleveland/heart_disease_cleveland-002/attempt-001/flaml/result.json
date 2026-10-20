@@ -1,0 +1,148 @@
+{
+  "status": "completed",
+  "task": "heart_disease_cleveland",
+  "framework": "flaml",
+  "spec_sha256": "1e179f0595b580375dba5e1fc0796adb6a05aaaf6a3df322db37696738f65726",
+  "time_budget_s": 60.0,
+  "cpus": 2,
+  "seed": 42,
+  "versions": {
+    "python": "3.13.12 (main, Mar 24 2026, 22:49:35) [Clang 22.1.1 ]",
+    "executable": "/workspaces/mlcagent-experiments/automl/.venv/bin/python",
+    "autogluon.tabular": "1.5.0",
+    "flaml": "2.7.0",
+    "scikit-learn": "1.7.2",
+    "numpy": "2.3.5",
+    "pandas": "2.3.3",
+    "lightgbm": "4.6.0"
+  },
+  "run_label": "heart_disease_cleveland-002/attempt-001",
+  "split_hashes": {
+    "data": "d60c1050744de47db797974b237c3eca6cccb58742b2ccd7c619bb99b581873e",
+    "manifest": "e025c56fb237741f5da1490585153ca9ce34f8d59b4db7454c45fdf7ecc9dfba",
+    "train_index": "cedf8bcab7b3bb5bf31091f3f6eaf48a63dc65a86b02de6e6e19d50cb01e1fc3",
+    "train": "a066d96b59ce9adebf8379dd82299933e120c4286f17d59e4e1200ffebc73d40",
+    "val": "44dd27cb5670597b3e3b4b5f315b2743f68accf315d9584562b56051c08be39e",
+    "test": "7156299eb51e4d70733a11c6e6c6ac995125c68fcde2367d11f36dca7d073c18"
+  },
+  "mlca_recorded_metrics": [
+    {
+      "ci": null,
+      "name": "macro_f1",
+      "split": "test",
+      "value": 0.5282138142590329,
+      "step_id": "10_test_score_test_YFE67HTS",
+      "source": "recorded"
+    }
+  ],
+  "mlca_code_commit": "d9a39e2abdd29c43f686b4d4da3d835a7f6ed8e4",
+  "rails": {
+    "sha256": "e6217303a1c3870f1133e71d665dd70431be63a2f44f0308a342eeecb569e46a",
+    "version": "rails-0.11"
+  },
+  "split_id": "04_split_freeze_stratified_RWTQP8Y9",
+  "split_parameters": {
+    "group_column": "",
+    "method": "stratified",
+    "seed": 42,
+    "time_column": "",
+    "train_fraction": 0.6,
+    "val_fraction": 0.2
+  },
+  "mlca_log_verification": {
+    "ok": true,
+    "records": 389,
+    "head_sha256": "a3acc7e99e268ec0eb6a97b45b6a7496b432c5354fbf6ee75a5525dce95cc952"
+  },
+  "comparison_metric": "roc_auc",
+  "mlca_primary_metric": "macro_f1",
+  "features": [
+    "age",
+    "sex",
+    "cp",
+    "trestbps",
+    "chol",
+    "fbs",
+    "restecg",
+    "thalach",
+    "exang",
+    "oldpeak",
+    "slope",
+    "ca",
+    "thal"
+  ],
+  "feature_count": 13,
+  "best_model": "lgbm",
+  "best_config": {
+    "n_estimators": 6,
+    "num_leaves": 12,
+    "min_child_samples": 42,
+    "learning_rate": 0.08631491824973733,
+    "log_max_bin": 6,
+    "colsample_bytree": 0.27644617899443913,
+    "reg_alpha": 3.366081943077036,
+    "reg_lambda": 0.0020502516565713094
+  },
+  "validation_loss": 0.02141203703703698,
+  "settings": {
+    "task": "classification",
+    "metric": "roc_auc",
+    "time_budget": 60.0,
+    "n_jobs": 2,
+    "seed": 42,
+    "eval_method": "holdout",
+    "retrain_full": false,
+    "estimator_list": "auto",
+    "resolved_estimator_list": [
+      "lgbm",
+      "rf",
+      "xgboost",
+      "extra_tree",
+      "xgb_limitdepth",
+      "sgd",
+      "catboost",
+      "lrl1"
+    ]
+  },
+  "fit_seconds": 60.00723806399992,
+  "classes": [
+    0,
+    1
+  ],
+  "positive": 1,
+  "predict_seconds": {
+    "val": 0.014523057999667799,
+    "test": 0.013582965999830776
+  },
+  "val": {
+    "primary": {
+      "name": "roc_auc",
+      "value": 0.978587962962963
+    },
+    "secondary": {
+      "balanced_accuracy": 0.8888888888888888,
+      "macro_f1": 0.8946428571428571,
+      "accuracy": 0.8983050847457628
+    },
+    "n": 59,
+    "notes": []
+  },
+  "test": {
+    "primary": {
+      "name": "roc_auc",
+      "value": 0.8803921568627451
+    },
+    "secondary": {
+      "balanced_accuracy": 0.8225490196078431,
+      "macro_f1": 0.8246575342465754,
+      "accuracy": 0.828125
+    },
+    "n": 64,
+    "notes": []
+  },
+  "mlca": {
+    "source": "mlca_metric_unavailable",
+    "metrics": [],
+    "reason": "No explicit saved-prediction schema; class ordering is never guessed"
+  }
+}

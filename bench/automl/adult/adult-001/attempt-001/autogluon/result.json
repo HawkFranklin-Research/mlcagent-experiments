@@ -1,0 +1,45 @@
+{
+  "status": "unavailable",
+  "task": "adult",
+  "framework": "autogluon",
+  "spec_sha256": "4b28d34a76ed38df8be19a81545802c943d1f1a0ba70f62c5e74b08be35e5401",
+  "time_budget_s": 60.0,
+  "cpus": 2,
+  "seed": 42,
+  "versions": {
+    "python": "3.13.12 (main, Mar 24 2026, 22:49:35) [Clang 22.1.1 ]",
+    "executable": "/workspaces/mlcagent-experiments/automl/.venv/bin/python",
+    "autogluon.tabular": "1.5.0",
+    "flaml": "2.7.0",
+    "scikit-learn": "1.7.2",
+    "numpy": "2.3.5",
+    "pandas": "2.3.3",
+    "lightgbm": "4.6.0"
+  },
+  "run_label": "adult-001/attempt-001",
+  "split_hashes": null,
+  "mlca_recorded_metrics": [
+    {
+      "ci": [
+        0.913648,
+        0.925188
+      ],
+      "name": "roc_auc",
+      "split": "test",
+      "value": 0.919324,
+      "step_id": "10_test_score_test_NKVJDQ7X",
+      "source": "recorded"
+    }
+  ],
+  "mlca_code_commit": null,
+  "rails": null,
+  "split_id": null,
+  "split_parameters": null,
+  "mlca_log_verification": {
+    "ok": true,
+    "records": 395,
+    "head_sha256": "9cbe92f582855640767ced1d93d730c45da3983a2f969bd5ab59908f953e8b22"
+  },
+  "reason": "failed",
+  "export_error": "SHA-256 mismatch: adult_census_uci.csv"
+}
