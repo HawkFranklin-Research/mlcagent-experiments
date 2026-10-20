@@ -664,3 +664,115 @@ def test_missing_comparison_metric_on_mlca_side_is_reported_not_guessed():
         None,
         "mlca_metric_unavailable",
     )
+
+
+def test_split_on_mlca_prepared_table_is_rebuilt_from_that_table(tmp_path):
+    # MLCA splits its prepared copy (here deduplicated), never the raw CSV.
+    root = tmp_path / "attempt-001/run-001"
+    raw = pd.DataFrame(
+        {"x": np.arange(300), "target": ["a", "b"] * 150, "id": np.arange(300)}
+    )
+    raw = pd.concat([raw, raw.iloc[:10]], ignore_index=True)
+    source = tmp_path / "source.csv"
+    raw.to_csv(source, index=False)
+    prepared = raw.drop_duplicates()
+    table = root / ".mlca/data/prepared/p.parquet"
+    table.parent.mkdir(parents=True)
+    prepared.to_parquet(table, index=True)
+    directory = root / ".mlca/data/splits/split-1"
+    directory.mkdir(parents=True)
+    labels = ["train"] * 180 + ["val"] * 60 + ["test"] * 60
+    manifest = directory / "split_manifest.csv"
+    pd.DataFrame({"row_id": prepared.index, "partition": labels}).to_csv(
+        manifest, index=False
+    )
+    parts = {
+        "train": prepared.iloc[:180],
+        "val": prepared.iloc[180:240],
+        "test": prepared.iloc[240:],
+    }
+    descriptors = {}
+    for name in ["train", "val"]:
+        path = directory / f"{name}.parquet"
+        parts[name].to_parquet(path, index=True)
+        descriptors[name] = {
+            "path": str(path.relative_to(root)),
+            "sha256": digest(path),
+        }
+    buffer = io.BytesIO()
+    parts["test"].to_parquet(buffer, index=True)
+    store = Store(root)
+    store.append(
+        "ProjectCreated",
+        {
+            "project_id": "synthetic",
+            "mlca_version": "test",
+            "template_id": "test",
+            "template_version": "1",
+            "template_sha256": "x",
+        },
+    )
+    store.append(
+        "DataRegistered",
+        {
+            "name": "source",
+            "original_path": str(source),
+            "sha256": digest(source),
+            "size": source.stat().st_size,
+            "read_only": True,
+        },
+    )
+    store.append(
+        "DataPrepared",
+        {
+            "path": str(table.relative_to(root)),
+            "sha256": digest(table),
+            "source_sha256": digest(source),
+            "decision_sha256": "d",
+        },
+    )
+    store.append(
+        "TaskConfigured", {"task": {"primary_metric": "roc_auc", "autonomous": True}}
+    )
+    store.append(
+        "SplitFrozen",
+        {
+            "split_id": "split-1",
+            "primary_data": "source",
+            "sha256": digest(manifest),
+            "manifest": {
+                "path": str(manifest.relative_to(root)),
+                "sha256": digest(manifest),
+            },
+            "train": descriptors["train"],
+            "val": descriptors["val"],
+            "vault": {},
+            "test_plain_sha256": hashlib.sha256(buffer.getvalue()).hexdigest(),
+            "train_index_sha256": hashlib.sha256(
+                json.dumps(
+                    list(parts["train"].index), default=str, separators=(",", ":")
+                ).encode()
+            ).hexdigest(),
+            "parameters": {"method": "synthetic", "seed": 42},
+            "counts": {"train": 180, "val": 60, "test": 60},
+        },
+    )
+    spec = {
+        "id": "synthetic",
+        "data": str(source),
+        "sha256": digest(source),
+        "problem_type": "binary",
+        "targets": ["target"],
+        "excluded": ["id"],
+        "external": None,
+    }
+    result = export_split.export(
+        spec, root, tmp_path / "work", "synthetic-001/attempt-001"
+    )
+    assert result["status"] == "verified", result
+    assert result["table"]["source"] == "mlca_prepared"
+    table.unlink()
+    missing = export_split.export(
+        spec, root, tmp_path / "work2", "synthetic-001/attempt-001"
+    )
+    assert missing["status"] != "verified"

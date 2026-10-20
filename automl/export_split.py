@@ -183,14 +183,15 @@ def export(spec, project, output, run_label):
         if not registered:
             raise ValueError("Split primary_data is not registered")
         registered = registered[-1]
-        if any(
-            r["type"] == "DataPrepared"
-            and r["payload"].get("source_sha256") != registered["sha256"]
-            for r in prefix
+        # MLCA splits its prepared copy of the primary table (deduplicated, cleaned, Parquet),
+        # so the partitions are rebuilt from that copy, verified by its recorded hash.
+        prepared = [r["payload"] for r in prefix if r["type"] == "DataPrepared"]
+        prepared = prepared[-1] if prepared else None
+        if (
+            prepared is not None
+            and prepared.get("source_sha256") != registered["sha256"]
         ):
-            raise ValueError(
-                "Prepared-data split is not eligible for a registered-table comparison"
-            )
+            raise ValueError("Prepared table does not derive from the registered table")
         configured = [r["payload"] for r in prefix if r["type"] == "TaskConfigured"]
         if not configured:
             raise ValueError("No TaskConfigured before split")
@@ -204,8 +205,20 @@ def export(spec, project, output, run_label):
             if m.get("split") == "test"
         ]
         path = checked(data_path(spec["data"]), spec["sha256"])
-        checked(path, registered["sha256"])
-        frame = read_table(path)
+        if spec["sha256"] not in {
+            registered["sha256"],
+            registered.get("source_sha256"),
+        }:
+            raise ValueError("Task data differ from the table MLCA registered")
+        if prepared is not None:
+            table = project_path(project, prepared["path"])
+            if not table.is_file():
+                raise ValueError("MLCA prepared table is unavailable")
+            frame = read_table(checked(table, prepared["sha256"]))
+            base["table"] = {"source": "mlca_prepared", "sha256": prepared["sha256"]}
+        else:
+            frame = read_table(path)
+            base["table"] = {"source": "registered", "sha256": spec["sha256"]}
         if not task.get("autonomous"):
             frame = frame.reset_index(drop=True)
         if not frame.index.is_unique or frame.index.hasnans:
