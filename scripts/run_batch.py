@@ -617,20 +617,23 @@ def main():
     parser.add_argument(
         "--reasoning-effort", choices=["none", "low", "medium", "high", "max"]
     )
-    parser.add_argument("--concurrency", type=int, default=6, choices=range(1, 7))
+    parser.add_argument(
+        "--concurrency",
+        type=int,
+        choices=range(1, 7),
+        help="Concurrent studies (Ollama: 1; other providers: 6)",
+    )
     parser.add_argument("--deadline-s", type=float, default=5400)
     parser.add_argument("--rpm", type=float, default=60)
     parser.add_argument(
         "--sdk-timeout-s",
         type=float,
-        default=90,
-        help="SDK network timeout; recorded and fixed within a batch",
+        help="SDK network timeout (Ollama: 300s; other providers: 90s)",
     )
     parser.add_argument(
         "--model-call-deadline-s",
         type=float,
-        default=300,
-        help="Hard wall-clock deadline for one provider call",
+        help="Hard provider-call deadline (Ollama: 600s; other providers: 300s)",
     )
     parser.add_argument("--max-output-tokens", type=int, default=32768)
     parser.add_argument("--structured-outputs", choices=["on", "off"], default="on")
@@ -657,6 +660,14 @@ def main():
     if args.worker:
         worker(args.worker)
         return
+    # New-batch defaults only. Resume still uses its recorded state; plans win below.
+    ollama = args.provider == "ollama"
+    if args.sdk_timeout_s is None:
+        args.sdk_timeout_s = 300 if ollama else 90
+    if args.model_call_deadline_s is None:
+        args.model_call_deadline_s = 600 if ollama else 300
+    if args.concurrency is None:
+        args.concurrency = 1 if ollama else 6
     if any(
         not (0 < value < float("inf"))
         for value in [

@@ -170,17 +170,14 @@ def test_process_queue_and_resume_never_repeat_finished_studies(
             "--replicates",
             str(replicates),
         ]
-        + (["--tables", "table-0"] if subset else [])
-        + (
-            ["--sdk-timeout-s", "300", "--model-call-deadline-s", "600"]
-            if provider == "ollama"
-            else []
-        ),
+        + (["--tables", "table-0"] if subset else []),
     )
     batch.main()
     state = json.loads((folder / "batch.json").read_text())
     expected = (1 if subset else 12) * replicates
-    assert len(children) == expected and max(peaks) == (1 if subset else 6)
+    assert len(children) == expected and max(peaks) == (
+        1 if subset or provider == "ollama" else 6
+    )
     assert state["stage"] == ("replication" if freeze else "development")
     assert state["structured_outputs"] is (structured == "on")
     assert state["sdk_timeout_s"] == (300 if provider == "ollama" else 90)
@@ -478,3 +475,28 @@ def test_provider_failure_summary_is_payload_free():
     assert len(errors) == 1 and errors[0]["latency_ms"] == 90001
     assert errors[0]["status_code"] is None
     assert "DO_NOT_COPY" not in json.dumps(errors)
+
+
+def test_local_ollama_launcher_dry_run():
+    import shlex
+
+    script = Path(__file__).parents[1] / "scripts/run_ollama_local.sh"
+    subprocess.run(["bash", "-n", str(script)], check=True)
+    completed = subprocess.run(
+        ["bash", str(script), "--dry-run"], check=True, capture_output=True, text=True
+    )
+    command = shlex.split(completed.stdout)
+
+    def setting(flag):
+        return command[command.index(flag) + 1]
+
+    assert setting("--provider") == "ollama"
+    assert setting("--model") == "minimax-m3.1-flash"
+    assert setting("--sdk-timeout-s") == "300"
+    assert setting("--model-call-deadline-s") == "600"
+    assert setting("--concurrency") == "1"
+    assert setting("--tables") == "breast_cancer_diagnostic"
+    assert Path(setting("--out")).is_relative_to(
+        Path.home() / ".cache/mlca-smoke-ollama"
+    )
+    assert "--resume" not in command

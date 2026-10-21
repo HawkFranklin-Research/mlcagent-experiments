@@ -71,8 +71,11 @@ smoke-test agent tries a fresh output directory.
 
 A short API probe does not exercise the size or duration of MLCA requests. The
 controller previously fixed the SDK timeout at 90 seconds and the outer provider
-call deadline at 300 seconds. These defaults remain unchanged for reproducibility,
-but new batches can set `--sdk-timeout-s` and `--model-call-deadline-s`. Both values
+call deadline at 300 seconds. New Ollama batches now default to a 300-second SDK timeout, a 600-second hard
+call deadline and one concurrent study. Other providers keep 90/300 seconds and
+six concurrent studies. Explicit flags override defaults for a new batch; existing
+batches and comparison plans keep their recorded values. New batches can set
+`--sdk-timeout-s` and `--model-call-deadline-s`. Both values
 are recorded, passed into the frozen provider configuration, and immutable on
 resume. Shared comparison plans also fix these settings: CLI overrides cannot
 silently change them.
@@ -96,3 +99,20 @@ smokes require an approved **disk-backed scratch location outside the repository
 with at least 16 GiB free at launch. The smoke owner must revise the earlier
 `/tmp`-only restriction before testing large tables; do not redirect outputs or
 relax the disk gate silently. No cloud compute is required.
+
+### Ready-to-use local Ollama configuration
+
+`bash scripts/run_ollama_local.sh --dry-run` prints the configured command without
+reading credentials, creating output or making requests. The smoke-test agent can
+start **one** Breast Cancer study with `bash scripts/run_ollama_local.sh`.
+
+The launcher selects MiniMax M3.1 Flash, structured outputs on, low reasoning,
+300/600-second SDK/hard-call timeouts, concurrency 1, two threads and 20 RPM.
+It creates a fresh disk-backed session under `~/.cache/mlca-smoke-ollama/`, outside
+the repository and `/tmp`. This implements the author's request to configure local
+execution after `/tmp` proved unsuitable. It uses `OLLAMA_API_KEY` if already set,
+otherwise loads the designated key file into the shell environment only. No key
+is printed or passed in arguments. It does not access cloud compute, resume an
+old batch, launch the twelve-table queue, or delete failure evidence. Existing
+sandbox and disk preflights still apply. The longer timeouts need live smoke
+verification; generic provider errors may have another cause.
