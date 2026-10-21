@@ -78,8 +78,11 @@ def test_roles_select_their_tables(tmp_path):
         batch.entries(manifest, "other")
 
 
+@pytest.mark.parametrize(
+    "provider,structured", [("openrouter", "on"), ("ollama", "off")]
+)
 def test_evaluation_batch_passes_brief_and_sealed_cohort_to_each_run(
-    setup, monkeypatch
+    setup, monkeypatch, provider, structured
 ):
     code, root, data, entry = setup
     identity = {
@@ -93,7 +96,8 @@ def test_evaluation_batch_passes_brief_and_sealed_cohort_to_each_run(
     monkeypatch.setattr(batch, "disk_needed", lambda job: 0)
     monkeypatch.setattr(batch, "git_head", lambda _: "fixture")
     monkeypatch.setattr(batch, "runtime_identity", lambda _: {})
-    monkeypatch.setenv("OPENROUTER_API_KEY", "SYNTHETIC_NO_NETWORK")
+    monkeypatch.setenv(batch.PROVIDERS[provider][1], "SYNTHETIC_NO_NETWORK")
+    monkeypatch.setattr("mlca.sandbox.level.detect", lambda *_: "A")
     specs = []
     original_popen = subprocess.Popen
 
@@ -114,7 +118,11 @@ def test_evaluation_batch_passes_brief_and_sealed_cohort_to_each_run(
         "--batch",
         "1",
         "--model",
-        "synthetic/no-network",
+        "minimax-m3.1-flash" if provider == "ollama" else "synthetic/no-network",
+        "--provider",
+        provider,
+        "--structured-outputs",
+        structured,
     ]
     monkeypatch.setattr(
         sys,
@@ -125,6 +133,14 @@ def test_evaluation_batch_passes_brief_and_sealed_cohort_to_each_run(
     state = json.loads((folder / "batch.json").read_text())
     assert state["stage"] == "evaluation" and state["role"] == "evaluation"
     assert len(specs) == 2
+    for spec in specs:
+        config = spec["config"]["providers"]["development"]
+        assert config["kind"] == (
+            "openai_compatible" if provider == "ollama" else provider
+        )
+        assert config["base_url"] == batch.PROVIDERS[provider][0]
+        assert config["api_key_env"] == batch.PROVIDERS[provider][1]
+        assert config["structured_outputs"] is (structured == "on")
     assert all(s["brief"] == "Predict the PAM50 subtype." for s in specs)
     assert all(s["external"] == str(data / "prepared/S3/external.csv") for s in specs)
     assert all(s["data"] == str(data / "prepared/S3/discovery.csv") for s in specs)

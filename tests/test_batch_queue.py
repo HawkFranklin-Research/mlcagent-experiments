@@ -5,7 +5,9 @@ import sys
 import time
 from pathlib import Path
 
+import pytest
 import run_batch as batch
+from comparison import provider_kind
 from mlca.rails import load
 
 
@@ -49,7 +51,18 @@ def test_accounting_deduplicates_copies_and_keeps_unknowns(tmp_path):
     assert result["partial"] and result["unknown"]["cost_usd"] == 1
 
 
-def test_process_queue_and_resume_never_repeat_finished_studies(tmp_path, monkeypatch):
+@pytest.mark.parametrize(
+    "provider,structured,freeze,replicates,subset",
+    [
+        ("openrouter", "on", False, 1, False),
+        ("ollama", "off", False, 1, False),
+        ("ollama", "off", True, 3, False),
+        ("ollama", "off", True, 1, True),
+    ],
+)
+def test_process_queue_and_resume_never_repeat_finished_studies(
+    tmp_path, monkeypatch, provider, structured, freeze, replicates, subset
+):
     code = tmp_path / "code"
     root = tmp_path / "experiments"
     (code / "rails").mkdir(parents=True)
@@ -83,6 +96,18 @@ def test_process_queue_and_resume_never_repeat_finished_studies(tmp_path, monkey
     )  # host disk is not under test
     monkeypatch.setattr(batch, "git_head", lambda _: "fixture")
     monkeypatch.setattr(batch, "runtime_identity", lambda _: {})
+    monkeypatch.setattr(batch, "frozen", lambda _: ["freeze-test"] if freeze else [])
+    if freeze:
+        monkeypatch.setattr(
+            batch,
+            "validate_stage",
+            lambda *a, **k: pytest.fail(
+                "Replication must skip development/acceptance gates"
+            ),
+        )
+        (root / "batch-start.json").write_text(
+            json.dumps({"started_at": "2000-01-01T00:00:00+00:00"})
+        )
     original_run = subprocess.run
     monkeypatch.setattr(
         batch.subprocess,
@@ -93,7 +118,10 @@ def test_process_queue_and_resume_never_repeat_finished_studies(tmp_path, monkey
             else original_run(args, **kw)
         ),
     )
-    monkeypatch.setenv("OPENROUTER_API_KEY", "SYNTHETIC_NO_NETWORK")
+    monkeypatch.setenv(
+        "OPENROUTER_API_KEY" if provider == "openrouter" else "OLLAMA_API_KEY",
+        "SYNTHETIC_NO_NETWORK",
+    )
     monkeypatch.setattr("mlca.sandbox.level.detect", lambda *_: "A")
     original_popen = subprocess.Popen
     children = []
@@ -103,6 +131,11 @@ def test_process_queue_and_resume_never_repeat_finished_studies(tmp_path, monkey
     def launch(command, **kwargs):
         spec = json.loads(Path(command[-1]).read_text())
         assert "leakage_columns" not in spec and "targets" not in spec
+        config = spec["config"]["providers"]["development"]
+        assert config["kind"] == provider_kind(provider)
+        assert config["base_url"] == batch.PROVIDERS[provider][0]
+        assert config["api_key_env"] == batch.PROVIDERS[provider][1]
+        assert config["structured_outputs"] is (structured == "on")
         alive = [(p, l) for p, l in zip(children, large) if p.poll() is None]
         this_large = Path(spec["data"]).name in ["0.csv", "1.csv"]
         assert not this_large or not any(l for _, l in alive)
@@ -127,12 +160,22 @@ def test_process_queue_and_resume_never_repeat_finished_studies(tmp_path, monkey
             "--batch",
             "1",
             "--model",
-            "synthetic/no-network",
-        ],
+            "minimax-m3.1-flash" if provider == "ollama" else "synthetic/no-network",
+            "--provider",
+            provider,
+            "--structured-outputs",
+            structured,
+            "--replicates",
+            str(replicates),
+        ]
+        + (["--tables", "table-0"] if subset else []),
     )
     batch.main()
     state = json.loads((folder / "batch.json").read_text())
-    assert len(children) == 12 and max(peaks) == 6
+    expected = (1 if subset else 12) * replicates
+    assert len(children) == expected and max(peaks) == (1 if subset else 6)
+    assert state["stage"] == ("replication" if freeze else "development")
+    assert state["structured_outputs"] is (structured == "on")
     assert all(j["status"] == "finished" for j in state["jobs"])
     assert state["accounting"]["requests"] == 0
     samples = [
@@ -142,7 +185,19 @@ def test_process_queue_and_resume_never_repeat_finished_studies(tmp_path, monkey
     assert samples and samples[0]["disk_free_bytes"] > 0
     monkeypatch.setattr(sys, "argv", ["run_batch", "--out", str(folder), "--resume"])
     batch.main()
-    assert len(children) == 12
+    assert len(children) == expected
+    for option in [
+        ["--structured-outputs", "on" if structured == "off" else "off"],
+        ["--structured-outputs=" + ("on" if structured == "off" else "off")],
+    ]:
+        monkeypatch.setattr(
+            sys, "argv", ["run_batch", "--out", str(folder), "--resume"] + option
+        )
+        with pytest.raises(
+            ValueError, match="Resume cannot change recorded structured_outputs"
+        ):
+            batch.main()
+    assert len(children) == expected
 
 
 def test_acceptance_and_ablation_require_prior_success(tmp_path):
@@ -243,3 +298,42 @@ def test_preserve_split_manifest_before_pruning(tmp_path):
     source.write_text("row_id,partition\n0,train\n")
     with pytest.raises(ValueError, match="hash mismatch"):
         batch.preserve_split_manifests(tmp_path)
+
+
+def test_controller_provider_kind_mapping():
+    assert provider_kind("ollama") == "openai_compatible"
+    assert provider_kind("deepseek") == "deepseek"
+    assert provider_kind("openrouter") == "openrouter"
+
+
+def test_untagged_full_replicates_keep_acceptance_gate(tmp_path, monkeypatch):
+    code, root = tmp_path / "code", tmp_path / "experiments"
+    root.mkdir()
+    monkeypatch.setattr(batch, "CODE", code)
+    monkeypatch.setattr(batch, "ROOT", root)
+    monkeypatch.setattr(
+        batch,
+        "source_identity",
+        lambda: {"code_commit": "fixture", "rails": {"sha256": "fixture"}},
+    )
+    monkeypatch.setattr(
+        batch, "entries", lambda *a, **k: [{"id": f"table-{i}"} for i in range(12)]
+    )
+    monkeypatch.setattr(batch, "frozen", lambda _: [])
+    monkeypatch.setattr(
+        sys,
+        "argv",
+        [
+            "run_batch",
+            "--out",
+            str(root / "batch-02"),
+            "--batch",
+            "2",
+            "--model",
+            "synthetic/no-network",
+            "--replicates",
+            "3",
+        ],
+    )
+    with pytest.raises(ValueError, match="Acceptance"):
+        batch.main()

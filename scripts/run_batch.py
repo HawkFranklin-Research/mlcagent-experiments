@@ -21,6 +21,7 @@ CODE = ROOT.parent / "mlca-revized"
 sys.path.insert(0, str(CODE / "src"))
 from comparison import (
     PROVIDERS,
+    provider_kind,
     read_plan,
     runtime_identity,
     select_jobs,
@@ -601,6 +602,7 @@ def main():
     parser.add_argument("--deadline-s", type=float, default=5400)
     parser.add_argument("--rpm", type=float, default=60)
     parser.add_argument("--max-output-tokens", type=int, default=32768)
+    parser.add_argument("--structured-outputs", choices=["on", "off"], default="on")
     parser.add_argument("--tables", nargs="*")
     parser.add_argument("--replicates", type=int, choices=[1, 2, 3], default=1)
     parser.add_argument("--rails-off", action="store_true")
@@ -671,6 +673,16 @@ def main():
                 and getattr(args, attr) != plan[key]
             ):
                 raise ValueError("CLI setting differs from comparison plan: " + attr)
+    structured_explicit = any(
+        a == "--structured-outputs" or a.startswith("--structured-outputs=")
+        for a in sys.argv[1:]
+    )
+    if (
+        plan
+        and structured_explicit
+        and (args.structured_outputs == "on") != plan["structured_outputs"]
+    ):
+        raise ValueError("CLI setting differs from comparison plan: structured_outputs")
     by_id = {e["id"]: e for e in all_entries}
     folder = args.out.resolve()
     folder.mkdir(parents=True, exist_ok=True)
@@ -691,6 +703,11 @@ def main():
                 validate_state(stored, state)
                 if state["comparison_plan_sha256"] != stored["plan_sha256"]:
                     raise ValueError("Stored comparison identity differs")
+            if (
+                structured_explicit
+                and (args.structured_outputs == "on") != state["structured_outputs"]
+            ):
+                raise ValueError("Resume cannot change recorded structured_outputs")
             if args.rails_off and state["rails_enabled"]:
                 raise ValueError("Resume cannot change the recorded rail setting")
             if state.get("role", "development") != args.role or state.get(
@@ -776,12 +793,14 @@ def main():
                     if args.replicates == 3 and set(args.tables or by_id) == set(by_id)
                     else "development"  # includes pooled reruns of tables that fell short
                 )
+                if args.role == "development" and not args.rails_off and frozen(CODE):
+                    stage = "replication"
                 planned_jobs = None
                 selected = args.tables or list(by_id)
             if (
                 not set(selected) <= set(by_id)
                 or not plan
-                and args.role == "development"
+                and stage == "development"
                 and args.batch == 1
                 and set(selected) != set(by_id)
                 or len(selected) != len(set(selected))
@@ -789,7 +808,7 @@ def main():
                 raise ValueError(
                     "Only development tables; batch-01 must include all twelve"
                 )
-            if not plan and args.role == "development":
+            if not plan and args.role == "development" and stage != "replication":
                 validate_stage(
                     folder,
                     identity,
@@ -853,7 +872,9 @@ def main():
                 "max_output_tokens": plan["max_output_tokens"]
                 if plan
                 else args.max_output_tokens,
-                "structured_outputs": True,
+                "structured_outputs": plan["structured_outputs"]
+                if plan
+                else args.structured_outputs == "on",
                 "sdk_timeout_s": 90,
                 "script_timeout_s": 300,
                 "max_worker_attempts": 3,
@@ -1041,7 +1062,7 @@ def main():
                         "rails_enabled": state["rails_enabled"],
                         "providers": {
                             "development": {
-                                "kind": provider_name,
+                                "kind": provider_kind(provider_name),
                                 "base_url": state["endpoint"],
                                 "api_key_env": key_env,
                                 "timeout_s": state.get("sdk_timeout_s", 90),

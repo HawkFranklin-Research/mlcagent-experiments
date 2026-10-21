@@ -11,7 +11,16 @@ from mlca.paths import canonical
 PROVIDERS = {
     "openrouter": ("https://openrouter.ai/api/v1", "OPENROUTER_API_KEY"),
     "deepseek": ("https://api.deepseek.com", "DEEPSEEK_API_KEY"),
+    "ollama": ("https://ollama.com/v1", "OLLAMA_API_KEY"),
 }
+
+
+# Controller provider names may differ from MLCA's frozen provider types.
+PROVIDER_KINDS = {"ollama": "openai_compatible"}
+
+
+def provider_kind(name):
+    return PROVIDER_KINDS.get(name, name)
 
 
 def digest(value):
