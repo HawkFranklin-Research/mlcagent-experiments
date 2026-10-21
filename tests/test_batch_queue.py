@@ -337,3 +337,88 @@ def test_untagged_full_replicates_keep_acceptance_gate(tmp_path, monkeypatch):
     )
     with pytest.raises(ValueError, match="Acceptance"):
         batch.main()
+
+
+@pytest.fixture
+def identity_repositories(tmp_path, monkeypatch):
+    """Real temporary Git repositories; no study, data or inference execution."""
+    code, root = tmp_path / "code", tmp_path / "experiments"
+    for repo in [code, root]:
+        repo.mkdir()
+        subprocess.run(["git", "init", "-q", str(repo)], check=True)
+    (code / "rails").mkdir()
+    (code / "rails/VERSION").write_text("rails-0.3\n")
+    (code / "src").mkdir()
+    (code / "src/engine.py").write_text("# synthetic tracked source\n")
+    (root / "scripts").mkdir()
+    (root / "scripts/run_batch.py").write_text("# synthetic tracked controller\n")
+    # Exercise the actual repository ignore rules rather than a test-only bypass.
+    (root / ".gitignore").write_bytes(
+        (Path(__file__).parents[1] / ".gitignore").read_bytes()
+    )
+    for repo in [code, root]:
+        subprocess.run(["git", "-C", str(repo), "add", "."], check=True)
+        subprocess.run(
+            [
+                "git",
+                "-C",
+                str(repo),
+                "-c",
+                "user.name=MLCA Test",
+                "-c",
+                "user.email=test@example.invalid",
+                "-c",
+                "commit.gpgsign=false",
+                "commit",
+                "-qm",
+                "Synthetic source identity fixture",
+            ],
+            check=True,
+        )
+    monkeypatch.setattr(batch, "CODE", code)
+    monkeypatch.setattr(batch, "ROOT", root)
+    return code, root
+
+
+def test_local_keepalive_does_not_change_runtime_identity(identity_repositories):
+    _code, root = identity_repositories
+    expected = batch.source_identity()
+    helper = root / "scripts/codespace_keepalive.sh"
+    helper.write_text("# synthetic local monitor, never executed\n")
+    assert batch.source_identity() == expected
+    helper.write_text("# changed local monitor, still never executed\n")
+    assert batch.source_identity() == expected
+
+
+@pytest.mark.parametrize(
+    "repository,relative",
+    [
+        ("experiments", "scripts/untracked_runtime.py"),
+        ("experiments", "scripts/other_helper.sh"),
+        ("code", "src/untracked_engine.py"),
+        ("code", "templates/untracked.yaml"),
+        ("code", "rails/untracked.yaml"),
+    ],
+)
+def test_untracked_runtime_still_blocks(identity_repositories, repository, relative):
+    code, root = identity_repositories
+    path = (root if repository == "experiments" else code) / relative
+    path.parent.mkdir(exist_ok=True)
+    path.write_text("# synthetic untracked runtime\n")
+    with pytest.raises(ValueError, match="Untracked runtime source"):
+        batch.source_identity()
+
+
+@pytest.mark.parametrize(
+    "repository,relative",
+    [
+        ("experiments", "scripts/run_batch.py"),
+        ("code", "src/engine.py"),
+    ],
+)
+def test_tracked_changes_still_block(identity_repositories, repository, relative):
+    code, root = identity_repositories
+    path = (root if repository == "experiments" else code) / relative
+    path.write_text("# changed synthetic tracked source\n")
+    with pytest.raises(ValueError, match="Tracked working tree must be clean"):
+        batch.source_identity()

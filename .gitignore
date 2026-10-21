@@ -22,3 +22,6 @@ data_prep/
 bench/automl/.work/
 automl/.venv/
 !automl/requirements.lock
+
+# Machine-specific Codespace monitor; not used by the study controller.
+/scripts/codespace_keepalive.sh

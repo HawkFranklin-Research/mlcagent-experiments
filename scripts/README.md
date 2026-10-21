@@ -57,3 +57,12 @@ successful acceptance on the same model and code; engine safeguards stay active.
 
 Parameters, caps and scientific boundaries: `bench/dev-loop/PARAMETERS.md` and
 the code repository's `docs/prompts/05_batch_development_loop.prompt.md`.
+
+### Local monitoring utilities and reproducibility
+
+`scripts/codespace_keepalive.sh` is a machine-specific cloud monitor, not study
+runtime code. That exact path is ignored and left local. The controller's
+reproducibility check remains unchanged: modified tracked files and other
+untracked files under `scripts/`, or the agent's `src/`, `templates/` and
+`rails/`, still block a run. Commit authorized controller changes before the
+smoke-test agent tries a fresh output directory.
