@@ -136,6 +136,8 @@ def test_process_queue_and_resume_never_repeat_finished_studies(
         assert config["base_url"] == batch.PROVIDERS[provider][0]
         assert config["api_key_env"] == batch.PROVIDERS[provider][1]
         assert config["structured_outputs"] is (structured == "on")
+        assert config["timeout_s"] == (300 if provider == "ollama" else 90)
+        assert config["call_deadline_s"] == (600 if provider == "ollama" else 300)
         alive = [(p, l) for p, l in zip(children, large) if p.poll() is None]
         this_large = Path(spec["data"]).name in ["0.csv", "1.csv"]
         assert not this_large or not any(l for _, l in alive)
@@ -168,7 +170,12 @@ def test_process_queue_and_resume_never_repeat_finished_studies(
             "--replicates",
             str(replicates),
         ]
-        + (["--tables", "table-0"] if subset else []),
+        + (["--tables", "table-0"] if subset else [])
+        + (
+            ["--sdk-timeout-s", "300", "--model-call-deadline-s", "600"]
+            if provider == "ollama"
+            else []
+        ),
     )
     batch.main()
     state = json.loads((folder / "batch.json").read_text())
@@ -176,6 +183,8 @@ def test_process_queue_and_resume_never_repeat_finished_studies(
     assert len(children) == expected and max(peaks) == (1 if subset else 6)
     assert state["stage"] == ("replication" if freeze else "development")
     assert state["structured_outputs"] is (structured == "on")
+    assert state["sdk_timeout_s"] == (300 if provider == "ollama" else 90)
+    assert state["model_call_deadline_s"] == (600 if provider == "ollama" else 300)
     assert all(j["status"] == "finished" for j in state["jobs"])
     assert state["accounting"]["requests"] == 0
     samples = [
@@ -196,6 +205,17 @@ def test_process_queue_and_resume_never_repeat_finished_studies(
         with pytest.raises(
             ValueError, match="Resume cannot change recorded structured_outputs"
         ):
+            batch.main()
+    for flag, key in [
+        ("--sdk-timeout-s", "sdk_timeout_s"),
+        ("--model-call-deadline-s", "model_call_deadline_s"),
+    ]:
+        monkeypatch.setattr(
+            sys,
+            "argv",
+            ["run_batch", "--out", str(folder), "--resume", flag, str(state[key] + 1)],
+        )
+        with pytest.raises(ValueError, match="Resume cannot change recorded " + key):
             batch.main()
     assert len(children) == expected
 
@@ -422,3 +442,39 @@ def test_tracked_changes_still_block(identity_repositories, repository, relative
     path.write_text("# changed synthetic tracked source\n")
     with pytest.raises(ValueError, match="Tracked working tree must be clean"):
         batch.source_identity()
+
+
+@pytest.mark.parametrize("flag", ["--sdk-timeout-s", "--model-call-deadline-s"])
+@pytest.mark.parametrize("value", ["0", "-1", "nan", "inf"])
+def test_call_timeouts_must_be_positive_and_finite(tmp_path, monkeypatch, flag, value):
+    monkeypatch.setattr(
+        batch,
+        "source_identity",
+        lambda: pytest.fail("Invalid timeout must fail before preflight"),
+    )
+    monkeypatch.setattr(
+        sys,
+        "argv",
+        ["run_batch", "--out", str(tmp_path / "unused"), flag + "=" + value],
+    )
+    with pytest.raises(ValueError, match="positive and finite"):
+        batch.main()
+
+
+def test_provider_failure_summary_is_payload_free():
+    failure = {
+        "request_id": "one",
+        "status": "error",
+        "error_type": "APITimeoutError",
+        "category": "provider_error",
+        "status_code": None,
+        "latency_ms": 90001,
+        "pacing_wait_s": 1,
+        "rate_limit_waits": 0,
+        "request": "DO_NOT_COPY",
+        "headers": "DO_NOT_COPY",
+    }
+    errors = batch.provider_errors([failure, {"request_id": "two", "status": "ok"}])
+    assert len(errors) == 1 and errors[0]["latency_ms"] == 90001
+    assert errors[0]["status_code"] is None
+    assert "DO_NOT_COPY" not in json.dumps(errors)

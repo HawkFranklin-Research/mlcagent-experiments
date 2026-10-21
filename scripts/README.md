@@ -66,3 +66,33 @@ reproducibility check remains unchanged: modified tracked files and other
 untracked files under `scripts/`, or the agent's `src/`, `templates/` and
 `rails/`, still block a run. Commit authorized controller changes before the
 smoke-test agent tries a fresh output directory.
+
+### Local Ollama smoke diagnostics
+
+A short API probe does not exercise the size or duration of MLCA requests. The
+controller previously fixed the SDK timeout at 90 seconds and the outer provider
+call deadline at 300 seconds. These defaults remain unchanged for reproducibility,
+but new batches can set `--sdk-timeout-s` and `--model-call-deadline-s`. Both values
+are recorded, passed into the frozen provider configuration, and immutable on
+resume. Shared comparison plans also fix these settings: CLI overrides cannot
+silently change them.
+
+For the next separately executed **single-table** Ollama diagnostic, a candidate
+configuration is `--sdk-timeout-s 300 --model-call-deadline-s 600 --concurrency 1`.
+This is a diagnostic setting, not a verified cure or a change to existing measured
+runs. It does not add provider retries or alter scripts, rails, model settings,
+sandbox limits, or disk gates. A timeout can still occur at the longer deadline.
+
+Every job's `result.provider_errors` in `batch.json` now retains request ID,
+error type/category, HTTP status when available, latency, pacing wait and rate-limit
+wait count. Request bodies, response headers and credentials are not copied.
+Keep this payload-free failure summary when removing temporary smoke artifacts;
+generic provider errors cannot be diagnosed from a completion count alone.
+
+Disk checks use the output filesystem. On the inspected local machine `/tmp` is
+a roughly 7.3-GiB RAM filesystem, so it cannot satisfy the 16-GiB large-table gate
+even when empty. Increasing provider timeouts cannot address that. Large-table
+smokes require an approved **disk-backed scratch location outside the repository**
+with at least 16 GiB free at launch. The smoke owner must revise the earlier
+`/tmp`-only restriction before testing large tables; do not redirect outputs or
+relax the disk gate silently. No cloud compute is required.

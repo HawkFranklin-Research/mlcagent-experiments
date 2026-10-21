@@ -339,6 +339,24 @@ def start_token(pid):
     return Path(f"/proc/{pid}/stat").read_text().rsplit(")", 1)[1].split()[19]
 
 
+def provider_errors(records):
+    """Payload-free transport diagnostics, including unknown status codes as null."""
+    fields = (
+        "request_id",
+        "error_type",
+        "category",
+        "status_code",
+        "latency_ms",
+        "pacing_wait_s",
+        "rate_limit_waits",
+    )
+    return [
+        {name: record.get(name) for name in fields}
+        for record in records
+        if record.get("status") == "error"
+    ]
+
+
 def finish_job(folder, job, expected):
     attempt = folder / job["attempts"][-1]
     result_file = attempt / "worker-result.json"
@@ -357,6 +375,7 @@ def finish_job(folder, job, expected):
                 r = json.loads(file.read_text())["usage"]
                 request_list[r["request_id"]] = r
     result["usage"] = accounting(list(request_list.values()))
+    result["provider_errors"] = provider_errors(list(request_list.values()))
     result["repair_calls"] = sum(
         r.get("purpose") == "repair" for r in request_list.values()
     )
@@ -601,6 +620,18 @@ def main():
     parser.add_argument("--concurrency", type=int, default=6, choices=range(1, 7))
     parser.add_argument("--deadline-s", type=float, default=5400)
     parser.add_argument("--rpm", type=float, default=60)
+    parser.add_argument(
+        "--sdk-timeout-s",
+        type=float,
+        default=90,
+        help="SDK network timeout; recorded and fixed within a batch",
+    )
+    parser.add_argument(
+        "--model-call-deadline-s",
+        type=float,
+        default=300,
+        help="Hard wall-clock deadline for one provider call",
+    )
     parser.add_argument("--max-output-tokens", type=int, default=32768)
     parser.add_argument("--structured-outputs", choices=["on", "off"], default="on")
     parser.add_argument("--tables", nargs="*")
@@ -626,8 +657,18 @@ def main():
     if args.worker:
         worker(args.worker)
         return
-    if args.deadline_s <= 0 or args.rpm <= 0:
-        raise ValueError("Deadlines and request rates must be positive")
+    if any(
+        not (0 < value < float("inf"))
+        for value in [
+            args.deadline_s,
+            args.rpm,
+            args.sdk_timeout_s,
+            args.model_call_deadline_s,
+        ]
+    ):
+        raise ValueError(
+            "Deadlines, timeouts and request rates must be positive and finite"
+        )
     if args.threads < 1 or (
         args.memory_limit_mib is not None and args.memory_limit_mib <= 0
     ):
@@ -666,6 +707,8 @@ def main():
             ("memory_limit_mib", "memory_limit_mib"),
             ("deadline_s", "deadline_s"),
             ("rpm", "rpm_per_node"),
+            ("sdk_timeout_s", "sdk_timeout_s"),
+            ("model_call_deadline_s", "model_call_deadline_s"),
         ]:
             flag = "--" + attr.replace("_", "-")
             if (
@@ -728,6 +771,8 @@ def main():
                 "deadline_s",
                 "rpm",
                 "replicates",
+                "sdk_timeout_s",
+                "model_call_deadline_s",
             ]:
                 flag = "--" + attr.replace("_", "-")
                 if any(
@@ -867,7 +912,9 @@ def main():
                 "runtime": plan["runtime"] if plan else runtime_identity(CODE),
                 "sandbox": "A",
                 "spending_ceiling_usd": None,
-                "model_call_deadline_s": 300,
+                "model_call_deadline_s": plan["model_call_deadline_s"]
+                if plan
+                else args.model_call_deadline_s,
                 "temperature": 0,
                 "max_output_tokens": plan["max_output_tokens"]
                 if plan
@@ -875,7 +922,7 @@ def main():
                 "structured_outputs": plan["structured_outputs"]
                 if plan
                 else args.structured_outputs == "on",
-                "sdk_timeout_s": 90,
+                "sdk_timeout_s": plan["sdk_timeout_s"] if plan else args.sdk_timeout_s,
                 "script_timeout_s": 300,
                 "max_worker_attempts": 3,
                 "controller_sampling": False,

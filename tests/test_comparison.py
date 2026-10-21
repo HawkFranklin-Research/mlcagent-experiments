@@ -384,3 +384,37 @@ def test_normal_folder_cannot_claim_kernel_memory_enforcement(tmp_path):
     (tmp_path / "cgroup.subtree_control").write_text("memory")
     with pytest.raises(ValueError, match="real cgroup-v2"):
         prepare_group(tmp_path, "fake-group", 2048)
+
+
+@pytest.mark.parametrize(
+    "flag,key",
+    [
+        ("--sdk-timeout-s", "sdk_timeout_s"),
+        ("--model-call-deadline-s", "model_call_deadline_s"),
+    ],
+)
+def test_timeout_override_cannot_change_comparison_plan(
+    plan, tmp_path, monkeypatch, flag, key
+):
+    monkeypatch.setattr(batch, "source_identity", lambda: plan["identity"])
+    monkeypatch.setattr(batch, "entries", lambda *a, **k: plan["datasets"])
+    monkeypatch.setattr(batch, "read_plan", lambda _: plan)
+    monkeypatch.setattr(batch, "validate_plan", lambda *a: None)
+    monkeypatch.setattr(batch, "runtime_identity", lambda _: {})
+    monkeypatch.setattr(
+        sys,
+        "argv",
+        [
+            "run_batch",
+            "--out",
+            str(tmp_path / "unused"),
+            "--comparison-plan",
+            "synthetic.json",
+            flag,
+            str(plan[key] + 1),
+        ],
+    )
+    with pytest.raises(
+        ValueError, match="CLI setting differs from comparison plan: " + key
+    ):
+        batch.main()
