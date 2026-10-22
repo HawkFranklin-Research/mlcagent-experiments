@@ -1,0 +1,2 @@
+placeholders [] in 0 categorical columns
+saved distributions.csv rows=50 n_numeric=50 n_categorical=0

@@ -1,0 +1,13 @@
+variable,summary_group,dtype,n,n_missing,mean,sd,min,median,max,n_levels,top_share
+Gender,overall,numeric,534,0,0.5225,0.5,0.0,1.0,1.0,,
+MCH,overall,numeric,534,0,22.912,3.9485,16.0,22.75,30.0,,
+MCHC,overall,numeric,534,0,30.2494,1.4123,27.8,30.4,32.5,,
+MCV,overall,numeric,534,0,85.647,9.6049,69.4,85.45,101.6,,
+Gender,Result=0,numeric,287,0,0.4181,0.4941,0.0,0.0,1.0,,
+MCH,Result=0,numeric,287,0,23.0038,3.8262,16.0,23.0,29.8,,
+MCHC,Result=0,numeric,287,0,30.1955,1.4347,27.8,30.2,32.5,,
+MCV,Result=0,numeric,287,0,85.7648,9.42,69.4,85.8,101.5,,
+Gender,Result=1,numeric,247,0,0.6437,0.4799,0.0,1.0,1.0,,
+MCH,Result=1,numeric,247,0,22.8053,4.0912,16.0,22.7,30.0,,
+MCHC,Result=1,numeric,247,0,30.3121,1.3861,27.8,30.5,32.5,,
+MCV,Result=1,numeric,247,0,85.5101,9.8328,69.8,85.2,101.6,,

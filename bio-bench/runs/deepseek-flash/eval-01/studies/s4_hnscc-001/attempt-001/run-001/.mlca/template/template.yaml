@@ -1,0 +1,46 @@
+id: survival
+version: 0.3.0
+title: Survival
+description: 'Time-to-event analysis from one table with a duration and an event indicator.
+  Baseline: Cox proportional hazards; one prespecified alternative (penalised Cox).
+  Primary metric: Harrell''s C-index, chosen on validation, confirmed once on test.'
+brief_questions:
+- id: aim
+  text: 'Aim in one sentence: which outcome, in whom, and why?'
+- id: target
+  text: Time until the event or last follow-up; leave blank to decide during Onboard.
+- id: unit
+  text: What is one row (patient, sample)? Can a subject have several rows?
+- id: event_column
+  text: Whether the event happened (1) or was censored (0); leave blank to decide
+    later.
+events:
+- onboard
+- data
+- eda
+- split
+- preprocess
+- features
+- model
+- validate
+- test
+- interpret
+- report
+transitions:
+  loops:
+  - from: validate
+    to:
+    - preprocess
+    - features
+    - model
+  goto: []
+style: default
+default_runtime_packages:
+- numpy
+- pandas
+- scipy
+- scikit-learn
+- matplotlib
+- seaborn
+- pyarrow
+- lifelines

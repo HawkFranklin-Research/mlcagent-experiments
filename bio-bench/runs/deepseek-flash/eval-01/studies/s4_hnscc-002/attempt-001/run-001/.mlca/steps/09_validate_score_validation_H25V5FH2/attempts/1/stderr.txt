@@ -1,0 +1,9 @@
+Traceback (most recent call last):
+  File "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/bio-bench/runs/deepseek-flash/eval-01/studies/s4_hnscc-002/attempt-001/run-001/.mlca/steps/09_validate_score_validation_H25V5FH2/attempts/1/script.py", line 54, in <module>
+    selector = load_pkl("06_features_select_features_MAAM9NK/selector.pkl")
+  File "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/bio-bench/runs/deepseek-flash/eval-01/studies/s4_hnscc-002/attempt-001/run-001/.mlca/steps/09_validate_score_validation_H25V5FH2/attempts/1/script.py", line 51, in load_pkl
+    return pickle.loads(inputs[key].read_bytes())
+                        ~~~~~~^^^^^
+  File "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/bio-bench/runs/deepseek-flash/eval-01/studies/s4_hnscc-002/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/mlca_runtime/__init__.py", line 26, in __missing__
+    raise InputKeyError("MLCA: Use the declared input dictionary keys exactly; filenames are not keys")
+mlca_runtime.InputKeyError: MLCA: Use the declared input dictionary keys exactly; filenames are not keys

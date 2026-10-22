@@ -1,0 +1,3 @@
+train rows: 320
+raw feature columns: 4
+selected features: 4

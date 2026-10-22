@@ -1,0 +1,68 @@
+/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/bio-bench/runs/deepseek-flash/eval-01/studies/s4_hnscc-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/lifelines/utils/__init__.py:990: ConvergenceWarning: Your dataset has more variables than samples. Even with a penalizer (which you must use), convergence is not guaranteed.
+
+  warnings.warn(warning_text, ConvergenceWarning)
+Traceback (most recent call last):
+  File "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/bio-bench/runs/deepseek-flash/eval-01/studies/s4_hnscc-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/lifelines/fitters/coxph_fitter.py", line 1530, in _newton_raphson_for_efron_model
+    inv_h_dot_g_T = spsolve(-h, g, assume_a="pos", check_finite=False)
+  File "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/bio-bench/runs/deepseek-flash/eval-01/studies/s4_hnscc-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/scipy/linalg/_basic.py", line 262, in solve
+    _format_emit_errors_warnings(err_lst)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/bio-bench/runs/deepseek-flash/eval-01/studies/s4_hnscc-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/scipy/linalg/_basic.py", line 42, in _format_emit_errors_warnings
+    raise LinAlgError(
+        f"A singular matrix detected: slice(s) {singular} are singular."
+    )
+numpy.linalg.LinAlgError: A singular matrix detected: slice(s) [0] are singular.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/bio-bench/runs/deepseek-flash/eval-01/studies/s4_hnscc-001/attempt-001/run-001/.mlca/steps/07_model_train_cox_5FF75D4Q/attempts/1/script.py", line 148, in <module>
+    cph = mlca_runtime.fit_record(cph, X_fit, 'train', duration_col=dur, event_col=ev)
+  File "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/bio-bench/runs/deepseek-flash/eval-01/studies/s4_hnscc-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/mlca_runtime/__init__.py", line 238, in fit_record
+    estimator_or_pipeline.fit(X, y, **kwargs) if y is not None else estimator_or_pipeline.fit(X, **kwargs)
+                                                                    ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/bio-bench/runs/deepseek-flash/eval-01/studies/s4_hnscc-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/lifelines/utils/__init__.py", line 56, in f
+    return function(model, *args, **kwargs)
+  File "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/bio-bench/runs/deepseek-flash/eval-01/studies/s4_hnscc-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/lifelines/fitters/coxph_fitter.py", line 290, in fit
+    self._model = self._fit_model(
+                  ~~~~~~~~~~~~~~~^
+        df,
+        ^^^
+    ...<12 lines>...
+        fit_options=fit_options,
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/bio-bench/runs/deepseek-flash/eval-01/studies/s4_hnscc-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/lifelines/fitters/coxph_fitter.py", line 610, in _fit_model
+    return self._fit_model_breslow(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/bio-bench/runs/deepseek-flash/eval-01/studies/s4_hnscc-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/lifelines/fitters/coxph_fitter.py", line 623, in _fit_model_breslow
+    model.fit(*args, **kwargs)
+    ~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/bio-bench/runs/deepseek-flash/eval-01/studies/s4_hnscc-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/lifelines/utils/__init__.py", line 56, in f
+    return function(model, *args, **kwargs)
+  File "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/bio-bench/runs/deepseek-flash/eval-01/studies/s4_hnscc-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/lifelines/fitters/coxph_fitter.py", line 1252, in fit
+    params_, ll_, variance_matrix_, baseline_hazard_, baseline_cumulative_hazard_, model = self._fit_model(
+                                                                                           ~~~~~~~~~~~~~~~^
+        X_norm,
+        ^^^^^^^
+    ...<6 lines>...
+        show_progress=show_progress,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/bio-bench/runs/deepseek-flash/eval-01/studies/s4_hnscc-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/lifelines/fitters/coxph_fitter.py", line 1380, in _fit_model
+    beta_, ll_, hessian_ = self._newton_raphson_for_efron_model(
+                           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        X,
+        ^^
+    ...<6 lines>...
+        **fit_options,
+        ^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/bio-bench/runs/deepseek-flash/eval-01/studies/s4_hnscc-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/lifelines/fitters/coxph_fitter.py", line 1539, in _newton_raphson_for_efron_model
+    raise exceptions.ConvergenceError(
+    ...<4 lines>...
+    )
+lifelines.exceptions.ConvergenceError: Convergence halted due to matrix inversion problems. Suspicion is high collinearity. Please see the following tips in the lifelines documentation: https://lifelines.readthedocs.io/en/latest/Examples.html#problems-with-convergence-in-the-cox-proportional-hazard-modelA singular matrix detected: slice(s) [0] are singular.

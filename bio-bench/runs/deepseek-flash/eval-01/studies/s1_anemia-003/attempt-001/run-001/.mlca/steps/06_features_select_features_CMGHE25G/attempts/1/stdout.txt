@@ -1,0 +1,3 @@
+train rows=320, raw features=5
+preprocessed width=5, selected k=5
+saved selector.pkl

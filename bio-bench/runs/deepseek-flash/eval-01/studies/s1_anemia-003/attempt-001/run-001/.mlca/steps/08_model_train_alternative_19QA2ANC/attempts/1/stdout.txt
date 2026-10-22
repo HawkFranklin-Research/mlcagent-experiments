@@ -1,0 +1,4 @@
+steps: ['preprocessor', 'selectkbest', 'clf']
+n_features: 5
+class_imbalance: 0.4625 class_weight_set: False
+train_roc_auc: 1.0

@@ -1,0 +1,24 @@
+id: RL-0017
+kind: instruction
+roles:
+- worker
+events:
+- model
+- validate
+- test
+problem_types:
+- binary
+- multiclass
+text: For binary roc_auc, align the positive probability column with model.classes_ using the declared
+  positive label, or model.classes_[1] when none is declared. Pass a binary indicator for that same label
+  as y_true; roc_auc_score does not accept pos_label. Preserve the original labels for other metrics and
+  record the positive-label convention. For roc_auc_ovr pass the full aligned probability matrix with
+  labels=model.classes_, multi_class='ovr', average='macro'. When the evaluated partition lacks some model classes,
+  never pass a column subset of the probability matrix to roc_auc_score with multi_class='ovr' (its rows no
+  longer sum to 1); compute the macro value as the unweighted mean of binary roc_auc_score(y_true == c, proba[:, j])
+  over the classes present, and print the classes left out. When the smallest outcome category is under
+  10% of training rows, set class_weight='balanced' where supported.
+reason: Probability columns misaligned with labels silently invert or break ROC AUC; rare categories are
+  otherwise ignored by default losses.
+ledger: L-0010
+added_in: rails-0.3

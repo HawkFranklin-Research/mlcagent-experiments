@@ -1,0 +1,3 @@
+train=320 val=106 features=5
+classes=[np.int64(0), np.int64(1)] positive=1
+train_auc=1.0000 val_auc=0.9993

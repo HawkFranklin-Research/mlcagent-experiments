@@ -1,0 +1,4 @@
+Traceback (most recent call last):
+  File "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/bio-bench/runs/deepseek-flash/eval-01/studies/s4_hnscc-001/attempt-001/run-001/.mlca/steps/09_validate_score_validation_R2X2E0K4/attempts/1/script.py", line 36, in <module>
+    raise KeyError(f"Missing event column. Top-level keys: {list(protocol.keys())}")
+KeyError: "Missing event column. Top-level keys: ['bootstrap_resamples', 'columns', 'excluded_columns', 'group_column', 'primary_data', 'seed', 'targets', 'task']"

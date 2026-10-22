@@ -1,0 +1,3 @@
+rows=534 features=5
+numeric=5 categorical=0
+saved distributions.csv rows=15

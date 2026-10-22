@@ -1,0 +1,1 @@
+{"facts": [{"key": "top_feature", "source": "interpretation.csv", "unit": null, "value": "Gender"}], "fits": [], "metrics": [], "outputs": [{"caption": "Permutation importance (top 15)", "kind": "table", "name": "interpretation.csv"}, {"caption": "Permutation importance (top 15)", "kind": "table", "name": "interpretation.parquet"}]}

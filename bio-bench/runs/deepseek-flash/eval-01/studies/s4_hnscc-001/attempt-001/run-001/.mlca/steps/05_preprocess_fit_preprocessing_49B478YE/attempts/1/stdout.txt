@@ -1,0 +1,5 @@
+Features: 517 (numeric=517, categorical=0)
+Placeholders in 0 text columns
+Excluded: none
+High correlation warnings: none
+Transform val: shape=(83, 517), wide_sparse=True

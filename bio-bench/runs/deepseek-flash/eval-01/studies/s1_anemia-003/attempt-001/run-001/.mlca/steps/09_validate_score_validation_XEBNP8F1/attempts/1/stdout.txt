@@ -1,0 +1,2 @@
+val_rows=106 features=5 models=['07_logistic', '08_alternative']
+primary=roc_auc best=08_alternative val=1.0000

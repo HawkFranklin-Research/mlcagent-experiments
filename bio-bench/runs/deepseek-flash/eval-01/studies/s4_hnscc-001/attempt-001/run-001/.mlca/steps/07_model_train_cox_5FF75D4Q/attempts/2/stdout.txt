@@ -1,0 +1,4 @@
+train rows used: 249
+transformed features: 517
+penalizer used: 0.1
+train c-index: 0.9575

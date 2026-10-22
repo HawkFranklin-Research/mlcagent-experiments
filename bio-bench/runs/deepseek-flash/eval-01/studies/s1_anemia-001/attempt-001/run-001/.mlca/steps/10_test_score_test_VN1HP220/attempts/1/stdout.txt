@@ -1,0 +1,2 @@
+test rows=108, features=4, threshold=0.6429
+roc_auc=0.541 CI=(0.4353, 0.6527)

@@ -1,0 +1,3 @@
+features: 4
+min class fraction: 0.463, balanced: False
+saved alternative_model.pkl

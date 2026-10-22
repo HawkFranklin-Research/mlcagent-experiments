@@ -1,0 +1,2 @@
+train=(320, 5) val=(106, 5) features=4
+primary=roc_auc best_model=logistic best_val_roc_auc=0.5546

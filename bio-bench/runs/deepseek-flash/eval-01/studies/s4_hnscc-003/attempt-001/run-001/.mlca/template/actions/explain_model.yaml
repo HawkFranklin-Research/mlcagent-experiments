@@ -1,0 +1,23 @@
+# Content v0.2.0 (2026-10-06). Keep it short: see docs/templates.md, 'Writing content'.
+id: explain_model
+event: interpret
+title: Hazard ratios of the frozen model
+params: {}
+prompt: |
+  Do: hazard ratio with 95% CI and p per covariate; top 15 by |log HR|.
+  Save: interpretation.csv (covariate, hr, ci_low, ci_high, p).
+  Record: fact top_covariate (source interpretation.csv).
+inputs:
+- ref: train
+- ref: val
+- ref: prior_outputs
+outputs:
+- name: interpretation.csv
+  kind: table
+  required: true
+fact_candidates:
+- top_covariate
+reads_test: false
+timeout_s: 300
+methods_text: Hazard ratios with confidence intervals were reported for the frozen model.
+builtin: null

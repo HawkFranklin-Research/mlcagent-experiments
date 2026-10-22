@@ -1,0 +1,5 @@
+feature,importance_mean,importance_sd
+Gender,-0.0001,0.0331
+MCV,-0.0291,0.0455
+MCHC,-0.0475,0.0232
+MCH,-0.0659,0.0325

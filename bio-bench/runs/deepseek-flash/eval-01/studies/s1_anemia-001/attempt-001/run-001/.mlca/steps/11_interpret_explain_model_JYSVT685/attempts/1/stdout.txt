@@ -1,0 +1,3 @@
+train (320, 5), val (106, 5)
+using pipeline latest_model steps=['frontend', 'clf']
+top feature: Gender

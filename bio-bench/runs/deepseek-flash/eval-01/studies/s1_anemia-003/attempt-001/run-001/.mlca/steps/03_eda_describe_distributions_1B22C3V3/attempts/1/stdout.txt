@@ -1,0 +1,3 @@
+placeholders=['', '-', '?', 'N/A', 'NA'] columns=0
+distributions_rows=15
+n_numeric=5 n_categorical=0

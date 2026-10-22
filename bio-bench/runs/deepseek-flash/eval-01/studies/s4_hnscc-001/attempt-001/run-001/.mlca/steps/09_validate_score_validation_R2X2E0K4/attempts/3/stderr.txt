@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/bio-bench/runs/deepseek-flash/eval-01/studies/s4_hnscc-001/attempt-001/run-001/.mlca/steps/09_validate_score_validation_R2X2E0K4/attempts/3/script.py", line 134, in <module>
+    risk, Xt, cph = predict_risk(m, Xraw)
+                    ~~~~~~~~~~~~^^^^^^^^^
+  File "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/bio-bench/runs/deepseek-flash/eval-01/studies/s4_hnscc-001/attempt-001/run-001/.mlca/steps/09_validate_score_validation_R2X2E0K4/attempts/3/script.py", line 130, in predict_risk
+    return np.asarray(m.predict_partial_hazard(Xt)).ravel(), Xt, m
+                      ^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'dict' object has no attribute 'predict_partial_hazard'

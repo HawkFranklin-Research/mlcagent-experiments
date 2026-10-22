@@ -1,0 +1,3 @@
+train=(320, 6) val=(106, 6) features=5
+candidates=['logistic', 'alternative']
+best=alternative roc_auc=1.0000 roc_auc=1.0000

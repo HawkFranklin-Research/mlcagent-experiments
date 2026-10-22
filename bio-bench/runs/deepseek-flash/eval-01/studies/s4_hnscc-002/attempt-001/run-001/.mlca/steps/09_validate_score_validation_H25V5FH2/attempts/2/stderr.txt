@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/bio-bench/runs/deepseek-flash/eval-01/studies/s4_hnscc-002/attempt-001/run-001/.mlca/steps/09_validate_score_validation_H25V5FH2/attempts/2/script.py", line 138, in <module>
+    risk = pd.Series(np.asarray(risk_scores(model, val)).ravel(), index=val.index)
+                                ~~~~~~~~~~~^^^^^^^^^^^^
+  File "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/bio-bench/runs/deepseek-flash/eval-01/studies/s4_hnscc-002/attempt-001/run-001/.mlca/steps/09_validate_score_validation_H25V5FH2/attempts/2/script.py", line 105, in risk_scores
+    return np.asarray(model.predict(build_input(df, model))).ravel()
+                      ^^^^^^^^^^^^^
+AttributeError: 'dict' object has no attribute 'predict'

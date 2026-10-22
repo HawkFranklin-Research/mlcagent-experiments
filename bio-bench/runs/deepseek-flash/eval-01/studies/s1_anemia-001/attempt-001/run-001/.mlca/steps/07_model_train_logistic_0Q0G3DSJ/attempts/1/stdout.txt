@@ -1,0 +1,3 @@
+train rows: 320 features: 4
+target: Result pipeline steps: ['selector_all', 'model']
+saved model.pkl
