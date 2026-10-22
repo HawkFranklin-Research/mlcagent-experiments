@@ -65,7 +65,7 @@ Author decisions (2026-10-22), each following the submitted study and its code:
 - S3: Normal stays in the training labels; it is absent in CPTAC and excluded from the external metrics.
 - S4: problem type survival (overall survival months and status), CPTAC as the sealed external cohort; survival is outside the rails.
 
-Arm B (human on the loop, `--halt-window 60`) uses the same tasks, briefs and model, one study at a time.
+Arm B (human on the loop, `--halt-window 60`) uses the same tasks, briefs and model, one study at a time. **Not run in this revision** (author, 2026-10-23): arm B and closed models are future work, run only if reviewers ask after this revision.
 
 Result (2026-10-22): `bio-bench/runs/deepseek-flash/eval-01/`, 1/27 runs successful; rule 7 applies.
 Deviation, S4 setup scoring: the reference `targets: []` could never agree, because MLCA requires a
@@ -85,4 +85,6 @@ original and re-scored files are both kept (EVALUATION_SUMMARY.md, "Deviation").
 - Freeze: tag `freeze-v2` (commit and rails digest recorded here at the freeze).
 - Evaluation: eval-02 repeats eval-01 exactly (tasks, briefs, data revision, model, settings, 3 runs) on freeze-v2.
   The second version is reported as a later version whose development was informed by eval-01's failures.
+- Stopping rule (author, 2026-10-23): the 12 v1 tables keep their acceptance (batch-01 is their regression check); the 3 wide
+  tables get at most one fix round after batch-02; eval-02 is the last agent run of this revision, whatever its result.
 - Work order: `docs/work-orders/reopening-v2.md`.
