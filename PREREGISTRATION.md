@@ -66,3 +66,23 @@ Author decisions (2026-10-22), each following the submitted study and its code:
 - S4: problem type survival (overall survival months and status), CPTAC as the sealed external cohort; survival is outside the rails.
 
 Arm B (human on the loop, `--halt-window 60`) uses the same tasks, briefs and model, one study at a time.
+
+Result (2026-10-22): `bio-bench/runs/deepseek-flash/eval-01/`, 1/27 runs successful; rule 7 applies.
+Deviation, S4 setup scoring: the reference `targets: []` could never agree, because MLCA requires a
+non-empty target list for survival. Survival setup is now scored on problem type, duration and event;
+original and re-scored files are both kept (EVALUATION_SUMMARY.md, "Deviation"). The success count is unchanged.
+
+## Phase 3: reopening (rule 7), second version (2026-10-22, author-approved)
+
+- Trigger: eval-01, 26/27 runs unsuccessful (threshold 50%). eval-01 is reported in full, never rerun or edited.
+- Development set extended by three public wide gene-expression tables from OpenML (none from TCGA, CPTAC or a
+  held-out table): GLI-85 (45089), SMK-CAN-187 (45100), GCM (1106). Survival stays outside the rails.
+- Changes, linked to eval-01 failures in the ledger: bounded setup inventory for wide tables; provider error
+  messages recorded; exact primary-metric key in the validation recovery; survival data-review check
+  investigated as a possible engine bug; rails-0.14 for generic Worker failures.
+- Development: deepseek-flash (direct DeepSeek), reasoning effort low; batch-01 on all 15 development tables;
+  pooled 2-of-3 acceptance; caps 6 batches or 3 days; no ablation.
+- Freeze: tag `freeze-v2` (commit and rails digest recorded here at the freeze).
+- Evaluation: eval-02 repeats eval-01 exactly (tasks, briefs, data revision, model, settings, 3 runs) on freeze-v2.
+  The second version is reported as a later version whose development was informed by eval-01's failures.
+- Work order: `docs/work-orders/reopening-v2.md`.

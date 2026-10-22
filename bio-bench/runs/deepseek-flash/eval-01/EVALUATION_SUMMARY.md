@@ -44,3 +44,26 @@ Protocol: frozen MLCA `freeze-v1`, direct DeepSeek `deepseek-flash`, reasoning e
 - Test predictions were saved only for `s1_anemia-001`; that run completed all 12 steps. Its test metrics: ROC-AUC 0.541, PR-AUC 0.5059, balanced accuracy 0.5079, Brier score 0.2937, sensitivity 0.24, specificity 0.7759.
 - Other runs have no test metric because they did not reach test scoring.
 - Reopening rule: applies. 26/27 runs (96.3%) were incomplete, setup-disagreeing, or otherwise unsuccessful, exceeding the 50% threshold. Any new development must follow the preregistered reopening procedure; this batch itself is not rerun or repaired.
+
+## Failure causes (diagnosed 2026-10-22 from the run records)
+
+The batch is not rerun or repaired; these causes inform the reopening (STUDY_DESIGN.md rule 7).
+
+| Runs | Cause | Kind | Evidence |
+|---|---|---|---|
+| S2 (18), S3 (3): HTTP 400 at setup | The setup request carries a per-column summary of every column. The tables have 12,623–23,123 columns, so the single setup request was 3.5–6.2 MB (S2 RNA 6.15 MB, S2 proteome 3.51 MB, S3 5.25 MB), far beyond the model's input limit; the provider rejected it before any analysis. S4 (520 columns, 0.17 MB) and S1 (6 columns) passed this step. The development tables had at most 65 columns, so no rail or check met this case. | engine (MLCA limitation) | `studies/<run>/attempt-001/setup-001/.mlca/egress.jsonl` (`bytes_sent`); `src/mlca/autonomous/inference.py` `inventory()` at freeze-v1 |
+| S1-001: completed, test ROC-AUC 0.541 | The setup proposal listed `Hemoglobin` as a leakage suspect, so it was removed from the features (fitted columns: Gender, MCH, MCHC, MCV). Without Hemoglobin the label is not predictable. A defensible agent decision; under the preregistration (Hemoglobin stays a feature, no leakage columns declared) the run still counts as setup-agreeing and leakage-clean. | agent decision | setup proposal in `setup-001/.mlca/llm/`; `run-001/tables/11_*/interpretation.csv` |
+| S1-002, S1-003: gate blocked at validation | Both kept Hemoglobin and reached validation ROC-AUC 0.999 (logistic) and 1.000 (alternative). The Worker recorded the primary metric only under per-model names (`roc_auc:logistic`, `roc_auc_07_logistic`, …), not as `roc_auc`; the engine's check found no primary metric after its scoring-only retry and stopped. | Worker (generic, rail candidate) | `run-001/tables/09_*/validation_metrics.csv`; `run-001/.mlca/steps/09_*/attempts/*/script.py` |
+| S4-001, S4-002: AttributeError at validation | The validation script loaded the saved survival model bundle (a dict) and called `predict_partial_hazard` on it. | Worker, survival (outside the rails) | `run-001/.mlca/log` stderr, script line 130 |
+| S4-003: gate blocked at the data review | "Choose the outcome column before reviewing the table" after the split, although the setup named duration and event correctly. | engine, survival (to investigate) | `run-001/.mlca/log`; `src/mlca/engine/data_review.py:75` |
+
+The HTTP 400 response bodies were not recorded (`usage.jsonl` keeps the status code only). The cause above follows from the request sizes, not from a provider message.
+
+## Deviation: S4 setup scoring (2026-10-22)
+
+The reference listed `targets: []` for S4, and the scorer compared target lists. MLCA requires a non-empty target list for every supervised task, survival included (`inference.py` `validate()`), so no survival proposal could agree. All three S4 proposals chose problem type survival, duration `Overall Survival (Months)` and event `Overall Survival Status`, as declared. The scorer now compares duration and event for survival tasks (`scripts/score_inference.py`, test `tests/test_inference_score.py`). Re-scored files: `studies/s4_hnscc-00N/attempt-001/setup-agreement-rescored.json`; the original `setup-agreement.json` files are kept.
+
+| | Original scoring | Corrected scoring |
+|---|---|---|
+| S4 setup agrees | 0/3 | 3/3 |
+| Successful runs (completed, setup agrees, leakage clean) | 1/27 | 1/27 (unchanged; no S4 run completed) |

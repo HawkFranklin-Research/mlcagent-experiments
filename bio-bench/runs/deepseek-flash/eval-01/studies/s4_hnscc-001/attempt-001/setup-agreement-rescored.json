@@ -1,0 +1,9 @@
+{
+  "producer": "external_inference_scorer",
+  "agent_work": false,
+  "problem_type": true,
+  "targets": true,
+  "group_column": true,
+  "time_columns": true,
+  "scope": "Exact metadata agreement, not proof that alternative scientific aims are invalid."
+}

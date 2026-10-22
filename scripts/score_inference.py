@@ -7,13 +7,22 @@ from pathlib import Path
 import yaml
 
 
+def outcome_agrees(proposal, expected):
+    if expected["problem_type"] == "survival":
+        # MLCA requires a non-empty target list for survival but models the duration and
+        # event fields, so those define the outcome; the listed targets are not compared.
+        return all(
+            proposal.get(k) == expected.get(k) for k in ("duration", "event_column")
+        )
+    return sorted(proposal.get("targets", [])) == sorted(expected.get("targets", []))
+
+
 def score(proposal, expected):
     return {
         "producer": "external_inference_scorer",
         "agent_work": False,
         "problem_type": proposal.get("problem_type") == expected["problem_type"],
-        "targets": sorted(proposal.get("targets", []))
-        == sorted(expected.get("targets", [])),
+        "targets": outcome_agrees(proposal, expected),
         "group_column": proposal.get("group_column") == expected.get("group_column"),
         "time_columns": proposal.get("time_columns", [])
         == expected.get("time_columns", []),

@@ -175,4 +175,5 @@
   external: prepared/S4/external.csv
   external_sha256: 847c6417113fc858ff2859a274836a7d0ee7f0ac61a274259e8eebcff531a6e9
   notes: Author decision 2026-10-22, survival with CPTAC as the sealed external cohort. Survival is outside the
-    rails. The setup scorer compares problem type and targets only; duration and event are recorded for reference.
+    rails. Setup agreement is scored on problem type, duration and event (scripts/score_inference.py, corrected
+    2026-10-22 after eval-01, because MLCA requires a non-empty target list for survival, so listed targets are not compared).

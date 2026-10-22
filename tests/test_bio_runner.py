@@ -147,7 +147,7 @@ def test_evaluation_batch_passes_brief_and_sealed_cohort_to_each_run(
     assert all(j["status"] == "finished" for j in state["jobs"])
 
 
-def test_shipped_evaluation_manifest_is_complete_and_unapproved():
+def test_shipped_evaluation_manifest_is_complete_and_approved():
     import yaml
 
     tasks = yaml.safe_load(
@@ -155,7 +155,9 @@ def test_shipped_evaluation_manifest_is_complete_and_unapproved():
     )
     assert len({t["id"] for t in tasks}) == len(tasks) == 9
     for task in tasks:
-        assert task["role"] == "evaluation" and task["approved"] is False
+        assert task["role"] == "evaluation" and task["approved"] is True
+        if task["problem_type"] == "survival":
+            assert task["duration"] and task["event_column"]
         assert task["brief_file"] == f"bio-bench/briefs/{task['id']}.md"
         assert len(task["sha256"]) == 64
         assert bool(task.get("external")) == bool(task.get("external_sha256"))
