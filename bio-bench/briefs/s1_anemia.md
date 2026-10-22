@@ -1,0 +1,1 @@
+Classify anaemia from routine complete blood count measurements. Compare several standard classifiers, and report discrimination, calibration curves, a learning curve and SHAP feature attributions for the selected model.

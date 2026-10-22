@@ -1,0 +1,1 @@
+Model overall survival of head and neck squamous cell carcinoma patients from tumour gene expression in TCGA. Derive a risk stratification on TCGA only, then validate it once on the external CPTAC cohort with Kaplan-Meier curves and a log-rank test.

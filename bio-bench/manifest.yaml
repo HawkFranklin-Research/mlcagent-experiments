@@ -1,6 +1,6 @@
 # Biomedical evaluation tasks (role evaluation). Files are relative to the folder written by
 # scripts/fetch_bio_bench.py (Hugging Face HawkFranklin-Research/mlcagent-bio-bench, revision 111de16).
-# Draft: every task stays approved: false until the preregistration. targets, problem_type,
+# Approved by the author on 2026-10-22 (PREREGISTRATION.md, biomedical evaluation). targets, problem_type,
 # identifier/leakage columns are the external scorer's reference and are never given to the agent.
 - id: s1_anemia
   study: S1
@@ -18,9 +18,9 @@
   group_column: null
   time_columns: []
   brief_file: bio-bench/briefs/s1_anemia.md
-  approved: false
-  notes: Label provenance and haemoglobin handling are author decisions; leakage_columns stays empty until
-    decided.
+  approved: true
+  notes: Author decision 2026-10-22, as in the submitted study and its code (final results/hfr/hfr_analysis/run_pipeline.py)
+    Hemoglobin stays a feature; leakage_columns stays empty. The label's dependence on Hemoglobin is reported as a finding.
 - id: s2_rna_er
   study: S2
   role: evaluation
@@ -38,7 +38,7 @@
   group_column: null
   time_columns: []
   brief_file: bio-bench/briefs/s2_rna_er.md
-  approved: false
+  approved: true
 - id: s2_rna_pr
   study: S2
   role: evaluation
@@ -56,7 +56,7 @@
   group_column: null
   time_columns: []
   brief_file: bio-bench/briefs/s2_rna_pr.md
-  approved: false
+  approved: true
 - id: s2_rna_her2
   study: S2
   role: evaluation
@@ -74,8 +74,8 @@
   group_column: null
   time_columns: []
   brief_file: bio-bench/briefs/s2_rna_her2.md
-  approved: false
-  notes: HER2 definition is an author decision.
+  approved: true
+  notes: HER2 label as in the submitted study (ERBB2.Proteogenomic.Status, else Her2.Updated.Clinical.Status, else HER2.Amplified; 15 positives).
 - id: s2_proteome_er
   study: S2
   role: evaluation
@@ -93,7 +93,7 @@
   group_column: null
   time_columns: []
   brief_file: bio-bench/briefs/s2_proteome_er.md
-  approved: false
+  approved: true
 - id: s2_proteome_pr
   study: S2
   role: evaluation
@@ -111,7 +111,7 @@
   group_column: null
   time_columns: []
   brief_file: bio-bench/briefs/s2_proteome_pr.md
-  approved: false
+  approved: true
 - id: s2_proteome_her2
   study: S2
   role: evaluation
@@ -129,8 +129,8 @@
   group_column: null
   time_columns: []
   brief_file: bio-bench/briefs/s2_proteome_her2.md
-  approved: false
-  notes: HER2 definition is an author decision.
+  approved: true
+  notes: HER2 label as in the submitted study (ERBB2.Proteogenomic.Status, else Her2.Updated.Clinical.Status, else HER2.Amplified; 15 positives).
 - id: s3_pam50
   study: S3
   role: evaluation
@@ -148,11 +148,11 @@
   group_column: null
   time_columns: []
   brief_file: bio-bench/briefs/s3_pam50.md
-  approved: false
+  approved: true
   external: prepared/S3/external.csv
   external_sha256: 719c5eba9b5268a3896368145aba4dfdf51d433f45fe8e6dfb487482d268085c
-  notes: Normal-class inclusion is an author decision. The external cohort (CPTAC) stays sealed until
-    the test unlock.
+  notes: As in the submitted study, Normal stays in the training labels; it is absent in CPTAC and excluded
+    from the external metrics. The external cohort (CPTAC) stays sealed until the test unlock.
 - id: s4_hnscc
   study: S4
   role: evaluation
@@ -160,8 +160,10 @@
   sha256: 46d19b8d9431ebea1aa70504e85ff2fddfb6d3572b916b820dee967ff4e93260
   rows: 415
   columns: 520
-  problem_type: undecided
+  problem_type: survival
   targets: []
+  duration: Overall Survival (Months)
+  event_column: Overall Survival Status
   identifier_columns:
   - PatientID
   leakage_columns: []
@@ -169,8 +171,8 @@
   group_column: null
   time_columns: []
   brief_file: bio-bench/briefs/s4_hnscc.md
-  approved: false
+  approved: true
   external: prepared/S4/external.csv
   external_sha256: 847c6417113fc858ff2859a274836a7d0ee7f0ac61a274259e8eebcff531a6e9
-  notes: Clustering and survival design are author decisions; the runner refuses this task until problem_type
-    and targets are set.
+  notes: Author decision 2026-10-22, survival with CPTAC as the sealed external cohort. Survival is outside the
+    rails. The setup scorer compares problem type and targets only; duration and event are recorded for reference.

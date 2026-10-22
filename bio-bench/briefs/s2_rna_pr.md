@@ -1,0 +1,1 @@
+Predict the progesterone-receptor (PR) status of breast tumours in CPTAC-BRCA from RNA-seq gene expression. Compare several classifiers with cross-validation on the training rows, and report discrimination, calibration and decision-curve analysis for the selected model.

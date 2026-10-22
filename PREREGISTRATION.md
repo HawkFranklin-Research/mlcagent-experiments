@@ -47,3 +47,22 @@ Neither this draft nor preparatory manifests are scientific results or journal-r
 - AutoML: AutoGluon 1.5.0 and FLAML 2.7.0, 600 s and 2 CPUs per framework per run, seed 42, on the 3 ★ tables (not wholesale_customers, which is clustering);
 - comparison metrics: binary ROC-AUC, multiclass one-vs-rest macro ROC-AUC, regression RMSE.
 
+
+## Phase 2: biomedical evaluation, arm A (2026-10-22, author-approved)
+
+- freeze freeze-v1 = a9f4e35, rails-0.13; agent run in autonomous mode (`mlca run`), no task card;
+- data: Hugging Face `HawkFranklin-Research/mlcagent-bio-bench` revision `111de16fe082d4beab8ca70e779601b156c596c8`, SHA-256 verified;
+- tasks: the 9 tasks in `bio-bench/manifest.yaml` (S1; S2 ER, PR, HER2 × RNA, proteome; S3; S4), all `approved: true`;
+- starting briefs: `bio-bench/briefs/<task id>.md`, written before any run, kept verbatim with word counts;
+- model deepseek-flash (direct DeepSeek API), reasoning effort low, temperature 0, max output tokens 32768;
+- 3 runs per task, concurrency 2, threads 2, sandbox A, 5400 s deadline per study; no reruns to improve an outcome;
+- external cohorts (S3, S4) registered sealed: unseen during setup, opened by the engine only after the test unlock;
+- a run succeeds when the workflow completes, its setup agrees with the manifest, and the required leakage checks hold (STUDY_DESIGN.md, item 5); reopening rule: STUDY_DESIGN.md rule 7.
+
+Author decisions (2026-10-22), each following the submitted study and its code:
+- S1: Hemoglobin stays a feature. The label's dependence on it is reported as a finding, not removed.
+- S2 HER2: ERBB2.Proteogenomic.Status, else Her2.Updated.Clinical.Status, else HER2.Amplified (15 positives).
+- S3: Normal stays in the training labels; it is absent in CPTAC and excluded from the external metrics.
+- S4: problem type survival (overall survival months and status), CPTAC as the sealed external cohort; survival is outside the rails.
+
+Arm B (human on the loop, `--halt-window 60`) uses the same tasks, briefs and model, one study at a time.

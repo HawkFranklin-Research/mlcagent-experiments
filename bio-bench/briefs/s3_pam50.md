@@ -1,0 +1,1 @@
+Predict the PAM50 intrinsic subtype of breast tumours from TCGA gene expression. Select the model on TCGA only, then evaluate it once on the external CPTAC cohort, which has no Normal-like tumours. Report macro-F1, per-class precision-recall and a confusion matrix.

@@ -1,0 +1,1 @@
+Predict the HER2 status of breast tumours in CPTAC-BRCA from mass-spectrometry protein abundance. Compare several classifiers with cross-validation on the training rows, and report discrimination, calibration and decision-curve analysis for the selected model. Positive cases are rare, so use precision-recall AUC as the primary metric.
