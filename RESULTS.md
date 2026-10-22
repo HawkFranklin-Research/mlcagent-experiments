@@ -1,6 +1,6 @@
 # MLCA v2 results: what was run, in what order, and where it is
 
-Status on 22 October 2026. This file describes every set of agent runs in this repository. It is written to serve later as the dataset card for the raw-results upload. Nothing here is pushed or uploaded yet.
+Status on 22 October 2026. This file describes every set of agent runs in this repository. It is written to serve later as the dataset card for the raw-results upload. Main-study raw results are backed up privately at `HawkFranklin-Research/mlcagent-runs`, verified revision `d39aee54ed033c1ace8128aefec5a3e86f5f5255`. See [the offload and restore record](docs/storage/huggingface-offload-2026-10-22/README.md).
 
 ## 1. The study in one paragraph
 
@@ -120,4 +120,4 @@ Each set's `REPORT.md` has one row per study: completed, setup agreement, leakag
 ## 8. Storage
 
 - **Git** holds the curated evidence: reports, batch records, cost ledgers, summaries, and the per-study records listed above, minus row-level Parquet files, split-membership CSVs, control files and data copies.
-- **Raw folders** stay local until uploaded. About 20 GB of the 23 GB under `bench/` is copies of input tables and Python environments (`.mlca/data`, `.mlca/env`), which can be regenerated from the checksummed inputs.
+- **Raw results** are backed up privately with per-file and per-archive SHA-256 manifests. After remote verification, copied data/environments and untracked result copies were removed locally; curated Git-tracked evidence remains. The earlier 20 GB estimate for copied inputs/environments was incorrect: approximately 15.25 GiB is private row-fingerprint storage, which remains local and was excluded from the upload. See the offload record above for exact cleanup, receipts and restoration.

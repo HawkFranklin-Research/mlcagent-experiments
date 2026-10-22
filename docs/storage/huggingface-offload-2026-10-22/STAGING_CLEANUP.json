@@ -1,0 +1,108 @@
+{
+  "timestamp": "2026-10-22T17:45:02.324447+00:00",
+  "verified_revision": "d39aee54ed033c1ace8128aefec5a3e86f5f5255",
+  "removed_temporary_archives": [
+    {
+      "path": "archives/bench__dev-loop__batch-01.tar.zst",
+      "bytes": 1267237,
+      "sha256": "695eb60a927c216c416f2cb588b7edfde44432860f553f3f90e2d05cb4791593"
+    },
+    {
+      "path": "archives/bench__dev-loop__batch-02.tar.zst",
+      "bytes": 22323885,
+      "sha256": "f74f66764b5840f9c799d856e30280c87fe4699b9fa04d89c4b22b2aa0dc93dc"
+    },
+    {
+      "path": "archives/bench__dev-loop__batch-03.tar.zst",
+      "bytes": 74220925,
+      "sha256": "8d2d8294de683f1cc6221f4594874e7cea3cdd7a2f8bb289bca560f246febbea"
+    },
+    {
+      "path": "archives/bench__dev-loop__batch-04.tar.zst",
+      "bytes": 50503119,
+      "sha256": "c07e0d61a5183ef0b0b444b0951a3c67a681db4a43546d4f590aeebb5318375f"
+    },
+    {
+      "path": "archives/bench__dev-loop__batch-05.tar.zst",
+      "bytes": 47258192,
+      "sha256": "89f722789f34104a946d90ee1550bffe344d6da03c935cb735db83abf95b54d4"
+    },
+    {
+      "path": "archives/bench__dev-loop__batch-06.tar.zst",
+      "bytes": 512073,
+      "sha256": "f9bac13ab8f0cad3910b72b04005420a8a5f07ca3ae3e85bc5fef47274c87b90"
+    },
+    {
+      "path": "archives/bench__dev-loop__batch-07.tar.zst",
+      "bytes": 1202837,
+      "sha256": "a9122fd3ff1ce7b5915ef39120986f8ca86aa75888aed4063e2db33231d7315e"
+    },
+    {
+      "path": "archives/bench__dev-loop__batch-08.tar.zst",
+      "bytes": 534286,
+      "sha256": "c8177200772e56238ec701f5d72a9c8e1650b0eaf87cd9fc5600586cd129db5c"
+    },
+    {
+      "path": "archives/bench__dev-loop__batch-09.tar.zst",
+      "bytes": 2609609,
+      "sha256": "29663f36c497d9f2daa11c2d75509d2f707a25593b43981ff6727215fca9bc7d"
+    },
+    {
+      "path": "archives/bench__dev-loop__batch-10.tar.zst",
+      "bytes": 5165559,
+      "sha256": "8065d1c50b4bedab4b36289e4b6bece4e0ff49dfb92185ac24d5663b8cd4f1e4"
+    },
+    {
+      "path": "archives/bench__dev-loop__batch-11.tar.zst",
+      "bytes": 1808628,
+      "sha256": "ac137aca25cea46889c672849b1d006e8522e51037423959a0dc40803f4a6d49"
+    },
+    {
+      "path": "archives/bench__dev-loop__batch-12.tar.zst",
+      "bytes": 151078078,
+      "sha256": "84d6851c23a674837eba6589d574ffd14576490c8f4f3addf645d43c4a76de3c"
+    },
+    {
+      "path": "archives/bench__dev-loop__batch-13.tar.zst",
+      "bytes": 7461551,
+      "sha256": "cecaba43fff2aa9a72eb3511f51840a8240845bfe8b1503972d49fa89adc334f"
+    },
+    {
+      "path": "archives/bench__comparison__acceptance.tar.zst",
+      "bytes": 6702606,
+      "sha256": "3d3766d48525029ef913516465da87eb0cb18dff09aaaddf31de4ee47eb6031a"
+    },
+    {
+      "path": "archives/bench__comparison__acceptance-02.tar.zst",
+      "bytes": 61268689,
+      "sha256": "7e2b7c043caa4d6d7961ebd64b90bbd9187ca277da0810ff661870a80b1ad4eb"
+    },
+    {
+      "path": "archives/bench__heldout__heldout-01.tar.zst",
+      "bytes": 22280279,
+      "sha256": "d7676947bd0df9165bd164617951995a8816f6ff182a95082d65c465e8bb3348"
+    },
+    {
+      "path": "archives/bio-bench__runs__deepseek-flash__eval-01.tar.zst",
+      "bytes": 64758559,
+      "sha256": "2cf96f195f61ca2bc6c9f170787ac311e8c83bd7e4ef0a1a13528becc891dd3d"
+    },
+    {
+      "path": "archives/bench__dev-loop-v2__batch-01.tar.zst",
+      "bytes": 45591781,
+      "sha256": "c2ee049b5dd40ab8ff06aef67da67a8147bbbe6145f112615b8118ac12296dc9"
+    },
+    {
+      "path": "archives/bench__automl.tar.zst",
+      "bytes": 24033231,
+      "sha256": "1f440bc88ca9a8fdaae3e651dfc463b033745eb0b4bedbc1de23d5a2f68d367e"
+    },
+    {
+      "path": "archives/bench__automl-heldout.tar.zst",
+      "bytes": 617711,
+      "sha256": "9d0736d3d0171331645338858ce4092ccee9f87f3ca1f3fa99e4ad9a845d20af"
+    }
+  ],
+  "disk_free_before_bytes": 58813853696,
+  "disk_free_after_bytes": 59405119488
+}

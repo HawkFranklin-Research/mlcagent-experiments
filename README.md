@@ -4,6 +4,8 @@ Evaluation runs of **MLCA v2** (`mlcagent`, code in `../mlca-revized/`, future `
 
 Planned remote: `HawkFranklin-Research/mlcagent-experiments`. Local only for now; nothing is pushed. **AI agents: read `AGENTS.md` first.**
 
+**Raw results backup (22 October 2026):** the 194 main-study runs and both AutoML collections are archived in the private Hugging Face dataset `HawkFranklin-Research/mlcagent-runs` (20 archives, revision `d39aee54ed033c1ace8128aefec5a3e86f5f5255`, every file SHA-256 verified after upload). Copied input data, environments and untracked raw copies were then removed locally; Git-tracked evidence, source datasets and the private row-fingerprint stores (about 15 GiB, not uploaded) remain. What each set is: `RESULTS.md`. Restore steps and receipts: `docs/storage/huggingface-offload-2026-10-22/README.md`.
+
 ## Study design (15 October 2026)
 
 The question: **how often does an autonomous ML agent complete a study, where does it fail, how many repairs does it need, what does it cost, and how much human help does it need?**
