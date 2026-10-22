@@ -1,0 +1,2 @@
+train_rows=4293 feat_cols=22 numeric=22 cat=0 date=0
+key_like_dropped=[] targets=['Family', 'Genus', 'Species']

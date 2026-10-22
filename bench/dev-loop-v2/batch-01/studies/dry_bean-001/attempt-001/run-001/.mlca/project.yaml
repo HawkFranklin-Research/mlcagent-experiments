@@ -1,0 +1,50 @@
+project_id: 01M5J5DCDYH67TZNXW7XMWYYT1
+template_id: tabular_classification
+template_version: 0.3.0
+template_sha256: 61a8cf6bf0d04c204fc2f52080a8dcc8852f865e6665004b2393318bc22c23db
+config:
+  measurement_arm: worker
+  rails_enabled: true
+  catalog:
+    selected: []
+  chatgpt_auth:
+    client_id: null
+  providers:
+    development:
+      kind: deepseek
+      oauth_client_id: null
+      base_url: https://api.deepseek.com
+      api_key_env: DEEPSEEK_API_KEY
+      script: null
+      structured_outputs: true
+      timeout_s: 90.0
+      call_deadline_s: 300.0
+      request_cost_bound_usd: null
+      requests_per_minute: 60.0
+      rate_limit_dir: /home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/bench/dev-loop-v2/batch-01/.control/rate
+  roles:
+    navigator:
+      provider: development
+      model: deepseek-flash
+      temperature: 0.0
+      reasoning_effort: low
+      max_output_tokens: 32768
+    worker:
+      provider: development
+      model: deepseek-flash
+      temperature: 0.0
+      reasoning_effort: low
+      max_output_tokens: 32768
+  privacy:
+    allow_sample_rows: false
+    store_payloads: true
+    provider_data_collection: null
+    zero_data_retention: false
+  budgets:
+    turn_max_usd: null
+    session_max_usd: null
+    worker_max_attempts: 3
+  sandbox:
+    allow_level_b: false
+  mcp:
+    mode: brain

@@ -1,0 +1,2 @@
+features_in=13 features_out=98 k=20
+saved selector.pkl

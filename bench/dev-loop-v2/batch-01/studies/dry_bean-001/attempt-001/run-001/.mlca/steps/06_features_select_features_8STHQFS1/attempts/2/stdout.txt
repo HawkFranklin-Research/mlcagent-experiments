@@ -1,0 +1,5 @@
+train rows: 8124
+feature columns: 16
+features after preprocessing: 16
+selected features: 16
+saved selector.pkl

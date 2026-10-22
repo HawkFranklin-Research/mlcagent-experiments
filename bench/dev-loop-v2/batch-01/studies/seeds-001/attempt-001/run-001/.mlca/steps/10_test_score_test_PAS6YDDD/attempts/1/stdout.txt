@@ -1,0 +1,4 @@
+features 7
+selected baseline
+test silhouette 0.3838
+assignments (168, 3)

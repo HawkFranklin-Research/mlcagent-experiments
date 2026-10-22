@@ -1,0 +1,2 @@
+n_test=38 classes=[np.int64(1), np.int64(2)]
+roc_auc=0.7306 [0.7306,0.7306]

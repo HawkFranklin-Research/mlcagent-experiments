@@ -1,0 +1,5 @@
+train rows: 4293 val rows: 1709
+features: 22
+primary metric: macro_f1 value: 0.521
+top feature: unknown
+saved interpretation.csv

@@ -1,0 +1,3 @@
+val_shape (1709, 26)
+best_model alternative
+macro_f1 0.5617

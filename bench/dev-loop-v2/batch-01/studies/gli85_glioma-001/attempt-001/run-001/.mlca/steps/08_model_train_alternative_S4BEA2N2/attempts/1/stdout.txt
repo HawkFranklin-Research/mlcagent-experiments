@@ -1,0 +1,2 @@
+val roc_auc=0.8182
+train=(50, 22284) features=22283 class_weight=None

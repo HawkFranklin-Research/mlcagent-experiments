@@ -1,0 +1,1 @@
+{"facts":[],"figures":[],"fits":[],"metrics":[],"outputs":[{"caption":"","kind":"report","name":"split.json","path":".mlca/steps/04_split_freeze_group_DKY03W5P/outputs/split.json","sha256":"501f130bb558c599395b1b5615ea7c1ac75ed8457ccf90af9f1e7b82b95f2b04","size":1124}],"step_id":"04_split_freeze_group_DKY03W5P","wall_time_s":1.0642089470056817}

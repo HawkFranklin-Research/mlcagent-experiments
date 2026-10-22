@@ -1,0 +1,2 @@
+Scored 2 models on val; rows=18
+Best val rmse: alternative 1.206

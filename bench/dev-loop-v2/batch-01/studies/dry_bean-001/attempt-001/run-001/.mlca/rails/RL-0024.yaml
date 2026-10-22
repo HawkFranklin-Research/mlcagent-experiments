@@ -1,0 +1,14 @@
+id: RL-0024
+kind: instruction
+roles:
+- worker
+events:
+- preprocess
+problem_types:
+- clustering
+- representation
+text: Apply log1p to heavy-tailed non-negative features (such as monetary totals and counts)
+  inside the fitted preprocessing, before scaling.
+reason: Heavy tails let a few extreme rows dominate distance- and reconstruction-based methods.
+ledger: L-0002
+added_in: rails-0.3

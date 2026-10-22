@@ -1,0 +1,2 @@
+Train shape (4293, 26); used 22 features (numeric 22, categorical 0, dropped_high_card 0, derived_excluded 0)
+Saved preprocessor.pkl

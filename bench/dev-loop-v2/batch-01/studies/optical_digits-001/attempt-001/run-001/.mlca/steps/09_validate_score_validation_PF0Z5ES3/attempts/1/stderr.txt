@@ -1,0 +1,39 @@
+Traceback (most recent call last):
+  File "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/bench/dev-loop-v2/batch-01/studies/optical_digits-001/attempt-001/run-001/.mlca/steps/09_validate_score_validation_PF0Z5ES3/attempts/1/script.py", line 90, in <module>
+    results = [(name, primary, recon_mse(f_est, Z)) for name, f_est in candidates]
+                               ~~~~~~~~~^^^^^^^^^^
+  File "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/bench/dev-loop-v2/batch-01/studies/optical_digits-001/attempt-001/run-001/.mlca/steps/09_validate_score_validation_PF0Z5ES3/attempts/1/script.py", line 83, in recon_mse
+    Zr = f_est.predict(Z)
+  File "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/bench/dev-loop-v2/batch-01/studies/optical_digits-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/compose/_target.py", line 335, in predict
+    pred = self.regressor_.predict(X, **routed_params.regressor.predict)
+  File "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/bench/dev-loop-v2/batch-01/studies/optical_digits-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/pipeline.py", line 794, in predict
+    Xt = transform.transform(Xt)
+  File "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/bench/dev-loop-v2/batch-01/studies/optical_digits-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/utils/_set_output.py", line 327, in wrapped
+    data_to_wrap = f(self, X, *args, **kwargs)
+  File "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/bench/dev-loop-v2/batch-01/studies/optical_digits-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/preprocessing/_data.py", line 1111, in transform
+    X = validate_data(
+        self,
+    ...<6 lines>...
+        ensure_all_finite="allow-nan",
+    )
+  File "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/bench/dev-loop-v2/batch-01/studies/optical_digits-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/utils/validation.py", line 3016, in validate_data
+    _check_feature_names(_estimator, X, reset=reset)
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/bench/dev-loop-v2/batch-01/studies/optical_digits-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/utils/validation.py", line 2868, in _check_feature_names
+    raise ValueError(message)
+ValueError: The feature names should match those that were passed during fit.
+Feature names unseen at fit time:
+- num__pixel_1
+- num__pixel_10
+- num__pixel_11
+- num__pixel_12
+- num__pixel_13
+- ...
+Feature names seen at fit time, yet now missing:
+- pixel_1
+- pixel_10
+- pixel_11
+- pixel_12
+- pixel_13
+- ...
+

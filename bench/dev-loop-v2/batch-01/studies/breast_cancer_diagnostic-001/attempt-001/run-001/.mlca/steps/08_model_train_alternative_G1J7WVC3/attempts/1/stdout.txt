@@ -1,0 +1,2 @@
+rows=341 features=30 target=Diagnosis
+steps=['f', 'm']

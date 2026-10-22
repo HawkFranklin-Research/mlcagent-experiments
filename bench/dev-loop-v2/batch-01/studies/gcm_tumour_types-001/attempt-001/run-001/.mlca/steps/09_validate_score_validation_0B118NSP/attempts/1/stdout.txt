@@ -1,0 +1,2 @@
+features=16063 train=109 val=36
+best_model=logistic roc_auc_ovr=0.8445

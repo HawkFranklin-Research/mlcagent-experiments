@@ -1,0 +1,3 @@
+feature columns: 7
+transformed shape: (126, 7)
+saved selector_all.pkl

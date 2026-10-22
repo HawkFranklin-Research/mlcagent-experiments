@@ -1,0 +1,48 @@
+/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/bench/dev-loop-v2/batch-01/studies/bike_sharing_hourly-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/utils/validation.py:1368: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  y = column_or_1d(y, warn=True)
+Traceback (most recent call last):
+  File "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/bench/dev-loop-v2/batch-01/studies/bike_sharing_hourly-001/attempt-001/run-001/.mlca/steps/08_model_train_alternative_E9MA4J8M/attempts/1/script.py", line 44, in <module>
+    fitted = mlca_runtime.fit_record(pipe, X_tr, partition='train', y=y_tr)
+  File "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/bench/dev-loop-v2/batch-01/studies/bike_sharing_hourly-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/mlca_runtime/__init__.py", line 238, in fit_record
+    estimator_or_pipeline.fit(X, y, **kwargs) if y is not None else estimator_or_pipeline.fit(X, **kwargs)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/bench/dev-loop-v2/batch-01/studies/bike_sharing_hourly-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/base.py", line 1403, in wrapper
+    return fit_method(estimator, *args, **kwargs)
+  File "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/bench/dev-loop-v2/batch-01/studies/bike_sharing_hourly-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/pipeline.py", line 632, in fit
+    Xt = self._fit(
+        X, y, routed_params, raw_params=params, callback_ctx=callback_ctx
+    )
+  File "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/bench/dev-loop-v2/batch-01/studies/bike_sharing_hourly-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/pipeline.py", line 561, in _fit
+    X, fitted_transformer = fit_transform_one_cached(
+                            ~~~~~~~~~~~~~~~~~~~~~~~~^
+        cloned_transformer,
+        ^^^^^^^^^^^^^^^^^^^
+    ...<7 lines>...
+        callback_ctx=subcontext,
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/bench/dev-loop-v2/batch-01/studies/bike_sharing_hourly-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/joblib/memory.py", line 331, in __call__
+    return self.func(*args, **kwargs)
+           ~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/bench/dev-loop-v2/batch-01/studies/bike_sharing_hourly-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/pipeline.py", line 1593, in _fit_transform_one_with_callbacks
+    Xt, transformer = _fit_transform_one(
+                      ~~~~~~~~~~~~~~~~~~^
+        transformer, X, y, weight, message_clsname, message, params
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/bench/dev-loop-v2/batch-01/studies/bike_sharing_hourly-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/pipeline.py", line 1566, in _fit_transform_one
+    res = transformer.fit_transform(X, y, **params.get("fit_transform", {}))
+  File "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/bench/dev-loop-v2/batch-01/studies/bike_sharing_hourly-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/utils/_set_output.py", line 327, in wrapped
+    data_to_wrap = f(self, X, *args, **kwargs)
+  File "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/bench/dev-loop-v2/batch-01/studies/bike_sharing_hourly-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/base.py", line 972, in fit_transform
+    return self.fit(X, y, **fit_params).transform(X)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^
+  File "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/bench/dev-loop-v2/batch-01/studies/bike_sharing_hourly-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/utils/_set_output.py", line 340, in wrapped
+    return _wrap_data_with_container(method, data_to_wrap, X, self)
+  File "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/bench/dev-loop-v2/batch-01/studies/bike_sharing_hourly-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/utils/_set_output.py", line 308, in _wrap_data_with_container
+    raise ValueError(
+    ...<3 lines>...
+    )
+ValueError: The transformer outputs a scipy sparse matrix. Try to set the transformer output to a dense array or disable Pandas output with set_output(transform='default').

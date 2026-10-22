@@ -1,0 +1,2 @@
+train rows=29275 features=13
+saved pipeline with HistGradientBoostingClassifier(random_state=42)

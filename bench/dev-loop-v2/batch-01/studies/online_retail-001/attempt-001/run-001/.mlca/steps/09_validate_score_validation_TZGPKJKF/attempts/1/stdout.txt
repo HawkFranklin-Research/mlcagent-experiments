@@ -1,0 +1,3 @@
+val rows=874 candidates=2
+metric rows=6 sample_size=874
+best alternative silhouette=0.523

@@ -1,0 +1,3 @@
+Placeholder token columns: 0
+features=22283 numeric=22283 cat=0
+val transformed shape: (16, 22283)

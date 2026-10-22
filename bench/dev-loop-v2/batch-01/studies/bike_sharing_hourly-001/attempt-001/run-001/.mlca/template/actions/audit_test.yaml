@@ -1,0 +1,25 @@
+id: audit_test
+event: test
+title: Save test predictions of the frozen model
+params: {}
+prompt: |
+  Do: for each test row, save outcome columns and predictions from the frozen model; no raw feature columns or fitting.
+  Save: test_predictions.parquet with save_row_outputs; row_id = original source index, partition = "test"; keep rows local, never print or expose as facts.
+inputs:
+- ref: train
+- ref: val
+- ref: prior_outputs
+- ref: test
+outputs:
+- name: test_predictions.parquet
+  kind: data
+  row_partitions:
+  - test
+  required: true
+fact_candidates: []
+reads_test: true
+timeout_s: 300
+methods_text: Test per-row outcome columns and predictions were saved locally as Parquet with source row
+  identifiers and partition labels; no fitting.
+builtin: null
+role: supporting

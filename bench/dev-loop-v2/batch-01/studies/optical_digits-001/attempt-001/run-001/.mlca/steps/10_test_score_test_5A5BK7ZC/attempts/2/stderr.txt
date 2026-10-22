@@ -1,0 +1,6 @@
+Traceback (most recent call last):
+  File "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/bench/dev-loop-v2/batch-01/studies/optical_digits-001/attempt-001/run-001/.mlca/steps/10_test_score_test_5A5BK7ZC/attempts/2/script.py", line 68, in <module>
+    alt = ensure_pipeline(load('08_model_train_alternative_CDFZSS39/alternative_model.pkl'))
+  File "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/bench/dev-loop-v2/batch-01/studies/optical_digits-001/attempt-001/run-001/.mlca/steps/10_test_score_test_5A5BK7ZC/attempts/2/script.py", line 61, in ensure_pipeline
+    raise TypeError(f'Unsupported final estimator: {type(last).__name__}')
+TypeError: Unsupported final estimator: TransformedTargetRegressor

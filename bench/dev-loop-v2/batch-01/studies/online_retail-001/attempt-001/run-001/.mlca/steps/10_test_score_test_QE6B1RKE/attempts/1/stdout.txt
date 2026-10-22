@@ -1,0 +1,3 @@
+selected=alternative primary=silhouette=0.5262
+train_rows=2623 test_rows=875
+metrics={'silhouette': 0.5261554832452329, 'calinski_harabasz': 84.46606876001312, 'davies_bouldin': 1.2655536757525063}

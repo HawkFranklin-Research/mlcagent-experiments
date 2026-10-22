@@ -1,0 +1,5 @@
+train rows: 2623
+val rows: 874
+features: 5
+model: Pipeline
+silhouette: 0.3863, top_feature: num__line_count

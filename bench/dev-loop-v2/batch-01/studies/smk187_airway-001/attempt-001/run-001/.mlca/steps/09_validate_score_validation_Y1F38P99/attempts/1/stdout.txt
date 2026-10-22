@@ -1,0 +1,2 @@
+val rows=37 features=19993 models=2
+best=logistic roc_auc=0.6053

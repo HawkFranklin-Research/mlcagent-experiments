@@ -1,0 +1,2 @@
+val shape (113, 31), candidates 2
+best 07_model_train_logistic_2M248THN roc_auc=0.9896 threshold=0.7248

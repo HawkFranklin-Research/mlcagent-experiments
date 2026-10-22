@@ -1,0 +1,22 @@
+id: RL-0021
+kind: instruction
+roles:
+- worker
+events:
+- preprocess
+- features
+- model
+- validate
+- test
+- interpret
+problem_types:
+- clustering
+text: 'There is no outcome in this project: never treat any column as a label or count its
+  categories as one. Choose the cluster count only from internal criteria (silhouette, Davies-Bouldin,
+  Calinski-Harabasz, stability). Scale features before distance-based methods. Compute silhouette
+  with sample_size at most 10000 and a fixed random_state. Required per-row outputs hold the
+  assigned cluster for each row_id.'
+reason: Template steps written for classification ask for an outcome; unsupervised projects
+  must not invent one, and full silhouette is quadratic in rows.
+ledger: L-0002
+added_in: rails-0.3

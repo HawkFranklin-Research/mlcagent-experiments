@@ -1,0 +1,4 @@
+Traceback (most recent call last):
+  File "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/bench/dev-loop-v2/batch-01/studies/gli85_glioma-001/attempt-001/run-001/.mlca/steps/10_test_score_test_RCXTR6SK/attempts/1/script.py", line 28, in <module>
+    raise ValueError(f"Primary metric {primary_metric} not in validation metrics columns: {val_metrics.columns}")
+ValueError: Primary metric roc_auc not in validation metrics columns: Index(['model', 'metric', 'value', 'threshold'], dtype='str')

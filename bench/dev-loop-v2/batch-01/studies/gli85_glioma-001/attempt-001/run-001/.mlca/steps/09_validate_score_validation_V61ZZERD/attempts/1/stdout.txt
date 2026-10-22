@@ -1,0 +1,3 @@
+val rows 16 features 22283
+models ['logistic', 'alternative']
+best alternative roc_auc 0.8182

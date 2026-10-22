@@ -1,0 +1,4 @@
+Placeholder tokens found in 0 columns
+No target-derived features excluded.
+Features: 16 | numeric=16 categorical=0
+Val transformed shape: (2707, 16)

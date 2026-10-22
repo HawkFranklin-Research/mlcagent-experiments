@@ -1,0 +1,2 @@
+features: 64 | embedding: 8
+val reconstruction_error (scaled): 0.3315

@@ -1,0 +1,21 @@
+id: confirm_brief
+event: onboard
+title: Record brief and data inventory
+params: {}
+prompt: 'Do: record the brief answers, resolved columns and file inventory.
+
+  Save: brief.json.
+
+  '
+inputs:
+- ref: registered_data
+outputs:
+- name: brief.json
+  kind: report
+  required: true
+fact_candidates: []
+reads_test: false
+timeout_s: 300
+methods_text: Follow the recorded task and saved model contract; all fitting uses
+  training rows only.
+builtin: inventory

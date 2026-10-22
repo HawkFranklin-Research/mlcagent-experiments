@@ -1,0 +1,2 @@
+test rows=9761 features=13 classes=2
+roc_auc=0.9224 CI=(0.9168,0.9285)

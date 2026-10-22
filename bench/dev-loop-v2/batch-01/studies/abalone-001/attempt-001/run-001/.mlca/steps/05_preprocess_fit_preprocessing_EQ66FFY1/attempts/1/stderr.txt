@@ -1,0 +1,2 @@
+/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/bench/dev-loop-v2/batch-01/studies/abalone-001/attempt-001/run-001/.mlca/steps/05_preprocess_fit_preprocessing_EQ66FFY1/attempts/1/script.py:84: Pandas4Warning: is_categorical_dtype is deprecated and will be removed in a future version. Use isinstance(dtype, pd.CategoricalDtype) instead
+  elif pd.api.types.is_object_dtype(s) or pd.api.types.is_string_dtype(s) or pd.api.types.is_categorical_dtype(s):

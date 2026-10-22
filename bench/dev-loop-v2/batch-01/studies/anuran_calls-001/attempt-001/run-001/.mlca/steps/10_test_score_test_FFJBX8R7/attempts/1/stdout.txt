@@ -1,0 +1,2 @@
+Selected alternative via val macro_f1=0.5617
+Test macro_f1=0.3666 subset_acc=0.6739 n=1193

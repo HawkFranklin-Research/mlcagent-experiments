@@ -1,0 +1,1 @@
+Placeholder columns: 0; numeric: 7; categorical: 1

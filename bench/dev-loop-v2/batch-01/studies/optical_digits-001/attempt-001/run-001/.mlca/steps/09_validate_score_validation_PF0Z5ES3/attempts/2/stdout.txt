@@ -1,0 +1,2 @@
+features=64, val_rows=1124
+best=baseline reconstruction_error=0.458891

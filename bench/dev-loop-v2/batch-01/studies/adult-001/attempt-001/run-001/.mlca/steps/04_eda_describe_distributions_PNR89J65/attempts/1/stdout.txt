@@ -1,0 +1,3 @@
+rows=48794 features=13 numeric=6 categorical=7
+placeholder tokens in 3 text feature columns
+distributions rows=39

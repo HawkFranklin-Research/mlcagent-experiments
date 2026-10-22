@@ -1,0 +1,2 @@
+train=(29275, 14) val=(9758, 14) features=13
+best_model=alternative roc_auc=0.9212 roc_auc=0.9212

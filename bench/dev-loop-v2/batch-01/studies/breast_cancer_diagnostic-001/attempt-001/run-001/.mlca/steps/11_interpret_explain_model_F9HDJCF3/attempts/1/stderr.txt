@@ -1,0 +1,52 @@
+Traceback (most recent call last):
+  File "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/bench/dev-loop-v2/batch-01/studies/breast_cancer_diagnostic-001/attempt-001/run-001/.mlca/steps/11_interpret_explain_model_F9HDJCF3/attempts/1/script.py", line 65, in <module>
+    result = permutation_importance(
+        final_pipeline, X_val, y_val_num, scoring='roc_auc',
+        n_repeats=20, random_state=42, n_jobs=-1
+    )
+  File "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/bench/dev-loop-v2/batch-01/studies/breast_cancer_diagnostic-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/utils/_param_validation.py", line 218, in wrapper
+    return func(*args, **kwargs)
+  File "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/bench/dev-loop-v2/batch-01/studies/breast_cancer_diagnostic-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/inspection/_permutation_importance.py", line 286, in permutation_importance
+    baseline_score = _weights_scorer(scorer, estimator, X, y, sample_weight)
+  File "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/bench/dev-loop-v2/batch-01/studies/breast_cancer_diagnostic-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/inspection/_permutation_importance.py", line 28, in _weights_scorer
+    return scorer(estimator, X, y)
+  File "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/bench/dev-loop-v2/batch-01/studies/breast_cancer_diagnostic-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/utils/validation.py", line 80, in inner_f
+    return f(*args, **kwargs)
+  File "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/bench/dev-loop-v2/batch-01/studies/breast_cancer_diagnostic-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/metrics/_scorer.py", line 328, in __call__
+    return self._score(partial(_cached_call, None), estimator, X, y_true, **kwargs)
+           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/bench/dev-loop-v2/batch-01/studies/breast_cancer_diagnostic-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/metrics/_scorer.py", line 461, in _score
+    y_pred = method_caller(
+        estimator,
+    ...<2 lines>...
+        pos_label=pos_label,
+    )
+  File "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/bench/dev-loop-v2/batch-01/studies/breast_cancer_diagnostic-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/metrics/_scorer.py", line 97, in _cached_call
+    result, _ = _get_response_values(
+                ~~~~~~~~~~~~~~~~~~~~^
+        estimator, *args, response_method=response_method, **kwargs
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/bench/dev-loop-v2/batch-01/studies/breast_cancer_diagnostic-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/utils/_response.py", line 215, in _get_response_values
+    y_pred = prediction_method(X)
+  File "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/bench/dev-loop-v2/batch-01/studies/breast_cancer_diagnostic-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/pipeline.py", line 978, in decision_function
+    return self.steps[-1][1].decision_function(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        Xt,
+        ^^^
+        **routed_params.get(self.steps[-1][0], {}).get("decision_function", {}),
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/bench/dev-loop-v2/batch-01/studies/breast_cancer_diagnostic-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/pipeline.py", line 975, in decision_function
+    Xt = transform.transform(
+        Xt, **routed_params.get(name, {}).get("transform", {})
+    )
+  File "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/bench/dev-loop-v2/batch-01/studies/breast_cancer_diagnostic-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/pipeline.py", line 1110, in transform
+    Xt = transform.transform(Xt, **routed_params[name].transform)
+  File "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/bench/dev-loop-v2/batch-01/studies/breast_cancer_diagnostic-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/utils/_set_output.py", line 327, in wrapped
+    data_to_wrap = f(self, X, *args, **kwargs)
+  File "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/bench/dev-loop-v2/batch-01/studies/breast_cancer_diagnostic-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/compose/_column_transformer.py", line 1066, in transform
+    raise ValueError(f"columns are missing: {diff}")
+ValueError: columns are missing: {'concavity2', 'fractal_dimension1', 'smoothness2', 'compactness2', 'fractal_dimension3', 'fractal_dimension2', 'symmetry3', 'smoothness1', 'texture2', 'symmetry2'}

@@ -1,0 +1,3 @@
+train rows=112 val rows=37
+features=19993
+top_feature=att9213

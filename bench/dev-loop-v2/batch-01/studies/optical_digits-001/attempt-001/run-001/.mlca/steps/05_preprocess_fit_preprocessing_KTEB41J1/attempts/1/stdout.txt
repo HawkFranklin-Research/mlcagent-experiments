@@ -1,0 +1,2 @@
+features=64 id_drop=0 high_card=0 ph_cols=0
+saved preprocessor.pkl with 64 output cols

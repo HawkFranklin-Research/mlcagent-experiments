@@ -1,0 +1,2 @@
+feats=30 num=30 cat=0 drops=0 key=0 ph=0
+train (341, 30) val (113, 30) -> transformed (113, 30)

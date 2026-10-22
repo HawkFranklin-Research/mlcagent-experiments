@@ -1,0 +1,2 @@
+placeholders ['', '-', '?', 'N/A', 'NA'] in 0/0 string columns
+n_numeric=10 n_categorical=0

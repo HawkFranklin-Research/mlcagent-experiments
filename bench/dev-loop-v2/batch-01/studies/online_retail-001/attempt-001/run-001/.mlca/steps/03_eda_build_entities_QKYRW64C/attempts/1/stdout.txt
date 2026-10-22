@@ -1,0 +1,3 @@
+input_rows=541909 entities=4372 dropped_missing_key=135080
+returns: 10624 negative-quantity rows kept as signed amounts; frequency uses distinct invoices when available
+wrote entities.parquet shape=(4372, 6)

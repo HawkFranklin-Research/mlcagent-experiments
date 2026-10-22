@@ -1,0 +1,20 @@
+id: RL-0025
+kind: instruction
+roles:
+- worker
+events:
+- preprocess
+- features
+- model
+problem_types:
+- all
+text: 'Save objects that can load in a fresh Python interpreter using installed packages alone. Prefer
+  built-in sklearn estimators, selectors and transformers. Never pickle locally defined estimators, functions
+  or lambdas: they depend on an earlier script''s __main__ and cannot be loaded reliably later. For an
+  identity selector use an importable built-in passthrough transformer, not a custom wrapper. Switching
+  to joblib does not restore missing definitions. Never fabricate replacement behavior to make an incompatible
+  saved object load.'
+reason: Saved custom objects could not load in subsequent scripts, and repairs repeated or concealed the
+  serialization fault.
+ledger: L-0003
+added_in: rails-0.4

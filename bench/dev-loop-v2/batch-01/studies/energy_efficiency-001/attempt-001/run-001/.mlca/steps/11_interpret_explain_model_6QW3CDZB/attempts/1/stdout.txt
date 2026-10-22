@@ -1,0 +1,5 @@
+train_rows=460 val_rows=153
+features=8
+selected_model=RandomForestRegressor
+top_feature=X5
+val_rmse_mean=None

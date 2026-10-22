@@ -1,0 +1,3 @@
+train rows: 112
+feature columns: 19993
+target: cancer_status classes: 2

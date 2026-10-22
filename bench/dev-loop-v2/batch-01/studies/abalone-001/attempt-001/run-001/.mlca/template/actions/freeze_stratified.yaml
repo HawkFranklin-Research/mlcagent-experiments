@@ -1,0 +1,49 @@
+id: freeze_stratified
+event: split
+title: Stratified split by target (60/20/20, seed 42)
+params:
+  method:
+    type: enum
+    enum:
+    - stratified
+    - random
+    - group
+    - time
+    default: random
+  train_fraction:
+    type: number
+    default: 0.6
+    minimum: 0.1
+    maximum: 0.9
+  val_fraction:
+    type: number
+    default: 0.2
+    minimum: 0.05
+    maximum: 0.8
+  seed:
+    type: integer
+    default: 42
+  group_column:
+    type: string
+    default: ''
+    required: false
+  time_column:
+    type: string
+    default: ''
+    required: false
+prompt: 'Do: engine random split; use group or time ordering when the recorded design
+  requires it.
+
+  Save: split.json.'
+inputs:
+- ref: registered_data
+outputs:
+- name: split.json
+  kind: report
+  required: true
+fact_candidates: []
+reads_test: false
+timeout_s: 300
+methods_text: Follow the recorded task and saved model contract; all fitting uses
+  training rows only.
+builtin: split

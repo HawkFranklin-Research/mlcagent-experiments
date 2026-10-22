@@ -1,0 +1,2 @@
+rows=768 cols=10 missing_total=0
+columns summarized=10

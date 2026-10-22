@@ -1,0 +1,1 @@
+rows=187 columns=19994 missing=0

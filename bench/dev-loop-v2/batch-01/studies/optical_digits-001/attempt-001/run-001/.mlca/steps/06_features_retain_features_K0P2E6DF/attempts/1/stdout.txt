@@ -1,0 +1,4 @@
+train rows: 3372
+preprocessor input columns: 64
+selected features: 64
+saved selector_all.pkl

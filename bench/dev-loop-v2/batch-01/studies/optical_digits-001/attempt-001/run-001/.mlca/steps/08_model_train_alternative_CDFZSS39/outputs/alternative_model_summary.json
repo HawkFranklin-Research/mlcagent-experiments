@@ -1,0 +1,1 @@
+{"embedding_dim": 8, "feature_space": "scaled (StandardScaler fit on train rows)", "hidden_layer_sizes": [16, 8, 16], "n_features": 64, "n_train": 3372, "n_val": 1124, "reconstruction_error_train": 0.320886, "reconstruction_error_val": 0.331485}

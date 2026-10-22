@@ -1,0 +1,12 @@
+Traceback (most recent call last):
+  File "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/bench/dev-loop-v2/batch-01/studies/bike_sharing_hourly-001/attempt-001/run-001/.mlca/steps/05_preprocess_fit_preprocessing_5ED3RGCF/attempts/1/script.py", line 90, in <module>
+    mlca_runtime.save_model(preprocessor, 'preprocessor.pkl')
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/bench/dev-loop-v2/batch-01/studies/bike_sharing_hourly-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/mlca_runtime/__init__.py", line 163, in save_model
+    _check_raw_inputs(model)
+    ~~~~~~~~~~~~~~~~~^^^^^^^
+  File "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/bench/dev-loop-v2/batch-01/studies/bike_sharing_hourly-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/mlca_runtime/__init__.py", line 126, in _check_raw_inputs
+    raise FitRuleError(
+    ...<2 lines>...
+    )
+mlca_runtime.FitRuleError: MLCA: Saved object expects columns the frozen table does not have: ['dteday_day', 'dteday_dayofweek', 'dteday_month', 'dteday_year']; derive features inside the saved pipeline so it accepts the raw feature columns

@@ -1,0 +1,1 @@
+{"facts":[],"figures":[],"fits":[],"metrics":[],"outputs":[{"caption":"","kind":"report","name":"split.json","path":".mlca/steps/04_split_freeze_stratified_3MW138ND/outputs/split.json","sha256":"1ce8fb641673627701ad414c5cb61769e68c45f204e6ba46681e7bec39bfeca0","size":1148}],"step_id":"04_split_freeze_stratified_3MW138ND","wall_time_s":1122.446101350004}

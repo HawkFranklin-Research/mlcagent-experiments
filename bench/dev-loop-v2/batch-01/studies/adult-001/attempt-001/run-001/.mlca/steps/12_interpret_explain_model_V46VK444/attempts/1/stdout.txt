@@ -1,0 +1,5 @@
+val rows: 9758
+features: 13
+model: latest_model
+top feature: relationship
+top importance mean: 0.1013

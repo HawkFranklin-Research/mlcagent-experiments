@@ -1,0 +1,29 @@
+id: train_alternative
+event: model
+title: Fit alternative
+params: {}
+prompt: 'Do: fit a complete prediction/reconstruction pipeline with MLPRegressor(hidden_layer_sizes=(16,8,16),
+  max_iter=300, random_state=42) via fit_record on the original training DataFrame;
+  no supervised outcome is used. Reuse the declared feature contract and exclude all
+  targets.
+
+  Save: alternative_model.pkl.
+
+  Use the processed training features as the reconstruction outcome, but keep original
+  training row IDs for fit_record.'
+inputs:
+- ref: train
+- ref: val
+- ref: prior_outputs
+outputs:
+- name: alternative_model.pkl
+  kind: model
+  required: true
+fact_candidates: []
+reads_test: false
+timeout_s: 300
+methods_text: 'Fit alternative: fit a complete prediction/reconstruction pipeline
+  with MLPRegressor(hidden_layer_sizes=(16,8,16), max_iter=300, random_state=42) via
+  fit_record on the original training DataFrame; no supervised outcome is used. Reuse
+  the declared feature contract and exclude all targets.'
+builtin: null

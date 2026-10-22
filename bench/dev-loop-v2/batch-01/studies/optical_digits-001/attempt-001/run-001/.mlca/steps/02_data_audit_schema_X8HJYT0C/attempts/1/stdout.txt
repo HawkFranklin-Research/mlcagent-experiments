@@ -1,0 +1,3 @@
+shape=(5620, 64)
+missing.total=0
+text_columns=0 placeholder_columns=0

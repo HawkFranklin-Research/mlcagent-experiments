@@ -1,0 +1,38 @@
+id: split
+title: Split
+goal: Freeze training, validation and test partitions once; test stays locked until
+  the test event.
+gate:
+- event_done: eda
+subgoals:
+- id: outputs_recorded
+  text: Split parameters and counts recorded
+  check:
+    type: output_exists
+    any_of:
+    - action: freeze_stratified
+      output: split.json
+    - action: freeze_group
+      output: split.json
+    - action: freeze_time
+      output: split.json
+- id: split_frozen
+  text: Partitions hashed and test partition sealed
+  check:
+    type: split_frozen
+actions:
+- freeze_stratified
+- freeze_group
+- freeze_time
+default_options:
+- freeze_stratified
+done_when: all_subgoals
+custom_scope:
+  description: Split parameters only. A different split needs a new branch from before
+    this event.
+  deny_patterns:
+  - (?i)\b(train|fit)\b.*\bmodel\b
+  - (?i)\btest (set|split|partition)\b
+  readable_inputs:
+  - registered_data
+max_options: 3

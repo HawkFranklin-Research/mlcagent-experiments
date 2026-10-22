@@ -1,0 +1,2 @@
+train shape=(50, 22284); feature columns=22283
+SelectKBest k=20

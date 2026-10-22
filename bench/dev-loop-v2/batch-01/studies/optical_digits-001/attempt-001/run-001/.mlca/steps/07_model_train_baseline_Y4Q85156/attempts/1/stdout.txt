@@ -1,0 +1,1 @@
+train_rows=3372 features=64 pca_components=8

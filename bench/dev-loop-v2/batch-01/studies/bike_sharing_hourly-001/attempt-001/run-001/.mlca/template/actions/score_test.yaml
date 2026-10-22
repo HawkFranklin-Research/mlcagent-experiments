@@ -1,0 +1,42 @@
+id: score_test
+event: test
+title: Score the frozen model on test rows
+params: {}
+prompt: 'Do: RMSE, MAE and R2 per target and macro average; use actual targets from _protocol. Honor the
+  declared primary metric and its direction. Score only test; do not fit. Freeze the validation-selected
+  candidate before test.
+
+  Save: test_metrics.csv (model, metric, value).
+
+  Record: the exact declared metric _protocol[''task''][''primary_metric''] on test; fact test_score (source
+  test_metrics.csv). Read the declared metric from _protocol[''task''][''primary_metric'']; compute and
+  record that exact name, not a template default. Other listed metrics are supplementary. Use its correct
+  optimization direction and compare candidates only on validation; test scores never select a model.
+
+  Also save: test_predictions.parquet with save_row_outputs: row_id (original source index), partition
+  "test", y_true and y_pred for one target (y_true__<target> and y_pred__<target> for several), and for
+  classification proba__<class> for each class in model.classes_ order; no feature columns, never printed
+  or recorded as facts.'
+inputs:
+- ref: train
+- ref: val
+- ref: prior_outputs
+- ref: test
+outputs:
+- name: test_metrics.csv
+  kind: table
+  required: true
+- name: test_predictions.parquet
+  kind: data
+  row_partitions:
+  - test
+  required: true
+fact_candidates:
+- test_score
+reads_test: true
+timeout_s: 300
+methods_text: 'Score the frozen model on test rows: Score the frozen candidates using the task-specific
+  declared primary metric and its direction; supplementary metrics do not replace it. Fit only on training
+  rows, select on validation, and evaluate the frozen choice on test. Per-row test predictions are saved
+  locally for external paired comparison.'
+builtin: null

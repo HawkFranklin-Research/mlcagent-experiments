@@ -1,0 +1,2 @@
+Best k=3, silhouette=0.4065, stability_ari=0.9421
+Train size: 2623, feature columns: 5

@@ -1,0 +1,4 @@
+logistic primary roc_auc_ovr 0.9944357899582948
+alternative primary roc_auc_ovr 0.9942503189575173
+best logistic val roc_auc_ovr 0.9944357899582948
+rows 4

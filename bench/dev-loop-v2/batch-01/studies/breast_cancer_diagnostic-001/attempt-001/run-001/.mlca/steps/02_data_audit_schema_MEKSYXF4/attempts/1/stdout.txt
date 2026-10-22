@@ -1,0 +1,2 @@
+Schema: 569 rows x 31 columns; missing total 0
+Placeholder tokens found in 0 text columns

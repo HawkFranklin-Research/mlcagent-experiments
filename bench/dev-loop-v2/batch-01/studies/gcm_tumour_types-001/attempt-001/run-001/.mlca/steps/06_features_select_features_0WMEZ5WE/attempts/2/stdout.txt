@@ -1,0 +1,2 @@
+features=16063 k=20 rows=109
+saved selector.pkl

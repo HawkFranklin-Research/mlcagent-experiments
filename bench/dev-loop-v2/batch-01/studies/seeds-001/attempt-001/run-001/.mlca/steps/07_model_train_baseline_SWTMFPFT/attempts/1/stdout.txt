@@ -1,0 +1,2 @@
+n=126 features=7 num=7 cat=0
+best_k=2 silhouette=0.4799 stability_ari=0.941

@@ -1,0 +1,7 @@
+Traceback (most recent call last):
+  File "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/bench/dev-loop-v2/batch-01/studies/breast_cancer_diagnostic-001/attempt-001/run-001/.mlca/steps/10_test_score_test_19849T33/attempts/1/script.py", line 116, in <module>
+    mlca_runtime.save_row_outputs(pred_df, 'test_predictions')
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/bench/dev-loop-v2/batch-01/studies/breast_cancer_diagnostic-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/mlca_runtime/__init__.py", line 269, in save_row_outputs
+    raise ValueError("MLCA: per-row outputs must use Parquet")
+ValueError: MLCA: per-row outputs must use Parquet

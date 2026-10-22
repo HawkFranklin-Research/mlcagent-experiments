@@ -1,0 +1,2 @@
+feat_cols=30 test_rows=115 threshold=0.5000 classes=['B', 'M']
+roc_auc=0.9990 CI=(0.9960,1.0000)

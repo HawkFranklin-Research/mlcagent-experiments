@@ -1,0 +1,5 @@
+features 7
+model KMeans clusters 2
+validation_silhouette 0.4639
+top_feature groove_length
+wrote interpretation.csv

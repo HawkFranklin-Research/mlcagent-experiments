@@ -1,0 +1,4 @@
+features=7 numeric=7 categorical=0 dropped_wide=0
+log1p=[] dates_dropped=[] keylike=[]
+placeholder_tokens_columns=0 targets=[] excluded=[]
+encoded_width=7 set_output_pandas=True rows=126

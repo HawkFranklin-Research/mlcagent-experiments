@@ -1,0 +1,5 @@
+train_rows=2506 val_rows=835
+n_features=8
+metric=rmse value=None
+top_feature=feature_6
+saved interpretation.csv

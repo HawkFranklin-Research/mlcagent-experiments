@@ -1,0 +1,4 @@
+primary_metric roc_auc_ovr
+test_rows 45
+classes 14
+headline 0.8410396358901341 (0.7676581068106587, 0.9095216465133346)

@@ -1,0 +1,2 @@
+val_rows=59 models=2 features=13
+best_model=alternative roc_auc=0.8981

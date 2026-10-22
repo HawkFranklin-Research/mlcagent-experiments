@@ -1,0 +1,2 @@
+features=30 numeric=30 categorical=0
+rows=48 classes=['B', 'M']

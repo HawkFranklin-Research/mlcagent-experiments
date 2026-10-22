@@ -1,0 +1,14 @@
+/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/bench/dev-loop-v2/batch-01/studies/bike_sharing_hourly-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/base.py:1403: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples,), for example using ravel().
+  return fit_method(estimator, *args, **kwargs)
+Traceback (most recent call last):
+  File "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/bench/dev-loop-v2/batch-01/studies/bike_sharing_hourly-001/attempt-001/run-001/.mlca/steps/08_model_train_alternative_E9MA4J8M/attempts/2/script.py", line 85, in <module>
+    mlca_runtime.save_model(fitted, 'alternative_model.pkl')
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/bench/dev-loop-v2/batch-01/studies/bike_sharing_hourly-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/mlca_runtime/__init__.py", line 163, in save_model
+    _check_raw_inputs(model)
+    ~~~~~~~~~~~~~~~~~^^^^^^^
+  File "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/bench/dev-loop-v2/batch-01/studies/bike_sharing_hourly-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/mlca_runtime/__init__.py", line 126, in _check_raw_inputs
+    raise FitRuleError(
+    ...<2 lines>...
+    )
+mlca_runtime.FitRuleError: MLCA: Saved object expects columns the frozen table does not have: ['dt_dow', 'dt_month']; derive features inside the saved pipeline so it accepts the raw feature columns

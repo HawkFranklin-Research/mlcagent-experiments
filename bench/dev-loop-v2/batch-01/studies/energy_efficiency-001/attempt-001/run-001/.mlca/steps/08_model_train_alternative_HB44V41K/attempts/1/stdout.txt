@@ -1,0 +1,2 @@
+features=8 numeric=8 categorical=0
+train_rows=460 targets=['Y1', 'Y2']
