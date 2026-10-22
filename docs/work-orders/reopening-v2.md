@@ -108,8 +108,8 @@ The tables are in `../mlca-revized/benchmarks/datasets/`, with entries in `bench
 - **Batch-01:** all 15 development tables once, on the version with Steps 2–3. It shows whether the 12 accepted tables still pass after the changes; the controller requires all tables in batch-01.
 - **Then:** classify the failures together, make one consolidated change and rerun the failed tables, as in work order 05.
 - **Acceptance (pooled 2-of-3 rule, STUDY_DESIGN §3 item 6):**
-  - Each new table, and each old table that failed in this series, runs 3 times on one unchanged version and must succeed in at least 2.
-  - Old tables that pass batch-01 keep their earlier acceptance.
+  - Each new table runs 3 times on one unchanged version and must succeed in at least 2.
+  - The 12 old tables keep their earlier acceptance (author, 23 October 2026); batch-01 is their regression check.
   - A run succeeds when it completes, its setup agrees, and it is leakage-clean.
 - **Caps:** 6 batches or 3 wall-clock days. At a cap, stop and report.
 - **Ablation:** none.
@@ -118,6 +118,26 @@ After each batch, report in one short message:
 - the batch table;
 - tokens;
 - the changes you will make.
+
+### Step 4 status after batch-01 (23 October 2026)
+
+Batch-01: 10/15 successful (`bench/dev-loop-v2/batch-01/REPORT.md`).
+- **Old tables.** All 12 keep their v1 acceptance; none is rerun. Their three failures (Covertype preprocessing timeout, Bike Sharing ValueError, Optical Digits TypeError) are reported as the regression check of v2. They are at different steps and are not linked to the v2 changes.
+- **Wide tables.** GLI-85 and GCM timed out at `interpret`. The Worker's interpretation script permuted every feature one at a time (16,000–22,000 columns; GLI-85 also used `n_repeats=20`), in all three attempts.
+
+**Next change (coding agent), RL-0029 (Worker, interpret), rails-0.15.**
+- When the model has more than 500 input features, do not permute or explain every feature.
+- Use the model's own importances (coefficients or `feature_importances_`), or permute only the top 50 features ranked by them, with `n_repeats` ≤ 5.
+- The step must fit its time limit.
+- Generic wording; ledger entry citing the batch-01 GLI-85 and GCM records. If the Navigator's interpretation work order sets this budget, bound it there too.
+
+**Batch-02 (testing agent), pooled acceptance of the 3 wide tables on rails-0.15:**
+```bash
+python scripts/run_batch.py --batch 2 --out bench/dev-loop-v2/batch-02 --tables gli85_glioma smk187_airway gcm_tumour_types --replicates 3 --model deepseek-flash --provider deepseek --reasoning-effort low --concurrency 6 --threads 2 --max-output-tokens 32768 --rpm 60
+```
+- 9 runs. A table is accepted if at least 2 of its 3 runs succeed.
+- A table that falls short gets one consolidated change (coding agent) and 3 more runs, within the caps.
+- When all 3 wide tables are accepted, go to Step 5.
 
 ## Step 5 · Freeze
 
