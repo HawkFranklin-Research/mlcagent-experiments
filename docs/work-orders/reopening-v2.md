@@ -1,5 +1,11 @@
 # Work order: reopening after the biomedical evaluation (rule 7) → rails-0.14, freeze-v2, arm A again
 
+> **Implementation handoff (22 October 2026):** Steps 1–3 verified/implemented; see
+> [reopening-v2-readiness.md](reopening-v2-readiness.md) for commits and tests.
+> The testing agent resumes at Step 4 and does not edit engine code or rails.
+> Report batch failures to the coding agent for any consolidated implementation.
+> Live execution still requires DEEPSEEK_API_KEY in the launching environment.
+
 Repositories: `../mlca-revized` (engine, rails, development tables) and `mlcagent-experiments` (this repository: controller, runs). Branch `master` only in both; no new branches. Commit locally; do not push or upload.
 
 ## Why
