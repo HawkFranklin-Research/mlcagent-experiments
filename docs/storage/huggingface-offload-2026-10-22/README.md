@@ -36,3 +36,7 @@ Choose other archives from PACKAGING_INDEX.json. Each archive also contains OFFL
 ## Audit files
 
 REMOTE_VERIFIED.json records remote revision and every checked digest; LOCAL_CLEANUP.json records copied-data/environment removal; RAW_CLEANUP.json records untracked result removal; STAGING_CLEANUP.json records temporary archive removal. These receipts and this note are local, uncommitted documentation. The archived support-script snapshot predates the later `prune-raw` helper; the current helper is scripts/offload_results.py.
+
+## Fingerprint stores deleted (23 October 2026, author-authorized)
+
+The author authorized deleting the private row-fingerprint stores after the backup. 195 files (`.mlca/private/row_fingerprints`, `.zst`, `.archive.json`, `.lock`) were removed under `bench/dev-loop/` (batches 01–09, round-02), `bench/runs/` and `bench/validation/`, about 17.9 GiB; free disk went from 55 to 73 GiB. None was tracked by git or uploaded. The other files in those `private/` folders were kept. These projects are finished; reopening one would need its fingerprint database rebuilt from the unchanged source table.
