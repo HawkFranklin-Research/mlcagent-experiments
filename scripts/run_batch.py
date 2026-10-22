@@ -862,7 +862,7 @@ def main():
                 or len(selected) != len(set(selected))
             ):
                 raise ValueError(
-                    "Only development tables; batch-01 must include all twelve"
+                    "Only development tables; batch-01 must include every development table"
                 )
             if not plan and args.role == "development" and stage != "replication":
                 validate_stage(

@@ -96,7 +96,7 @@ The tables are in `../mlca-revized/benchmarks/datasets/`, with entries in `bench
 
 - **Settings:**
   - `--provider deepseek --model deepseek-flash --reasoning-effort low --max-output-tokens 32768 --rpm 60`;
-  - concurrency 6 and threads per study = cores ÷ concurrency, as in work order 05;
+  - `--concurrency 6 --threads 2`;
   - per-study deadline 5400 s.
   These match the held-out and biomedical runs.
 - **Batch-01:** all 15 development tables once, on the version with Steps 2–3. It shows whether the 12 accepted tables still pass after the changes; the controller requires all tables in batch-01.
