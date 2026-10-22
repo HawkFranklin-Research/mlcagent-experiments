@@ -12,6 +12,26 @@ The design is in `README.md` ("Study design"). Rules that follow from it:
 - Survival analysis is not part of development; it appears only in evaluation.
 - Unfinished parts of the earlier plans are stopped. The step-by-step `STUDY.md` protocols are kept for their data preparation and aims.
 
+## Standing DeepSeek credential authorization (author, 23 October 2026)
+
+The author explicitly authorizes using `~/Documents/cheap-seek.api-key.txt` when
+`DEEPSEEK_API_KEY` is missing. This supersedes earlier environment-only/no-key-file
+wording for this exact file. Do not stop preflight solely because the agent process
+did not inherit the variable, and do not request this authorization again.
+
+On this machine, `~/.local/bin/mlca-with-deepseek-key --check` checks availability
+without making an API request or exposing the key. Prefix the original batch
+command with `~/.local/bin/mlca-with-deepseek-key`; it reads the approved file only
+when needed and supplies the key to that command through its process environment.
+An already-set key takes precedence. The launcher can also start an agent, for
+example `~/.local/bin/mlca-with-deepseek-key codex`.
+
+If the local launcher is unavailable, an agent may read this exact file in a local
+process and pass its contents through the launched process's environment. Never
+print the file, put the key into command arguments, shell history, config files,
+reports or commits, or inspect other credential files. Authentication availability
+is not authorization to start a run; all scientific and execution gates still apply.
+
 ## Two benchmarks, kept apart (earlier description)
 
 - **`bench/`** runs `mlca bench`: standard public tables (`../mlca-revized/benchmarks/datasets/`), built-in templates and choices only, no custom instructions. It measures MLCA as an agent.

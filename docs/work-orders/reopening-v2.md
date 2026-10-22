@@ -4,7 +4,9 @@
 > [reopening-v2-readiness.md](reopening-v2-readiness.md) for commits and tests.
 > The testing agent resumes at Step 4 and does not edit engine code or rails.
 > Report batch failures to the coding agent for any consolidated implementation.
-> Live execution still requires DEEPSEEK_API_KEY in the launching environment.
+> Credentials: use the existing DEEPSEEK_API_KEY, or the author's approved local
+> file via `~/.local/bin/mlca-with-deepseek-key` (standing authorization, 23 October).
+> A missing inherited variable alone is not a blocker; see AGENTS.md.
 
 Repositories: `../mlca-revized` (engine, rails, development tables) and `mlcagent-experiments` (this repository: controller, runs). Branch `master` only in both; no new branches. Commit locally; do not push or upload.
 
@@ -32,7 +34,12 @@ The first evaluation is reported in full and is never rerun or edited. The secon
 3. **Survival stays outside the rails** (author, 2026-10-15). No survival rail and no survival development table. An engine bug that shows up on a survival task may be fixed as an engine bug, with a test that uses synthetic data.
 4. Development tables are never sampled by the controller.
 5. No retries to improve an outcome. Every failed run is kept and reported.
-6. **Keys:** `DEEPSEEK_API_KEY` from the environment only; never print, log or commit it.
+6. **Keys:** providers receive `DEEPSEEK_API_KEY` through the process environment.
+   The author permits loading `~/Documents/cheap-seek.api-key.txt` when it is absent.
+   Use `~/.local/bin/mlca-with-deepseek-key --check` for a local availability check,
+   then prefix the original controller command with that launcher. No API call is
+   needed to load credentials. Never print, log or commit the key, or put it in
+   command arguments. This exception does not authorize reading other key files.
 
 ## Step 1 · Development tables (already added; verify)
 
@@ -133,7 +140,7 @@ Batch-01: 10/15 successful (`bench/dev-loop-v2/batch-01/REPORT.md`).
 
 **Batch-02 (testing agent), pooled acceptance of the 3 wide tables on rails-0.15:**
 ```bash
-python scripts/run_batch.py --batch 2 --out bench/dev-loop-v2/batch-02 --tables gli85_glioma smk187_airway gcm_tumour_types --replicates 3 --model deepseek-flash --provider deepseek --reasoning-effort low --concurrency 6 --threads 2 --max-output-tokens 32768 --rpm 60
+~/.local/bin/mlca-with-deepseek-key python scripts/run_batch.py --batch 2 --out bench/dev-loop-v2/batch-02 --tables gli85_glioma smk187_airway gcm_tumour_types --replicates 3 --model deepseek-flash --provider deepseek --reasoning-effort low --concurrency 6 --threads 2 --max-output-tokens 32768 --rpm 60
 ```
 - 9 runs. A table is accepted if at least 2 of its 3 runs succeed.
 - A table that falls short gets one consolidated change (coding agent) and 3 more runs, within the caps.
