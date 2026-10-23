@@ -59,7 +59,9 @@ These are the sets the paper reports. Model throughout: DeepSeek V4.1 Flash, tem
 | # | Set | Folder | Agent version | Studies | Successful | What it is |
 |---|---|---|---|---:|---:|---|
 | 9 | Development v2, batch-01 | `bench/dev-loop-v2/batch-01` | rails-0.14 | 15 | 10 | 12 tables plus 3 wide gene-expression tables (GLI-85, SMK-CAN-187, GCM). |
-| — | Acceptance, `freeze-v2`, eval-02 | `bench/dev-loop-v2/…`, `bio-bench/runs/deepseek-flash/eval-02` | — | — | — | To come. eval-02 repeats eval-01 exactly. |
+| 10 | Development v2, batch-02 | `bench/dev-loop-v2/batch-02` | rails-0.15 | 9 (3 × 3) | 9 | Acceptance of the 3 wide tables, 3/3 each. The 12 v1 tables keep their acceptance; batch-01 is their regression check. |
+| — | **Freeze `freeze-v2`** | `../mlca-revized` tag | `7dc0aed`, rails-0.15 | — | — | |
+| — | eval-02 | `bio-bench/runs/deepseek-flash/eval-02` | freeze-v2 | — | — | To come. Repeats eval-01 exactly; the last agent run of this revision. |
 
 **Total in the main study so far:** 203 agent studies (sets 1–6, 8–10).
 
