@@ -500,3 +500,667 @@ def test_local_ollama_launcher_dry_run():
         Path.home() / ".cache/mlca-smoke-ollama"
     )
     assert "--resume" not in command
+
+
+def test_pause_drains_then_resume_continues(tmp_path, monkeypatch):
+    code = tmp_path / "code"
+    root = tmp_path / "experiments"
+    (code / "rails").mkdir(parents=True)
+    (code / "rails/VERSION").write_text("rails-0.3\n")
+    (code / "benchmarks").mkdir()
+    root.mkdir()
+    entries = []
+    for i in range(2):
+        data = code / "benchmarks" / f"tab_{i}.csv"
+        data.write_text("f1\n1\n2\n")
+        entries.append({
+            "id": f"tab_{i}",
+            "file": data.name,
+            "role": "development",
+            "rows": 10,
+            "sha256": hashlib.sha256(data.read_bytes()).hexdigest(),
+        })
+    monkeypatch.setattr(batch, "CODE", code)
+    monkeypatch.setattr(batch, "ROOT", root)
+    identity = {
+        "code_commit": "fix_code",
+        "controller_commit": "fix_ctl",
+        "controller_tree": "fix_tree",
+        "rails": {"version": "rails-0.3", "sha256": load(code / "rails").sha256},
+    }
+    monkeypatch.setattr(batch, "source_identity", lambda: identity)
+    monkeypatch.setattr(batch, "entries", lambda *a, **k: entries)
+    monkeypatch.setattr(batch, "disk_needed", lambda _: 0)
+    monkeypatch.setattr(batch, "git_head", lambda _: "fix_ctl")
+    monkeypatch.setattr(batch, "git_tree", lambda *_: "fix_tree")
+    monkeypatch.setattr(batch, "runtime_identity", lambda _: {})
+    monkeypatch.setattr(batch, "frozen", lambda _: [])
+    monkeypatch.setenv("OPENROUTER_API_KEY", "SYNTHETIC_KEY")
+    monkeypatch.setattr("mlca.sandbox.level.detect", lambda *_: "A")
+
+    folder = root / "batch-pause-test"
+    original_popen = subprocess.Popen
+    children = []
+
+    def launch(command, **kwargs):
+        spec = json.loads(Path(command[-1]).read_text())
+        p = Path(spec["attempt"])
+        p.mkdir(parents=True, exist_ok=True)
+        if len(children) == 0:
+            (folder / ".control/PAUSE").touch()
+        script = 'import json,sys,time;from pathlib import Path;s=json.load(open(sys.argv[1]));p=Path(s["attempt"]);time.sleep(0.05);(p/"worker-result.json").write_text(json.dumps({"status":"failed","category":"test_done"}))'
+        proc = original_popen([sys.executable, "-c", script, command[-1]], **kwargs)
+        children.append(proc)
+        return proc
+
+    monkeypatch.setattr(batch.subprocess, "Popen", launch)
+    orig_sleep = time.sleep
+    monkeypatch.setattr(batch.time, "sleep", lambda _: orig_sleep(0.01))
+
+    monkeypatch.setattr(
+        sys,
+        "argv",
+        [
+            "run_batch",
+            "--out",
+            str(folder),
+            "--batch",
+            "1",
+            "--model",
+            "synthetic/model",
+            "--concurrency",
+            "1",
+            "--tables",
+            "tab_0",
+            "tab_1",
+        ],
+    )
+    batch.main()
+    state = json.loads((folder / "batch.json").read_text())
+    assert state["status"] == "paused"
+    assert len(state.get("pauses", [])) == 1
+    assert "paused_at" in state["pauses"][0]
+    assert len(children) == 1
+    assert state["jobs"][0]["status"] == "finished"
+    assert state["jobs"][1]["status"] == "queued"
+
+    monkeypatch.setattr(sys, "argv", ["run_batch", "--out", str(folder), "--resume"])
+    batch.main()
+    state2 = json.loads((folder / "batch.json").read_text())
+    assert state2["status"] == "finished"
+    assert not (folder / ".control/PAUSE").exists()
+    assert state2["pauses"][0].get("resumed_at") is not None
+    assert len(children) == 2
+    assert all(j["status"] == "finished" for j in state2["jobs"])
+
+
+def test_controller_upgrade_accepted_and_refused(tmp_path, monkeypatch):
+    code = tmp_path / "code"
+    root = tmp_path / "experiments"
+    (code / "rails").mkdir(parents=True)
+    (code / "rails/VERSION").write_text("rails-0.3\n")
+    (code / "benchmarks").mkdir()
+    root.mkdir()
+    data = code / "benchmarks" / "t.csv"
+    data.write_text("c\n1\n")
+    entries = [{
+        "id": "t",
+        "file": data.name,
+        "role": "development",
+        "rows": 1,
+        "sha256": hashlib.sha256(data.read_bytes()).hexdigest(),
+    }]
+    monkeypatch.setattr(batch, "CODE", code)
+    monkeypatch.setattr(batch, "ROOT", root)
+    rails_info = {"version": "rails-0.3", "sha256": load(code / "rails").sha256}
+    initial_identity = {
+        "code_commit": "code_A",
+        "controller_commit": "ctl_A",
+        "controller_tree": "tree_A",
+        "rails": rails_info,
+    }
+    monkeypatch.setattr(batch, "source_identity", lambda: initial_identity)
+    monkeypatch.setattr(batch, "entries", lambda *a, **k: entries)
+    monkeypatch.setattr(batch, "disk_needed", lambda _: 0)
+    monkeypatch.setattr(batch, "git_head", lambda _: "ctl_A")
+    monkeypatch.setattr(batch, "git_tree", lambda *_: "tree_A")
+    monkeypatch.setattr(batch, "runtime_identity", lambda _: {})
+    monkeypatch.setattr(batch, "frozen", lambda _: [])
+    monkeypatch.setenv("OPENROUTER_API_KEY", "SYNTHETIC_KEY")
+    monkeypatch.setattr("mlca.sandbox.level.detect", lambda *_: "A")
+
+    folder = root / "batch-ctl"
+    folder.mkdir(parents=True)
+    (folder / ".control").mkdir()
+    (folder.parent / "batch-start.json").write_text(json.dumps({"started_at": batch.utc()}))
+
+    state = {
+        **initial_identity,
+        "batch": 1,
+        "stage": "development",
+        "role": "development",
+        "manifest": None,
+        "data_root": None,
+        "provider": "openrouter",
+        "endpoint": "https://openrouter.ai/api/v1",
+        "comparison_plan_sha256": None,
+        "started_at": batch.utc(),
+        "model": "synthetic/model",
+        "reasoning_effort": None,
+        "concurrency": 1,
+        "deadline_s": 5400,
+        "rpm": 60,
+        "rails_enabled": True,
+        "replicates": 1,
+        "threads": 1,
+        "memory_limit_mib": None,
+        "memory_limit": "not_enforced",
+        "runtime": {},
+        "sandbox": "A",
+        "model_call_deadline_s": 300,
+        "temperature": 0,
+        "max_output_tokens": 16384,
+        "structured_outputs": True,
+        "sdk_timeout_s": 90,
+        "rate_limit_dir": str(folder / ".control/rate"),
+        "machine": {"cpus": 2},
+        "jobs": [
+            {
+                "id": "t-001",
+                "dataset": "t",
+                "replicate": 1,
+                "large": False,
+                "status": "finished",
+                "attempts": ["studies/t-001/attempt-001"],
+                "result": {"status": "success", "category": "clean", "workflow_completed": True},
+            }
+        ],
+    }
+    (folder / "batch.json").write_text(json.dumps(state))
+
+    upgraded_identity = {
+        "code_commit": "code_A",
+        "controller_commit": "ctl_B",
+        "controller_tree": "tree_B",
+        "rails": rails_info,
+    }
+    monkeypatch.setattr(batch, "source_identity", lambda: upgraded_identity)
+    monkeypatch.setattr(batch, "git_head", lambda _: "ctl_B")
+    monkeypatch.setattr(batch, "git_tree", lambda *_: "tree_B")
+
+    monkeypatch.setattr(sys, "argv", ["run_batch", "--out", str(folder), "--resume"])
+    with pytest.raises(ValueError, match="Resume requires the original code, rails and controller version"):
+        batch.main()
+
+    monkeypatch.setattr(
+        sys,
+        "argv",
+        ["run_batch", "--out", str(folder), "--resume", "--controller-upgrade", "vm_migration"],
+    )
+    batch.main()
+    s2 = json.loads((folder / "batch.json").read_text())
+    assert s2["controller_commit"] == "ctl_B"
+    assert s2["controller_tree"] == "tree_B"
+    assert len(s2["controller_history"]) == 1
+    assert s2["controller_history"][0]["from"] == "ctl_A"
+    assert s2["controller_history"][0]["to"] == "ctl_B"
+    assert s2["controller_history"][0]["reason"] == "vm_migration"
+
+    bad_code_identity = {
+        "code_commit": "code_CHANGED",
+        "controller_commit": "ctl_B",
+        "controller_tree": "tree_B",
+        "rails": rails_info,
+    }
+    monkeypatch.setattr(batch, "source_identity", lambda: bad_code_identity)
+    monkeypatch.setattr(
+        sys,
+        "argv",
+        ["run_batch", "--out", str(folder), "--resume", "--controller-upgrade", "vm_migration"],
+    )
+    with pytest.raises(ValueError, match="Resume requires the original code commit"):
+        batch.main()
+
+    bad_rails_identity = {
+        "code_commit": "code_A",
+        "controller_commit": "ctl_B",
+        "controller_tree": "tree_B",
+        "rails": {"version": "rails-99", "sha256": "bad"},
+    }
+    monkeypatch.setattr(batch, "source_identity", lambda: bad_rails_identity)
+    with pytest.raises(ValueError, match="Resume requires the original rails version and hash"):
+        batch.main()
+
+
+def test_outside_scripts_commit_resumes_without_flag(tmp_path, monkeypatch):
+    code = tmp_path / "code"
+    root = tmp_path / "experiments"
+    (code / "rails").mkdir(parents=True)
+    (code / "rails/VERSION").write_text("rails-0.3\n")
+    (code / "benchmarks").mkdir()
+    root.mkdir()
+    data = code / "benchmarks" / "t.csv"
+    data.write_text("c\n1\n")
+    entries = [{
+        "id": "t",
+        "file": data.name,
+        "role": "development",
+        "rows": 1,
+        "sha256": hashlib.sha256(data.read_bytes()).hexdigest(),
+    }]
+    monkeypatch.setattr(batch, "CODE", code)
+    monkeypatch.setattr(batch, "ROOT", root)
+    rails_info = {"version": "rails-0.3", "sha256": load(code / "rails").sha256}
+    initial_identity = {
+        "code_commit": "code_A",
+        "controller_commit": "ctl_A",
+        "controller_tree": "tree_SAME",
+        "rails": rails_info,
+    }
+    monkeypatch.setattr(batch, "entries", lambda *a, **k: entries)
+    monkeypatch.setattr(batch, "disk_needed", lambda _: 0)
+    monkeypatch.setattr(batch, "runtime_identity", lambda _: {})
+    monkeypatch.setattr(batch, "frozen", lambda _: [])
+    monkeypatch.setenv("OPENROUTER_API_KEY", "SYNTHETIC_KEY")
+    monkeypatch.setattr("mlca.sandbox.level.detect", lambda *_: "A")
+
+    folder = root / "batch-outside"
+    folder.mkdir(parents=True)
+    (folder / ".control").mkdir()
+    (folder.parent / "batch-start.json").write_text(json.dumps({"started_at": batch.utc()}))
+
+    state = {
+        **initial_identity,
+        "batch": 1,
+        "stage": "development",
+        "role": "development",
+        "manifest": None,
+        "data_root": None,
+        "provider": "openrouter",
+        "endpoint": "https://openrouter.ai/api/v1",
+        "comparison_plan_sha256": None,
+        "started_at": batch.utc(),
+        "model": "synthetic/model",
+        "reasoning_effort": None,
+        "concurrency": 1,
+        "deadline_s": 5400,
+        "rpm": 60,
+        "rails_enabled": True,
+        "replicates": 1,
+        "threads": 1,
+        "memory_limit_mib": None,
+        "memory_limit": "not_enforced",
+        "runtime": {},
+        "sandbox": "A",
+        "model_call_deadline_s": 300,
+        "temperature": 0,
+        "max_output_tokens": 16384,
+        "structured_outputs": True,
+        "sdk_timeout_s": 90,
+        "rate_limit_dir": str(folder / ".control/rate"),
+        "machine": {"cpus": 2},
+        "jobs": [
+            {
+                "id": "t-001",
+                "dataset": "t",
+                "replicate": 1,
+                "large": False,
+                "status": "finished",
+                "attempts": ["studies/t-001/attempt-001"],
+                "result": {"status": "success", "category": "clean", "workflow_completed": True},
+            }
+        ],
+    }
+    (folder / "batch.json").write_text(json.dumps(state))
+
+    doc_commit_identity = {
+        "code_commit": "code_A",
+        "controller_commit": "ctl_DOCS",
+        "controller_tree": "tree_SAME",
+        "rails": rails_info,
+    }
+    monkeypatch.setattr(batch, "source_identity", lambda: doc_commit_identity)
+    monkeypatch.setattr(batch, "git_head", lambda _: "ctl_DOCS")
+    monkeypatch.setattr(batch, "git_tree", lambda *_: "tree_SAME")
+
+    monkeypatch.setattr(sys, "argv", ["run_batch", "--out", str(folder), "--resume"])
+    batch.main()
+    s2 = json.loads((folder / "batch.json").read_text())
+    assert s2["controller_commit"] == "ctl_DOCS"
+    assert len(s2.get("controller_history", [])) == 1
+    assert s2["controller_history"][0]["reason"] == "outside_scripts_commit"
+
+
+def test_network_outage_hold_launches_nothing(tmp_path, monkeypatch):
+    code = tmp_path / "code"
+    root = tmp_path / "experiments"
+    (code / "rails").mkdir(parents=True)
+    (code / "rails/VERSION").write_text("rails-0.3\n")
+    (code / "benchmarks").mkdir()
+    root.mkdir()
+    data = code / "benchmarks" / "t.csv"
+    data.write_text("c\n1\n")
+    entries = [{
+        "id": "t",
+        "file": data.name,
+        "role": "development",
+        "rows": 1,
+        "sha256": hashlib.sha256(data.read_bytes()).hexdigest(),
+    }]
+    monkeypatch.setattr(batch, "CODE", code)
+    monkeypatch.setattr(batch, "ROOT", root)
+    identity = {
+        "code_commit": "c",
+        "controller_commit": "ctl",
+        "controller_tree": "tree",
+        "rails": {"version": "rails-0.3", "sha256": load(code / "rails").sha256},
+    }
+    monkeypatch.setattr(batch, "source_identity", lambda: identity)
+    monkeypatch.setattr(batch, "entries", lambda *a, **k: entries)
+    monkeypatch.setattr(batch, "disk_needed", lambda _: 0)
+    monkeypatch.setattr(batch, "git_head", lambda _: "ctl")
+    monkeypatch.setattr(batch, "git_tree", lambda *_: "tree")
+    monkeypatch.setattr(batch, "runtime_identity", lambda _: {})
+    monkeypatch.setattr(batch, "frozen", lambda _: [])
+    monkeypatch.setenv("OPENROUTER_API_KEY", "SYNTHETIC_KEY")
+    monkeypatch.setattr("mlca.sandbox.level.detect", lambda *_: "A")
+
+    probe_results = [False, False, True]
+    monkeypatch.setattr(
+        batch, "probe_endpoint", lambda _: probe_results.pop(0) if probe_results else True
+    )
+    orig_sleep = time.sleep
+    monkeypatch.setattr(batch.time, "sleep", lambda _: orig_sleep(0.01))
+
+    original_popen = subprocess.Popen
+    children = []
+
+    def launch(command, **kwargs):
+        spec = json.loads(Path(command[-1]).read_text())
+        p = Path(spec["attempt"])
+        p.mkdir(parents=True, exist_ok=True)
+        script = 'import json,sys,time;from pathlib import Path;s=json.load(open(sys.argv[1]));p=Path(s["attempt"]);(p/"worker-result.json").write_text(json.dumps({"status":"failed","category":"test_done"}))'
+        proc = original_popen([sys.executable, "-c", script, command[-1]], **kwargs)
+        children.append(proc)
+        return proc
+
+    monkeypatch.setattr(batch.subprocess, "Popen", launch)
+    folder = root / "batch-net"
+    monkeypatch.setattr(
+        sys,
+        "argv",
+        ["run_batch", "--out", str(folder), "--batch", "1", "--model", "synthetic/model"],
+    )
+    batch.main()
+    state = json.loads((folder / "batch.json").read_text())
+    assert state["status"] == "finished"
+    assert len(children) == 1
+    assert "network_waits" in state
+    assert len(state["network_waits"]) == 1
+    assert state["network_waits"][0]["seconds"] >= 0
+
+
+def test_connection_failure_filter_and_retry(tmp_path, monkeypatch):
+    job_5_shaped = {
+        "id": "j1",
+        "result": {
+            "status": "failed",
+            "category": "provider_error",
+            "furthest_event": "setup",
+            "error_type": "MlcaUserError",
+            "message": "Setup failed: MlcaUserError: Connection error.",
+            "usage": {"known": {"input_tokens": 0, "output_tokens": 0}},
+        },
+    }
+    job_mid_study = {
+        "id": "j2",
+        "result": {
+            "status": "failed",
+            "category": "provider_error",
+            "furthest_event": "model_train",
+            "error_type": "ConnectionError",
+            "message": "Connection error mid-training",
+            "usage": {"known": {"input_tokens": 500, "output_tokens": 100}},
+        },
+    }
+    job_runtime = {
+        "id": "j3",
+        "result": {
+            "status": "failed",
+            "category": "runtime_error",
+            "furthest_event": "setup",
+            "error_type": "ValueError",
+            "message": "Invalid argument",
+            "usage": {"known": {"input_tokens": 0, "output_tokens": 0}},
+        },
+    }
+    assert batch.is_connection_failure(job_5_shaped) is True
+    assert batch.is_connection_failure(job_mid_study) is False
+    assert batch.is_connection_failure(job_runtime) is False
+
+    code = tmp_path / "code"
+    root = tmp_path / "experiments"
+    (code / "rails").mkdir(parents=True)
+    (code / "rails/VERSION").write_text("rails-0.3\n")
+    (code / "benchmarks").mkdir()
+    root.mkdir()
+    data = code / "benchmarks" / "t.csv"
+    data.write_text("c\n1\n")
+    entries = [{
+        "id": "t",
+        "file": data.name,
+        "role": "development",
+        "rows": 1,
+        "sha256": hashlib.sha256(data.read_bytes()).hexdigest(),
+    }]
+    monkeypatch.setattr(batch, "CODE", code)
+    monkeypatch.setattr(batch, "ROOT", root)
+    identity = {
+        "code_commit": "c",
+        "controller_commit": "ctl",
+        "controller_tree": "tree",
+        "rails": {"version": "rails-0.3", "sha256": load(code / "rails").sha256},
+    }
+    monkeypatch.setattr(batch, "source_identity", lambda: identity)
+    monkeypatch.setattr(batch, "entries", lambda *a, **k: entries)
+    monkeypatch.setattr(batch, "disk_needed", lambda _: 0)
+    monkeypatch.setattr(batch, "git_head", lambda _: "ctl")
+    monkeypatch.setattr(batch, "git_tree", lambda *_: "tree")
+    monkeypatch.setattr(batch, "runtime_identity", lambda _: {})
+    monkeypatch.setattr(batch, "frozen", lambda _: [])
+    monkeypatch.setenv("OPENROUTER_API_KEY", "SYNTHETIC_KEY")
+    monkeypatch.setattr("mlca.sandbox.level.detect", lambda *_: "A")
+
+    folder = root / "batch-retry"
+    folder.mkdir(parents=True)
+    (folder / ".control").mkdir()
+    (folder.parent / "batch-start.json").write_text(json.dumps({"started_at": batch.utc()}))
+
+    job_to_retry = {
+        "id": "t-001",
+        "dataset": "t",
+        "replicate": 1,
+        "large": False,
+        "status": "finished",
+        "first_started": 12345.0,
+        "attempts": ["studies/t-001/attempt-001"],
+        "result": {
+            "status": "failed",
+            "category": "provider_error",
+            "furthest_event": "setup",
+            "error_type": "MlcaUserError",
+            "message": "Setup failed: MlcaUserError: Connection error.",
+            "usage": {"known": {"input_tokens": 0, "output_tokens": 0}},
+        },
+    }
+    state = {
+        **identity,
+        "batch": 1,
+        "stage": "development",
+        "role": "development",
+        "manifest": None,
+        "data_root": None,
+        "provider": "openrouter",
+        "endpoint": "https://openrouter.ai/api/v1",
+        "comparison_plan_sha256": None,
+        "started_at": batch.utc(),
+        "model": "synthetic/model",
+        "reasoning_effort": None,
+        "concurrency": 1,
+        "deadline_s": 5400,
+        "rpm": 60,
+        "rails_enabled": True,
+        "replicates": 1,
+        "threads": 1,
+        "memory_limit_mib": None,
+        "memory_limit": "not_enforced",
+        "runtime": {},
+        "sandbox": "A",
+        "model_call_deadline_s": 300,
+        "temperature": 0,
+        "max_output_tokens": 16384,
+        "structured_outputs": True,
+        "sdk_timeout_s": 90,
+        "rate_limit_dir": str(folder / ".control/rate"),
+        "machine": {"cpus": 2},
+        "jobs": [job_to_retry],
+    }
+    (folder / "batch.json").write_text(json.dumps(state))
+
+    original_popen = subprocess.Popen
+    children = []
+
+    def launch(command, **kwargs):
+        spec = json.loads(Path(command[-1]).read_text())
+        p = Path(spec["attempt"])
+        p.mkdir(parents=True, exist_ok=True)
+        script = 'import json,sys,time;from pathlib import Path;s=json.load(open(sys.argv[1]));p=Path(s["attempt"]);(p/"worker-result.json").write_text(json.dumps({"status":"success","category":"clean","workflow_completed":True}))'
+        proc = original_popen([sys.executable, "-c", script, command[-1]], **kwargs)
+        children.append(proc)
+        return proc
+
+    monkeypatch.setattr(batch.subprocess, "Popen", launch)
+
+    monkeypatch.setattr(
+        sys,
+        "argv",
+        ["run_batch", "--out", str(folder), "--resume", "--retry-connection-failures"],
+    )
+    batch.main()
+    s2 = json.loads((folder / "batch.json").read_text())
+    j = s2["jobs"][0]
+    assert j["status"] == "finished"
+    assert len(j.get("retries", [])) == 1
+    assert j["retries"][0]["retry_of"] == "studies/t-001/attempt-001"
+    assert j["retries"][0]["reason"] == "connection_failure"
+    assert j["first_started_original"] == 12345.0
+    assert len(j["attempts"]) == 2
+    assert j["attempts"][-1] == "studies/t-001/attempt-002"
+    assert len(children) == 1
+
+    # Second retry of the same job is refused
+    j["result"] = {
+        "status": "failed",
+        "category": "provider_error",
+        "furthest_event": "setup",
+        "error_type": "MlcaUserError",
+        "message": "Connection error again",
+        "usage": {"known": {"input_tokens": 0, "output_tokens": 0}},
+    }
+    (folder / "batch.json").write_text(json.dumps(s2))
+    with pytest.raises(ValueError, match="already retried once; refusing second retry"):
+        batch.main()
+
+
+def test_relocated_folder_resumes(tmp_path, monkeypatch):
+    import shutil
+
+    code = tmp_path / "code"
+    root = tmp_path / "experiments"
+    (code / "rails").mkdir(parents=True)
+    (code / "rails/VERSION").write_text("rails-0.3\n")
+    (code / "benchmarks").mkdir()
+    root.mkdir()
+    data = code / "benchmarks" / "t.csv"
+    data.write_text("c\n1\n")
+    entries = [{
+        "id": "t",
+        "file": data.name,
+        "role": "development",
+        "rows": 1,
+        "sha256": hashlib.sha256(data.read_bytes()).hexdigest(),
+    }]
+    monkeypatch.setattr(batch, "CODE", code)
+    monkeypatch.setattr(batch, "ROOT", root)
+    identity = {
+        "code_commit": "c",
+        "controller_commit": "ctl",
+        "controller_tree": "tree",
+        "rails": {"version": "rails-0.3", "sha256": load(code / "rails").sha256},
+    }
+    monkeypatch.setattr(batch, "source_identity", lambda: identity)
+    monkeypatch.setattr(batch, "entries", lambda *a, **k: entries)
+    monkeypatch.setattr(batch, "disk_needed", lambda _: 0)
+    monkeypatch.setattr(batch, "git_head", lambda _: "ctl")
+    monkeypatch.setattr(batch, "git_tree", lambda *_: "tree")
+    monkeypatch.setattr(batch, "runtime_identity", lambda _: {})
+    monkeypatch.setattr(batch, "frozen", lambda _: [])
+    monkeypatch.setenv("OPENROUTER_API_KEY", "SYNTHETIC_KEY")
+    monkeypatch.setattr("mlca.sandbox.level.detect", lambda *_: "A")
+
+    folder_orig = root / "batch-orig"
+    folder_orig.mkdir(parents=True)
+    (folder_orig / ".control").mkdir()
+    (folder_orig.parent / "batch-start.json").write_text(json.dumps({"started_at": batch.utc()}))
+
+    state = {
+        **identity,
+        "batch": 1,
+        "stage": "development",
+        "role": "development",
+        "manifest": None,
+        "data_root": None,
+        "provider": "openrouter",
+        "endpoint": "https://openrouter.ai/api/v1",
+        "comparison_plan_sha256": None,
+        "started_at": batch.utc(),
+        "model": "synthetic/model",
+        "reasoning_effort": None,
+        "concurrency": 1,
+        "deadline_s": 5400,
+        "rpm": 60,
+        "rails_enabled": True,
+        "replicates": 1,
+        "threads": 1,
+        "memory_limit_mib": None,
+        "memory_limit": "not_enforced",
+        "runtime": {},
+        "sandbox": "A",
+        "model_call_deadline_s": 300,
+        "temperature": 0,
+        "max_output_tokens": 16384,
+        "structured_outputs": True,
+        "sdk_timeout_s": 90,
+        "rate_limit_dir": str(folder_orig / ".control/rate"),
+        "machine": {"cpus": 2},
+        "jobs": [
+            {
+                "id": "t-001",
+                "dataset": "t",
+                "replicate": 1,
+                "large": False,
+                "status": "finished",
+                "attempts": ["studies/t-001/attempt-001"],
+                "result": {"status": "success", "category": "clean", "workflow_completed": True},
+            }
+        ],
+    }
+    (folder_orig / "batch.json").write_text(json.dumps(state))
+
+    folder_moved = root / "batch-moved"
+    shutil.copytree(folder_orig, folder_moved)
+
+    monkeypatch.setattr(sys, "argv", ["run_batch", "--out", str(folder_moved), "--resume"])
+    batch.main()
+    s_moved = json.loads((folder_moved / "batch.json").read_text())
+    assert s_moved["rate_limit_dir"] == str(folder_moved / ".control/rate")

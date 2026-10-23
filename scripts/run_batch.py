@@ -6,9 +6,11 @@ import json
 import os
 import shutil
 import signal
+import socket
 import subprocess
 import sys
 import time
+import urllib.parse
 from collections import Counter
 from datetime import datetime, timezone
 from pathlib import Path
@@ -130,6 +132,38 @@ def git_head(root):
     ).strip()
 
 
+def git_tree(root, path):
+    try:
+        return subprocess.check_output(
+            ["git", "-C", str(root), "rev-parse", f"HEAD:{path}"],
+            text=True,
+            stderr=subprocess.DEVNULL,
+        ).strip()
+    except (subprocess.CalledProcessError, OSError):
+        return None
+
+
+def get_host_info():
+    return {
+        "hostname": socket.gethostname(),
+        "cpus": os.cpu_count() or 1,
+    }
+
+
+def probe_endpoint(endpoint_url, timeout=5.0):
+    try:
+        parsed = urllib.parse.urlparse(endpoint_url)
+        host = parsed.hostname
+        if not host:
+            return True
+        port = parsed.port or (443 if parsed.scheme == "https" else 80)
+        sock = socket.create_connection((host, port), timeout=timeout)
+        sock.close()
+        return True
+    except OSError:
+        return False
+
+
 def source_identity():
     for root in [CODE, ROOT]:
         if subprocess.run(
@@ -158,6 +192,7 @@ def source_identity():
     return {
         "code_commit": git_head(CODE),
         "controller_commit": git_head(ROOT),
+        "controller_tree": git_tree(ROOT, "scripts"),
         "rails": {"version": rails.version, "sha256": rails.sha256},
     }
 
@@ -459,6 +494,37 @@ def finish_job(folder, job, expected):
                 "message": str(exc).splitlines()[0],
             }
     result["pruned_after_scoring"] = prune(attempt) if attempt.is_dir() else []
+    spec_file = folder / ".control" / f"{job['id']}-{len(job['attempts']):03d}.json"
+    launch_host = get_host_info()
+    launch_commit = None
+    if spec_file.exists():
+        try:
+            stored_spec = json.loads(spec_file.read_text())
+            launch_host = stored_spec.get("host") or launch_host
+            launch_commit = stored_spec.get("controller_commit")
+        except (OSError, json.JSONDecodeError):
+            pass
+    if not launch_commit:
+        state_file = folder / "batch.json"
+        if state_file.exists():
+            try:
+                launch_commit = json.loads(state_file.read_text()).get("controller_commit")
+            except (OSError, json.JSONDecodeError):
+                pass
+    if not launch_commit:
+        launch_commit = git_head(ROOT)
+    prov = {
+        "host": launch_host,
+        "controller_commit": launch_commit,
+        "attempt": job["attempts"][-1],
+    }
+    result["host"] = launch_host
+    result["controller_commit"] = launch_commit
+    result["provenance"] = prov
+    if attempt.is_dir():
+        prov_file = attempt / "provenance.json"
+        if not prov_file.exists():
+            atomic_json(prov_file, prov)
     job.update(
         status="interrupted"
         if job.get("stop_reason") == "interrupted_by_author"
@@ -466,6 +532,36 @@ def finish_job(folder, job, expected):
         finished_at=utc(),
         result=result,
     )
+
+
+def is_connection_failure(job):
+    res = job.get("result") or {}
+    if res.get("category") != "provider_error":
+        return False
+    if res.get("furthest_event") != "setup":
+        return False
+    u = res.get("usage", {})
+    known = u.get("known", {})
+    if (known.get("input_tokens") or 0) > 0 or (known.get("output_tokens") or 0) > 0:
+        return False
+    msg = str(res.get("message") or "")
+    err_type = str(res.get("error_type") or "")
+    conn_indicators = [
+        "Connection error",
+        "ConnectionError",
+        "APIConnectionError",
+        "connection error",
+    ]
+    if any(ind in msg or ind in err_type for ind in conn_indicators):
+        return True
+    p_errs = res.get("provider_errors") or []
+    for pe in p_errs:
+        if any(
+            ind in str(pe.get("error_type", "")) or ind in str(pe.get("message", ""))
+            for ind in conn_indicators
+        ):
+            return True
+    return False
 
 
 def record_resources(folder, state):
@@ -516,6 +612,18 @@ def write_report(folder, state):
         "|---|---|---|---|---|---|---|---:|---:|---|---:|---:|---|",
     ]
     for job in state["jobs"]:
+        for retry in job.get("retries", []):
+            prior = retry.get("prior_result") or {}
+            pu = prior.get("usage", {}).get("known", {})
+            pcriteria = prior.get("leakage", {}).get("criteria", {})
+            pflags = " / ".join(
+                str(pcriteria.get(k, {}).get("value"))
+                for k in ["fitted_columns", "group_disjoint", "time_ordered"]
+            )
+            attempt_label = retry.get("retry_of", "attempt-001")
+            lines.append(
+                f"| {job['dataset']} / {job['replicate']} ({attempt_label}) | {prior.get('workflow_completed', False)} | {prior.get('setup_agreement')} | {pflags} | {prior.get('success', False)} | {prior.get('furthest_event', 'setup')} / {prior.get('furthest_step')} | {prior.get('category', '')} | {prior.get('repair_calls', 0)} | {prior.get('usage', {}).get('requests', 0)} | {pu.get('input_tokens')} / {pu.get('output_tokens')} / {pu.get('reasoning_tokens')} | {pu.get('cost_usd')} | {prior.get('wall_s')} | {json.dumps(prior.get('usage', {}).get('models', {}))} |"
+            )
         r = job.get("result", {})
         u = r.get("usage", {}).get("known", {})
         criteria = r.get("leakage", {}).get("criteria", {})
@@ -523,9 +631,30 @@ def write_report(folder, state):
             str(criteria.get(k, {}).get("value"))
             for k in ["fitted_columns", "group_disjoint", "time_ordered"]
         )
-        lines.append(
-            f"| {job['dataset']} / {job['replicate']} | {r.get('workflow_completed', job['status'])} | {r.get('setup_agreement')} | {flags} | {r.get('success')} | {r.get('furthest_event', 'setup')} / {r.get('furthest_step')} | {r.get('category', '')} | {r.get('repair_calls')} | {r.get('usage', {}).get('requests')} | {u.get('input_tokens')} / {u.get('output_tokens')} / {u.get('reasoning_tokens')} | {u.get('cost_usd')} | {r.get('wall_s')} | {json.dumps(r.get('usage', {}).get('models', {}))} |"
+        attempt_suffix = (
+            f" (attempt-{len(job.get('attempts', [1])):03d})"
+            if job.get("retries")
+            else ""
         )
+        lines.append(
+            f"| {job['dataset']} / {job['replicate']}{attempt_suffix} | {r.get('workflow_completed', job['status'])} | {r.get('setup_agreement')} | {flags} | {r.get('success')} | {r.get('furthest_event', 'setup')} / {r.get('furthest_step')} | {r.get('category', '')} | {r.get('repair_calls')} | {r.get('usage', {}).get('requests')} | {u.get('input_tokens')} / {u.get('output_tokens')} / {u.get('reasoning_tokens')} | {u.get('cost_usd')} | {r.get('wall_s')} | {json.dumps(r.get('usage', {}).get('models', {}))} |"
+        )
+    retried_jobs = [j for j in state["jobs"] if j.get("retries")]
+    if retried_jobs:
+        lines += [
+            "",
+            "## Connection retries",
+            "",
+            "The following jobs failed at the first setup request due to a connection error before any model response and were retried once:",
+            "",
+            "| Job | Dataset | Replicate | Retried attempt | Reason | Retried at |",
+            "|---|---|---:|---|---|---|",
+        ]
+        for j in retried_jobs:
+            for ret in j["retries"]:
+                lines.append(
+                    f"| {j['id']} | {j['dataset']} | {j['replicate']} | {ret.get('retry_of')} | {ret.get('reason')} | {ret.get('at')} |"
+                )
     lines += [
         "",
         "## Batch accounting",
@@ -655,11 +784,52 @@ def main():
         help="Smoke tests only: unapproved tasks, untagged code",
     )
     parser.add_argument("--resume", action="store_true")
+    parser.add_argument(
+        "--controller-upgrade",
+        help="Reason for upgrading batch controller commit on resume",
+    )
+    parser.add_argument(
+        "--pause",
+        action="store_true",
+        help="Gracefully pause batch by preventing new study launches",
+    )
+    parser.add_argument(
+        "--list-connection-failures",
+        action="store_true",
+        help="List jobs eligible for one-time connection failure retry and exit",
+    )
+    parser.add_argument(
+        "--retry-connection-failures",
+        action="store_true",
+        help="Re-queue eligible connection failures once (requires --resume)",
+    )
     parser.add_argument("--worker", type=Path)
     args = parser.parse_args()
     if args.worker:
         worker(args.worker)
         return
+    if args.pause:
+        folder = args.out.resolve()
+        ctrl = folder / ".control"
+        ctrl.mkdir(parents=True, exist_ok=True)
+        (ctrl / "PAUSE").touch()
+        print(json.dumps({"pause_requested": str(folder)}), flush=True)
+        return
+    if args.list_connection_failures:
+        folder = args.out.resolve()
+        state_file = folder / "batch.json"
+        if not state_file.exists():
+            raise FileNotFoundError(f"No batch.json found in {folder}")
+        state = json.loads(state_file.read_text())
+        matching = [j for j in state.get("jobs", []) if is_connection_failure(j)]
+        for j in matching:
+            err = (j.get("result") or {}).get("message") or ""
+            print(f"{j['id']} ({j['dataset']} replicate {j['replicate']}): {err}")
+        return
+    if args.retry_connection_failures and not args.resume:
+        raise ValueError("--retry-connection-failures requires --resume")
+    if args.controller_upgrade and not args.resume:
+        raise ValueError("--controller-upgrade requires --resume")
     # New-batch defaults only. Resume still uses its recorded state; plans win below.
     ollama = args.provider == "ollama"
     if args.sdk_timeout_s is None:
@@ -707,7 +877,12 @@ def main():
         validate_evaluation(all_entries, args.data_root, args.allow_draft)
     plan = read_plan(args.comparison_plan) if args.comparison_plan else None
     if plan:
-        validate_plan(plan, identity, all_entries, runtime_identity(CODE))
+        validate_identity = (
+            {k: identity[k] for k in plan["identity"]}
+            if set(plan["identity"]).issubset(identity)
+            else identity
+        )
+        validate_plan(plan, validate_identity, all_entries, runtime_identity(CODE))
         # Configuration comes from the shared immutable plan, not per-node overrides.
         for name in ["provider", "model", "reasoning_effort"]:
             if getattr(args, name) is not None and getattr(args, name) != plan[name]:
@@ -742,18 +917,108 @@ def main():
     folder.mkdir(parents=True, exist_ok=True)
     (folder / ".control").mkdir(exist_ok=True)
     interrupted = [False]
-    signal.signal(signal.SIGINT, lambda *_: interrupted.__setitem__(0, True))
+
+    def _on_interrupt(*_):
+        interrupted[0] = True
+
+    signal.signal(signal.SIGINT, _on_interrupt)
+    if hasattr(signal, "SIGTERM"):
+        signal.signal(signal.SIGTERM, _on_interrupt)
     with FileLock(str(folder / ".control/controller.lock"), timeout=0):
         state_file = folder / "batch.json"
         if args.resume:
             state = json.loads(state_file.read_text())
-            if any(state[k] != identity[k] for k in identity):
-                raise ValueError(
-                    "Resume requires the original code, rails and controller version"
+            if state["code_commit"] != identity["code_commit"]:
+                raise ValueError("Resume requires the original code commit")
+            if state["rails"] != identity["rails"]:
+                raise ValueError("Resume requires the original rails version and hash")
+            curr_ctl = identity["controller_commit"]
+            stored_ctl = state.get("controller_commit")
+            if curr_ctl != stored_ctl:
+                curr_tree = identity.get("controller_tree")
+                stored_tree = state.get("controller_tree")
+                tree_unchanged = (
+                    stored_tree is not None
+                    and curr_tree is not None
+                    and curr_tree == stored_tree
                 )
+                if tree_unchanged:
+                    state.setdefault("controller_history", []).append({
+                        "from": stored_ctl,
+                        "to": curr_ctl,
+                        "at": utc(),
+                        "reason": "outside_scripts_commit",
+                        "host": get_host_info(),
+                    })
+                    state["controller_commit"] = curr_ctl
+                    state["controller_tree"] = curr_tree
+                elif args.controller_upgrade:
+                    state.setdefault("controller_history", []).append({
+                        "from": stored_ctl,
+                        "to": curr_ctl,
+                        "at": utc(),
+                        "reason": args.controller_upgrade,
+                        "host": get_host_info(),
+                    })
+                    state["controller_commit"] = curr_ctl
+                    state["controller_tree"] = curr_tree
+                else:
+                    raise ValueError(
+                        "Resume requires the original code, rails and controller version"
+                    )
+            else:
+                if "controller_tree" not in state and identity.get("controller_tree"):
+                    state["controller_tree"] = identity["controller_tree"]
+            pause_file = folder / ".control/PAUSE"
+            if pause_file.exists():
+                pause_file.unlink()
+            if state.get("status") == "paused":
+                state["status"] = "running"
+            pauses = state.setdefault("pauses", [])
+            if pauses and "resumed_at" not in pauses[-1]:
+                pauses[-1]["resumed_at"] = utc()
+                pauses[-1]["resumed_by_host"] = get_host_info()
+            if not state.get("comparison_plan_sha256"):
+                state["rate_limit_dir"] = str(folder / ".control/rate")
+            if args.retry_connection_failures:
+                for job in state["jobs"]:
+                    if is_connection_failure(job):
+                        if job.get("retries"):
+                            raise ValueError(
+                                f"Job {job['id']} already retried once; refusing second retry"
+                            )
+                        last_attempt = (
+                            job["attempts"][-1]
+                            if job.get("attempts")
+                            else "attempt-001"
+                        )
+                        retry_info = {
+                            "retry_of": last_attempt,
+                            "reason": "connection_failure",
+                            "at": utc(),
+                            "prior_result": job.get("result"),
+                        }
+                        job.setdefault("retries", []).append(retry_info)
+                        if "first_started" in job:
+                            job["first_started_original"] = job["first_started"]
+                            job.pop("first_started", None)
+                        job["status"] = "queued"
+                        job.pop("result", None)
+                        job.pop("stop_reason", None)
+                        job.pop("stopping_at", None)
+                        job.pop("pid", None)
+                        job.pop("process_start", None)
+                        job.pop("cgroup", None)
             if state.get("comparison_plan_sha256"):
                 stored = read_plan(folder / "comparison-plan.json")
-                validate_plan(stored, identity, all_entries, runtime_identity(CODE))
+                validate_identity = (
+                    {k: identity[k] for k in stored["identity"]}
+                    if set(stored["identity"]).issubset(identity)
+                    else identity
+                )
+                validate_plan(
+                    stored, validate_identity, all_entries, runtime_identity(CODE)
+                )
                 validate_state(stored, state)
                 if state["comparison_plan_sha256"] != stored["plan_sha256"]:
                     raise ValueError("Stored comparison identity differs")
@@ -1009,6 +1274,7 @@ def main():
             )
             probe.rmdir()
         processes = {}
+        network_outage_start = None
         while any(j["status"] not in TERMINAL for j in state["jobs"]):
             try:
                 unchanged = source_identity() == identity
@@ -1082,190 +1348,276 @@ def main():
             active = [
                 j for j in state["jobs"] if j["status"] in {"running", "stopping"}
             ]
+            pause_file = folder / ".control/PAUSE"
+            pause_requested = pause_file.exists()
             if interrupted[0] and not active:
                 state["status"] = "interrupted"
+                if network_outage_start is not None:
+                    outage_end = time.time()
+                    state.setdefault("network_waits", []).append({
+                        "start": datetime.fromtimestamp(
+                            network_outage_start, timezone.utc
+                        ).isoformat(),
+                        "end": datetime.fromtimestamp(
+                            outage_end, timezone.utc
+                        ).isoformat(),
+                        "seconds": round(outage_end - network_outage_start, 2),
+                        "endpoint": state["endpoint"],
+                    })
                 write_report(folder, state)
                 return
-            if not interrupted[0]:
-                launched = []
-                for job in choose_next(state["jobs"], active, state["concurrency"]):
-                    if (
-                        job.get("first_started")
-                        and time.time() - job["first_started"] > state["deadline_s"]
-                    ):
-                        job["stop_reason"] = "study_deadline"
-                        finish_job(folder, job, by_id[job["dataset"]])
+            if pause_requested and not active and not interrupted[0]:
+                state["status"] = "paused"
+                state.setdefault("pauses", []).append({
+                    "paused_at": utc(),
+                    "host": get_host_info(),
+                })
+                if network_outage_start is not None:
+                    outage_end = time.time()
+                    state.setdefault("network_waits", []).append({
+                        "start": datetime.fromtimestamp(
+                            network_outage_start, timezone.utc
+                        ).isoformat(),
+                        "end": datetime.fromtimestamp(
+                            outage_end, timezone.utc
+                        ).isoformat(),
+                        "seconds": round(outage_end - network_outage_start, 2),
+                        "endpoint": state["endpoint"],
+                    })
+                write_report(folder, state)
+                print(json.dumps({"status": "paused"}), flush=True)
+                return
+            if not interrupted[0] and not pause_requested:
+                candidates = choose_next(state["jobs"], active, state["concurrency"])
+                if candidates:
+                    if not probe_endpoint(state["endpoint"]):
+                        if network_outage_start is None:
+                            network_outage_start = time.time()
+                            print(
+                                json.dumps({
+                                    "network_status": "endpoint_unreachable",
+                                    "endpoint": state["endpoint"],
+                                }),
+                                flush=True,
+                            )
+                        for _ in range(30):
+                            if interrupted[0] or (folder / ".control/PAUSE").exists():
+                                break
+                            time.sleep(1)
                         continue
-                    if shutil.disk_usage(folder).free < disk_needed(job):
-                        # Wait for running studies to finish and be pruned.
-                        continue
-                    entry = by_id[job["dataset"]]
-                    if (
-                        hashlib.sha256(
-                            data_file(entry, state.get("data_root")).read_bytes()
-                        ).hexdigest()
-                        != entry["sha256"]
-                    ):
-                        raise ValueError(
-                            "Development source hash differs from manifest"
+                    elif network_outage_start is not None:
+                        outage_end = time.time()
+                        wait_entry = {
+                            "start": datetime.fromtimestamp(
+                                network_outage_start, timezone.utc
+                            ).isoformat(),
+                            "end": datetime.fromtimestamp(
+                                outage_end, timezone.utc
+                            ).isoformat(),
+                            "seconds": round(outage_end - network_outage_start, 2),
+                            "endpoint": state["endpoint"],
+                        }
+                        state.setdefault("network_waits", []).append(wait_entry)
+                        print(
+                            json.dumps({
+                                "network_status": "restored",
+                                "waited_s": wait_entry["seconds"],
+                            }),
+                            flush=True,
                         )
-                    number = len(job["attempts"]) + 1
-                    relative = Path("studies") / job["id"] / f"attempt-{number:03d}"
-                    attempt = folder / relative
-                    attempt.parent.mkdir(parents=True, exist_ok=True)
-                    job["attempts"].append(str(relative))
-                    job.setdefault("first_started", time.time())
-                    cfg = {
-                        "measurement_arm": "worker",
-                        "rails_enabled": state["rails_enabled"],
-                        "providers": {
-                            "development": {
-                                "kind": provider_kind(provider_name),
-                                "base_url": state["endpoint"],
-                                "api_key_env": key_env,
-                                "timeout_s": state.get("sdk_timeout_s", 90),
-                                "structured_outputs": state["structured_outputs"],
-                                "call_deadline_s": state["model_call_deadline_s"],
-                                "requests_per_minute": state["rpm"],
-                                "rate_limit_dir": state["rate_limit_dir"],
-                            }
-                        },
-                        "roles": {
-                            role: {
-                                "provider": "development",
-                                "model": state["model"],
-                                "temperature": state.get("temperature", 0),
-                                "max_output_tokens": state.get(
-                                    "max_output_tokens", 16384
-                                ),
-                                **(
-                                    {"reasoning_effort": state["reasoning_effort"]}
-                                    if state.get("reasoning_effort")
-                                    else {}
-                                ),
-                            }
-                            for role in ["navigator", "worker"]
-                        },
-                        "budgets": {
-                            "turn_max_usd": None,
-                            "session_max_usd": None,
-                            "worker_max_attempts": 3,
-                        },
-                        "sandbox": {"allow_level_b": False},
-                    }
-                    env = {
-                        "XDG_CONFIG_HOME": str(
-                            folder / ".control/config" / job["id"] / str(number)
-                        ),
-                        "UV_OFFLINE": "1",
-                        **{
-                            key: str(state["threads"])
-                            for key in [
-                                "OMP_NUM_THREADS",
-                                "OPENBLAS_NUM_THREADS",
-                                "MKL_NUM_THREADS",
-                                "NUMEXPR_NUM_THREADS",
-                                "VECLIB_MAXIMUM_THREADS",
-                            ]
-                        },
-                    }
-                    cpus = (
-                        sorted(os.sched_getaffinity(0))
-                        if hasattr(os, "sched_getaffinity")
-                        else []
-                    )
-                    offset = state["jobs"].index(job) * state["threads"]
-                    affinity = (
-                        [
-                            cpus[(offset + n) % len(cpus)]
-                            for n in range(state["threads"])
-                        ]
-                        if cpus
-                        else []
-                    )
-                    cgroup = None
-                    if memory_mib:
-                        from study_resources import prepare_group
+                        network_outage_start = None
 
-                        group_name = (
-                            "mlca-"
-                            + hashlib.sha256(
-                                (str(folder) + job["id"] + str(number)).encode()
-                            ).hexdigest()[:24]
-                        )
-                        try:
-                            cgroup = prepare_group(
-                                args.cgroup_root, group_name, memory_mib
-                            )
-                        except (OSError, ValueError) as exc:
-                            # Retain the failed study without abandoning other active workers.
-                            atomic_json(
-                                attempt / "worker-result.json",
-                                {
-                                    "status": "failed",
-                                    "category": "resource_setup_error",
-                                    "error_type": type(exc).__name__,
-                                },
-                            )
-                            job["cgroup"] = None
-                            finish_job(folder, job, entry)
+                    launched = []
+                    for job in candidates:
+                        if (
+                            job.get("first_started")
+                            and time.time() - job["first_started"] > state["deadline_s"]
+                        ):
+                            job["stop_reason"] = "study_deadline"
+                            finish_job(folder, job, by_id[job["dataset"]])
                             continue
-                    state["memory_limit"] = "cgroup_v2" if cgroup else "not_enforced"
-                    spec = {
-                        "data": str(data_file(entry, state.get("data_root"))),
-                        "brief": (ROOT / entry["brief_file"]).read_text().strip()
-                        if entry.get("brief_file")
-                        else "",
-                        "external": str(Path(state["data_root"]) / entry["external"])
-                        if entry.get("external")
-                        else None,
-                        "attempt": str(attempt),
-                        "exclude_columns": entry.get("evaluation_only", []),
-                        "config": cfg,
-                        "environment": env,
-                        "affinity": affinity,
-                        "memory_limit_mib": memory_mib,
-                        "cgroup": str(cgroup) if cgroup else None,
-                    }
-                    spec_file = folder / ".control" / f"{job['id']}-{number:03d}.json"
-                    atomic_json(spec_file, spec)
-                    log = (attempt.parent / f"worker-{number:03d}.log").open("w")
-                    proc = subprocess.Popen(
-                        [
-                            sys.executable,
-                            str(Path(__file__).resolve()),
-                            "--out",
-                            str(folder),
-                            "--worker",
-                            str(spec_file),
-                        ],
-                        cwd=ROOT,
-                        env={**os.environ, **env},
-                        stdout=log,
-                        stderr=subprocess.STDOUT,
-                        start_new_session=True,
-                    )
-                    log.close()
-                    job.update(
-                        status="running",
-                        pid=proc.pid,
-                        process_start=start_token(proc.pid),
-                        cgroup=str(cgroup) if cgroup else None,
-                    )
-                    processes[job["id"]] = proc
-                    launched.append(job["id"])
-                if (
-                    not active
-                    and not launched
-                    and any(j["status"] == "queued" for j in state["jobs"])
-                ):
-                    # Nothing running can free space: stop clearly instead of waiting forever.
-                    state.update(status="stopped", stop_reason="insufficient_disk")
-                    write_report(folder, state)
-                    print(json.dumps({"stopped": "insufficient_disk"}), flush=True)
-                    return
+                        if shutil.disk_usage(folder).free < disk_needed(job):
+                            # Wait for running studies to finish and be pruned.
+                            continue
+                        entry = by_id[job["dataset"]]
+                        if (
+                            hashlib.sha256(
+                                data_file(entry, state.get("data_root")).read_bytes()
+                            ).hexdigest()
+                            != entry["sha256"]
+                        ):
+                            raise ValueError(
+                                "Development source hash differs from manifest"
+                            )
+                        number = len(job["attempts"]) + 1
+                        relative = Path("studies") / job["id"] / f"attempt-{number:03d}"
+                        attempt = folder / relative
+                        attempt.parent.mkdir(parents=True, exist_ok=True)
+                        job["attempts"].append(str(relative))
+                        job.setdefault("first_started", time.time())
+                        cfg = {
+                            "measurement_arm": "worker",
+                            "rails_enabled": state["rails_enabled"],
+                            "providers": {
+                                "development": {
+                                    "kind": provider_kind(provider_name),
+                                    "base_url": state["endpoint"],
+                                    "api_key_env": key_env,
+                                    "timeout_s": state.get("sdk_timeout_s", 90),
+                                    "structured_outputs": state["structured_outputs"],
+                                    "call_deadline_s": state["model_call_deadline_s"],
+                                    "requests_per_minute": state["rpm"],
+                                    "rate_limit_dir": state["rate_limit_dir"],
+                                }
+                            },
+                            "roles": {
+                                role: {
+                                    "provider": "development",
+                                    "model": state["model"],
+                                    "temperature": state.get("temperature", 0),
+                                    "max_output_tokens": state.get(
+                                        "max_output_tokens", 16384
+                                    ),
+                                    **(
+                                        {"reasoning_effort": state["reasoning_effort"]}
+                                        if state.get("reasoning_effort")
+                                        else {}
+                                    ),
+                                }
+                                for role in ["navigator", "worker"]
+                            },
+                            "budgets": {
+                                "turn_max_usd": None,
+                                "session_max_usd": None,
+                                "worker_max_attempts": 3,
+                            },
+                            "sandbox": {"allow_level_b": False},
+                        }
+                        env = {
+                            "XDG_CONFIG_HOME": str(
+                                folder / ".control/config" / job["id"] / str(number)
+                            ),
+                            "UV_OFFLINE": "1",
+                            **{
+                                key: str(state["threads"])
+                                for key in [
+                                    "OMP_NUM_THREADS",
+                                    "OPENBLAS_NUM_THREADS",
+                                    "MKL_NUM_THREADS",
+                                    "NUMEXPR_NUM_THREADS",
+                                    "VECLIB_MAXIMUM_THREADS",
+                                ]
+                            },
+                        }
+                        cpus = (
+                            sorted(os.sched_getaffinity(0))
+                            if hasattr(os, "sched_getaffinity")
+                            else []
+                        )
+                        offset = state["jobs"].index(job) * state["threads"]
+                        affinity = (
+                            [
+                                cpus[(offset + n) % len(cpus)]
+                                for n in range(state["threads"])
+                            ]
+                            if cpus
+                            else []
+                        )
+                        cgroup = None
+                        if memory_mib:
+                            from study_resources import prepare_group
+
+                            group_name = (
+                                "mlca-"
+                                + hashlib.sha256(
+                                    (str(folder) + job["id"] + str(number)).encode()
+                                ).hexdigest()[:24]
+                            )
+                            try:
+                                cgroup = prepare_group(
+                                    args.cgroup_root, group_name, memory_mib
+                                )
+                            except (OSError, ValueError) as exc:
+                                # Retain the failed study without abandoning other active workers.
+                                atomic_json(
+                                    attempt / "worker-result.json",
+                                    {
+                                        "status": "failed",
+                                        "category": "resource_setup_error",
+                                        "error_type": type(exc).__name__,
+                                    },
+                                )
+                                job["cgroup"] = None
+                                finish_job(folder, job, entry)
+                                continue
+                        state["memory_limit"] = "cgroup_v2" if cgroup else "not_enforced"
+                        spec = {
+                            "host": get_host_info(),
+                            "controller_commit": state["controller_commit"],
+                            "data": str(data_file(entry, state.get("data_root"))),
+                            "brief": (ROOT / entry["brief_file"]).read_text().strip()
+                            if entry.get("brief_file")
+                            else "",
+                            "external": str(Path(state["data_root"]) / entry["external"])
+                            if entry.get("external")
+                            else None,
+                            "attempt": str(attempt),
+                            "exclude_columns": entry.get("evaluation_only", []),
+                            "config": cfg,
+                            "environment": env,
+                            "affinity": affinity,
+                            "memory_limit_mib": memory_mib,
+                            "cgroup": str(cgroup) if cgroup else None,
+                        }
+                        spec_file = folder / ".control" / f"{job['id']}-{number:03d}.json"
+                        atomic_json(spec_file, spec)
+                        log = (attempt.parent / f"worker-{number:03d}.log").open("w")
+                        proc = subprocess.Popen(
+                            [
+                                sys.executable,
+                                str(Path(__file__).resolve()),
+                                "--out",
+                                str(folder),
+                                "--worker",
+                                str(spec_file),
+                            ],
+                            cwd=ROOT,
+                            env={**os.environ, **env},
+                            stdout=log,
+                            stderr=subprocess.STDOUT,
+                            start_new_session=True,
+                        )
+                        log.close()
+                        job.update(
+                            status="running",
+                            pid=proc.pid,
+                            process_start=start_token(proc.pid),
+                            cgroup=str(cgroup) if cgroup else None,
+                        )
+                        processes[job["id"]] = proc
+                        launched.append(job["id"])
+                    if (
+                        not active
+                        and not launched
+                        and any(j["status"] == "queued" for j in state["jobs"])
+                    ):
+                        # Nothing running can free space: stop clearly instead of waiting forever.
+                        state.update(status="stopped", stop_reason="insufficient_disk")
+                        write_report(folder, state)
+                        print(json.dumps({"stopped": "insufficient_disk"}), flush=True)
+                        return
             write_report(folder, state)
             time.sleep(3)
+        if network_outage_start is not None:
+            outage_end = time.time()
+            state.setdefault("network_waits", []).append({
+                "start": datetime.fromtimestamp(
+                    network_outage_start, timezone.utc
+                ).isoformat(),
+                "end": datetime.fromtimestamp(outage_end, timezone.utc).isoformat(),
+                "seconds": round(outage_end - network_outage_start, 2),
+                "endpoint": state["endpoint"],
+            })
         state.update(status="finished", ended_at=utc())
         write_report(folder, state)
 
