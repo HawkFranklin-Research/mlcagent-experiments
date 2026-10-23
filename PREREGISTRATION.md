@@ -82,7 +82,10 @@ original and re-scored files are both kept (EVALUATION_SUMMARY.md, "Deviation").
   investigated as a possible engine bug; rails-0.14 for generic Worker failures.
 - Development: deepseek-flash (direct DeepSeek), reasoning effort low; batch-01 on all 15 development tables;
   pooled 2-of-3 acceptance; caps 6 batches or 3 days; no ablation.
-- Freeze: tag `freeze-v2` (commit and rails digest recorded here at the freeze).
+- Freeze (2026-10-23): tag `freeze-v2` = `7dc0aedfb674e102f3cc96a92931a1a382eaaea0`, rails-0.15, rails SHA-256
+  `4fe378883a4cd7f8aa6b626dc5943d441a382d89e0be3081714bc0023debf03b`. Acceptance: the 12 v1 tables keep theirs
+  (v2 batch-01 regression check, 9/12); GLI-85, SMK-CAN-187 and GCM 3/3 each in v2 batch-02 (`bench/dev-loop-v2/batch-02`).
+  Full offline suite on the tagged commit: 545 passed, 1 skipped.
 - Evaluation: eval-02 repeats eval-01 exactly (tasks, briefs, data revision, model, settings, 3 runs) on freeze-v2.
   The second version is reported as a later version whose development was informed by eval-01's failures.
 - Stopping rule (author, 2026-10-23): the 12 v1 tables keep their acceptance (batch-01 is their regression check); the 3 wide

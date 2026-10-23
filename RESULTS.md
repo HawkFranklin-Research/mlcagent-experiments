@@ -61,7 +61,7 @@ These are the sets the paper reports. Model throughout: DeepSeek V4.1 Flash, tem
 | 9 | Development v2, batch-01 | `bench/dev-loop-v2/batch-01` | rails-0.14 | 15 | 10 | 12 tables plus 3 wide gene-expression tables (GLI-85, SMK-CAN-187, GCM). |
 | — | Acceptance, `freeze-v2`, eval-02 | `bench/dev-loop-v2/…`, `bio-bench/runs/deepseek-flash/eval-02` | — | — | — | To come. eval-02 repeats eval-01 exactly. |
 
-**Total in the main study so far:** 194 agent studies (sets 1–6, 8, 9).
+**Total in the main study so far:** 203 agent studies (sets 1–6, 8–10).
 
 ## 4. Why there are two full acceptance batches (36 + 36)
 
