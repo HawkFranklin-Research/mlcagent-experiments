@@ -160,7 +160,7 @@ Batch-01: 10/15 successful (`bench/dev-loop-v2/batch-01/REPORT.md`).
 
 ```bash
 git -C ../mlca-revized checkout freeze-v2
-python scripts/run_batch.py --role evaluation --data-root data_prep/hf-111de16 \
+~/.local/bin/mlca-with-deepseek-key ../mlca-revized/.venv/bin/python scripts/run_batch.py --role evaluation --data-root data_prep/hf-111de16 \
   --out bio-bench/runs/deepseek-flash/eval-02 --batch 1 --model deepseek-flash --provider deepseek \
   --reasoning-effort low --replicates 3 --concurrency 2 --threads 2 --max-output-tokens 32768 --rpm 60
 git -C ../mlca-revized checkout master
