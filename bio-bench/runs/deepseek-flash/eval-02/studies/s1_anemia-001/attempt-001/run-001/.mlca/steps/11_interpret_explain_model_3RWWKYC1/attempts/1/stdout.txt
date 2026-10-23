@@ -1,0 +1,3 @@
+val rows=106 train rows=320 features=5
+permuted=5 repeats=20
+top_feature=Hemoglobin

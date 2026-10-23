@@ -1,0 +1,4 @@
+train rows: 320
+raw feature columns: 5
+preprocessed feature count: 5
+selected k: 5

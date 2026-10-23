@@ -1,0 +1,2 @@
+val_rows=106 feat=4 models=2
+best=logistic_GEE82G8E roc_auc=0.5546

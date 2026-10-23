@@ -1,0 +1,1 @@
+train=(320, 5) feats=4 min_prop=0.463 done

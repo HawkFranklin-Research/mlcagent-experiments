@@ -1,0 +1,4 @@
+rows=534, features=5, numeric=5, categorical=0
+placeholders found in 0 columns: []
+per-class rows included: True
+distributions rows: 15

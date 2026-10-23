@@ -1,0 +1,3 @@
+rows=534 targets=['Result']
+classes=2 under_5pct=0
+flagged=none

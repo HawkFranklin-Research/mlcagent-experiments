@@ -1,0 +1,2 @@
+test rows=108 features=5
+roc_auc=1 ci=[1, 1]

@@ -1,0 +1,2 @@
+train rows=320 features=5
+steps=['selector_pipeline', 'model']

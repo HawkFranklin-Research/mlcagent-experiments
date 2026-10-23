@@ -1,0 +1,3 @@
+Placeholder tokens: none
+Features: 5 numeric, 0 categorical; dropped 0 high-card/key-like
+Encoded width 5; val shape (106, 5)
