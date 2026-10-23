@@ -1,0 +1,3 @@
+numeric=16063 categorical=1
+distributions rows=16 cols=12
+saved distributions.csv

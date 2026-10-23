@@ -1,0 +1,3 @@
+features: numeric=16063, categorical=0
+placeholders: none
+distributions rows: 30

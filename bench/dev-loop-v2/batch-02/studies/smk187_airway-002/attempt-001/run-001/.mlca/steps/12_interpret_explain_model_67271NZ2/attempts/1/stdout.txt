@@ -1,0 +1,3 @@
+train rows=112 val rows=37 primary_metric=roc_auc
+raw feature schema size=19993
+no reliable importance ranking available

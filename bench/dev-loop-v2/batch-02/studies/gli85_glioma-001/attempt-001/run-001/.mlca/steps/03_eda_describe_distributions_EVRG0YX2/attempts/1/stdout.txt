@@ -1,0 +1,2 @@
+rows=85 features=22284 numeric=22283 categorical=0
+distributions rows=18 groups=3

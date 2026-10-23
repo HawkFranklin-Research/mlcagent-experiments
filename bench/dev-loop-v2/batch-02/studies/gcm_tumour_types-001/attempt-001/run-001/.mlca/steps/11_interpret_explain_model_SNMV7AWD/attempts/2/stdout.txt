@@ -1,0 +1,3 @@
+train=109 val=36 features=16063
+method=frozen_logistic_coef_ ranked=20 repeats=0
+top_feature=AA019475_at importance=0.5389

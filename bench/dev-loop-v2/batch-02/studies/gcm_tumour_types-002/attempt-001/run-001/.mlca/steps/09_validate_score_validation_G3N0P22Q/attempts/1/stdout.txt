@@ -1,0 +1,3 @@
+validation rows=36, features=16063
+best_model=logistic
+roc_auc_ovr val=0.8445

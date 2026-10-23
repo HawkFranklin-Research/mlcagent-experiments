@@ -1,0 +1,43 @@
+id: tabular_classification
+version: 0.3.0
+title: Tabular Classification
+description: 'Binary or multiclass classification from one table. Baseline: regularised
+  logistic regression; one prespecified alternative (gradient boosting). Primary metric:
+  ROC AUC (macro one-vs-rest if multiclass), chosen on validation, confirmed once
+  on test.'
+brief_questions:
+- id: aim
+  text: 'Aim in one sentence: what is predicted, for whom, and why?'
+- id: target
+  text: Which column do you want to predict? Leave blank to decide during Onboard.
+- id: unit
+  text: What is one row (patient, sample, visit)? Can a subject have several rows?
+events:
+- onboard
+- data
+- eda
+- split
+- preprocess
+- features
+- model
+- validate
+- test
+- interpret
+- report
+transitions:
+  loops:
+  - from: validate
+    to:
+    - preprocess
+    - features
+    - model
+  goto: []
+style: default
+default_runtime_packages:
+- numpy
+- pandas
+- scipy
+- scikit-learn
+- matplotlib
+- seaborn
+- pyarrow

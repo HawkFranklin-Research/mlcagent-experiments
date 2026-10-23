@@ -1,0 +1,4 @@
+train (50, 22284), val (16, 22284)
+raw features 22283
+best alternative: roc_auc=0.8182
+saved validation_metrics.csv

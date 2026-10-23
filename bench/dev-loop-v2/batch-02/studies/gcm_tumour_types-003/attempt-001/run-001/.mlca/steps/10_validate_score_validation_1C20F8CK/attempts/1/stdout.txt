@@ -1,0 +1,2 @@
+train=(109, 16064) val=(36, 16064) features=16063
+best_model=08_model_train_logistic_SXT0E7SD roc_auc_ovr=0.8445

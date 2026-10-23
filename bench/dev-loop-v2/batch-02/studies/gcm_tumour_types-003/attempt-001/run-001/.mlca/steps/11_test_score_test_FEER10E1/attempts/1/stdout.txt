@@ -1,0 +1,3 @@
+selected=latest_model features=16063 test_rows=45
+roc_auc_ovr=0.7802 CI=(0.7047, 0.8652)
+f1_macro=0.3296 CI=(0.2194, 0.399)

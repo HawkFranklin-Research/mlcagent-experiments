@@ -1,0 +1,3 @@
+Target tumour_type: 190 rows, 14 classes
+Low-frequency classes (<5%): 0
+Saved target_counts.csv

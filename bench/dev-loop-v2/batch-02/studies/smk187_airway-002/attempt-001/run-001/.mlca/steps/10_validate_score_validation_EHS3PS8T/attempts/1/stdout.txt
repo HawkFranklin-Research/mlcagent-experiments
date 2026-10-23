@@ -1,0 +1,2 @@
+train=(112, 19994), val=(37, 19994), features=19993
+primary=roc_auc, best_model=08_model_train_logistic_1JG6Z9GW, best_val=0.6053

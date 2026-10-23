@@ -1,0 +1,5 @@
+Traceback (most recent call last):
+  File "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/bench/dev-loop-v2/batch-02/studies/smk187_airway-002/attempt-001/run-001/.mlca/steps/08_model_train_logistic_1JG6Z9GW/attempts/1/script.py", line 21, in <module>
+    sel_in = list(getattr(sel, 'feature_names_in_', []) or [])
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: The truth value of an array with more than one element is ambiguous. Use a.any() or a.all()

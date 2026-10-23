@@ -1,0 +1,30 @@
+id: score_validation
+event: validate
+title: Score candidates on validation rows
+params: {}
+prompt: "Do: compare candidates by _protocol task.primary_metric with its correct optimization direction.\
+  \ Binary: ROC AUC, PR AUC, balanced accuracy and Brier score; choose Youden J threshold on validation.\
+  \ Multiclass: macro one-vs-rest ROC AUC and macro F1 with aligned model classes; no binary threshold.\n\
+  Save: validation_metrics.csv (model, metric, value, threshold; threshold empty for multiclass).\n\
+  Record: the exact declared primary_metric name on val for each model; fact best_model; best_val_roc_auc\
+  \ only for the corresponding validation AUC, citing validation_metrics.csv.\n Read the declared\
+  \ metric from _protocol['task']['primary_metric']; compute and record that exact name, not a template\
+  \ default. Other listed metrics are supplementary. Use its correct optimization direction and compare\
+  \ candidates only on validation; test scores never select a model."
+inputs:
+- ref: train
+- ref: val
+- ref: prior_outputs
+outputs:
+- name: validation_metrics.csv
+  kind: table
+  required: true
+fact_candidates:
+- best_model
+- best_val_roc_auc
+reads_test: false
+timeout_s: 300
+methods_text: 'Score candidates on validation rows: Score the frozen candidates using the task-specific
+  declared primary metric and its direction; supplementary metrics do not replace it. Fit only on
+  training rows, select on validation, and evaluate the frozen choice on test.'
+builtin: null

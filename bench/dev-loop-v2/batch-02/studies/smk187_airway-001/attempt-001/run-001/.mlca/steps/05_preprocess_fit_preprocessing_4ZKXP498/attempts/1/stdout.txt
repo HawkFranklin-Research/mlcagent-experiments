@@ -1,0 +1,2 @@
+features=19993 numeric=19993 categorical=0 dropped_keylike=0 dropped_highcard=0
+train_shape=(112, 19993) val_transformed_shape=(37, 19993)

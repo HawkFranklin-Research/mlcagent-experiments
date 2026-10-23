@@ -1,0 +1,3 @@
+train rows=112, candidate features=19993, used=19993
+transformed features=19993, k=20
+saved selector.pkl

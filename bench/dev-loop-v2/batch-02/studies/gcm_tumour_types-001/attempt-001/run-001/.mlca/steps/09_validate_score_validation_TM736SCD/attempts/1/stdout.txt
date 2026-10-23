@@ -1,0 +1,2 @@
+primary=roc_auc_ovr models=2 best=logistic
+best_val_roc_auc=0.8445

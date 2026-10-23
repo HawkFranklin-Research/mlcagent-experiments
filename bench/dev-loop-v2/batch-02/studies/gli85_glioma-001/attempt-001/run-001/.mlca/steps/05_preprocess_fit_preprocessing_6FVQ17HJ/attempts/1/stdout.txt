@@ -1,0 +1,3 @@
+features=22283 numeric=22283 categorical=0 high_card_dropped=0
+placeholder_cols=0 excluded_derivations=0
+transformed train_rows=50 val_rows=16 output_cols=22283

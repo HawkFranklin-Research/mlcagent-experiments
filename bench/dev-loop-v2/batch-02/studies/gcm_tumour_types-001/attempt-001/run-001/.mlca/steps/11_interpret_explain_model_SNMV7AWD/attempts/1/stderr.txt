@@ -1,0 +1,4 @@
+Traceback (most recent call last):
+  File "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/bench/dev-loop-v2/batch-02/studies/gcm_tumour_types-001/attempt-001/run-001/.mlca/steps/11_interpret_explain_model_SNMV7AWD/attempts/1/script.py", line 75, in <module>
+    raise RuntimeError("no reliable frozen feature importance available")
+RuntimeError: no reliable frozen feature importance available

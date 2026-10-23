@@ -1,0 +1,2 @@
+base: Pipeline steps: ['selector', 'clf']
+n_features: 22283 smallest pct: 0.3 val auc: 0.8182

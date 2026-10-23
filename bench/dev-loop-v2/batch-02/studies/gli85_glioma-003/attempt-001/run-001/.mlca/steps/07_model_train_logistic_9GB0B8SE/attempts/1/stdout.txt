@@ -1,0 +1,2 @@
+features=22283 train_rows=50 sel_alone=True
+pos_label=2 classes=[np.int64(1), np.int64(2)] val_auc=0.7455

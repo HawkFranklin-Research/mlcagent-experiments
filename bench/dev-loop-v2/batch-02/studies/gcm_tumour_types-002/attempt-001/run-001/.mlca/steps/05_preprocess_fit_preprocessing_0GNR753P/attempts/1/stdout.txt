@@ -1,0 +1,5 @@
+features: 16063 numeric: 16063 categorical: 0 key_like: 0 high_card_dropped: 0
+excluded target-derived: none
+placeholders: none
+encoded width estimate: 16063 sparse: True
+val transformed shape: (36, 16063)

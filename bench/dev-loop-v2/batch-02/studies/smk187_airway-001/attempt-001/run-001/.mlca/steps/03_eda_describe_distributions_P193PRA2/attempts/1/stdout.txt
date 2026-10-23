@@ -1,0 +1,2 @@
+placeholder columns: 0
+rows=59979 numeric=19993 categorical=0 classes=2

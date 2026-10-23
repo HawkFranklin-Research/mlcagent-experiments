@@ -1,0 +1,4 @@
+placeholder columns: 0
+derivation exclusions: none
+val transformed: 37 rows x 19993 cols
+saved preprocessor: numeric=19993 categorical=0 dropped=0

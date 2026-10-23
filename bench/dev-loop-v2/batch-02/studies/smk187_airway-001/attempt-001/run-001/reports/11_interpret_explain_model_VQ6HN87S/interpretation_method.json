@@ -1,0 +1,1 @@
+{"method": "coefficient_ranked_topK_permutation", "n_permuted": 50, "n_repeats": 5, "scoring": "roc_auc"}

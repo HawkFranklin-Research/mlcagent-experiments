@@ -1,0 +1,2 @@
+test rows=38 model=07_model_train_logistic_YKXH5QEQ threshold=0.1886
+roc_auc=0.7861 CI=(0.6023,0.9316)

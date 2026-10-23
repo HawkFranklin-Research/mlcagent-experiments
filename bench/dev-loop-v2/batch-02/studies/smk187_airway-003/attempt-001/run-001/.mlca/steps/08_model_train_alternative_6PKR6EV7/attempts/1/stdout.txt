@@ -1,0 +1,1 @@
+val roc_auc=0.5058 features=19993 class_weight=None

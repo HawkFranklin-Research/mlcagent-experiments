@@ -1,0 +1,3 @@
+Feature columns: 16063 numeric, 0 categorical
+Train shape: (109, 16063), val shape: (36, 16063)
+Transformed val shape: (36, 16063)

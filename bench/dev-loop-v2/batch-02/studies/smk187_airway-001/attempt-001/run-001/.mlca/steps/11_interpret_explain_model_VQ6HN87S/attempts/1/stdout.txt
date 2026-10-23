@@ -1,0 +1,3 @@
+rows train=112 val=37 metric=roc_auc
+n_features=19993 base_roc_auc=0.5058
+top_feature=att2 mean_drop=0.0000

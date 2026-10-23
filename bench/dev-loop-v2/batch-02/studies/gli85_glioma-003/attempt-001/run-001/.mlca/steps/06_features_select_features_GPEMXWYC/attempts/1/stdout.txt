@@ -1,0 +1,2 @@
+n_in=22283 k=20 n_rows=50
+pre_type=ColumnTransformer has_selector=False

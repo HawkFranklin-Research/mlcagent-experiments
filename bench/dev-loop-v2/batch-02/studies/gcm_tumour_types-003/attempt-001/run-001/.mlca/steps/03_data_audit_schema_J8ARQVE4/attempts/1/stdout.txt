@@ -1,0 +1,2 @@
+placeholders: 0 text columns contain placeholder tokens
+rows=190 cols=16064 missing_total=0

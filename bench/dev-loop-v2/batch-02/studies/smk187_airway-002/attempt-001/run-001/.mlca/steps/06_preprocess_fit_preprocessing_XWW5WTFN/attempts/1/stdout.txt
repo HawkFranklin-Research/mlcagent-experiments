@@ -1,0 +1,4 @@
+Placeholder tokens [] in 0 text columns
+No exact-derivation features excluded
+features 19993 (numeric 19993, categorical 0, dropped 0)
+val transformed (37, 19993)

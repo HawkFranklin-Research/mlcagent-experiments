@@ -1,0 +1,8 @@
+[build-system]
+requires=["hatchling"]
+build-backend="hatchling.build"
+[project]
+name="mlca-runtime"
+version="0.2.0b2"
+[tool.hatch.build.targets.wheel]
+packages=["mlca_runtime"]

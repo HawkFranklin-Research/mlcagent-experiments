@@ -1,0 +1,3 @@
+train (109, 16064), val (36, 16064)
+n_features=16063
+method=primary_coef; frozen_latest_lacks_intrinsic_importance; ranked=20; top=num__AA019475_at

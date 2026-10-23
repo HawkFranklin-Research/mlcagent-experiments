@@ -1,0 +1,3 @@
+train rows: 50, features used: 22283
+pipeline steps: ['selector', 'model']
+saved model.pkl

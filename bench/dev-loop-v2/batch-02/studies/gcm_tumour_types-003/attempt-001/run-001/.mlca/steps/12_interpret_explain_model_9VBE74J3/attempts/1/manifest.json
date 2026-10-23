@@ -1,0 +1,1 @@
+{"facts": [], "fits": [], "metrics": [], "outputs": [{"caption": "method=none; limitation=no reliable feature importance", "kind": "table", "name": "interpretation.csv"}, {"caption": "method=none; limitation=no reliable feature importance", "kind": "table", "name": "interpretation.parquet"}]}

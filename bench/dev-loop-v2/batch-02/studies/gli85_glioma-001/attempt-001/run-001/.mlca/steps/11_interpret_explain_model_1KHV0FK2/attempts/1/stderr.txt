@@ -1,0 +1,15 @@
+Traceback (most recent call last):
+  File "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/bench/dev-loop-v2/batch-02/studies/gli85_glioma-001/attempt-001/run-001/.mlca/steps/11_interpret_explain_model_1KHV0FK2/attempts/1/script.py", line 77, in <module>
+    base = score_xy(X)
+  File "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/bench/dev-loop-v2/batch-02/studies/gli85_glioma-001/attempt-001/run-001/.mlca/steps/11_interpret_explain_model_1KHV0FK2/attempts/1/script.py", line 74, in score_xy
+    return roc_auc_score(y, proba[:, 1], pos_label=classes[1] if len(classes) > 1 else 1)
+  File "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/bench/dev-loop-v2/batch-02/studies/gli85_glioma-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/utils/_param_validation.py", line 196, in wrapper
+    params = func_sig.bind(*args, **kwargs)
+  File "/home/prime/miniconda3/lib/python3.13/inspect.py", line 3306, in bind
+    return self._bind(args, kwargs)
+           ~~~~~~~~~~^^^^^^^^^^^^^^
+  File "/home/prime/miniconda3/lib/python3.13/inspect.py", line 3295, in _bind
+    raise TypeError(
+        'got an unexpected keyword argument {arg!r}'.format(
+            arg=next(iter(kwargs))))
+TypeError: got an unexpected keyword argument 'pos_label'

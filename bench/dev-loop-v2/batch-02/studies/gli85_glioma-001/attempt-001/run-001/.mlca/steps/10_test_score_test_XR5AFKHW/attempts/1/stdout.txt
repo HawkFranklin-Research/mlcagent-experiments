@@ -1,0 +1,2 @@
+selected=08_model_train_alternative_6QT8CRT5/alternative_model.pkl test_rows=19 features=22283
+roc_auc=0.9038 ci=(0.7332,1)

@@ -1,0 +1,3 @@
+rows=187 cols=19994
+missing_total=0
+schema_rows=19994

@@ -1,0 +1,1 @@
+{"limitation": "No reliable importance ranking (no coef_/feature_importances_ mappable to raw schema) and >500 features preclude full permutation; reporting limitation instead."}

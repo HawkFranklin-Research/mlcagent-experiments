@@ -1,0 +1,3 @@
+train rows: 50
+feature columns: 22283
+selected: 20

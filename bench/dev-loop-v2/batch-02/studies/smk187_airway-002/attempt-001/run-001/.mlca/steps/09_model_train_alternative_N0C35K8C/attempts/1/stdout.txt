@@ -1,0 +1,1 @@
+train_shape=(112, 19993) n_classes=2 val_roc_auc=0.5058

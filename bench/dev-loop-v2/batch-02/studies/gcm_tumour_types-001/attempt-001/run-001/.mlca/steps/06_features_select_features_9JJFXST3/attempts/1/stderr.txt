@@ -1,0 +1,9 @@
+Traceback (most recent call last):
+  File "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/bench/dev-loop-v2/batch-02/studies/gcm_tumour_types-001/attempt-001/run-001/.mlca/steps/06_features_select_features_9JJFXST3/attempts/1/script.py", line 45, in <module>
+    mlca_runtime.fit_record(selector, X_trans, 'train', y=y_train)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/bench/dev-loop-v2/batch-02/studies/gcm_tumour_types-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/mlca_runtime/__init__.py", line 211, in fit_record
+    raise FitRuleError(
+    ...<2 lines>...
+    )
+mlca_runtime.FitRuleError: MLCA: fit_record needs the training pandas DataFrame with its frozen row index; pass X itself, not X.values or a NumPy array (put transforms inside a Pipeline)
