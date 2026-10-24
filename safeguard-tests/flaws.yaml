@@ -7,7 +7,7 @@ cases:
     brief: {aim: Predict y from the synthetic measurements, target: y, unit: one synthetic row}
     setup: {excluded_columns: [], group_column: null, time_columns: []}
     action: fit_preprocessing
-    flaw_description: Fit a scaler using training and validation rows.
+    flaw_description: Fit a scaler on training plus validation rows during preprocessing (post-split proxy for the pre-split flaw).
     planted_script: |
       import pandas as pd, mlca_runtime as m
       from sklearn.preprocessing import StandardScaler
@@ -25,7 +25,7 @@ cases:
     brief: {aim: Classify the diagnosis from the measured features, target: Diagnosis, unit: one diagnostic sample}
     setup: {excluded_columns: [], group_column: null, time_columns: []}
     action: fit_preprocessing
-    flaw_description: Fit a scaler using training and validation rows before downstream modelling.
+    flaw_description: Fit a scaler on training plus validation rows during preprocessing (post-split proxy for the pre-split flaw).
     planted_script: |
       import pandas as pd, mlca_runtime as m, json
       from sklearn.preprocessing import StandardScaler
@@ -138,7 +138,7 @@ cases:
       import pandas as pd, mlca_runtime as m, json
       from sklearn.linear_model import LinearRegression
       i=m.inputs(); p=json.load(open(i['_protocol'])); tr=pd.read_parquet(i['train']); y=p['targets'][0]
-      X=tr.drop(columns=[y]); model=m.fit_record(LinearRegression(),X,'train',y=tr[y]); m.save_model(model,'model.pkl')
+      X=tr.drop(columns=[y,'instant','dteday']); model=m.fit_record(LinearRegression(),X,'train',y=tr[y]); m.save_model(model,'model.pkl')
     control_script: |
       import pandas as pd, mlca_runtime as m, json
       from sklearn.linear_model import LinearRegression

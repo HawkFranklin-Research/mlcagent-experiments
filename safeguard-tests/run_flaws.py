@@ -68,7 +68,7 @@ m.save_table(df.describe(include='all').transpose().reset_index(),{name!r})
         return """import pandas as pd, json, mlca_runtime as m
 from sklearn.preprocessing import StandardScaler, FunctionTransformer
 i=m.inputs(); p=json.load(open(i['_protocol'])); tr=pd.read_parquet(i['train'])
-drop=set(p['targets'])|set(p.get('excluded_columns',[]))|({p['group_column']} if p.get('group_column') else set())
+drop=set(p['targets'])|set(p.get('excluded_columns',[]))|set(p['task'].get('time_columns',[]))|({p['group_column']} if p.get('group_column') else set())
 X=tr.drop(columns=[c for c in drop if c in tr])
 obj=StandardScaler() if EVENT == 'preprocess' else FunctionTransformer()
 fit=m.fit_record(obj,X,'train')
@@ -83,7 +83,7 @@ m.save_model(fit,OUTPUT)
 from sklearn.linear_model import LogisticRegression, LinearRegression
 from sklearn.multioutput import MultiOutputClassifier
 i=m.inputs(); p=json.load(open(i['_protocol'])); tr=pd.read_parquet(i['train'])
-drop=set(p['targets'])|set(p.get('excluded_columns',[]))|({p['group_column']} if p.get('group_column') else set())
+drop=set(p['targets'])|set(p.get('excluded_columns',[]))|set(p['task'].get('time_columns',[]))|({p['group_column']} if p.get('group_column') else set())
 X=tr.drop(columns=[c for c in drop if c in tr]); y={yexpr}
 model=m.fit_record({fit},X,'train',y=y); m.save_model(model,{name!r})
 """
@@ -91,16 +91,16 @@ model=m.fit_record({fit},X,'train',y=y); m.save_model(model,{name!r})
         table = next((o.name for o in action.outputs if o.kind == "table"), outputs[0])
         data_output = next((o.name for o in action.outputs if o.kind == "data"), None)
         part = "val" if event == "validate" else "test"
-        score = "roc_auc_score" if template in {"tabular_classification", "multilabel_classification"} else "mean_squared_error"
-        metric = "p['task'].get('primary_metric','roc_auc')" if template in {"tabular_classification", "multilabel_classification"} else "p['task'].get('primary_metric','rmse')"
-        target = "p['targets'][0]"
+        metric = "p['task'].get('primary_metric','roc_auc')" if template == "tabular_classification" else ("p['task'].get('primary_metric','macro_f1')" if template == "multilabel_classification" else "p['task'].get('primary_metric','rmse')")
+        target = "p['targets']" if template == "multilabel_classification" else "p['targets'][0]"
         pred_expr = "model.predict_proba(X)[:,1]" if template == "tabular_classification" else "model.predict(X)"
-        metric_expr = "roc_auc_score(yy,pred)" if template == "tabular_classification" else "mean_squared_error(yy,pred)**0.5"
+        metric_expr = "roc_auc_score(yy,pred)" if template == "tabular_classification" else ("float(np.mean([f1_score(yy.iloc[:,j],pred[:,j],average='macro') for j in range(yy.shape[1])]))" if template == "multilabel_classification" else "mean_squared_error(yy,pred)**0.5")
         save_rows = ""
         if data_output:
             save_rows = f"""m.save_row_outputs(pd.DataFrame({{'row_id':df.index,'partition':'test','y_true':yy.to_numpy(),'y_pred':model.predict(X)}}),{data_output!r})"""
         return f"""import pandas as pd, json, pickle, mlca_runtime as m
-from sklearn.metrics import roc_auc_score, mean_squared_error
+from sklearn.metrics import roc_auc_score, mean_squared_error, f1_score
+import numpy as np
 i=m.inputs(); p=json.load(open(i['_protocol'])); df=pd.read_parquet(i[{part!r}]); model=pickle.load(open(i['latest_model'],'rb'))
 y={target}; drop=set(p['targets'])|set(p.get('excluded_columns',[]))|({{p['group_column']}} if p.get('group_column') else set())
 X=df.drop(columns=[c for c in drop if c in df]); yy=df[y]; pred={pred_expr}; value=float({metric_expr})
@@ -208,13 +208,14 @@ def run_one(case: dict, variant: str, out: Path, manifest: dict) -> dict:
                 task_type = {"tabular_classification": "binary", "regression": "regression", "multilabel_classification": "multilabel"}[case["template"]]
                 targets = json.loads(brief.get("targets", "[]")) or ([brief["target"]] if brief.get("target") else [])
                 session.emit("TaskConfigured", {"task": {"type": task_type, "targets": targets, "primary_metric": "roc_auc" if task_type == "binary" else ("rmse" if task_type == "regression" else "macro_f1"), "time_columns": setup.get("time_columns", [])}, "excluded_columns": setup.get("excluded_columns", []), "group_column": setup.get("group_column")})
-            if event == "validate" and not any(r.type.value == "UserConfirmed" and r.payload.get("subgoal") == "model_selected" for r in session.store.read()):
-                pass
             if event == "test" and not session.state.test_unlocked:
                 session.unlock_test("UNLOCK TEST", "Planned test-scoring step")
             options = session.options()
             action_id = case["action"] if event == next((a.event for a in workflow.actions.values() if a.id == case["action"]), "") else None
             option = next((o for o in options if o.get("action_id") == action_id), None) if action_id else None
+            preferred = {"validate": "score_validation", "test": "score_test"}.get(event)
+            if option is None and preferred:
+                option = next((o for o in options if o.get("action_id") == preferred), None)
             if option is None:
                 option = next((o for o in options if o.get("action_id") and workflow.actions[o["action_id"]].role != "supporting"), None)
             if option is None:
