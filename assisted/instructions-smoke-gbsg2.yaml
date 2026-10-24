@@ -1,0 +1,28 @@
+# Mechanics smoke for run_assisted.py on a public survival table outside the rails (GBSG2), not a result.
+# It checks that stage instructions are injected, accepted by the scope check and executed, and that the
+# repair path works. Short generic instructions; nothing here is used in the paper.
+task: gbsg2_breast_cancer_survival
+score: false
+data: ../mlca-revized/benchmarks/datasets/gbsg2_breast_cancer_survival.csv
+brief: Model recurrence-free survival of these breast cancer patients and report a risk stratification.
+runs: 1
+cap_per_run: 5
+instructions:
+  - id: S1
+    at_stage: features
+    text: >
+      On the training rows only, using the clinical columns and not the survival columns, cluster the
+      patients with KMeans for k = 2 and 3 (n_init=10, random_state=42), each fitted with fit_record, and
+      save the silhouette score of each configuration in a table.
+  - id: S2
+    at_stage: validate
+    text: >
+      Using the saved model, assign the validation rows to two risk groups at the training median risk and
+      compare their survival with Kaplan-Meier curves and a log-rank test. Save the plot and the p-value.
+      Do not refit anything.
+repair:
+  id: R1
+  text: >
+    The last step failed. Read its error and complete that step's work in a new script: keep the duration
+    and event columns in the data passed to survival functions, save fitted objects with save_model rather
+    than as dictionaries, and write every table with save_table before reading it back.

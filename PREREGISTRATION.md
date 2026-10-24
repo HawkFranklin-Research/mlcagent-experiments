@@ -119,3 +119,12 @@ original and re-scored files are both kept (EVALUATION_SUMMARY.md, "Deviation").
 - **Then AutoML** (AutoGluon, FLAML; 600 s, 2 CPUs, seed 42) on the new frozen splits of Bank, Steel and Wine (Wholesale is clustering), output `bench/automl-heldout-02`.
 - **Success:** the same three conditions as every study. Infrastructure failures are recorded separately and retried once, as in eval-02.
 
+## Assisted HNSCC runs: prepared, not run (2026-10-24, author decision)
+
+- The revised study evaluates the released agent working alone, with no human instruction after the starting brief. The HNSCC (S4) result is reported as it is: 0 of 3 autonomous.
+- An assisted stage was designed: pre-written instructions following the submitted study's methods, given through MLCA's halt-and-custom-instruction path, with at most 5 per run. Its mechanics were checked once on GBSG2, a public survival table outside the rails, in a scratch folder. It was **not run** on the biomedical tasks, and nothing from it enters the results.
+- Reasons:
+  - the paper's question is autonomous execution;
+  - human instructions would also make the AutoML comparison unequal, since AutoML receives none;
+  - the submitted HNSCC workflow (clustering, then classification, then survival validation) spans several workflow types, and MLCA's scope check rejected a clustering instruction inside the survival workflow in the smoke run.
+- Files kept for a later revision: `assisted/` (runner, instructions, scope checker, README with the smoke findings).

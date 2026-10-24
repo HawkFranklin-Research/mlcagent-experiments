@@ -1,0 +1,67 @@
+# Assisted HNSCC runs (S4): the released agent (rails 0.15), autonomous, plus four pre-written instructions
+# at fixed stages and one repair instruction for failures; at most 5 instructions per run.
+# The instructions follow the design of the submitted HNSCC study
+# (mlca_experiments/jun16_copilot_agent_results_case_study1.py): the clustering methods, k range and
+# selection rule; the two largest clusters as groups; the five classifiers, the six gene counts and the
+# 100 repeated stratified 70/30 splits; Kaplan-Meier curves and log-rank tests. They give no result of that
+# study (no cluster count, genes, winning classifier or p-value).
+# Deliberate differences, each required by MLCA's enforced rules and by sound validation:
+#   1. clustering is fitted on the training rows only (the original clustered every TCGA patient);
+#   2. the CPTAC cohort is used once, after selection, never to select (the original kept only candidates
+#      with CPTAC p < 0.05, relaxed to 0.10);
+#   3. the classifier is fitted on all training rows (fit_record accepts only the full training index), so
+#      patients outside the two largest clusters are assigned to the nearer of the two cluster centres;
+#      the 100 splits run inside one recorded GridSearchCV fit.
+# Drafted by the AI assistant from the original study's code; approved by the author (24 October 2026).
+task: s4_hnscc
+role: evaluation
+manifest: bio-bench/manifest.yaml
+data: data_prep/hf-111de16/prepared/S4/discovery.csv
+external: data_prep/hf-111de16/prepared/S4/external.csv
+brief: >-
+  Model overall survival of head and neck squamous cell carcinoma patients from tumour gene expression in
+  TCGA. Derive a risk stratification on TCGA only, then validate it once on the external CPTAC cohort with
+  Kaplan-Meier curves and a log-rank test.
+runs: 3
+cap_per_run: 5
+instructions:
+  - id: I1
+    at_stage: features
+    text: >
+      Build a survival subgroup feature on the training rows only, using the gene expression columns and
+      not the survival columns. For k = 2 to 10, cluster the patients with KMeans (n_init=10,
+      random_state=42), AgglomerativeClustering (linkage ward) and GaussianMixture (n_init=5,
+      random_state=42), each fitted with fit_record. For every configuration save the silhouette,
+      Calinski-Harabasz and Davies-Bouldin scores and the smallest pairwise log-rank p-value for overall
+      survival between its clusters in one table. Select the configuration with the smallest log-rank
+      p-value. Define a binary group from its two largest clusters (largest = 0, second = 1) and assign
+      every other training patient to whichever of these two clusters has the nearer centroid. Save the
+      selected configuration, the group of every training patient and the two centroids.
+  - id: I2
+    at_stage: model
+    text: >
+      Predict the binary survival subgroup from gene expression. With fit_record on all training rows,
+      fit one GridSearchCV over a pipeline of SelectKBest(f_classif) and a classifier, with k in 2, 5, 8,
+      10, 12 and 15 and the classifiers logistic regression (solver liblinear, max_iter 2000), random
+      forest, SVM with probability=True, k-nearest neighbours and gradient boosting (random_state 42 where
+      available), using StratifiedShuffleSplit(n_splits=100, test_size=0.3, random_state=42) and ROC AUC.
+      Save the mean ROC AUC of every classifier and k in a table, save the refitted best pipeline with
+      save_model, and save its selected gene list.
+  - id: I3
+    at_stage: validate
+    text: >
+      Apply the saved subgroup classifier to the validation rows to assign predicted groups, then compare
+      overall survival between the predicted groups with Kaplan-Meier curves and a log-rank test. Save the
+      plot and the p-value. Do not refit anything.
+  - id: I4
+    at_stage: test
+    text: >
+      Apply the same saved subgroup classifier once to the TCGA test rows and once to the external CPTAC
+      cohort. For each, save Kaplan-Meier curves of the predicted groups and the log-rank p-value. Do not
+      refit or reselect anything.
+repair:
+  id: R1
+  text: >
+    The last step failed. Read its error and complete that step's work in a new script: keep the duration
+    and event columns in the data passed to survival functions, save fitted objects with save_model rather
+    than as dictionaries, and write every table with save_table before reading it back.
