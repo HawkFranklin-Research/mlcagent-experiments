@@ -262,7 +262,40 @@ def test_env_preflight_package_sets_cover_all_templates():
     assert "lifelines" in sets["lifelines"] and "lifelines" not in sets["default"]
 
 
+def test_sandbox_setup_failure_needs_bubblewrap_evidence(tmp_path):
+    attempt = "studies/t-001/attempt-001"
+    stderr = (
+        tmp_path
+        / attempt
+        / "run-001/.mlca/steps/02_data_audit_schema_X/attempts/1/stderr.txt"
+    )
+    stderr.parent.mkdir(parents=True)
+    job = {
+        "attempts": [attempt],
+        "result": {"category": "sandbox_denied", "furthest_event": "data"},
+    }
+    stderr.write_text("Traceback ... PermissionError: writing outside the project\n")
+    assert (
+        batch.infrastructure_reason(job, tmp_path) is None
+    )  # a real refusal of the analysis
+    stderr.write_text("bwrap: loopback: Failed RTM_NEWADDR: Operation not permitted\n")
+    assert batch.infrastructure_reason(job, tmp_path) == "sandbox_setup_failure"
+    assert batch.infrastructure_reason(job) is None  # no folder, no evidence
+    assert batch.needs_operator(job, tmp_path)
+
+
+def test_sandbox_probe_reports_bubblewrap_error(monkeypatch):
+    monkeypatch.setattr(env_preflight.shutil, "which", lambda _: "/usr/bin/bwrap")
+    failed = type(
+        "Done", (), {"returncode": 1, "stderr": "bwrap: loopback: Failed RTM_NEWADDR"}
+    )()
+    monkeypatch.setattr(env_preflight.subprocess, "run", lambda *a, **k: failed)
+    with pytest.raises(ValueError, match="cannot create its namespaces"):
+        env_preflight.sandbox_probe()
+
+
 def test_env_preflight_rejects_version_drift(tmp_path, monkeypatch):
+    monkeypatch.setattr(env_preflight, "sandbox_probe", lambda: "test")
     monkeypatch.setattr(env_preflight, "REFERENCE", tmp_path)
     monkeypatch.setattr(env_preflight, "ROOT", tmp_path.parent)
     monkeypatch.setattr(env_preflight, "package_sets", lambda: {"default": ["numpy"]})

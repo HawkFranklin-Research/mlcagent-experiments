@@ -10,6 +10,8 @@ import argparse
 import hashlib
 import json
 import os
+import shutil
+import subprocess
 import sys
 import tempfile
 from pathlib import Path
@@ -54,7 +56,46 @@ def build(packages, offline=True):
             os.environ["UV_OFFLINE"] = previous
 
 
+def sandbox_probe():
+    """Start bubblewrap with the namespaces MLCA uses (user, pid, network). Detection alone
+    (bwrap on PATH) passed on the Ubuntu 24.04 VMs while every sandbox start failed with
+    "bwrap: loopback: Failed RTM_NEWADDR: Operation not permitted"."""
+    bwrap = shutil.which("bwrap")
+    if bwrap is None:
+        raise ValueError("Sandbox preflight failed: bubblewrap is not installed")
+    command = [
+        bwrap,
+        "--die-with-parent",
+        "--new-session",
+        "--unshare-user",
+        "--unshare-pid",
+        "--unshare-ipc",
+        "--unshare-uts",
+        "--unshare-net",
+        "--ro-bind",
+        "/",
+        "/",
+        "--proc",
+        "/proc",
+        "--dev",
+        "/dev",
+        "--tmpfs",
+        "/tmp",
+        "true",
+    ]
+    done = subprocess.run(
+        command, capture_output=True, text=True, timeout=30, check=False
+    )
+    if done.returncode:
+        raise ValueError(
+            "Sandbox preflight failed: bubblewrap cannot create its namespaces on this machine "
+            f"({done.stderr.strip()[:300]}). On Ubuntu 24.04 see CLOUD-RUN-MANUAL.md section 4."
+        )
+    return "A, namespaces start"
+
+
 def preflight(write_reference=False):
+    sandbox = sandbox_probe()
     results = {}
     for key, packages in package_sets().items():
         try:
@@ -83,6 +124,7 @@ def preflight(write_reference=False):
     return {
         "python": sys.version.split()[0],
         "executable": sys.executable,
+        "sandbox": sandbox,
         "sets": results,
     }
 

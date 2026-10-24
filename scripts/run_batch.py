@@ -581,19 +581,45 @@ def is_environment_failure(job):
     )
 
 
-def infrastructure_reason(job):
-    """Failures caused by the machine or network, before agent work; None otherwise."""
+SANDBOX_SETUP_FAILURE = [
+    "bwrap: loopback",
+    "bwrap: setting up uid map",
+    "bwrap: No permissions to create new namespace",
+    "bwrap: Creating new namespace failed",
+]
+
+
+def is_sandbox_setup_failure(job, folder):
+    """The sandbox could not start on this machine (e.g. Ubuntu's user-namespace restriction).
+
+    Evidence is bubblewrap's own setup error in the attempt's step stderr, not the analysis code.
+    """
+    res = job.get("result") or {}
+    if folder is None or res.get("category") != "sandbox_denied" or not job.get("attempts"):
+        return False
+    attempt = Path(folder) / job["attempts"][-1]
+    for stderr in attempt.glob("run-*/.mlca/steps/*/attempts/*/stderr.txt"):
+        text = stderr.read_text(errors="replace")
+        if any(marker in text for marker in SANDBOX_SETUP_FAILURE):
+            return True
+    return False
+
+
+def infrastructure_reason(job, folder=None):
+    """Failures caused by the machine or network, not by the agent's analysis; None otherwise."""
     if is_connection_failure(job):
         return "connection_failure"
     if is_environment_failure(job):
         return "environment_failure"
+    if is_sandbox_setup_failure(job, folder):
+        return "sandbox_setup_failure"
     return None
 
 
-def needs_operator(job):
+def needs_operator(job, folder=None):
     """Finished jobs that pause the scheduler: infrastructure or any provider error."""
     res = job.get("result") or {}
-    return bool(infrastructure_reason(job)) or res.get("category") == "provider_error"
+    return bool(infrastructure_reason(job, folder)) or res.get("category") == "provider_error"
 
 
 def requeue(job, reason):
@@ -884,7 +910,7 @@ def main():
     parser.add_argument(
         "--retry-infrastructure-failures",
         action="store_true",
-        help="Re-queue connection and environment failures, once per reason (requires --resume)",
+        help="Re-queue connection, environment and sandbox-setup failures, once per reason (requires --resume)",
     )
     parser.add_argument(
         "--skip-env-preflight",
@@ -919,7 +945,7 @@ def main():
         if not state_file.exists():
             raise FileNotFoundError(f"No batch.json found in {args.out.resolve()}")
         for j in json.loads(state_file.read_text()).get("jobs", []):
-            if reason := infrastructure_reason(j):
+            if reason := infrastructure_reason(j, args.out.resolve()):
                 err = (j.get("result") or {}).get("message") or ""
                 print(f"{j['id']} ({j['dataset']} replicate {j['replicate']}) {reason}: {err[:200]}")
         return
@@ -1168,7 +1194,7 @@ def main():
                     raise ValueError("Resume cannot change recorded " + attr)
             if args.retry_infrastructure_failures:
                 for job in state["jobs"]:
-                    reason = infrastructure_reason(job)
+                    reason = infrastructure_reason(job, folder)
                     if not reason:
                         continue
                     if any(r.get("reason") == reason for r in job.get("retries", [])):
@@ -1439,12 +1465,12 @@ def main():
                             },
                         )
                     processes.pop(job["id"], None)
-                    if job["status"] == "finished" and needs_operator(job):
+                    if job["status"] == "finished" and needs_operator(job, folder):
                         (folder / ".control/PAUSE").touch()
                         state.setdefault("operator_pauses", []).append(
                             {
                                 "job": job["id"],
-                                "reason": infrastructure_reason(job)
+                                "reason": infrastructure_reason(job, folder)
                                 or job["result"].get("category"),
                                 "message": str(job["result"].get("message") or "")[:500],
                                 "at": utc(),

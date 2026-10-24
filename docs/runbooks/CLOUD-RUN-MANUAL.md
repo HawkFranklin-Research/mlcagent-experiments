@@ -66,6 +66,12 @@ cd ~/mlca/mlcagent-experiments
 ../mlca-revized/.venv/bin/python scripts/env_preflight.py          # offline check only; must print "matches_reference": true for every set
 ../mlca-revized/.venv/bin/python -c "from mlca.sandbox.level import detect; print(detect())"   # must print A
 ```
+**Ubuntu 24.04 blocks the sandbox by default.** It restricts unprivileged user namespaces, and every study then fails at its first script with `sandbox_denied` and `bwrap: loopback: Failed RTM_NEWADDR: Operation not permitted`. In eval-02 this cost 5 studies. `detect()` still prints A, because it only checks that `bwrap` exists. Allow the namespaces, and keep the setting across reboots:
+```bash
+echo 'kernel.apparmor_restrict_unprivileged_userns=0' | sudo tee /etc/sysctl.d/60-mlca-bwrap.conf
+sudo sysctl --system
+```
+`env_preflight.py`, and therefore the controller before launch, now starts a real bubblewrap sandbox with MLCA's namespaces and refuses to run if it fails.
 The controller runs the same offline check before it launches anything. Evaluation batches cannot skip it. If it fails, nothing starts.
 
 Then copy the key files (section 2), run `scripts/with_deepseek_key.sh --check`, stop the VM and snapshot its disk:
@@ -129,6 +135,7 @@ The controller prints `OPERATOR_NEEDED` and pauses its scheduler (running studie
 | VM vanished without SIGTERM | resume finds dead studies without results | same as above; they are re-queued as `machine_lost` |
 | `OPERATOR_NEEDED`, infrastructure | e.g. the cache is missing wheels, or the network is down | fix the machine, then run `scripts/run_batch.py --out <folder> --list-infrastructure-failures` and resume once with `... --resume --retry-infrastructure-failures`. Each job is retried at most once per reason. Record the decision |
 | `OPERATOR_NEEDED`, provider error mid-study | invalid request, token limit, quota | do not retry automatically; report to the author with the message. It may need a code change |
+| `sandbox_denied` with `bwrap: loopback …` | the machine blocks the sandbox (see §4) | fix the machine, then `--list-infrastructure-failures` (reason `sandbox_setup_failure`) and resume once with `--retry-infrastructure-failures` |
 | Network outage | the controller holds the queue (probes the endpoint every 30 s) and logs `network_waits` | nothing; it continues by itself |
 
 Never delete failed attempts or failed folders; move them aside with a README if they get in the way.
