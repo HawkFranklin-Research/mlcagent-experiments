@@ -1,0 +1,1 @@
+{"facts": [], "fits": [{"columns": ["x1", "x2", "x3", "x4"], "estimator": "ColumnTransformer", "index_sha256": "79dca0b2edc778f7ec8d880e2d0022234eae771a7c2c782afb9cf96d92db56a9", "partition": "train"}], "metrics": [], "outputs": [{"caption": "", "kind": "model", "name": "preprocessor.pkl"}]}

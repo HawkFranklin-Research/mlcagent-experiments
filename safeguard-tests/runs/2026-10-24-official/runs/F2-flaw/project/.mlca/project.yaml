@@ -1,0 +1,18 @@
+project_id: 01M5P9G33CF2XR1A180X80N9DS
+template_id: tabular_classification
+template_version: 0.3.0
+template_sha256: f67d941d92748aee4072fd6ed4d60999243cfe1205bf910536ae11acea6ff199
+config:
+  providers:
+    offline:
+      kind: fake
+      script: /home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/safeguard-tests/runs/2026-10-24-official/runs/F2-flaw/fake-provider.yaml
+      request_cost_bound_usd: 0
+  roles:
+    worker:
+      provider: offline
+      model: scripted
+  sandbox:
+    allow_level_b: false
+  budgets:
+    worker_max_attempts: 1

@@ -1,0 +1,52 @@
+{
+  "flaw": "F2/control",
+  "table": "synthetic",
+  "outcome": "control_passed",
+  "check": "clean script / declared split control",
+  "message": "reached report",
+  "run_path": "runs/F2-control/project",
+  "reached_report": true,
+  "target_step_status": "completed",
+  "exception": null,
+  "warnings": [],
+  "leakage": {
+    "producer": "external_leakage_scorer",
+    "agent_work": false,
+    "criteria": {
+      "fitted_columns": {
+        "value": true,
+        "evidence": [
+          ".mlca/log/events.jsonl",
+          "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/safeguard-tests/runs/2026-10-24-official/inputs/synthetic-F2.csv",
+          "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/safeguard-tests/runs/2026-10-24-official/runs/F2-control/project/.mlca/data/splits/04_split_freeze_stratified_8NFYWNW1/split_manifest.csv"
+        ],
+        "violations": [],
+        "scope": "All successful fitting stages conservatively cover candidate selection and final-model lineage; unknown fits never pass."
+      },
+      "group_disjoint": {
+        "value": true,
+        "applicable": false,
+        "evidence": [
+          ".mlca/log/events.jsonl",
+          "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/safeguard-tests/runs/2026-10-24-official/inputs/synthetic-F2.csv",
+          "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/safeguard-tests/runs/2026-10-24-official/runs/F2-control/project/.mlca/data/splits/04_split_freeze_stratified_8NFYWNW1/split_manifest.csv"
+        ]
+      },
+      "time_ordered": {
+        "value": true,
+        "applicable": false,
+        "evidence": [
+          ".mlca/log/events.jsonl",
+          "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/safeguard-tests/runs/2026-10-24-official/inputs/synthetic-F2.csv",
+          "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/safeguard-tests/runs/2026-10-24-official/runs/F2-control/project/.mlca/data/splits/04_split_freeze_stratified_8NFYWNW1/split_manifest.csv"
+        ]
+      }
+    },
+    "leakage_clean": true
+  },
+  "split_method": "stratified",
+  "requested_split_method": "stratified",
+  "fit_events": 3,
+  "elapsed_s": 30.051,
+  "engine_crash": false
+}

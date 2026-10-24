@@ -1,0 +1,30 @@
+# Frozen-engine safeguard test matrix
+
+| flaw | table | outcome | check | message | run_path |
+|---|---|---|---|---|---|
+| F1-synthetic | synthetic | refused | fit_record enforcement | Worker exhausted its attempt budget: Execution failed: FitRuleError; script line 5; inside mlca_runtime.fit_record. MLCA: Fit rows must match the frozen training index: expected 144 rows, received 192 rows. Detailed diagnostics remain local | runs/F1-synthetic-flaw/project |
+| F1-synthetic/control | synthetic | control_passed | clean script / declared split control | reached report | runs/F1-synthetic-control/project |
+| F1-breast-cancer | breast_cancer_diagnostic | refused | fit_record enforcement | Worker exhausted its attempt budget: Execution failed: FitRuleError; script line 6; inside mlca_runtime.fit_record. MLCA: Fit rows must match the frozen training index: expected 341 rows, received 454 rows. Detailed diagnostics remain local | runs/F1-breast-cancer-flaw/project |
+| F1-breast-cancer/control | breast_cancer_diagnostic | control_passed | clean script / declared split control | reached report | runs/F1-breast-cancer-control/project |
+| F2 | synthetic | refused | locked test input is not supplied to this action | Worker exhausted its attempt budget: Execution failed: InputKeyError; script line 3; inside mlca_runtime.__missing__. MLCA: Use the declared input dictionary keys exactly; filenames are not keys. Detailed diagnostics remain local because sa | runs/F2-flaw/project |
+| F2/control | synthetic | control_passed | clean script / declared split control | reached report | runs/F2-control/project |
+| F2b | synthetic | refused | fit_record enforcement | Worker exhausted its attempt budget: Execution failed: FitRuleError; script line 5; inside mlca_runtime.fit_record. MLCA: Fit rows must match the frozen training index: expected 144 rows, received 192 rows. Detailed diagnostics remain local | runs/F2b-flaw/project |
+| F2b/control | synthetic | control_passed | clean script / declared split control | reached report | runs/F2b-control/project |
+| F3 | synthetic | refused | fit_record enforcement | Worker exhausted its attempt budget: Execution failed: FitRuleError; script line 5; inside mlca_runtime.fit_record. MLCA: Fit rows must match the frozen training index: expected 144 rows, received 192 rows. Detailed diagnostics remain local | runs/F3-flaw/project |
+| F3/control | synthetic | control_passed | clean script / declared split control | reached report | runs/F3-control/project |
+| F4a | heart_disease_cleveland | refused | fit_record enforcement | Worker exhausted its attempt budget: Execution failed: FitRuleError; script line 6; inside mlca_runtime.fit_record. MLCA: Target, excluded or group columns cannot be fitted as inputs: ['num']; select the feature columns only (pass group val | runs/F4a-flaw/project |
+| F4a/control | heart_disease_cleveland | control_passed | clean script / declared split control | reached report | runs/F4a-control/project |
+| F4b-heart | heart_disease_cleveland | external_only | external leakage scorer | {"fitted_columns": {"evidence": [".mlca/log/events.jsonl", "/home/prime/Documents/github/mlca-paper-codebases/mlca-revized/benchmarks/datasets/heart_disease_cleveland_uci.csv", "/home/prime/Documents/ | runs/F4b-heart-flaw/project |
+| F4b-heart/control | heart_disease_cleveland | control_passed | clean script / declared split control | reached report | runs/F4b-heart-control/project |
+| F4b-bike | bike_sharing_hourly | external_only | external leakage scorer | {"fitted_columns": {"evidence": [".mlca/log/events.jsonl", "/home/prime/Documents/github/mlca-paper-codebases/mlca-revized/benchmarks/datasets/bike_sharing_hourly_uci.csv", "/home/prime/Documents/gith | runs/F4b-bike-flaw/project |
+| F4b-bike/control | bike_sharing_hourly | control_passed | clean script / declared split control | reached report | runs/F4b-bike-control/project |
+| F5 | anuran_calls | refused | frozen split metadata enforcement | requested stratified; engine recorded group | runs/F5-flaw/project |
+| F5/control | anuran_calls | control_passed | clean script / declared split control | reached report | runs/F5-control/project |
+| F6 | bike_sharing_hourly | refused | frozen split metadata enforcement | requested random; engine recorded time | runs/F6-flaw/project |
+| F6/control | bike_sharing_hourly | control_passed | clean script / declared split control | reached report | runs/F6-control/project |
+| F7 | synthetic | refused | locked test input is not supplied to this action | Worker exhausted its attempt budget: Execution failed: InputKeyError; script line 2; inside mlca_runtime.__missing__. MLCA: Use the declared input dictionary keys exactly; filenames are not keys. Detailed diagnostics remain local because sa | runs/F7-flaw/project |
+| F7/control | synthetic | control_passed | clean script / declared split control | reached report | runs/F7-control/project |
+| F8 | synthetic | undetected |  | step completed with no warning or external detection | runs/F8-flaw/project |
+| F8/control | synthetic | control_passed | clean script / declared split control | reached report | runs/F8-control/project |
+| F9 | synthetic | undetected |  | step completed with no warning or external detection | runs/F9-flaw/project |
+| F9/control | synthetic | control_passed | clean script / declared split control | reached report | runs/F9-control/project |

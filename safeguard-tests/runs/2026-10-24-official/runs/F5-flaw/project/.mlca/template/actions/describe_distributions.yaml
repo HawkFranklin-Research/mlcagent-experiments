@@ -1,0 +1,26 @@
+id: describe_distributions
+event: eda
+title: Summarise distributions
+params: {}
+prompt: 'Do: numeric columns: mean, sd, min, median, max, n_missing; categorical:
+  n_levels, top-level share. Add one row group per target class where useful.
+
+  Save: distributions.csv (summary only, no data rows).
+
+  Record: facts n_numeric, n_categorical (source distributions.csv).
+
+  '
+inputs:
+- ref: registered_data
+outputs:
+- name: distributions.csv
+  kind: table
+  required: true
+fact_candidates:
+- n_numeric
+- n_categorical
+reads_test: false
+timeout_s: 300
+methods_text: Follow the recorded task and saved model contract; all fitting uses
+  training rows only.
+builtin: null

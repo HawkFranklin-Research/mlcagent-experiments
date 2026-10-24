@@ -1,0 +1,54 @@
+{
+  "flaw": "F4b-heart",
+  "table": "heart_disease_cleveland",
+  "outcome": "external_only",
+  "check": "external leakage scorer",
+  "message": "{\"fitted_columns\": {\"evidence\": [\".mlca/log/events.jsonl\", \"/home/prime/Documents/github/mlca-paper-codebases/mlca-revized/benchmarks/datasets/heart_disease_cleveland_uci.csv\", \"/home/prime/Documents/",
+  "run_path": "runs/F4b-heart-flaw/project",
+  "reached_report": true,
+  "target_step_status": "completed",
+  "exception": null,
+  "warnings": [],
+  "leakage": {
+    "producer": "external_leakage_scorer",
+    "agent_work": false,
+    "criteria": {
+      "fitted_columns": {
+        "value": false,
+        "evidence": [
+          ".mlca/log/events.jsonl",
+          "/home/prime/Documents/github/mlca-paper-codebases/mlca-revized/benchmarks/datasets/heart_disease_cleveland_uci.csv",
+          "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/safeguard-tests/runs/2026-10-24-official/runs/F4b-heart-flaw/project/.mlca/data/splits/04_split_freeze_stratified_N6SM8VCA/split_manifest.csv"
+        ],
+        "violations": [
+          "num"
+        ],
+        "scope": "All successful fitting stages conservatively cover candidate selection and final-model lineage; unknown fits never pass."
+      },
+      "group_disjoint": {
+        "value": true,
+        "applicable": false,
+        "evidence": [
+          ".mlca/log/events.jsonl",
+          "/home/prime/Documents/github/mlca-paper-codebases/mlca-revized/benchmarks/datasets/heart_disease_cleveland_uci.csv",
+          "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/safeguard-tests/runs/2026-10-24-official/runs/F4b-heart-flaw/project/.mlca/data/splits/04_split_freeze_stratified_N6SM8VCA/split_manifest.csv"
+        ]
+      },
+      "time_ordered": {
+        "value": true,
+        "applicable": false,
+        "evidence": [
+          ".mlca/log/events.jsonl",
+          "/home/prime/Documents/github/mlca-paper-codebases/mlca-revized/benchmarks/datasets/heart_disease_cleveland_uci.csv",
+          "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/safeguard-tests/runs/2026-10-24-official/runs/F4b-heart-flaw/project/.mlca/data/splits/04_split_freeze_stratified_N6SM8VCA/split_manifest.csv"
+        ]
+      }
+    },
+    "leakage_clean": false
+  },
+  "split_method": "stratified",
+  "requested_split_method": "stratified",
+  "fit_events": 3,
+  "elapsed_s": 30.137,
+  "engine_crash": false
+}

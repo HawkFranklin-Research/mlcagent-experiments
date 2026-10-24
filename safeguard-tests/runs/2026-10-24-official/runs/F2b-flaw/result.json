@@ -1,0 +1,56 @@
+{
+  "flaw": "F2b",
+  "table": "synthetic",
+  "outcome": "refused",
+  "check": "fit_record enforcement",
+  "message": "Worker exhausted its attempt budget: Execution failed: FitRuleError; script line 5; inside mlca_runtime.fit_record. MLCA: Fit rows must match the frozen training index: expected 144 rows, received 192 rows. Detailed diagnostics remain local",
+  "run_path": "runs/F2b-flaw/project",
+  "reached_report": false,
+  "target_step_status": "failed",
+  "exception": {
+    "type": "MlcaUserError",
+    "category": "fit_rule",
+    "message": "Worker exhausted its attempt budget: Execution failed: FitRuleError; script line 5; inside mlca_runtime.fit_record. MLCA: Fit rows must match the frozen training index: expected 144 rows, received 192 rows. Detailed diagnostics remain local"
+  },
+  "warnings": [],
+  "leakage": {
+    "producer": "external_leakage_scorer",
+    "agent_work": false,
+    "criteria": {
+      "fitted_columns": {
+        "value": true,
+        "evidence": [
+          ".mlca/log/events.jsonl",
+          "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/safeguard-tests/runs/2026-10-24-official/inputs/synthetic-F2b.csv",
+          "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/safeguard-tests/runs/2026-10-24-official/runs/F2b-flaw/project/.mlca/data/splits/04_split_freeze_stratified_A3SH3JQH/split_manifest.csv"
+        ],
+        "violations": [],
+        "scope": "All successful fitting stages conservatively cover candidate selection and final-model lineage; unknown fits never pass."
+      },
+      "group_disjoint": {
+        "value": true,
+        "applicable": false,
+        "evidence": [
+          ".mlca/log/events.jsonl",
+          "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/safeguard-tests/runs/2026-10-24-official/inputs/synthetic-F2b.csv",
+          "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/safeguard-tests/runs/2026-10-24-official/runs/F2b-flaw/project/.mlca/data/splits/04_split_freeze_stratified_A3SH3JQH/split_manifest.csv"
+        ]
+      },
+      "time_ordered": {
+        "value": true,
+        "applicable": false,
+        "evidence": [
+          ".mlca/log/events.jsonl",
+          "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/safeguard-tests/runs/2026-10-24-official/inputs/synthetic-F2b.csv",
+          "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/safeguard-tests/runs/2026-10-24-official/runs/F2b-flaw/project/.mlca/data/splits/04_split_freeze_stratified_A3SH3JQH/split_manifest.csv"
+        ]
+      }
+    },
+    "leakage_clean": true
+  },
+  "split_method": "stratified",
+  "requested_split_method": "stratified",
+  "fit_events": 2,
+  "elapsed_s": 16.509,
+  "engine_crash": false
+}

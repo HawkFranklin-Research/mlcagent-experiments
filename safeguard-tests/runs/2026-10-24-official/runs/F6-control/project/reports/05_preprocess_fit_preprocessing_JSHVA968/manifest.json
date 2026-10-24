@@ -1,0 +1,1 @@
+{"facts": [], "fits": [{"columns": ["season", "yr", "mnth", "holiday", "weekday", "workingday", "weathersit", "temp", "atemp", "hum", "windspeed"], "estimator": "ColumnTransformer", "index_sha256": "d63c0ea95ecd3dc8596261aca289f4029b05a9de5cdf4b621b2f51eef2b25a0d", "partition": "train"}], "metrics": [], "outputs": [{"caption": "", "kind": "model", "name": "preprocessor.pkl"}]}

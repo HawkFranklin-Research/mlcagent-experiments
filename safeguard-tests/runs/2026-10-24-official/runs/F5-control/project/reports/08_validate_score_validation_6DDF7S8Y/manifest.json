@@ -1,0 +1,1 @@
+{"facts": [], "fits": [], "metrics": [{"ci": null, "name": "macro_f1", "split": "val", "value": 0.5210439546947258}], "outputs": [{"caption": "", "kind": "table", "name": "validation_metrics.csv"}, {"caption": "", "kind": "table", "name": "validation_metrics.parquet"}]}

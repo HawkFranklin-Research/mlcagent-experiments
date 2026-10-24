@@ -1,0 +1,25 @@
+id: RL-0007
+kind: instruction
+roles:
+- worker
+events:
+- data
+- eda
+- split
+- preprocess
+- features
+- model
+- validate
+- test
+- interpret
+problem_types:
+- all
+text: 'Define the feature columns once: every column of the frozen table except the targets,
+  the excluded columns and the group column, and except key-like columns: text codes or integer
+  sequences whose values are all distinct and carry no measurement. Continuous measurements
+  are never identifiers, however many distinct values they have. Use exactly that list in
+  every step, and never let a target or excluded column reach a fitted transformer or model.'
+reason: Feature lists rebuilt differently in each step let outcome-derived or key columns
+  into models and break saved pipelines between steps.
+ledger: L-0002
+added_in: rails-0.3

@@ -1,0 +1,55 @@
+{
+  "flaw": "F4b-bike",
+  "table": "bike_sharing_hourly",
+  "outcome": "external_only",
+  "check": "external leakage scorer",
+  "message": "{\"fitted_columns\": {\"evidence\": [\".mlca/log/events.jsonl\", \"/home/prime/Documents/github/mlca-paper-codebases/mlca-revized/benchmarks/datasets/bike_sharing_hourly_uci.csv\", \"/home/prime/Documents/gith",
+  "run_path": "runs/F4b-bike-flaw/project",
+  "reached_report": true,
+  "target_step_status": "completed",
+  "exception": null,
+  "warnings": [],
+  "leakage": {
+    "producer": "external_leakage_scorer",
+    "agent_work": false,
+    "criteria": {
+      "fitted_columns": {
+        "value": false,
+        "evidence": [
+          ".mlca/log/events.jsonl",
+          "/home/prime/Documents/github/mlca-paper-codebases/mlca-revized/benchmarks/datasets/bike_sharing_hourly_uci.csv",
+          "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/safeguard-tests/runs/2026-10-24-official/runs/F4b-bike-flaw/project/.mlca/data/splits/04_split_freeze_stratified_D7F0TR9Y/split_manifest.csv"
+        ],
+        "violations": [
+          "casual",
+          "registered"
+        ],
+        "scope": "All successful fitting stages conservatively cover candidate selection and final-model lineage; unknown fits never pass."
+      },
+      "group_disjoint": {
+        "value": true,
+        "applicable": false,
+        "evidence": [
+          ".mlca/log/events.jsonl",
+          "/home/prime/Documents/github/mlca-paper-codebases/mlca-revized/benchmarks/datasets/bike_sharing_hourly_uci.csv",
+          "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/safeguard-tests/runs/2026-10-24-official/runs/F4b-bike-flaw/project/.mlca/data/splits/04_split_freeze_stratified_D7F0TR9Y/split_manifest.csv"
+        ]
+      },
+      "time_ordered": {
+        "value": true,
+        "applicable": true,
+        "evidence": [
+          ".mlca/log/events.jsonl",
+          "/home/prime/Documents/github/mlca-paper-codebases/mlca-revized/benchmarks/datasets/bike_sharing_hourly_uci.csv",
+          "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/safeguard-tests/runs/2026-10-24-official/runs/F4b-bike-flaw/project/.mlca/data/splits/04_split_freeze_stratified_D7F0TR9Y/split_manifest.csv"
+        ]
+      }
+    },
+    "leakage_clean": false
+  },
+  "split_method": "time",
+  "requested_split_method": "random",
+  "fit_events": 3,
+  "elapsed_s": 36.84,
+  "engine_crash": false
+}

@@ -1,0 +1,7 @@
+Traceback (most recent call last):
+  File "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/safeguard-tests/runs/2026-10-24-official/runs/F2-flaw/project/.mlca/steps/07_model_train_logistic_KQMQGTFG/attempts/1/script.py", line 3, in <module>
+    i=m.inputs(); tr=pd.read_parquet(i['train']); te=pd.read_parquet(i['test'])
+                                                                     ~^^^^^^^^
+  File "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/safeguard-tests/runs/2026-10-24-official/runs/F2-flaw/project/.mlca/env/lib/python3.13/site-packages/mlca_runtime/__init__.py", line 26, in __missing__
+    raise InputKeyError("MLCA: Use the declared input dictionary keys exactly; filenames are not keys")
+mlca_runtime.InputKeyError: MLCA: Use the declared input dictionary keys exactly; filenames are not keys

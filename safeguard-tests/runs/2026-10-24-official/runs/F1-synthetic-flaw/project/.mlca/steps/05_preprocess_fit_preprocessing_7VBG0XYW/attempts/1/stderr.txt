@@ -1,0 +1,9 @@
+Traceback (most recent call last):
+  File "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/safeguard-tests/runs/2026-10-24-official/runs/F1-synthetic-flaw/project/.mlca/steps/05_preprocess_fit_preprocessing_7VBG0XYW/attempts/1/script.py", line 5, in <module>
+    m.save_model(m.fit_record(StandardScaler(),X,'train'),'preprocessor.pkl')
+                 ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/safeguard-tests/runs/2026-10-24-official/runs/F1-synthetic-flaw/project/.mlca/env/lib/python3.13/site-packages/mlca_runtime/__init__.py", line 218, in fit_record
+    raise FitRuleError(
+        f"MLCA: Fit rows must match the frozen training index: expected {os.environ.get('MLCA_TRAIN_ROW_COUNT', 'unknown')} rows, received {len(X.index)} rows"
+    )
+mlca_runtime.FitRuleError: MLCA: Fit rows must match the frozen training index: expected 144 rows, received 192 rows

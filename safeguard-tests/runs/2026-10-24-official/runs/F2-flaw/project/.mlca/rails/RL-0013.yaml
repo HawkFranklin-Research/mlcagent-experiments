@@ -1,0 +1,15 @@
+id: RL-0013
+kind: instruction
+roles:
+- worker
+events:
+- all
+problem_types:
+- all
+text: 'Keep each script short and direct, about 120 lines or fewer: loop over columns instead
+  of repeating blocks, no commented-out alternatives, no long docstrings, no restating of
+  these instructions. A complete short script is better than an elaborate one that is cut
+  off.'
+reason: Worker responses exhausted the output allowance before the script was complete.
+ledger: L-0002
+added_in: rails-0.3

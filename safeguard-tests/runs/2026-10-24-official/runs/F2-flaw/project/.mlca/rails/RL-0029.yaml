@@ -1,0 +1,25 @@
+id: RL-0029
+kind: instruction
+roles:
+- worker
+events:
+- interpret
+problem_types:
+- binary
+- multiclass
+- multilabel
+- regression
+- multioutput_regression
+- clustering
+- representation
+text: When the frozen model has more than 500 input features, do not permute or explain
+  every feature. Use its own coefficients or feature_importances_, or permute only the
+  top 50 features ranked by those importances with n_repeats <= 5. Preserve the complete
+  frozen prediction input schema while permuting only those columns, without fitting
+  or double preprocessing. If a reliable importance ranking is unavailable, report that
+  limitation instead of permuting every feature. Record the method, ranking and actual
+  feature/repeat budget, and keep the step within its time limit.
+reason: Full-width permutation importance repeatedly exceeded the interpretation time
+  limit on wide inputs, including during repair attempts.
+ledger: L-0014
+added_in: rails-0.15

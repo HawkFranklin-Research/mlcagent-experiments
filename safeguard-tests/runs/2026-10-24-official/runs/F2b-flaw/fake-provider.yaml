@@ -1,0 +1,305 @@
+responses:
+- match:
+    role: worker
+    action_id: audit_preprocessing
+  text: '```python
+
+    import mlca_runtime as m
+
+
+    ```'
+- match:
+    role: worker
+    action_id: audit_schema
+  text: "```python\nimport json, pandas as pd, mlca_runtime as m\ni=m.inputs(); path=next(v\
+    \ for k,v in i.items() if k != \"_protocol\")\ndf=pd.read_csv(path)\nschema=pd.DataFrame({\"\
+    name\":df.columns.astype(str),\"dtype\":df.dtypes.astype(str),\n \"n_unique\"\
+    :[int(df[c].nunique(dropna=True)) for c in df],\n \"n_missing\":[int(df[c].isna().sum())\
+    \ for c in df]})\nschema[\"pct_missing\"]=schema[\"n_missing\"] / max(len(df),1)\
+    \ * 100\nm.save_table(schema,\"schema.json\")\nm.record_fact_candidate(\"n_rows\"\
+    ,int(len(df)),source=\"schema.json\")\nm.record_fact_candidate(\"n_columns\",int(df.shape[1]),source=\"\
+    schema.json\")\nm.record_fact_candidate(\"missing.total\",int(df.isna().sum().sum()),source=\"\
+    schema.json\")\n\n```"
+- match:
+    role: worker
+    action_id: audit_test
+  text: "```python\nimport json, pickle, numpy as np, pandas as pd, mlca_runtime as\
+    \ m\ni=m.inputs(); p=json.loads(i[\"_protocol\"].read_text()); df=pd.read_parquet(i['test']);\
+    \ targets=p[\"targets\"]\ndrop=set(targets)|set(p.get(\"excluded_columns\",[]))|set([])|set(p[\"\
+    task\"].get(\"time_columns\",[]))|({p[\"group_column\"]} if p.get(\"group_column\"\
+    ) else set())\nmodel=pickle.load(open(i[\"latest_model\"],\"rb\")); names=getattr(model,\"\
+    feature_names_in_\",None)\nX=df[list(names)] if names is not None else df.drop(columns=[c\
+    \ for c in drop if c in df])\nfrom sklearn.metrics import roc_auc_score\nproba=model.predict_proba(X);\
+    \ classes=list(model.classes_); positive=1 if 1 in classes else classes[-1]; j=classes.index(positive)\n\
+    pred=model.predict(X); value=float(roc_auc_score(df[targets[0]],proba[:,j]))\n\
+    metric=p[\"task\"].get(\"primary_metric\") or 'roc_auc'; m.record_metric(metric,value,'test')\n\
+    m.save_table(pd.DataFrame({\"metric\":[metric],\"value\":[value]}),'test_predictions.parquet')\n\
+    m.save_row_outputs(pd.DataFrame({\"row_id\":df.index,\"partition\":\"test\",\"\
+    y_true\":df[targets[0]].to_numpy(),\"y_pred\":pred,\n **{f\"proba__{c}\":proba[:,j]\
+    \ for j,c in enumerate(classes)}}),'test_predictions.parquet')\n\n```"
+- match:
+    role: worker
+    action_id: audit_validation
+  text: "```python\nimport json, pickle, numpy as np, pandas as pd, mlca_runtime as\
+    \ m\ni=m.inputs(); p=json.loads(i[\"_protocol\"].read_text()); df=pd.read_parquet(i['val']);\
+    \ targets=p[\"targets\"]\ndrop=set(targets)|set(p.get(\"excluded_columns\",[]))|set([])|set(p[\"\
+    task\"].get(\"time_columns\",[]))|({p[\"group_column\"]} if p.get(\"group_column\"\
+    ) else set())\nmodel=pickle.load(open(i[\"latest_model\"],\"rb\")); names=getattr(model,\"\
+    feature_names_in_\",None)\nX=df[list(names)] if names is not None else df.drop(columns=[c\
+    \ for c in drop if c in df])\nfrom sklearn.metrics import roc_auc_score\nproba=model.predict_proba(X);\
+    \ classes=list(model.classes_); positive=1 if 1 in classes else classes[-1]; j=classes.index(positive)\n\
+    pred=model.predict(X); value=float(roc_auc_score(df[targets[0]],proba[:,j]))\n\
+    metric=p[\"task\"].get(\"primary_metric\") or 'roc_auc'; m.record_metric(metric,value,'val')\n\
+    m.save_table(pd.DataFrame({\"metric\":[metric],\"value\":[value]}),'validation_predictions.parquet')\n\
+    m.save_row_outputs(pd.DataFrame({\"row_id\":df.index,\"partition\":\"test\",\"\
+    y_true\":df[targets[0]].to_numpy(),\"y_pred\":pred,\n **{f\"proba__{c}\":proba[:,j]\
+    \ for j,c in enumerate(classes)}}),'validation_predictions.parquet')\n\n```"
+- match:
+    role: worker
+    action_id: count_target
+  text: "```python\nimport json, pandas as pd, mlca_runtime as m\ni=m.inputs(); p=json.loads(i[\"\
+    _protocol\"].read_text()); path=next(v for k,v in i.items() if k != \"_protocol\"\
+    )\ndf=pd.read_csv(path); rows=[]\nfor target in p[\"targets\"]:\n for label,count\
+    \ in df[target].value_counts(dropna=False).items():\n  rows.append({\"target\"\
+    :target,\"class\":str(label),\"n\":int(count),\"share\":float(count/len(df))})\n\
+    m.save_table(pd.DataFrame(rows,columns=[\"target\",\"class\",\"n\",\"share\"]),\"\
+    target_counts.csv\")\n\n```"
+- match:
+    role: worker
+    action_id: describe_distributions
+  text: "```python\nimport json, pandas as pd, numpy as np, mlca_runtime as m\ni=m.inputs();\
+    \ p=json.loads(i[\"_protocol\"].read_text()); path=next(v for k,v in i.items()\
+    \ if k != \"_protocol\")\ndf=pd.read_csv(path); numeric=df.select_dtypes(include=\"\
+    number\"); categorical=df.select_dtypes(exclude=\"number\"); rows=[]\nfor c in\
+    \ numeric:\n s=numeric[c]; rows.append({\"column\":c,\"kind\":\"numeric\",\"mean\"\
+    :s.mean(),\"sd\":s.std(),\"min\":s.min(),\"median\":s.median(),\"max\":s.max(),\"\
+    n_missing\":int(s.isna().sum())})\nfor c in categorical:\n s=categorical[c]; counts=s.value_counts(normalize=True,dropna=True);\
+    \ rows.append({\"column\":c,\"kind\":\"categorical\",\"n_levels\":int(s.nunique(dropna=True)),\"\
+    top_level_share\":float(counts.iloc[0]) if len(counts) else np.nan,\"n_missing\"\
+    :int(s.isna().sum())})\nm.save_table(pd.DataFrame(rows),\"distributions.csv\"\
+    )\nm.record_fact_candidate(\"n_numeric\",int(len(numeric.columns)),source=\"distributions.csv\"\
+    )\nm.record_fact_candidate(\"n_categorical\",int(len(categorical.columns)),source=\"\
+    distributions.csv\")\n\n```"
+- match:
+    role: worker
+    action_id: explain_model
+  text: '```python
+
+    import json, pickle, pandas as pd, mlca_runtime as m
+
+    i=m.inputs(); model=pickle.load(open(i["latest_model"],"rb")); final=model[-1]
+    if hasattr(model,"steps") else model
+
+    names=list(getattr(final,"feature_names_in_",[])); values=getattr(final,"coef_",getattr(final,"feature_importances_",[]))
+
+    import numpy as np
+
+    values=np.asarray(values); values=np.abs(values[0]) if values.ndim>1 else np.abs(values)
+
+    if len(names)!=len(values): names=[f"feature_{j}" for j in range(len(values))]
+
+    m.save_table(pd.DataFrame({"feature":names,"importance_mean":values,"importance_sd":np.zeros(len(values))}).head(15),''interpretation.csv'')
+
+
+    ```'
+- match:
+    role: worker
+    action_id: fit_preprocessing
+  text: '```python
+
+    import json, pandas as pd, mlca_runtime as m
+
+    from sklearn.compose import ColumnTransformer
+
+    from sklearn.impute import SimpleImputer
+
+    from sklearn.pipeline import make_pipeline
+
+    from sklearn.preprocessing import OneHotEncoder, StandardScaler
+
+    i=m.inputs(); p=json.loads(i["_protocol"].read_text()); tr=pd.read_parquet(i["train"])
+
+    drop=set(p["targets"])|set(p.get("excluded_columns",[]))|set([])|set(p["task"].get("time_columns",[]))|({p["group_column"]}
+    if p.get("group_column") else set())
+
+    X=tr.drop(columns=[c for c in drop if c in tr]); nums=X.select_dtypes(include="number").columns.tolist();
+    cats=[c for c in X if c not in nums]
+
+    parts=[]
+
+    if nums: parts.append(("numeric",make_pipeline(SimpleImputer(strategy="median"),StandardScaler()),nums))
+
+    if cats: parts.append(("categorical",make_pipeline(SimpleImputer(strategy="most_frequent"),OneHotEncoder(handle_unknown="ignore")),cats))
+
+    obj=ColumnTransformer(parts); fitted=m.fit_record(obj,X,"train"); m.save_model(fitted,"preprocessor.pkl")
+
+
+    ```'
+- match:
+    role: worker
+    action_id: plot_missingness
+  text: '```python
+
+    import mlca_runtime as m
+
+
+    ```'
+- match:
+    role: worker
+    action_id: plot_results
+  text: '```python
+
+    import json, pickle, pandas as pd, mlca_runtime as m
+
+    i=m.inputs(); model=pickle.load(open(i["latest_model"],"rb")); final=model[-1]
+    if hasattr(model,"steps") else model
+
+    names=list(getattr(final,"feature_names_in_",[])); values=getattr(final,"coef_",getattr(final,"feature_importances_",[]))
+
+    import numpy as np
+
+    values=np.asarray(values); values=np.abs(values[0]) if values.ndim>1 else np.abs(values)
+
+    if len(names)!=len(values): names=[f"feature_{j}" for j in range(len(values))]
+
+    m.save_table(pd.DataFrame({"feature":names,"importance_mean":values,"importance_sd":np.zeros(len(values))}).head(15),''results.png'')
+
+
+    ```'
+- match:
+    role: worker
+    action_id: retain_features
+  text: '```python
+
+    import json, pandas as pd, mlca_runtime as m
+
+    from sklearn.preprocessing import FunctionTransformer
+
+    i=m.inputs(); p=json.loads(i["_protocol"].read_text()); tr=pd.read_parquet(i["train"])
+
+    drop=set(p["targets"])|set(p.get("excluded_columns",[]))|set([])|set(p["task"].get("time_columns",[]))|({p["group_column"]}
+    if p.get("group_column") else set())
+
+    X=tr.drop(columns=[c for c in drop if c in tr]); selector=m.fit_record(FunctionTransformer(),X,"train")
+
+    m.save_model(selector,"selector_all.pkl")
+
+
+    ```'
+- match:
+    role: worker
+    action_id: score_test
+  text: "```python\nimport json, pickle, numpy as np, pandas as pd, mlca_runtime as\
+    \ m\ni=m.inputs(); p=json.loads(i[\"_protocol\"].read_text()); df=pd.read_parquet(i['test']);\
+    \ targets=p[\"targets\"]\ndrop=set(targets)|set(p.get(\"excluded_columns\",[]))|set([])|set(p[\"\
+    task\"].get(\"time_columns\",[]))|({p[\"group_column\"]} if p.get(\"group_column\"\
+    ) else set())\nmodel=pickle.load(open(i[\"latest_model\"],\"rb\")); names=getattr(model,\"\
+    feature_names_in_\",None)\nX=df[list(names)] if names is not None else df.drop(columns=[c\
+    \ for c in drop if c in df])\nfrom sklearn.metrics import roc_auc_score\nproba=model.predict_proba(X);\
+    \ classes=list(model.classes_); positive=1 if 1 in classes else classes[-1]; j=classes.index(positive)\n\
+    pred=model.predict(X); value=float(roc_auc_score(df[targets[0]],proba[:,j]))\n\
+    metric=p[\"task\"].get(\"primary_metric\") or 'roc_auc'; m.record_metric(metric,value,'test')\n\
+    m.save_table(pd.DataFrame({\"metric\":[metric],\"value\":[value]}),'test_metrics.csv')\n\
+    m.save_row_outputs(pd.DataFrame({\"row_id\":df.index,\"partition\":\"test\",\"\
+    y_true\":df[targets[0]].to_numpy(),\"y_pred\":pred,\n **{f\"proba__{c}\":proba[:,j]\
+    \ for j,c in enumerate(classes)}}),'test_predictions.parquet')\n\n```"
+- match:
+    role: worker
+    action_id: score_validation
+  text: '```python
+
+    import json, pickle, numpy as np, pandas as pd, mlca_runtime as m
+
+    i=m.inputs(); p=json.loads(i["_protocol"].read_text()); df=pd.read_parquet(i[''val'']);
+    targets=p["targets"]
+
+    drop=set(targets)|set(p.get("excluded_columns",[]))|set([])|set(p["task"].get("time_columns",[]))|({p["group_column"]}
+    if p.get("group_column") else set())
+
+    model=pickle.load(open(i["latest_model"],"rb")); names=getattr(model,"feature_names_in_",None)
+
+    X=df[list(names)] if names is not None else df.drop(columns=[c for c in drop if
+    c in df])
+
+    from sklearn.metrics import roc_auc_score
+
+    proba=model.predict_proba(X); classes=list(model.classes_); positive=1 if 1 in
+    classes else classes[-1]; j=classes.index(positive)
+
+    pred=model.predict(X); value=float(roc_auc_score(df[targets[0]],proba[:,j]))
+
+    metric=p["task"].get("primary_metric") or ''roc_auc''; m.record_metric(metric,value,''val'')
+
+    m.save_table(pd.DataFrame({"metric":[metric],"value":[value]}),''validation_metrics.csv'')
+
+
+
+    ```'
+- match:
+    role: worker
+    action_id: select_features
+  text: '```python
+
+    import json, pandas as pd, mlca_runtime as m
+
+    from sklearn.feature_selection import SelectKBest, mutual_info_classif
+
+    from sklearn.impute import SimpleImputer
+
+    from sklearn.pipeline import make_pipeline
+
+    i=m.inputs(); p=json.loads(i["_protocol"].read_text()); tr=pd.read_parquet(i["train"])
+
+    drop=set(p["targets"])|set(p.get("excluded_columns",[]))|set([])|({p["group_column"]}
+    if p.get("group_column") else set())
+
+    X=tr.drop(columns=[c for c in drop if c in tr]).select_dtypes(include="number")
+
+    selector=m.fit_record(make_pipeline(SimpleImputer(strategy="median"),SelectKBest(mutual_info_classif,k=min(20,X.shape[1]))),X,"train",y=tr[p["targets"][0]])
+
+    m.save_model(selector,"selector.pkl")
+
+
+    ```'
+- match:
+    role: worker
+    action_id: train_alternative
+  text: '```python
+
+    import json, pandas as pd, mlca_runtime as m
+
+    from sklearn.pipeline import make_pipeline
+
+    from sklearn.preprocessing import StandardScaler
+
+    from sklearn.linear_model import LogisticRegression
+
+    i=m.inputs(); p=json.loads(i["_protocol"].read_text()); tr=pd.read_parquet(i["train"])
+
+    targets=p["targets"]; drop=set(targets)|set(p.get("excluded_columns",[]))|set([])|set(p["task"].get("time_columns",[]))|({p["group_column"]}
+    if p.get("group_column") else set())
+
+    X=tr.drop(columns=[c for c in drop if c in tr]); y=tr[targets[0]]
+
+    model=m.fit_record(make_pipeline(StandardScaler(), LogisticRegression(max_iter=2000)),X,"train",y=y);
+    m.save_model(model,''alternative_model.pkl'')
+
+
+    ```'
+- match:
+    role: worker
+    action_id: train_logistic
+  text: '```python
+
+    import pandas as pd, mlca_runtime as m
+
+    from sklearn.linear_model import LogisticRegression
+
+    i=m.inputs(); tr=pd.read_parquet(i[''train'']); va=pd.read_parquet(i[''val''])
+
+    X=pd.concat([tr.drop(columns=''y''),va.drop(columns=''y'')]); y=pd.concat([tr[''y''],va[''y'']])
+
+    model=m.fit_record(LogisticRegression(),X,''train'',y=y); m.save_model(model,''model.pkl'')
+
+
+    ```'

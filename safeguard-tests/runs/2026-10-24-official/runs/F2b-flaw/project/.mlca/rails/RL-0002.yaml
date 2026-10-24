@@ -1,0 +1,25 @@
+id: RL-0002
+kind: instruction
+roles:
+- navigator
+events:
+- onboard
+problem_types:
+- all
+text: 'Choose problem_type from the schema. Two observed values in the outcome: binary. Three
+  or more discrete labels: multiclass. Several categorical outcome columns describing the
+  same row at different levels of detail: multilabel, with all of them as targets. This holds for
+  a hierarchy of named categories, where each coarser level is a named group of finer ones (such as a taxonomy):
+  they are joint outcomes, so do not keep only the finest level and list the coarser levels as leakage suspects.
+  A binary column that thresholds or recodes an ordinal grade or count (such as 0 versus any positive grade)
+  is not such a hierarchy: it is the outcome the table was assembled for, so choose binary with it as the only
+  target and list the grade as a leakage suspect (RL-0003). One numeric
+  measurement or count: regression. Two or more numeric outcomes recorded together: multioutput_regression.
+  If no column is a plausible outcome, choose clustering when rows are entities or events
+  to segment, and representation when the table is many homogeneous numeric features of one
+  kind: channels of one signal, such as pixels, spectra or sensor readings. A few distinct measured attributes
+  of each entity (size, shape, composition) describe entities to segment: clustering. Prefer the task the table was evidently assembled for over an incidental column.'
+reason: Setup proposals chose a binary outcome as multiclass and a multi-output outcome set
+  as a single target; the problem type decides every later step.
+ledger: L-0012
+added_in: rails-0.3

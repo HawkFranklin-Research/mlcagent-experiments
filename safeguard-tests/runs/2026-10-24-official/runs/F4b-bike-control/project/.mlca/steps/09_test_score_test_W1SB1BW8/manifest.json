@@ -1,0 +1,1 @@
+{"facts": [], "fits": [], "metrics": [{"ci": null, "name": "rmse", "split": "test", "value": 187.25432202468616}], "outputs": [{"caption": "", "kind": "table", "name": "test_metrics.csv"}, {"caption": "", "kind": "table", "name": "test_metrics.parquet"}, {"caption": "", "kind": "data", "name": "test_predictions.parquet"}]}

@@ -1,0 +1,28 @@
+id: RL-0022
+kind: instruction
+roles:
+- worker
+events:
+- preprocess
+- features
+- model
+- validate
+- test
+- interpret
+problem_types:
+- representation
+text: 'There is no outcome in this project: never treat any column as a label. Fit scaling on training
+  rows only. Inspect each saved pipeline''s final estimator and reuse its frontend once; compare
+  reconstruction error in that frontend''s feature space, saying so. PCA has no predict method: reconstruct
+  with inverse_transform(transform(X)) on its final PCA component, not an inverse of the whole preprocessing
+  pipeline. An MLPRegressor reconstructs with predict, never inverse_transform. Its embedding is
+  the middle hidden layer computed from coefs_ and intercepts_ without refitting; PCA coordinates
+  come from transform. Record embedding dimension. Only emit embeddings when the action declares
+  a per-row output, with row_id and partition as explicit columns. Metric-only validation must not
+  create embedding files. Avoid private sklearn ACTIVATIONS: they mutate in place and return None.
+  Use public NumPy/SciPy activation results and propagate through each hidden layer up to the actual
+  middle bottleneck, explicitly returning a finite 2D array of identical width for train and test.'
+reason: Representation steps need a fitted encoder whose embeddings can be extracted without refitting,
+  so that an external scorer can evaluate them.
+ledger: L-0007
+added_in: rails-0.3

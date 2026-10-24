@@ -1,0 +1,17 @@
+id: RL-0015
+kind: instruction
+roles:
+- worker
+events:
+- all
+problem_types:
+- all
+text: When the training table has more than 100000 rows, avoid methods whose cost grows with
+  the square of the row count (full silhouette, kernel SVMs, pairwise distances, t-SNE, agglomerative
+  clustering) and prefer linear models with saga or SGD solvers, HistGradientBoosting or MiniBatchKMeans.
+  Every fit_record call still uses all training rows; compute expensive diagnostics that fit
+  nothing on a fixed-seed subsample of at most 10000 rows and print its size.
+reason: Tables with hundreds of thousands of rows exceed sandbox time and memory with quadratic
+  methods, and fit_record accepts only the full frozen training index.
+ledger: L-0002
+added_in: rails-0.3

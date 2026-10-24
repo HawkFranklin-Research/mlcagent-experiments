@@ -1,0 +1,18 @@
+project_id: 01M5P9TMPNCMY8RB5SQDD74JBH
+template_id: multilabel_classification
+template_version: 0.1.0
+template_sha256: e3225afe740f8c650a2fe879d94abecdacbfce87b7a0172da7207a033b28f2d5
+config:
+  providers:
+    offline:
+      kind: fake
+      script: /home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/safeguard-tests/runs/2026-10-24-official/runs/F5-flaw/fake-provider.yaml
+      request_cost_bound_usd: 0
+  roles:
+    worker:
+      provider: offline
+      model: scripted
+  sandbox:
+    allow_level_b: false
+  budgets:
+    worker_max_attempts: 1

@@ -1,0 +1,25 @@
+id: plot_results
+event: interpret
+title: 'One summary figure: ROC and calibration'
+params: {}
+prompt: 'Do: two panels: validation ROC curve and calibration curve (10 bins) of the
+  frozen model; add the test ROC if the test was scored.
+
+  Save: results.png.
+
+  '
+inputs:
+- ref: train
+- ref: val
+- ref: prior_outputs
+outputs:
+- name: results.png
+  kind: figure
+  required: true
+fact_candidates: []
+reads_test: false
+timeout_s: 300
+methods_text: Follow the recorded task and saved model contract; all fitting uses
+  training rows only.
+builtin: null
+role: supporting

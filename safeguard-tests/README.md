@@ -29,3 +29,17 @@ The folder `runs/2026-10-24/` is kept as this record. The official run uses a ne
 ## Amendment before the official run (24 October 2026)
 
 During Phase A (controls only, no flaw variant run), the Heart Disease controls failed: the table has missing values (`ca` ×4, `thal` ×2), and the F4a and F4b-heart scripts fitted `LogisticRegression` on raw columns. The planted versions would have crashed the same way before any safeguard could act. All four scripts now impute (median, inside the fitted pipeline). The flaw is unchanged: the planted scripts use `num`, and the controls drop it. No other test table has missing values. Recorded at the top of `flaws.yaml`.
+
+## Result: official run, 24 October 2026 (`runs/2026-10-24-official/`)
+
+All 13 controls reached the report; 13 flawed scripts produced 9 refusals, 2 external-only detections, 0 warnings and 2 undetected flaws. No engine crash; no model calls; no network attempts. Full table and per-case evidence: [`runs/2026-10-24-official/README.md`](runs/2026-10-24-official/README.md), [`MATRIX.md`](runs/2026-10-24-official/MATRIX.md), [`matrix.csv`](runs/2026-10-24-official/matrix.csv).
+
+| Outcome | Cases |
+|---|---|
+| refused | F1-synthetic, F1-breast-cancer, F2, F2b, F3, F4a, F5, F6, F7 |
+| warned | none |
+| external only | F4b-heart, F4b-bike |
+| undetected | F8, F9 |
+
+Limitations: the test measures the frozen engine, not the agent's choices; declared versus undeclared setup decides several outcomes (F4a vs F4b); F5/F6 are recorded as `refused` because the engine overrode the requested split method rather than raising an error; an undetected flaw is a finding, and nothing was changed after the freeze.
+

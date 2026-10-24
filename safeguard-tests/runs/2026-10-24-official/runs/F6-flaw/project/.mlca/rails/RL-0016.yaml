@@ -1,0 +1,20 @@
+id: RL-0016
+kind: instruction
+roles:
+- worker
+events:
+- model
+- validate
+problem_types:
+- all
+text: Tune only inside one fit_record call on the full training rows, with a search object
+  (GridSearchCV or RandomizedSearchCV) whose folds respect the design; never call fit_record
+  on fold subsets. If _protocol['group_column'] is set, use cv=GroupKFold and pass the training
+  rows' group values through fit_record as groups=. If the task lists time columns, use cv=TimeSeriesSplit
+  only when the frozen training rows are already in time order (never reorder them); otherwise
+  skip internal folds and select on the validation partition. Do not use the group key as
+  a feature.
+reason: Internal folds that ignore groups or time repeat the leakage the frozen split avoids,
+  and fit_record accepts only the full frozen training index in its stored order.
+ledger: L-0002
+added_in: rails-0.3

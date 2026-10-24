@@ -1,0 +1,52 @@
+{
+  "flaw": "F5/control",
+  "table": "anuran_calls",
+  "outcome": "control_passed",
+  "check": "clean script / declared split control",
+  "message": "reached report",
+  "run_path": "runs/F5-control/project",
+  "reached_report": true,
+  "target_step_status": "completed",
+  "exception": null,
+  "warnings": [],
+  "leakage": {
+    "producer": "external_leakage_scorer",
+    "agent_work": false,
+    "criteria": {
+      "fitted_columns": {
+        "value": true,
+        "evidence": [
+          ".mlca/log/events.jsonl",
+          "/home/prime/Documents/github/mlca-paper-codebases/mlca-revized/benchmarks/datasets/anuran_calls_uci.csv",
+          "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/safeguard-tests/runs/2026-10-24-official/runs/F5-control/project/.mlca/data/splits/04_split_freeze_stratified_NSZT74T9/split_manifest.csv"
+        ],
+        "violations": [],
+        "scope": "All successful fitting stages conservatively cover candidate selection and final-model lineage; unknown fits never pass."
+      },
+      "group_disjoint": {
+        "value": true,
+        "applicable": true,
+        "evidence": [
+          ".mlca/log/events.jsonl",
+          "/home/prime/Documents/github/mlca-paper-codebases/mlca-revized/benchmarks/datasets/anuran_calls_uci.csv",
+          "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/safeguard-tests/runs/2026-10-24-official/runs/F5-control/project/.mlca/data/splits/04_split_freeze_stratified_NSZT74T9/split_manifest.csv"
+        ]
+      },
+      "time_ordered": {
+        "value": true,
+        "applicable": false,
+        "evidence": [
+          ".mlca/log/events.jsonl",
+          "/home/prime/Documents/github/mlca-paper-codebases/mlca-revized/benchmarks/datasets/anuran_calls_uci.csv",
+          "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/safeguard-tests/runs/2026-10-24-official/runs/F5-control/project/.mlca/data/splits/04_split_freeze_stratified_NSZT74T9/split_manifest.csv"
+        ]
+      }
+    },
+    "leakage_clean": true
+  },
+  "split_method": "group",
+  "requested_split_method": "group",
+  "fit_events": 3,
+  "elapsed_s": 36.966,
+  "engine_crash": false
+}

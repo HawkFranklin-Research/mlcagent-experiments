@@ -1,0 +1,9 @@
+Traceback (most recent call last):
+  File "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/safeguard-tests/runs/2026-10-24-official/runs/F4a-flaw/project/.mlca/steps/07_model_train_logistic_ZN7P58F4/attempts/1/script.py", line 6, in <module>
+    X=tr.drop(columns=[y]); model=m.fit_record(make_pipeline(SimpleImputer(strategy='median'),LogisticRegression(max_iter=1000)),X,'train',y=tr[y]); m.save_model(model,'model.pkl')
+                                  ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/safeguard-tests/runs/2026-10-24-official/runs/F4a-flaw/project/.mlca/env/lib/python3.13/site-packages/mlca_runtime/__init__.py", line 233, in fit_record
+    raise FitRuleError(
+    ...<2 lines>...
+    )
+mlca_runtime.FitRuleError: MLCA: Target, excluded or group columns cannot be fitted as inputs: ['num']; select the feature columns only (pass group values with groups=)

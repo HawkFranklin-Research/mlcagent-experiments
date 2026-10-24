@@ -1,0 +1,22 @@
+id: plot_missingness
+event: eda
+title: Plot missingness per column
+params: {}
+prompt: 'Do: bar chart of missing share for columns with any missing value, sorted.
+
+  Save: missingness.png (one figure).
+
+  '
+inputs:
+- ref: registered_data
+outputs:
+- name: missingness.png
+  kind: figure
+  required: true
+fact_candidates: []
+reads_test: false
+timeout_s: 300
+methods_text: Follow the recorded task and saved model contract; all fitting uses
+  training rows only.
+builtin: null
+role: supporting

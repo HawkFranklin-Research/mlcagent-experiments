@@ -1,0 +1,25 @@
+id: audit_preprocessing
+event: preprocess
+title: Fit one alternative preprocessing for comparison
+params: {}
+prompt: 'Do: same as the main pipeline but robust scaling and k-NN imputation (k=5);
+  fit on train only.
+
+  Save: preprocessor_audit.pkl.
+
+  '
+inputs:
+- ref: train
+- ref: val
+- ref: prior_outputs
+outputs:
+- name: preprocessor_audit.pkl
+  kind: model
+  required: true
+fact_candidates: []
+reads_test: false
+timeout_s: 300
+methods_text: Follow the recorded task and saved model contract; all fitting uses
+  training rows only.
+builtin: null
+role: supporting

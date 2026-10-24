@@ -1,0 +1,21 @@
+{
+  "experiment_commit": "caf28370f73fdfea301aca9e64d565fb67495d9c",
+  "engine_head": "bfe38f071eeaa625ac8861b0e68e37027d3a06bc",
+  "engine_freeze_v2": "7dc0aedfb674e102f3cc96a92931a1a382eaaea0",
+  "rails_version": "rails-0.15",
+  "rails_sha256_git_archive": "59ea711d9a7a8ca3b134400f24d8ef7c17881ab8a00ac303c36228f8ba528b90",
+  "python": "3.13.12 | packaged by Anaconda, Inc. | (main, Feb 24 2026, 16:13:31) [GCC 14.3.0]",
+  "package_lock": "/home/prime/Documents/github/mlca-paper-codebases/mlca-revized/uv.lock",
+  "package_lock_sha256": "ac2558cfdac3917f2bb6237af041216c5b81f72f492d7338c1d5276f183769bb",
+  "sandbox_level": "A",
+  "host": {
+    "system": "Linux-7.0.0-38-generic-x86_64-with-glibc2.43",
+    "machine": "x86_64",
+    "hostname": "hawk-prime"
+  },
+  "run_date": "2026-10-24",
+  "model_calls": 0,
+  "provider": "scripted fake (worker only; no navigator role; MLCA fallback options)",
+  "isolation": "empty XDG_CONFIG_HOME/XDG_DATA_HOME, provider keys removed, UV_OFFLINE=1, non-Unix sockets refused",
+  "network_attempts": []
+}

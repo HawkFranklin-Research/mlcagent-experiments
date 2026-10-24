@@ -1,0 +1,18 @@
+project_id: 01M5P9QWTSWRK3HGY005R1F9YR
+template_id: regression
+template_version: 0.1.0
+template_sha256: 98845e738c3d7bd672e7b1ac583feb5f61ea6e72ff9cf0de3e6812e587bea2f9
+config:
+  providers:
+    offline:
+      kind: fake
+      script: /home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/safeguard-tests/runs/2026-10-24-official/runs/F4b-bike-flaw/fake-provider.yaml
+      request_cost_bound_usd: 0
+  roles:
+    worker:
+      provider: offline
+      model: scripted
+  sandbox:
+    allow_level_b: false
+  budgets:
+    worker_max_attempts: 1
