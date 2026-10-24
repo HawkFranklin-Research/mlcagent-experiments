@@ -46,11 +46,18 @@ git clone git@github.com:HawkFranklin-Research/mlcagent.git mlca-revized && git 
 (cd mlca-revized && uv sync --frozen --python 3.13)          # creates mlca-revized/.venv (CPython 3.13)
 ```
 
-From the laptop, copy the experiments repository (data, manifests, scripts, `.git`). Exclude the large run folders; the VM does not need them:
+From the laptop, send the experiments repository as a Git bundle (about 200 MB; the checkout holds exactly the tracked files, so the working tree is clean) plus the prepared data, which Git ignores. Do not rsync the whole 9 GB folder, and do not exclude tracked folders: the controller refuses to start if tracked files are missing or modified.
 ```bash
-rsync -a --exclude 'bench/' --exclude 'bio-bench/runs/' --exclude 'automl/runs/' \
-  /home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/ <vm>:~/mlca/mlcagent-experiments/
+cd /home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments
+git bundle create /tmp/mlcagent-experiments.bundle master
+gcloud compute scp /tmp/mlcagent-experiments.bundle <vm>:/tmp/ --zone=us-central1-a --project=pelliscope-scout --tunnel-through-iap
+gcloud compute scp --recurse data_prep/hf-111de16 <vm>:/tmp/ --zone=us-central1-a --project=pelliscope-scout --tunnel-through-iap
+# on the VM:
+git clone -b master /tmp/mlcagent-experiments.bundle ~/mlca/mlcagent-experiments
+mkdir -p ~/mlca/mlcagent-experiments/data_prep && mv /tmp/hf-111de16 ~/mlca/mlcagent-experiments/data_prep/
+(cd ~/mlca/mlcagent-experiments/data_prep/hf-111de16 && sha256sum -c SHA256SUMS.txt --quiet --ignore-missing)   # the controller also checks each table against the manifest
 ```
+To update a VM that already has the repository, send a new bundle, then run `git -C ~/mlca/mlcagent-experiments pull --ff-only /tmp/mlcagent-experiments.bundle master`.
 
 **Package cache: the step that failed twice in eval-02.** Workers build each study environment with `UV_OFFLINE=1` and the interpreter of `mlca-revized/.venv` (CPython 3.13). The cache must hold cp313 wheels of exactly the reference versions in `bio-bench/env-reference/`. Seed and check it with that interpreter, never with the system `python3`:
 ```bash
