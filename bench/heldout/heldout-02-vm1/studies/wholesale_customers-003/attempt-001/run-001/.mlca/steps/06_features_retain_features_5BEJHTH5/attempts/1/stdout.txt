@@ -1,0 +1,2 @@
+preprocessor=ColumnTransformer features=6 rows=264
+saved selector_all.pkl

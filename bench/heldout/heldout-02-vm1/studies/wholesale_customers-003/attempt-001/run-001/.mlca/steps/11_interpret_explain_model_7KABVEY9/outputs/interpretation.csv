@@ -1,0 +1,21 @@
+section,item,value,source
+task,task_type,clustering,_protocol
+task,primary_metric,silhouette,_protocol
+model,artifact,latest_model,latest_model
+model,class,Pipeline,latest_model
+model,final_estimator,MiniBatchKMeans,latest_model
+model,steps,pre -> km,latest_model
+model,selected_hyperparameters,batch_size=1024; compute_labels=True; init=k-means++; init_size=None; max_iter=200; max_no_improvement=10; n_clusters=6; n_init=10; random_state=42; reassignment_ratio=0.01; tol=0.0; verbose=0,latest_model
+inputs,n_train_rows,264,train
+inputs,n_val_rows,88,val
+inputs,n_features,6,latest_model
+inputs,feature_names,"num__Fresh, num__Milk, num__Grocery, num__Frozen, num__Detergents_Paper, num__Delicassen",latest_model
+interpretation,top_feature,num__Milk,latest_model
+validation,silhouette,0.3066,09_validate_score_validation_Q3R7JTH4/validation_metrics.csv
+validation,calinski_harabasz,40.96,09_validate_score_validation_Q3R7JTH4/validation_metrics.csv
+validation,davies_bouldin,1.285,09_validate_score_validation_Q3R7JTH4/validation_metrics.csv
+validation,silhouette,0.261,09_validate_score_validation_Q3R7JTH4/validation_metrics.csv
+validation,calinski_harabasz,37.91,09_validate_score_validation_Q3R7JTH4/validation_metrics.csv
+validation,davies_bouldin,1.087,09_validate_score_validation_Q3R7JTH4/validation_metrics.csv
+limitations,no_outcome,Clustering only; no ground-truth labels.,_protocol
+limitations,frozen,No refit or threshold tuning in interpretation.,latest_model

@@ -1,0 +1,5 @@
+rows 10000 9041
+baseline_auc 0.766
+top_feature contact
+n_features 13 n_repeats 20
+saved interpretation.csv (13, 3)

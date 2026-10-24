@@ -1,0 +1,11 @@
+section,item,value,source
+model,class,Pipeline / MultiOutputClassifier,latest_model
+model,n_features,27,latest_model
+model,hyperparameters,n_jobs=None,latest_model
+model,importance_method,unavailable,latest_model
+model,top_feature,unavailable,latest_model
+model,top_importance,unavailable,latest_model
+validation,primary_metric,macro_f1,09_validate_score_validation_9862PPB5/validation_metrics.csv
+validation,primary_value,0.66,09_validate_score_validation_9862PPB5/validation_metrics.csv
+validation,val_rows,388,val
+limitations,notes,No fitting performed; interpretation uses stored attributes only. No built-in feature importance available. Top feature could not be mapped to original input name.,interpretation.csv

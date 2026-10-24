@@ -1,0 +1,2 @@
+train (3189, 13) val (1062, 13) features 12 macro_auc 0.7683
+classes [np.int64(3), np.int64(4), np.int64(5), np.int64(6), np.int64(7), np.int64(8), np.int64(9)]

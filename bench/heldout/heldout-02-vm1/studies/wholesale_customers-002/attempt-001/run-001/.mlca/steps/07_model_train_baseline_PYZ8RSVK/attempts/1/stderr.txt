@@ -1,0 +1,15 @@
+Traceback (most recent call last):
+  File "/home/vatsal1_hawk_franklin_research_c/mlca/mlcagent-experiments/bench/heldout/heldout-02-vm1/studies/wholesale_customers-002/attempt-001/run-001/.mlca/steps/07_model_train_baseline_PYZ8RSVK/attempts/1/script.py", line 93, in <module>
+    bpipe = mlca_runtime.fit_record(clone(pipe), X, "train", sample_weight=w)
+  File "/home/vatsal1_hawk_franklin_research_c/mlca/mlcagent-experiments/bench/heldout/heldout-02-vm1/studies/wholesale_customers-002/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/mlca_runtime/__init__.py", line 238, in fit_record
+    estimator_or_pipeline.fit(X, y, **kwargs) if y is not None else estimator_or_pipeline.fit(X, **kwargs)
+                                                                    ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/home/vatsal1_hawk_franklin_research_c/mlca/mlcagent-experiments/bench/heldout/heldout-02-vm1/studies/wholesale_customers-002/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/base.py", line 1403, in wrapper
+    return fit_method(estimator, *args, **kwargs)
+  File "/home/vatsal1_hawk_franklin_research_c/mlca/mlcagent-experiments/bench/heldout/heldout-02-vm1/studies/wholesale_customers-002/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/pipeline.py", line 631, in fit
+    routed_params = self._check_method_params(method="fit", props=params)
+  File "/home/vatsal1_hawk_franklin_research_c/mlca/mlcagent-experiments/bench/heldout/heldout-02-vm1/studies/wholesale_customers-002/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/pipeline.py", line 424, in _check_method_params
+    raise ValueError(
+    ...<5 lines>...
+    )
+ValueError: Pipeline.fit does not accept the sample_weight parameter. You can pass parameters to specific steps of your pipeline using the stepname__parameter format, e.g. `Pipeline.fit(X, y, logisticregression__sample_weight=sample_weight)`.

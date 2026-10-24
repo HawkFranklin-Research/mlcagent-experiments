@@ -1,0 +1,11 @@
+model,metric,value
+alternative,macro_f1,0.8479
+alternative,hamming_loss,0.07271
+alternative,subset_accuracy,0.6041
+alternative,macro_f1_Pastry,0.7396
+alternative,macro_f1_Z_Scratch,0.8966
+alternative,macro_f1_K_Scatch,0.9755
+alternative,macro_f1_Stains,0.9602
+alternative,macro_f1_Dirtiness,0.9259
+alternative,macro_f1_Bumps,0.6935
+alternative,macro_f1_Other_Faults,0.7443

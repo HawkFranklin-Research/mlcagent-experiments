@@ -1,0 +1,3 @@
+features=6 numeric=6 categorical=0 log=6
+placeholders columns=0 tokens=[]
+encoded_width_est=6 pandas_output=True

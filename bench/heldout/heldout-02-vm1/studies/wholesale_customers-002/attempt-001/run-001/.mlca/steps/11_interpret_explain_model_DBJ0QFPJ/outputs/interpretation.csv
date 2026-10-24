@@ -1,0 +1,20 @@
+section,item,text_value,numeric_value,source
+model,frozen_model_class,MiniBatchKMeans,,latest_model
+model,baseline_model_class,KMeans,,07_model_train_baseline_PYZ8RSVK/model.pkl
+model,n_input_features,,6.0,latest_model
+model,feature_schema,"Fresh, Milk, Grocery, Frozen, Detergents_Paper, Delicassen",,latest_model
+model,top_feature,unavailable,,latest_model
+model,importance_method,no_native_feature_importance,,latest_model
+hyperparameters,n_clusters,10,,latest_model
+hyperparameters,init,k-means++,,latest_model
+hyperparameters,n_init,10,,latest_model
+hyperparameters,max_iter,100,,latest_model
+hyperparameters,tol,0.0,,latest_model
+hyperparameters,random_state,42,,latest_model
+hyperparameters,batch_size,256,,latest_model
+validation,silhouette,,0.3066,09_validate_score_validation_RBGGTR3K/validation_metrics.csv
+inputs,train_rows,,264.0,train
+inputs,val_rows,,88.0,val
+limitations,fitting,none; frozen model interpreted only,,interpretation.csv
+limitations,top_feature,model type exposes no native coefficient or feature_importance ranking,,interpretation.csv
+limitations,validation_scope,"single validation summary; no refit, threshold tuning or test use",,interpretation.csv

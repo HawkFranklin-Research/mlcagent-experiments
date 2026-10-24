@@ -1,0 +1,2 @@
+Features: 13 (numeric=4, categorical=9)
+Summary rows: 39

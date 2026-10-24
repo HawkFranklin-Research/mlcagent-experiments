@@ -1,0 +1,42 @@
+id: model
+title: Model
+goal: Fit the baseline and at most one prespecified alternative on training rows.
+gate:
+- event_done: features
+subgoals:
+- id: outputs_recorded
+  text: Candidate model saved
+  check:
+    type: output_exists
+    any_of:
+    - action: train_baseline
+      output: model.pkl
+    - action: train_alternative
+      output: alternative_model.pkl
+- id: fit_verified
+  text: Every fit used the frozen training rows
+  check:
+    type: fit_on_train_only
+- id: comparison_recorded
+  text: Both prespecified models fitted when comparison requested
+  check:
+    type: actions_completed
+    actions:
+    - train_baseline
+    - train_alternative
+    when_comparison: true
+actions:
+- train_baseline
+- train_alternative
+default_options:
+- train_baseline
+done_when: all_subgoals
+custom_scope:
+  description: Model fitting on training rows with the prespecified families.
+  deny_patterns:
+  - (?i)\btest (set|split|partition)\b
+  readable_inputs:
+  - train
+  - val
+  - prior_outputs
+max_options: 3

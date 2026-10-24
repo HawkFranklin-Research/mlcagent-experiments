@@ -1,0 +1,4 @@
+features=13 num=4 cat=9
+drop key=[] derived=[] highcard=[]
+placeholder cols=[]
+train=(27126, 13) val_enc=(9041, 48)

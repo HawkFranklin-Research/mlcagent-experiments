@@ -1,0 +1,34 @@
+/home/vatsal1_hawk_franklin_research_c/mlca/mlcagent-experiments/bench/heldout/heldout-02-vm1/studies/bank_marketing-003/attempt-001/run-001/.mlca/steps/05_preprocess_fit_preprocessing_CKA3B6GT/attempts/1/script.py:54: UserWarning: Could not infer format, so each element will be parsed individually, falling back to `dateutil`. To ensure parsing is consistent and as-expected, please specify a format.
+  parsed = pd.to_datetime(s.astype(str), errors="coerce")
+/home/vatsal1_hawk_franklin_research_c/mlca/mlcagent-experiments/bench/heldout/heldout-02-vm1/studies/bank_marketing-003/attempt-001/run-001/.mlca/steps/05_preprocess_fit_preprocessing_CKA3B6GT/attempts/1/script.py:54: UserWarning: Could not infer format, so each element will be parsed individually, falling back to `dateutil`. To ensure parsing is consistent and as-expected, please specify a format.
+  parsed = pd.to_datetime(s.astype(str), errors="coerce")
+/home/vatsal1_hawk_franklin_research_c/mlca/mlcagent-experiments/bench/heldout/heldout-02-vm1/studies/bank_marketing-003/attempt-001/run-001/.mlca/steps/05_preprocess_fit_preprocessing_CKA3B6GT/attempts/1/script.py:54: UserWarning: Could not infer format, so each element will be parsed individually, falling back to `dateutil`. To ensure parsing is consistent and as-expected, please specify a format.
+  parsed = pd.to_datetime(s.astype(str), errors="coerce")
+/home/vatsal1_hawk_franklin_research_c/mlca/mlcagent-experiments/bench/heldout/heldout-02-vm1/studies/bank_marketing-003/attempt-001/run-001/.mlca/steps/05_preprocess_fit_preprocessing_CKA3B6GT/attempts/1/script.py:54: UserWarning: Could not infer format, so each element will be parsed individually, falling back to `dateutil`. To ensure parsing is consistent and as-expected, please specify a format.
+  parsed = pd.to_datetime(s.astype(str), errors="coerce")
+/home/vatsal1_hawk_franklin_research_c/mlca/mlcagent-experiments/bench/heldout/heldout-02-vm1/studies/bank_marketing-003/attempt-001/run-001/.mlca/steps/05_preprocess_fit_preprocessing_CKA3B6GT/attempts/1/script.py:54: UserWarning: Could not infer format, so each element will be parsed individually, falling back to `dateutil`. To ensure parsing is consistent and as-expected, please specify a format.
+  parsed = pd.to_datetime(s.astype(str), errors="coerce")
+/home/vatsal1_hawk_franklin_research_c/mlca/mlcagent-experiments/bench/heldout/heldout-02-vm1/studies/bank_marketing-003/attempt-001/run-001/.mlca/steps/05_preprocess_fit_preprocessing_CKA3B6GT/attempts/1/script.py:54: UserWarning: Could not infer format, so each element will be parsed individually, falling back to `dateutil`. To ensure parsing is consistent and as-expected, please specify a format.
+  parsed = pd.to_datetime(s.astype(str), errors="coerce")
+/home/vatsal1_hawk_franklin_research_c/mlca/mlcagent-experiments/bench/heldout/heldout-02-vm1/studies/bank_marketing-003/attempt-001/run-001/.mlca/steps/05_preprocess_fit_preprocessing_CKA3B6GT/attempts/1/script.py:54: UserWarning: Could not infer format, so each element will be parsed individually, falling back to `dateutil`. To ensure parsing is consistent and as-expected, please specify a format.
+  parsed = pd.to_datetime(s.astype(str), errors="coerce")
+/home/vatsal1_hawk_franklin_research_c/mlca/mlcagent-experiments/bench/heldout/heldout-02-vm1/studies/bank_marketing-003/attempt-001/run-001/.mlca/steps/05_preprocess_fit_preprocessing_CKA3B6GT/attempts/1/script.py:54: UserWarning: Could not infer format, so each element will be parsed individually, falling back to `dateutil`. To ensure parsing is consistent and as-expected, please specify a format.
+  parsed = pd.to_datetime(s.astype(str), errors="coerce")
+/home/vatsal1_hawk_franklin_research_c/mlca/mlcagent-experiments/bench/heldout/heldout-02-vm1/studies/bank_marketing-003/attempt-001/run-001/.mlca/steps/05_preprocess_fit_preprocessing_CKA3B6GT/attempts/1/script.py:54: UserWarning: Could not infer format, so each element will be parsed individually, falling back to `dateutil`. To ensure parsing is consistent and as-expected, please specify a format.
+  parsed = pd.to_datetime(s.astype(str), errors="coerce")
+/home/vatsal1_hawk_franklin_research_c/mlca/mlcagent-experiments/bench/heldout/heldout-02-vm1/studies/bank_marketing-003/attempt-001/run-001/.mlca/steps/05_preprocess_fit_preprocessing_CKA3B6GT/attempts/1/script.py:73: UserWarning: Could not infer format, so each element will be parsed individually, falling back to `dateutil`. To ensure parsing is consistent and as-expected, please specify a format.
+  d = pd.to_datetime(train[c], errors="coerce")
+/home/vatsal1_hawk_franklin_research_c/mlca/mlcagent-experiments/bench/heldout/heldout-02-vm1/studies/bank_marketing-003/attempt-001/run-001/.mlca/steps/05_preprocess_fit_preprocessing_CKA3B6GT/attempts/1/script.py:74: UserWarning: Could not infer format, so each element will be parsed individually, falling back to `dateutil`. To ensure parsing is consistent and as-expected, please specify a format.
+  vd = pd.to_datetime(val[c], errors="coerce")
+Traceback (most recent call last):
+  File "/home/vatsal1_hawk_franklin_research_c/mlca/mlcagent-experiments/bench/heldout/heldout-02-vm1/studies/bank_marketing-003/attempt-001/run-001/.mlca/steps/05_preprocess_fit_preprocessing_CKA3B6GT/attempts/1/script.py", line 123, in <module>
+    mlca_runtime.save_model(fitted, "preprocessor.pkl")
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/vatsal1_hawk_franklin_research_c/mlca/mlcagent-experiments/bench/heldout/heldout-02-vm1/studies/bank_marketing-003/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/mlca_runtime/__init__.py", line 163, in save_model
+    _check_raw_inputs(model)
+    ~~~~~~~~~~~~~~~~~^^^^^^^
+  File "/home/vatsal1_hawk_franklin_research_c/mlca/mlcagent-experiments/bench/heldout/heldout-02-vm1/studies/bank_marketing-003/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/mlca_runtime/__init__.py", line 126, in _check_raw_inputs
+    raise FitRuleError(
+    ...<2 lines>...
+    )
+mlca_runtime.FitRuleError: MLCA: Saved object expects columns the frozen table does not have: ['month_dow', 'month_hour', 'month_month']; derive features inside the saved pipeline so it accepts the raw feature columns

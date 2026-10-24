@@ -1,0 +1,2 @@
+features=13 numeric=4 categorical=9 rows=39
+placeholders found in 0 text columns: []

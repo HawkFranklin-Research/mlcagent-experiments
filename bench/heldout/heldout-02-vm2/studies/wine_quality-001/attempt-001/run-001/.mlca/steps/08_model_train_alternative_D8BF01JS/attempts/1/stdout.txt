@@ -1,0 +1,3 @@
+train rows: 3189, features: 12
+classes: [np.int64(3), np.int64(4), np.int64(5), np.int64(6), np.int64(7), np.int64(8), np.int64(9)]
+val roc_auc_ovr: 0.7712

@@ -1,0 +1,4 @@
+train_rows 264 val_rows 88
+frozen_model MiniBatchKMeans n_features 6
+top_feature unavailable
+validation_silhouette 0.3066

@@ -1,0 +1,3 @@
+model=alternative_model.pkl, threshold=0.5000, positive=yes
+test_rows=9044, features=13
+roc_auc=0.7771 CI=(0.7600,0.7935)

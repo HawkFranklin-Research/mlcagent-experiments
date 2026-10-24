@@ -1,0 +1,19 @@
+id: RL-0008
+kind: instruction
+roles:
+- worker
+events:
+- preprocess
+problem_types:
+- all
+text: 'Before fitting preprocessing, screen the candidate features on training rows without fitting a
+  model. Exclude, in the saved preprocessing, only features that are confirmed derivations of a target:
+  exact equality with it, or a row sum of up to three non-negative columns that equals it on every training
+  row. Features with absolute correlation of 0.98 or more with a target are a warning, not proof: keep
+  them and print one line with their names. Print one line naming any excluded feature and the reason.
+  Correlation warnings apply only to numeric outcomes; never coerce categorical labels to floats for Pearson
+  correlation. Skip that numeric screen for categorical outcomes and retain exact-derivation checks.'
+reason: Setup sees only the schema, so leakage visible only in values must be caught on training rows;
+  high correlation alone can be a legitimate strong predictor, so only exact derivations are removed.
+ledger: L-0003
+added_in: rails-0.3

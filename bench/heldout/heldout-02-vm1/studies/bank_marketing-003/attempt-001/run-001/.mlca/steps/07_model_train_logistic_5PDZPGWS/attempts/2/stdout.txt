@@ -1,0 +1,4 @@
+train shape: (27126, 13)
+pos rate: 0.11697264616972647
+frontend: sel-only
+saved model.pkl

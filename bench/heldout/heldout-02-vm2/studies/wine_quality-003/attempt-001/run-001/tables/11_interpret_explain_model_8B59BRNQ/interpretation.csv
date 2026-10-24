@@ -1,0 +1,13 @@
+feature,importance_mean,importance_sd
+density,0.085267,0.033092
+alcohol,0.069628,0.013582
+fixed acidity,0.060644,0.015308
+color,0.047094,0.007083
+residual sugar,0.043173,0.007117
+pH,0.034121,0.015079
+volatile acidity,0.031142,0.004298
+total sulfur dioxide,0.019719,0.005318
+free sulfur dioxide,0.018756,0.005625
+chlorides,0.017311,0.035043
+sulphates,0.007849,0.003036
+citric acid,-0.002064,0.006253

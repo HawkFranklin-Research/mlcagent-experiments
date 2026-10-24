@@ -1,0 +1,3 @@
+Features: 13 raw (4 num, 9 cat); excluded derivations: []
+Placeholders: none
+Transformed train shape: (27126, 48); val shape: (9041, 48)

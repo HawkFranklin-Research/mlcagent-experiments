@@ -1,0 +1,178 @@
+{
+  "status": "completed",
+  "task": "steel_plates_faults",
+  "framework": "flaml",
+  "spec_sha256": "6bb070176f213adc4e67a3fca952849c0b89e301d4604ccf21534dc9b10ca0f5",
+  "time_budget_s": 600.0,
+  "cpus": 2,
+  "seed": 42,
+  "versions": {
+    "python": "3.13.17 (main, Oct 22 2026, 14:06:04) [GCC 13.3.0]",
+    "executable": "/home/vatsal1_hawk_franklin_research_c/mlca/mlcagent-experiments/automl/.venv/bin/python",
+    "autogluon.tabular": "1.5.0",
+    "flaml": "2.7.0",
+    "scikit-learn": "1.7.2",
+    "numpy": "2.3.5",
+    "pandas": "2.3.3",
+    "lightgbm": "4.6.0"
+  },
+  "run_label": "steel_plates_faults-001/attempt-001",
+  "split_hashes": {
+    "data": "315b45ecd2b7ab441335dc83efa0daed49eb97e6eee59f9612b4b7a1048aeb03",
+    "manifest": "058c2a11df524bf3805bf25112ce1eb150347cf5a0a5b477fc9ec48a19cc7b6a",
+    "train_index": "199ede589ae9c4d30573d13c244b8c31858e9cf588174809e74ac1d5ab71ef5a",
+    "train": "8c7dc5e73f57f192b7efdb333dc9c551cc46ec7de053f3e06aca0f96a581ac00",
+    "val": "0bad32be710e5629ca5dc52d5f5aa3cf2a599ccf0f9e25b9117debf8859e0368",
+    "test": "5bbac78aff4559876782fdc2420772b6696b85b811f82aab6360206a10bdead7"
+  },
+  "mlca_recorded_metrics": [
+    {
+      "ci": null,
+      "name": "macro_f1",
+      "split": "test",
+      "value": 0.8479404471690133,
+      "step_id": "10_test_score_test_HYKM86GV",
+      "source": "recorded"
+    },
+    {
+      "ci": null,
+      "name": "hamming_loss",
+      "split": "test",
+      "value": 0.07271391847227324,
+      "step_id": "10_test_score_test_HYKM86GV",
+      "source": "recorded"
+    },
+    {
+      "ci": null,
+      "name": "subset_accuracy",
+      "split": "test",
+      "value": 0.6041131105398457,
+      "step_id": "10_test_score_test_HYKM86GV",
+      "source": "recorded"
+    }
+  ],
+  "mlca_code_commit": "7dc0aedfb674e102f3cc96a92931a1a382eaaea0",
+  "rails": {
+    "sha256": "4fe378883a4cd7f8aa6b626dc5943d441a382d89e0be3081714bc0023debf03b",
+    "version": "rails-0.15"
+  },
+  "split_id": "04_split_freeze_stratified_YKKZB2MZ",
+  "split_parameters": {
+    "group_column": "",
+    "method": "random",
+    "seed": 42,
+    "time_column": "",
+    "train_fraction": 0.6,
+    "val_fraction": 0.2
+  },
+  "mlca_log_verification": {
+    "ok": true,
+    "records": 392,
+    "head_sha256": "a274d147316df5c637ceaf67a2215b0b3e213ed25751799534e38bd2027cec97"
+  },
+  "comparison_metric": "roc_auc_ovr",
+  "mlca_primary_metric": "macro_f1",
+  "features": [
+    "X_Minimum",
+    "X_Maximum",
+    "Y_Minimum",
+    "Y_Maximum",
+    "Pixels_Areas",
+    "X_Perimeter",
+    "Y_Perimeter",
+    "Sum_of_Luminosity",
+    "Minimum_of_Luminosity",
+    "Maximum_of_Luminosity",
+    "Length_of_Conveyer",
+    "Steel_Plate_Thickness",
+    "Edges_Index",
+    "Empty_Index",
+    "Square_Index",
+    "Outside_X_Index",
+    "Edges_X_Index",
+    "Edges_Y_Index",
+    "Outside_Global_Index",
+    "LogOfAreas",
+    "Log_X_Index",
+    "Log_Y_Index",
+    "Orientation_Index",
+    "Luminosity_Index",
+    "SigmoidOfAreas"
+  ],
+  "feature_count": 25,
+  "excluded_absent": [],
+  "best_model": "extra_tree",
+  "best_config": {
+    "n_estimators": 57,
+    "max_features": 1.0,
+    "max_leaves": 250,
+    "criterion": "entropy"
+  },
+  "validation_loss": 0.032298406856305584,
+  "settings": {
+    "task": "classification",
+    "metric": "roc_auc_ovr",
+    "time_budget": 600.0,
+    "n_jobs": 2,
+    "seed": 42,
+    "eval_method": "holdout",
+    "retrain_full": false,
+    "estimator_list": "auto",
+    "resolved_estimator_list": [
+      "lgbm",
+      "rf",
+      "xgboost",
+      "extra_tree",
+      "xgb_limitdepth",
+      "sgd",
+      "catboost",
+      "lrl1"
+    ]
+  },
+  "fit_seconds": 599.9991599330001,
+  "classes": [
+    "Bumps",
+    "Dirtiness",
+    "K_Scatch",
+    "Other_Faults",
+    "Pastry",
+    "Stains",
+    "Z_Scratch"
+  ],
+  "positive": null,
+  "predict_seconds": {
+    "val": 0.04794574700008525,
+    "test": 0.048530308000408695
+  },
+  "val": {
+    "primary": {
+      "name": "roc_auc_ovr",
+      "value": 0.9677015931436944
+    },
+    "secondary": {
+      "balanced_accuracy": 0.8304599927558959,
+      "macro_f1": 0.8104897085733322,
+      "accuracy": 0.7938144329896907
+    },
+    "n": 388,
+    "notes": []
+  },
+  "test": {
+    "primary": {
+      "name": "roc_auc_ovr",
+      "value": 0.9526755347041737
+    },
+    "secondary": {
+      "balanced_accuracy": 0.7944783788224772,
+      "macro_f1": 0.7824361631049683,
+      "accuracy": 0.7583547557840618
+    },
+    "n": 389,
+    "notes": []
+  },
+  "mlca": {
+    "source": "mlca_metric_unavailable",
+    "metrics": [],
+    "reason": "No explicit saved-prediction schema; class ordering is never guessed"
+  }
+}

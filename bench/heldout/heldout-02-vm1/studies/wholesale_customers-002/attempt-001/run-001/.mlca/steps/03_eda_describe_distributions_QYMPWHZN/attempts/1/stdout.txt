@@ -1,0 +1,2 @@
+features=6 numeric=6 categorical=0
+placeholders=['?', '-', 'NA', 'N/A', ''] columns=0

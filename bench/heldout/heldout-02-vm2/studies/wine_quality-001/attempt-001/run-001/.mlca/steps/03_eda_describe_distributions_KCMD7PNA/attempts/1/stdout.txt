@@ -1,0 +1,2 @@
+rows=5320 numeric=11 categorical=1
+groups=8 rows=19

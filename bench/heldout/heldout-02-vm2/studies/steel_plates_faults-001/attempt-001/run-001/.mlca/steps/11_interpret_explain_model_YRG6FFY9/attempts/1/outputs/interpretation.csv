@@ -1,0 +1,19 @@
+section,item,value,source
+model,frozen_model_file,alternative_model.pkl,alternative_model.pkl
+model,model_class,Pipeline,alternative_model.pkl
+model,pipeline_steps,pre; clf,alternative_model.pkl
+model,final_estimator,MultiOutputClassifier,alternative_model.pkl
+hyperparameters,inner_class_weight,,alternative_model.pkl
+inputs,targets,Pastry; Z_Scratch; K_Scatch; Stains; Dirtiness; Bumps; Other_Faults,fd16ca2dce5830a7ff2b28abf12042800d85338c00319ba2443d333237ecca70.json
+inputs,raw_feature_count,25,train.parquet
+inputs,model_input_feature_count,25,alternative_model.pkl
+inputs,raw_features_preview,X_Minimum; X_Maximum; Y_Minimum; Y_Maximum; Pixels_Areas; X_Perimeter; Y_Perimeter; Sum_of_Luminosity; Minimum_of_Luminosity; Maximum_of_Luminosity; Length_of_Conveyer; Steel_Plate_Thickness; Edges_Index; Empty_Index; Square_Index; Outside_X_Index; Edges_X_Index; Edges_Y_Index; Outside_Global_Index; LogOfAreas,train.parquet
+validation,primary_metric,macro_f1,fd16ca2dce5830a7ff2b28abf12042800d85338c00319ba2443d333237ecca70.json
+validation,val_macro_f1,0.7711,validation_metrics.csv
+validation,validation_metrics_rows,6,validation_metrics.csv
+interpretation,top_feature,num__Pixels_Areas,alternative_model.pkl
+interpretation,top_feature_importance,0.07357,alternative_model.pkl
+limitations,no_refit,Frozen model interpreted without fitting.,
+limitations,importance_method,Model coefficients/feature_importances_ only; no permutation or refit.,alternative_model.pkl
+limitations,validation_scope,Validation evidence is read-only; test data not used.,
+limitations,multilabel_targets,Seven binary fault targets treated as joint multilabel outcomes.,fd16ca2dce5830a7ff2b28abf12042800d85338c00319ba2443d333237ecca70.json

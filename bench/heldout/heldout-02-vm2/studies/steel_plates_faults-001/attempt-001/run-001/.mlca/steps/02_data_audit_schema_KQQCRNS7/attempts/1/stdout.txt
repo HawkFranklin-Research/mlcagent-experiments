@@ -1,0 +1,2 @@
+placeholders=none text_columns=0
+rows=1941 columns=32 missing_total=0

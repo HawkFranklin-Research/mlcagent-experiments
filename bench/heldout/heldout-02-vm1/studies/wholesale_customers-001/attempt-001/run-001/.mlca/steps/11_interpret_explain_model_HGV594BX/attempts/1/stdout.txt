@@ -1,0 +1,3 @@
+train rows=264, val rows=88
+model=MiniBatchKMeans, features=6, top_feature=Milk
+val silhouette=0.3066

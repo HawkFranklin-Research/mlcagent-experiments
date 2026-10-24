@@ -1,0 +1,3 @@
+train=27126 val=9041 features=13
+best_model=alternative roc_auc=0.7660
+best_val_roc_auc=0.7660

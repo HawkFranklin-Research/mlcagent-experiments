@@ -1,0 +1,2 @@
+test (9044, 14) thr=0.5000 pos=yes metric=roc_auc
+roc_auc=0.7771 [0.7608,0.7939]

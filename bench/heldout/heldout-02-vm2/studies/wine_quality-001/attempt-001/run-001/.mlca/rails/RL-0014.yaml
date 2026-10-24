@@ -1,0 +1,17 @@
+id: RL-0014
+kind: instruction
+roles:
+- worker
+events:
+- all
+problem_types:
+- all
+text: When repairing, read the error type and message in the diagnostics first and change
+  the smallest part of the script that causes it; keep the approach, inputs and outputs. A
+  message about specifying columns with strings on non-dataframes means an array reached a
+  name-based transformer (see RL-0009 and RL-0011). A KeyError on a JSON key means a guessed
+  structure; use the keys the file has. Messages starting with 'MLCA:' state an engine rule;
+  comply, do not work around it.
+reason: Repairs rewrote whole scripts and reintroduced the same fault in all three attempts.
+ledger: L-0002
+added_in: rails-0.3

@@ -1,0 +1,14 @@
+section,item,value,source
+model,class,Pipeline / MultiOutputClassifier,interpretation.csv
+model,n_features,27,interpretation.csv
+model,hyperparameters,n_jobs=None,interpretation.csv
+model,importance_method,unavailable,interpretation.csv
+model,top_feature,unavailable,interpretation.csv
+model,top_importance,unavailable,interpretation.csv
+inputs,feature_columns,27,interpretation.csv
+inputs,targets,Pastry;Z_Scratch;K_Scatch;Stains;Dirtiness;Bumps;Other_Faults,interpretation.csv
+inputs,train_rows,1164,interpretation.csv
+inputs,val_rows,388,interpretation.csv
+validation,primary_metric,macro_f1,interpretation.csv
+validation,primary_value,0.66,interpretation.csv
+limitations,notes,No fitting performed; interpretation from stored attributes only. No built-in feature importance available. Top feature could not be mapped to an input name.,interpretation.csv

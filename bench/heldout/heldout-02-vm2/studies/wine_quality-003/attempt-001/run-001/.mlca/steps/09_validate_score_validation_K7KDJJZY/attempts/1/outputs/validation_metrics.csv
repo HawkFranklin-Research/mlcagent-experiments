@@ -1,0 +1,5 @@
+model,metric,value,threshold
+logistic,roc_auc_ovr,0.7314,
+logistic,macro_f1,0.2412,
+alternative,roc_auc_ovr,0.7683,
+alternative,macro_f1,0.2546,

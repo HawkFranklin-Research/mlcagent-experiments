@@ -1,0 +1,88 @@
+/home/vatsal1_hawk_franklin_research_c/mlca/mlcagent-experiments/bench/heldout/heldout-02-vm1/studies/bank_marketing-002/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/impute/_base.py:647: UserWarning: Skipping features without any observed values: ['job' 'marital' 'education' 'default' 'housing' 'loan' 'contact' 'month'
+ 'poutcome']. At least one non-missing value is needed for imputation with strategy='constant'.
+  warnings.warn(
+Traceback (most recent call last):
+  File "/home/vatsal1_hawk_franklin_research_c/mlca/mlcagent-experiments/bench/heldout/heldout-02-vm1/studies/bank_marketing-002/attempt-001/run-001/.mlca/steps/05_preprocess_fit_preprocessing_VSWY5WH2/attempts/2/script.py", line 124, in <module>
+    pre = mlca_runtime.fit_record(pre, train[feature_cols], "train")
+  File "/home/vatsal1_hawk_franklin_research_c/mlca/mlcagent-experiments/bench/heldout/heldout-02-vm1/studies/bank_marketing-002/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/mlca_runtime/__init__.py", line 238, in fit_record
+    estimator_or_pipeline.fit(X, y, **kwargs) if y is not None else estimator_or_pipeline.fit(X, **kwargs)
+                                                                    ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/home/vatsal1_hawk_franklin_research_c/mlca/mlcagent-experiments/bench/heldout/heldout-02-vm1/studies/bank_marketing-002/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/compose/_column_transformer.py", line 924, in fit
+    self.fit_transform(X, y=y, **params)
+    ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "/home/vatsal1_hawk_franklin_research_c/mlca/mlcagent-experiments/bench/heldout/heldout-02-vm1/studies/bank_marketing-002/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/utils/_set_output.py", line 327, in wrapped
+    data_to_wrap = f(self, X, *args, **kwargs)
+  File "/home/vatsal1_hawk_franklin_research_c/mlca/mlcagent-experiments/bench/heldout/heldout-02-vm1/studies/bank_marketing-002/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/base.py", line 1403, in wrapper
+    return fit_method(estimator, *args, **kwargs)
+  File "/home/vatsal1_hawk_franklin_research_c/mlca/mlcagent-experiments/bench/heldout/heldout-02-vm1/studies/bank_marketing-002/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/compose/_column_transformer.py", line 977, in fit_transform
+    result = self._call_func_on_transformers(
+        X,
+    ...<3 lines>...
+        routed_params=routed_params,
+    )
+  File "/home/vatsal1_hawk_franklin_research_c/mlca/mlcagent-experiments/bench/heldout/heldout-02-vm1/studies/bank_marketing-002/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/compose/_column_transformer.py", line 887, in _call_func_on_transformers
+    return Parallel(n_jobs=self.n_jobs)(jobs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "/home/vatsal1_hawk_franklin_research_c/mlca/mlcagent-experiments/bench/heldout/heldout-02-vm1/studies/bank_marketing-002/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/utils/parallel.py", line 91, in __call__
+    return super().__call__(iterable_with_config_and_warning_filters)
+           ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/vatsal1_hawk_franklin_research_c/mlca/mlcagent-experiments/bench/heldout/heldout-02-vm1/studies/bank_marketing-002/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/joblib/parallel.py", line 2012, in __call__
+    return output if self.return_generator else list(output)
+                                                ~~~~^^^^^^^^
+  File "/home/vatsal1_hawk_franklin_research_c/mlca/mlcagent-experiments/bench/heldout/heldout-02-vm1/studies/bank_marketing-002/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/joblib/parallel.py", line 1940, in _get_sequential_output
+    res = func(*args, **kwargs)
+  File "/home/vatsal1_hawk_franklin_research_c/mlca/mlcagent-experiments/bench/heldout/heldout-02-vm1/studies/bank_marketing-002/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/utils/parallel.py", line 184, in __call__
+    return self.function(*args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/home/vatsal1_hawk_franklin_research_c/mlca/mlcagent-experiments/bench/heldout/heldout-02-vm1/studies/bank_marketing-002/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/pipeline.py", line 1566, in _fit_transform_one
+    res = transformer.fit_transform(X, y, **params.get("fit_transform", {}))
+  File "/home/vatsal1_hawk_franklin_research_c/mlca/mlcagent-experiments/bench/heldout/heldout-02-vm1/studies/bank_marketing-002/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/base.py", line 1403, in wrapper
+    return fit_method(estimator, *args, **kwargs)
+  File "/home/vatsal1_hawk_franklin_research_c/mlca/mlcagent-experiments/bench/heldout/heldout-02-vm1/studies/bank_marketing-002/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/pipeline.py", line 712, in fit_transform
+    Xt = self._fit(
+        X, y, routed_params, raw_params=params, callback_ctx=callback_ctx
+    )
+  File "/home/vatsal1_hawk_franklin_research_c/mlca/mlcagent-experiments/bench/heldout/heldout-02-vm1/studies/bank_marketing-002/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/pipeline.py", line 561, in _fit
+    X, fitted_transformer = fit_transform_one_cached(
+                            ~~~~~~~~~~~~~~~~~~~~~~~~^
+        cloned_transformer,
+        ^^^^^^^^^^^^^^^^^^^
+    ...<7 lines>...
+        callback_ctx=subcontext,
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/vatsal1_hawk_franklin_research_c/mlca/mlcagent-experiments/bench/heldout/heldout-02-vm1/studies/bank_marketing-002/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/joblib/memory.py", line 331, in __call__
+    return self.func(*args, **kwargs)
+           ~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/home/vatsal1_hawk_franklin_research_c/mlca/mlcagent-experiments/bench/heldout/heldout-02-vm1/studies/bank_marketing-002/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/pipeline.py", line 1593, in _fit_transform_one_with_callbacks
+    Xt, transformer = _fit_transform_one(
+                      ~~~~~~~~~~~~~~~~~~^
+        transformer, X, y, weight, message_clsname, message, params
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/vatsal1_hawk_franklin_research_c/mlca/mlcagent-experiments/bench/heldout/heldout-02-vm1/studies/bank_marketing-002/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/pipeline.py", line 1566, in _fit_transform_one
+    res = transformer.fit_transform(X, y, **params.get("fit_transform", {}))
+  File "/home/vatsal1_hawk_franklin_research_c/mlca/mlcagent-experiments/bench/heldout/heldout-02-vm1/studies/bank_marketing-002/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/utils/_set_output.py", line 327, in wrapped
+    data_to_wrap = f(self, X, *args, **kwargs)
+  File "/home/vatsal1_hawk_franklin_research_c/mlca/mlcagent-experiments/bench/heldout/heldout-02-vm1/studies/bank_marketing-002/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/base.py", line 969, in fit_transform
+    return self.fit(X, **fit_params).transform(X)
+           ~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/home/vatsal1_hawk_franklin_research_c/mlca/mlcagent-experiments/bench/heldout/heldout-02-vm1/studies/bank_marketing-002/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/base.py", line 1403, in wrapper
+    return fit_method(estimator, *args, **kwargs)
+  File "/home/vatsal1_hawk_franklin_research_c/mlca/mlcagent-experiments/bench/heldout/heldout-02-vm1/studies/bank_marketing-002/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/impute/_base.py", line 448, in fit
+    X = self._validate_input(X, in_fit=True)
+  File "/home/vatsal1_hawk_franklin_research_c/mlca/mlcagent-experiments/bench/heldout/heldout-02-vm1/studies/bank_marketing-002/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/impute/_base.py", line 375, in _validate_input
+    raise ve
+  File "/home/vatsal1_hawk_franklin_research_c/mlca/mlcagent-experiments/bench/heldout/heldout-02-vm1/studies/bank_marketing-002/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/impute/_base.py", line 356, in _validate_input
+    X = validate_data(
+        self,
+    ...<6 lines>...
+        copy=self.copy,
+    )
+  File "/home/vatsal1_hawk_franklin_research_c/mlca/mlcagent-experiments/bench/heldout/heldout-02-vm1/studies/bank_marketing-002/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/utils/validation.py", line 3041, in validate_data
+    out = check_array(X, input_name="X", **check_params)
+  File "/home/vatsal1_hawk_franklin_research_c/mlca/mlcagent-experiments/bench/heldout/heldout-02-vm1/studies/bank_marketing-002/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/utils/validation.py", line 925, in check_array
+    dtype_orig = np.result_type(*dtypes_orig)
+ValueError: at least one array or dtype is required

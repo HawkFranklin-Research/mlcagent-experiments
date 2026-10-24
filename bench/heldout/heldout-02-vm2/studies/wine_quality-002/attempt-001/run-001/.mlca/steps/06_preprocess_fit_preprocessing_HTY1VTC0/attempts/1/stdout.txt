@@ -1,0 +1,3 @@
+features: 12 numeric=11 categorical=1
+encoded width: 13 (pandas)
+val transformed shape: (1062, 13)

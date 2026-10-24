@@ -1,0 +1,3 @@
+train rows 3189 features 12
+model HistGradientBoostingClassifier
+roc_auc_ovr 0.7712

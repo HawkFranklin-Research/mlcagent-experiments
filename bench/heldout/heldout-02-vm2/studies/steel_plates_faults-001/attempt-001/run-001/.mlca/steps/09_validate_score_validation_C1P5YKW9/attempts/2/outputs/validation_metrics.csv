@@ -1,0 +1,7 @@
+model,metric,value
+baseline,macro_f1,0.7711
+baseline,hamming_loss,0.0891
+baseline,subset_accuracy,0.4974
+alternative,macro_f1,0.8399
+alternative,hamming_loss,0.067
+alternative,subset_accuracy,0.6418

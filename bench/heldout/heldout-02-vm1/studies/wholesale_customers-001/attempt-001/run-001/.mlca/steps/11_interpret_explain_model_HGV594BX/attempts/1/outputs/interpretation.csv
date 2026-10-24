@@ -1,0 +1,28 @@
+item,value_text,value_numeric
+model_type,MiniBatchKMeans,
+model_pipeline,pre:ColumnTransformer > kmeans:MiniBatchKMeans,
+preprocessor_pipeline,ColumnTransformer,
+selector_pipeline,FunctionTransformer,
+n_input_features,6,6.0
+input_features,"Fresh, Milk, Grocery, Frozen, Detergents_Paper, Delicassen",
+raw_feature_schema,"Fresh, Milk, Grocery, Frozen, Detergents_Paper, Delicassen",
+validation_metric,silhouette,
+validation_value,0.3066,0.3066
+validation_split,val,
+limitations,"Clustering has no outcome/label, so there is no external ground-truth validation. The cluster count and fit were chosen on training data; validation silhouette is an internal relative score only. Top feature is a descriptive frozen-model statistic, not a causal claim. Validation inputs are capped samples, so metrics may be less stable than on the full table.",
+top_feature,Milk,
+top_feature_method,max variance of cluster_centers_ across clusters,
+n_train_rows,264,264.0
+n_val_rows,88,88.0
+hyperparameter:batch_size,1024,
+hyperparameter:compute_labels,True,
+hyperparameter:init,k-means++,
+hyperparameter:init_size,,
+hyperparameter:max_iter,100,
+hyperparameter:max_no_improvement,10,
+hyperparameter:n_clusters,3,
+hyperparameter:n_init,10,
+hyperparameter:random_state,42,
+hyperparameter:reassignment_ratio,0.01,
+hyperparameter:tol,0.0,
+hyperparameter:verbose,0,

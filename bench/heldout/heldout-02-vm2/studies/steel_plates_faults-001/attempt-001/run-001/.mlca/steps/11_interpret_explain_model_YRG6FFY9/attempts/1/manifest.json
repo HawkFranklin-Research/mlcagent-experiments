@@ -1,0 +1,1 @@
+{"facts": [], "fits": [], "metrics": [{"ci": null, "name": "val_macro_f1", "split": "val", "value": 0.7711}], "outputs": [{"caption": "", "kind": "table", "name": "interpretation.csv"}]}

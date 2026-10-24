@@ -1,0 +1,3 @@
+prep front 13 | sel front 13
+val roc_auc 0.7547 | classes ['no', 'yes']
+features 13

@@ -1,0 +1,3 @@
+train=3189 val=1062
+method=validation_permutation_importance features=12 repeats=20 scoring=roc_auc_ovr
+top_feature=alcohol importance=0.0794

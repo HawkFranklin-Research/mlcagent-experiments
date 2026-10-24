@@ -1,0 +1,4 @@
+train rows=264 features=6
+candidate k=[2, 3, 4, 5, 6, 7, 8]
+selected k=3 silhouette=0.3808
+stability_ari=0.5298

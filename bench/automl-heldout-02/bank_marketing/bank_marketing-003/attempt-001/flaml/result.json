@@ -1,0 +1,163 @@
+{
+  "status": "completed",
+  "task": "bank_marketing",
+  "framework": "flaml",
+  "spec_sha256": "06d635145bacb17edad7643b335cee2fbac69777b56356e1d20f646fc070ea56",
+  "time_budget_s": 600.0,
+  "cpus": 2,
+  "seed": 42,
+  "versions": {
+    "python": "3.13.17 (main, Oct 22 2026, 14:06:04) [GCC 13.3.0]",
+    "executable": "/home/vatsal1_hawk_franklin_research_c/mlca/mlcagent-experiments/automl/.venv/bin/python",
+    "autogluon.tabular": "1.5.0",
+    "flaml": "2.7.0",
+    "scikit-learn": "1.7.2",
+    "numpy": "2.3.5",
+    "pandas": "2.3.3",
+    "lightgbm": "4.6.0"
+  },
+  "run_label": "bank_marketing-003/attempt-001",
+  "split_hashes": {
+    "data": "b44507c26634736d4a0619ec2d7c4b6ff56a2c63cbeb5176d3134e7b25e416f0",
+    "manifest": "0a509bca9ea01f95ecfb2e6f1d3e0849d86359c1e1926d18c14dcf2e26c072ff",
+    "train_index": "4c774ee4ac3032c69a9fbeca6337198c29f3ae4233501f6c316fb9d3b8d78d49",
+    "train": "97a3991aa5980620ff613ba743ba1d687b876f04139a8619352191a9203b7ef4",
+    "val": "cfd1c0464826a0a809d841bdbbb966c21fbeab4ed5d35996958909c5301bc3ca",
+    "test": "437662c3a4677df3615b8ad702884efea0fa05c6c302e548a16e86188888946b"
+  },
+  "mlca_recorded_metrics": [
+    {
+      "ci": [
+        0.7607957569814027,
+        0.7938694475512764
+      ],
+      "name": "roc_auc",
+      "split": "test",
+      "value": 0.7771353629887958,
+      "step_id": "10_test_score_test_92F5PPNF",
+      "source": "recorded"
+    }
+  ],
+  "mlca_code_commit": "7dc0aedfb674e102f3cc96a92931a1a382eaaea0",
+  "rails": {
+    "sha256": "4fe378883a4cd7f8aa6b626dc5943d441a382d89e0be3081714bc0023debf03b",
+    "version": "rails-0.15"
+  },
+  "split_id": "04_split_freeze_stratified_31C0QSKG",
+  "split_parameters": {
+    "group_column": "",
+    "method": "stratified",
+    "seed": 42,
+    "time_column": "",
+    "train_fraction": 0.6,
+    "val_fraction": 0.2
+  },
+  "mlca_log_verification": {
+    "ok": true,
+    "records": 408,
+    "head_sha256": "36b0301c6314c32b3dc42f99e1e12a16f3ba5b882bda471e01d06315e0abdbab"
+  },
+  "comparison_metric": "roc_auc",
+  "mlca_primary_metric": "roc_auc",
+  "features": [
+    "age",
+    "job",
+    "marital",
+    "education",
+    "default",
+    "balance",
+    "housing",
+    "loan",
+    "contact",
+    "month",
+    "campaign",
+    "previous",
+    "poutcome"
+  ],
+  "feature_count": 13,
+  "excluded_absent": [],
+  "best_model": "lgbm",
+  "best_config": {
+    "n_estimators": 92,
+    "num_leaves": 19,
+    "min_child_samples": 13,
+    "learning_rate": 0.06959194985707905,
+    "log_max_bin": 8,
+    "colsample_bytree": 0.6317862400654394,
+    "reg_alpha": 0.0024730621560112216,
+    "reg_lambda": 4.834870431112717
+  },
+  "validation_loss": 0.21552779162866886,
+  "settings": {
+    "task": "classification",
+    "metric": "roc_auc",
+    "time_budget": 600.0,
+    "n_jobs": 2,
+    "seed": 42,
+    "eval_method": "holdout",
+    "retrain_full": false,
+    "estimator_list": "auto",
+    "resolved_estimator_list": [
+      "lgbm",
+      "rf",
+      "xgboost",
+      "extra_tree",
+      "xgb_limitdepth",
+      "sgd",
+      "catboost",
+      "lrl1"
+    ]
+  },
+  "fit_seconds": 599.8117359769999,
+  "classes": [
+    "no",
+    "yes"
+  ],
+  "positive": "yes",
+  "predict_seconds": {
+    "val": 0.06734598300045036,
+    "test": 0.06741927300026873
+  },
+  "val": {
+    "primary": {
+      "name": "roc_auc",
+      "value": 0.7844722083713311
+    },
+    "secondary": {
+      "balanced_accuracy": 0.5952312619562683,
+      "macro_f1": 0.6266780162208252,
+      "accuracy": 0.8932640194668732
+    },
+    "n": 9041,
+    "notes": []
+  },
+  "test": {
+    "primary": {
+      "name": "roc_auc",
+      "value": 0.7880041839544518
+    },
+    "secondary": {
+      "balanced_accuracy": 0.5881381698333099,
+      "macro_f1": 0.618042264752791,
+      "accuracy": 0.8931888544891641
+    },
+    "n": 9044,
+    "notes": []
+  },
+  "mlca": {
+    "source": "shared_scorer",
+    "score": {
+      "primary": {
+        "name": "roc_auc",
+        "value": 0.7771353629887958
+      },
+      "secondary": {
+        "balanced_accuracy": 0.584491282344197,
+        "macro_f1": 0.612350103077082,
+        "accuracy": 0.8910880141530296
+      },
+      "n": 9044,
+      "notes": []
+    }
+  }
+}

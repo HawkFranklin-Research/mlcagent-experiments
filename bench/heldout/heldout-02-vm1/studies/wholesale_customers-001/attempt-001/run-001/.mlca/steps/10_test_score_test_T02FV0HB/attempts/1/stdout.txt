@@ -1,0 +1,3 @@
+winner=alternative val_silh=0.3456
+test silhouette=0.3546 ch=23.70 db=1.5141
+assignments rows=352

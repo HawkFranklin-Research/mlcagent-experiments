@@ -63,6 +63,7 @@ These are the sets the paper reports. Model throughout: DeepSeek V4.1 Flash, tem
 | 10 | Development v2, batch-02 | `bench/dev-loop-v2/batch-02` | rails-0.15 | 9 (3 × 3) | 9 | Acceptance of the 3 wide tables, 3/3 each. The 12 v1 tables keep their acceptance; batch-01 is their regression check. |
 | — | **Freeze `freeze-v2`** | `../mlca-revized` tag | `7dc0aed`, rails-0.15 | — | — | |
 | 11 | Biomedical evaluation, arm A (eval-02) | `bio-bench/runs/deepseek-flash/eval-02`, `eval-02-vm1`, `eval-02-vm1b`, `eval-02-vm2`, `eval-02-vm3` | freeze-v2 (rails-0.15) | 27 (9 × 3) | 22 | Repeats eval-01 exactly; the last agent run of this revision. Agent failures (5): proteome PR runs 2 (`invalid_inference` at setup) and 3 (interpret, RuntimeError); HNSCC runs 1 (validate, AttributeError), 2 (model, KeyError), 3 (validate, EmptyDataError). The studies were split over the laptop and three cloud VMs (hardware recorded per attempt). |
+| 12 | Held-out tables, released version (rails 0.15) | `bench/heldout/heldout-02-vm1`, `bench/heldout/heldout-02-vm2` | freeze-v2 (rails-0.15) | 12 (4 × 3) | 6 | Bank Marketing (3/3), Wholesale Customers (3/3), Steel Plates Faults (0/3, setup disagreements), Wine Quality (0/3, setup disagreements). Gives the released agent version its own held-out result next to the development-time result (heldout-01, 5/12, rails 0.13). Split across two cloud VMs. Followed by AutoML on the new splits (`bench/automl-heldout-02`). |
 
 **eval-02 infrastructure events.** These were not agent outcomes. Every attempt is kept, and each affected study was run again on the same frozen version:
 - the laptop internet dropped: 5 studies failed at their first request;
@@ -73,7 +74,7 @@ These are the sets the paper reports. Model throughout: DeepSeek V4.1 Flash, tem
 
 The controller fixes are in `scripts/` and `docs/runbooks/CLOUD-RUN-MANUAL.md`; MLCA itself was not changed.
 
-**Total in the main study:** 230 agent studies (sets 1–6, 8–11), not counting attempts repeated after infrastructure events. The safeguard test and the AutoML comparisons are not agent runs.
+**Total in the main study:** 242 agent studies (sets 1–6, 8–12), not counting attempts repeated after infrastructure events. The safeguard test and the AutoML comparisons are not agent runs.
 
 ## 4. Why there are two full acceptance batches (36 + 36)
 

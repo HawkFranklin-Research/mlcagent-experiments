@@ -1,0 +1,4 @@
+placeholders=none cols=0
+rows=1941 features=27
+numeric=27 categorical=0
+summary_rows=41

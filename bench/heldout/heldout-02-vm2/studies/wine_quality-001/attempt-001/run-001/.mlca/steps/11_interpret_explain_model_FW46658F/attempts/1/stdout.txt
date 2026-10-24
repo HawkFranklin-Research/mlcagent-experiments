@@ -1,0 +1,4 @@
+train rows=3189, val rows=1062
+features=12
+method=permutation_importance, features=12, repeats=20
+top_feature=alcohol, mean=0.0794

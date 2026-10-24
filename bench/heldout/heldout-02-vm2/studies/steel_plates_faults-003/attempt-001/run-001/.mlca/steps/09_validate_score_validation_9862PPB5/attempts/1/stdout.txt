@@ -1,0 +1,3 @@
+2 candidates scored
+alternative 0.8398
+(34, 3)

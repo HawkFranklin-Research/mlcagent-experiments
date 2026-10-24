@@ -1,0 +1,4 @@
+Positive label convention: yes
+Train shape: (27126, 14), Val shape: (9041, 14)
+Best model: alternative, roc_auc=0.7660
+Threshold for best model: 0.1159

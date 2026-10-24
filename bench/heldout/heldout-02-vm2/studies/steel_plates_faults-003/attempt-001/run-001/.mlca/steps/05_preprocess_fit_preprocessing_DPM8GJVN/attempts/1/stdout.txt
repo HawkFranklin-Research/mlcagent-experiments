@@ -1,0 +1,2 @@
+No placeholder tokens found in text columns
+Fitted preprocessor on 27 features, saved preprocessor.pkl

@@ -1,0 +1,11 @@
+Traceback (most recent call last):
+  File "/home/vatsal1_hawk_franklin_research_c/mlca/mlcagent-experiments/bench/heldout/heldout-02-vm2/studies/steel_plates_faults-001/attempt-001/run-001/.mlca/steps/09_validate_score_validation_C1P5YKW9/attempts/1/script.py", line 71, in <module>
+    preds = get_preds(m, X_val)
+  File "/home/vatsal1_hawk_franklin_research_c/mlca/mlcagent-experiments/bench/heldout/heldout-02-vm2/studies/steel_plates_faults-001/attempt-001/run-001/.mlca/steps/09_validate_score_validation_C1P5YKW9/attempts/1/script.py", line 42, in get_preds
+    p = model.predict(sel.transform(pre.transform(X_raw[feature_cols])))
+                                    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "/home/vatsal1_hawk_franklin_research_c/mlca/mlcagent-experiments/bench/heldout/heldout-02-vm2/studies/steel_plates_faults-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/utils/_set_output.py", line 327, in wrapped
+    data_to_wrap = f(self, X, *args, **kwargs)
+  File "/home/vatsal1_hawk_franklin_research_c/mlca/mlcagent-experiments/bench/heldout/heldout-02-vm2/studies/steel_plates_faults-001/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/sklearn/compose/_column_transformer.py", line 1066, in transform
+    raise ValueError(f"columns are missing: {diff}")
+ValueError: columns are missing: {'Y_Maximum'}

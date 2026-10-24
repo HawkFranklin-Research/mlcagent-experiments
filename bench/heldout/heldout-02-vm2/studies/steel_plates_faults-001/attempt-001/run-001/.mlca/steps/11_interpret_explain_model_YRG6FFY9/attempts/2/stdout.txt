@@ -1,0 +1,4 @@
+train=(1164, 32) val=(388, 32)
+model=Pipeline file=alternative_model.pkl
+primary_metric=macro_f1 val=nan
+saved interpretation.csv rows=16

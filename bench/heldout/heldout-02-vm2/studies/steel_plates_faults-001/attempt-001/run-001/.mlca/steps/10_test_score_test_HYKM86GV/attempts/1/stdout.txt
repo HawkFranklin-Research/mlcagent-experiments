@@ -1,0 +1,3 @@
+selected=alternative
+test_rows=389
+macro_f1=0.8479

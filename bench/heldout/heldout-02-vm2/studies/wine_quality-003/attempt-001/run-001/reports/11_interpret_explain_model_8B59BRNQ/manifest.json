@@ -1,0 +1,1 @@
+{"facts": [{"key": "top_feature", "source": "interpretation.csv", "unit": null, "value": "density"}], "fits": [], "metrics": [], "outputs": [{"caption": "permutation_importance, n_repeats=20", "kind": "table", "name": "interpretation.csv"}, {"caption": "permutation_importance, n_repeats=20", "kind": "table", "name": "interpretation.parquet"}]}

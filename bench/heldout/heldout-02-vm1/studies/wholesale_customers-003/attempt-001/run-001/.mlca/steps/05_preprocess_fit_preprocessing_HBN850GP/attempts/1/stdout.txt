@@ -1,0 +1,5 @@
+Features: 6; key-like dropped: 0; targets: 0
+Placeholder tokens in 0 columns
+Heavy-tailed log1p: 6 columns
+One-hot categorical: 0; high-cardinality dropped: 0
+Estimated output width: 6

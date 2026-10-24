@@ -1,0 +1,1 @@
+feat=13 classes=['no', 'yes'] pos=yes val_auc=0.7660

@@ -1,0 +1,2 @@
+Train rows: 27126, features: 13
+Saved alternative_model.pkl
