@@ -1,0 +1,3 @@
+validation rows: 22
+best_model: alternative
+roc_auc: 0.9402

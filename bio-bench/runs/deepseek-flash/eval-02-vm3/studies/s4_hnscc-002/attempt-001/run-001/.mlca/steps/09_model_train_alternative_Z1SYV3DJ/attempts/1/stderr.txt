@@ -1,0 +1,5 @@
+Traceback (most recent call last):
+  File "/home/vatsal1_hawk_franklin_research_c/mlca/mlcagent-experiments/bio-bench/runs/deepseek-flash/eval-02-vm3/studies/s4_hnscc-002/attempt-001/run-001/.mlca/steps/09_model_train_alternative_Z1SYV3DJ/attempts/1/script.py", line 32, in <module>
+    raw_features = list(getattr(pre, 'feature_names_in_', None) or [c for c in train.columns if c not in targets and c not in excluded and c != group])
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: The truth value of an array with more than one element is ambiguous. Use a.any() or a.all()

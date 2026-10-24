@@ -1,0 +1,2 @@
+val_rows=24 features=18244 permuted=0 repeats=0
+method=limitation:no_raw_level_importance

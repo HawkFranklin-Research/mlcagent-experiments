@@ -1,0 +1,13 @@
+metric,value,ci_low,ci_high
+roc_auc_ovr,0.9736,0.9591,0.985
+macro_f1,0.7373,0.659,0.815
+precision_Basal,1.0,,
+recall_Basal,0.9429,,
+precision_Her2,0.9231,,
+recall_Her2,0.7059,,
+precision_LumA,0.8559,,
+recall_LumA,0.9406,,
+precision_LumB,0.7838,,
+recall_LumB,0.725,,
+precision_Normal,0.2857,,
+recall_Normal,0.25,,

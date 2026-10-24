@@ -1,0 +1,9 @@
+model,metric,value,threshold
+07_model_train_logistic_RQ5H03SW,roc_auc,0.9732,
+07_model_train_logistic_RQ5H03SW,pr_auc,0.9883,
+07_model_train_logistic_RQ5H03SW,balanced_accuracy,0.9286,0.2147
+07_model_train_logistic_RQ5H03SW,brier_score,0.0836,
+08_model_train_alternative_7HJK4116,roc_auc,0.9554,
+08_model_train_alternative_7HJK4116,pr_auc,0.9836,
+08_model_train_alternative_7HJK4116,balanced_accuracy,0.9375,0.9791
+08_model_train_alternative_7HJK4116,brier_score,0.0829,

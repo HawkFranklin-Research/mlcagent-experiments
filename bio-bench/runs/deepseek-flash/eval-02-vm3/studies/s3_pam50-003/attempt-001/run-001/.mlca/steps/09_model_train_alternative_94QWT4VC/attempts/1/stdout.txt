@@ -1,0 +1,2 @@
+train rows: 586 features: 18242
+classes: ['Basal', 'Her2', 'LumA', 'LumB', 'Normal']

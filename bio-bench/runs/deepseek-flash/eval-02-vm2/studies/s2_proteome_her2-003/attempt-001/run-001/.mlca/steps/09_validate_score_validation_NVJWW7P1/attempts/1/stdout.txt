@@ -1,0 +1,2 @@
+val shape=(24, 10080); features=10079
+best_model=logistic; best_val_roc_auc=1.0

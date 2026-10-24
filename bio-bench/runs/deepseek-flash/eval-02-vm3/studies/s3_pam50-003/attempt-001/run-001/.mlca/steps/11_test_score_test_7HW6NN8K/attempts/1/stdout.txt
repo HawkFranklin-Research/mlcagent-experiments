@@ -1,0 +1,4 @@
+selected=alternative val_scores={'logistic': 0.9595, 'alternative': 0.9697}
+test roc_auc_ovr=0.9736 [0.9591,0.9850] macro_f1=0.7373
+external roc_auc_ovr=0.5312 macro_f1=0.0161
+n_test=201 n_ext=122 n_feat=18242

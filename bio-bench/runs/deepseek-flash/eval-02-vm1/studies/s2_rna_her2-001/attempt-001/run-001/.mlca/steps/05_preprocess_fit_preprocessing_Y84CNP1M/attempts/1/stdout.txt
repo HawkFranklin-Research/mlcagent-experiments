@@ -1,0 +1,4 @@
+Features: 18244 numeric, 0 categorical
+Excluded derivations: 0
+Train transformed shape: (73, 18244)
+Val transformed shape: (24, 18244)

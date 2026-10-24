@@ -1,0 +1,3 @@
+features numeric=10079 categorical=0
+placeholders: none in 0 text columns
+distributions rows saved=50

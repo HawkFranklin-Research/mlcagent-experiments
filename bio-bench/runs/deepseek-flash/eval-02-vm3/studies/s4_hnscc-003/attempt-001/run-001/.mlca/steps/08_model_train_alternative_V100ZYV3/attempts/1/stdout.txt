@@ -1,0 +1,2 @@
+alternative val c_index 0.4451
+saved alternative_model.pkl

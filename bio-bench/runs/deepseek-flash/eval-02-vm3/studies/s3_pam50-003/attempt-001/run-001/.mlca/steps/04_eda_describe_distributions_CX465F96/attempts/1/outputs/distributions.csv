@@ -1,0 +1,7 @@
+group,kind,n_columns,mean_of_means,sd_of_means,min_of_mins,median_of_medians,max_of_maxes,mean_n_missing,mean_n_levels,mean_top_share
+overall,numeric,18242,6.6982,3.8235,0.0,7.8906,20.9608,0.0,,
+Basal,numeric,18242,6.6967,3.82,0.0,7.8659,20.8112,0.0,,
+Her2,numeric,18242,6.6776,3.8568,0.0,7.8335,19.8419,0.0,,
+LumA,numeric,18242,6.7244,3.8457,0.0,7.9392,20.9608,0.0,,
+LumB,numeric,18242,6.6122,3.8832,0.0,7.8307,19.9233,0.0,,
+Normal,numeric,18242,6.8578,3.7742,0.0,8.0338,20.6155,0.0,,

@@ -1,0 +1,4 @@
+scope,kind,n_cols,stat_mean,stat_sd,stat_min,stat_median,stat_max,n_missing_total,n_levels_mean,top_share_mean
+overall,numeric,10079,-0.1227,1.2845,-3.4997,-0.1753,3.6937,62377,,
+class_0,numeric,10079,-0.1331,1.2817,-3.4351,-0.1834,3.5387,55887,,
+class_1,numeric,10079,-0.0519,1.2047,-2.0628,-0.0955,2.2087,6490,,

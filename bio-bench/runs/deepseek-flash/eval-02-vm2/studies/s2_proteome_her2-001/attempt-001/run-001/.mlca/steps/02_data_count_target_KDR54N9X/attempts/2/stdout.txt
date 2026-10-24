@@ -1,0 +1,5 @@
+rows=122, target=label
+counts=0:107, 1:15
+flagged_under_5pct=none
+classes_flagged=0
+saved target_counts.csv

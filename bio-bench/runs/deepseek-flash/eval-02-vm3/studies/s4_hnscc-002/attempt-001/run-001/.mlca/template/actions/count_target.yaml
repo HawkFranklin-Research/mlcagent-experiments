@@ -1,0 +1,20 @@
+# Content v0.2.0 (2026-10-06). Keep it short: see docs/templates.md, 'Writing content'.
+id: count_target
+event: data
+title: Count events and censoring
+params: {}
+prompt: |
+  Do: number of events and censored rows; median follow-up (reverse Kaplan-Meier).
+  Save: target_counts.csv (status, n, share, median_follow_up).
+inputs:
+- ref: registered_data
+outputs:
+- name: target_counts.csv
+  kind: table
+  required: true
+fact_candidates: []
+reads_test: false
+timeout_s: 300
+methods_text: Events, censoring and follow-up were counted.
+builtin: null
+role: supporting

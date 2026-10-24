@@ -1,0 +1,28 @@
+id: score_test
+event: test
+title: Score the frozen model on test rows
+params: {}
+prompt: "Do: frozen model = best validation C-index unless the author chose otherwise; C-index with\
+  \ 95% bootstrap CI (1000 resamples, seed).\nSave: test_metrics.csv (metric, value, ci_low, ci_high).\n\
+  Record: the exact declared metric _protocol['task']['primary_metric'] on test with ci; fact test_c_index\
+  \ (source test_metrics.csv).\n Read the declared metric from _protocol['task']['primary_metric'];\
+  \ compute and record that exact name, not a template default. Other listed metrics are supplementary.\
+  \ Use its correct optimization direction and compare candidates only on validation; test scores\
+  \ never select a model."
+inputs:
+- ref: train
+- ref: val
+- ref: prior_outputs
+- ref: test
+outputs:
+- name: test_metrics.csv
+  kind: table
+  required: true
+fact_candidates:
+- test_c_index
+reads_test: true
+timeout_s: 300
+methods_text: 'Score the frozen model on test rows: Score the frozen candidates using the task-specific
+  declared primary metric and its direction; supplementary metrics do not replace it. Fit only on
+  training rows, select on validation, and evaluate the frozen choice on test.'
+builtin: null

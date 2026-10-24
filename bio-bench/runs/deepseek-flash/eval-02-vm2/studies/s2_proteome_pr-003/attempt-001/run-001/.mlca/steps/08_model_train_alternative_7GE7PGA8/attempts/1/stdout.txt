@@ -1,0 +1,3 @@
+features=10096 train_rows=68
+min_class_frac=0.4118 class_weight=None
+steps=['s0_preprocessor', 's1_selector', 'clf']

@@ -1,0 +1,2 @@
+val rows=24 candidates=2
+best_model=09_alternative roc_auc=1 roc_auc=1

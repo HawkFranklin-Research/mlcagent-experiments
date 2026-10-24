@@ -1,0 +1,4 @@
+test rows: 25
+primary roc_auc: 1.0000
+threshold: 0.5
+saved test_metrics.csv and test_predictions.parquet

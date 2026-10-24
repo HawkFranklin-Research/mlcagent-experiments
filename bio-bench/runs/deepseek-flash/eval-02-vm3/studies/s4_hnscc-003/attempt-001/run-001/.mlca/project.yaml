@@ -1,0 +1,50 @@
+project_id: 01M5NVNZ8BPN3S8FRZQ4N6SE7V
+template_id: survival
+template_version: 0.3.0
+template_sha256: dbeb59c476c33abc2b2f51b7bb026461936d0105a7a509e934f8de1b099bc1d6
+config:
+  measurement_arm: worker
+  rails_enabled: true
+  catalog:
+    selected: []
+  chatgpt_auth:
+    client_id: null
+  providers:
+    development:
+      kind: deepseek
+      oauth_client_id: null
+      base_url: https://api.deepseek.com
+      api_key_env: DEEPSEEK_API_KEY
+      script: null
+      structured_outputs: true
+      timeout_s: 90.0
+      call_deadline_s: 300.0
+      request_cost_bound_usd: null
+      requests_per_minute: 60.0
+      rate_limit_dir: /home/vatsal1_hawk_franklin_research_c/mlca/mlcagent-experiments/bio-bench/runs/deepseek-flash/eval-02-vm3/.control/rate
+  roles:
+    navigator:
+      provider: development
+      model: deepseek-flash
+      temperature: 0.0
+      reasoning_effort: low
+      max_output_tokens: 32768
+    worker:
+      provider: development
+      model: deepseek-flash
+      temperature: 0.0
+      reasoning_effort: low
+      max_output_tokens: 32768
+  privacy:
+    allow_sample_rows: false
+    store_payloads: true
+    provider_data_collection: null
+    zero_data_retention: false
+  budgets:
+    turn_max_usd: null
+    session_max_usd: null
+    worker_max_attempts: 3
+  sandbox:
+    allow_level_b: false
+  mcp:
+    mode: brain

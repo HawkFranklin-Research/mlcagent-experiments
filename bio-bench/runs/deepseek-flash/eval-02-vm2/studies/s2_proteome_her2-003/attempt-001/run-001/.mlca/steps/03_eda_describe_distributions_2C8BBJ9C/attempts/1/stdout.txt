@@ -1,0 +1,3 @@
+rows=122 features=10079 numeric=10079 categorical=0
+placeholders=none in 0 text columns
+summary_rows=50

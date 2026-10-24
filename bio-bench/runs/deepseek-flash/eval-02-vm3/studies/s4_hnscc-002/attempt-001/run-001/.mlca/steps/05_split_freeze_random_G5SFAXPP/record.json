@@ -1,0 +1,1 @@
+{"facts":[],"figures":[],"fits":[],"metrics":[],"outputs":[{"caption":"","kind":"report","name":"split.json","path":".mlca/steps/05_split_freeze_random_G5SFAXPP/outputs/split.json","sha256":"bc63a11c2608feb17d0197961c6a1f969b2c0931f613d2e5b7b3e5147ac5b98c","size":1109}],"step_id":"05_split_freeze_random_G5SFAXPP","wall_time_s":10.08129490500005}

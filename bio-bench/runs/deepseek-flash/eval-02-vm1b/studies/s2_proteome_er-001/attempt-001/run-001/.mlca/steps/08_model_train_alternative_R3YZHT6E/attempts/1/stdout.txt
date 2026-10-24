@@ -1,0 +1,3 @@
+train=(71, 10100) val=(23, 10100)
+features=10099
+val_roc_auc=0.9554

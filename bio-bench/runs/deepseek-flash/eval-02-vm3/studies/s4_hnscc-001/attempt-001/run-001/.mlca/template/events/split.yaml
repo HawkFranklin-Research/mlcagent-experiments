@@ -1,0 +1,34 @@
+# Content v0.2.0 (2026-10-06). Keep it short: see docs/templates.md, 'Writing content'.
+id: split
+title: Split
+goal: Freeze training, validation and test partitions once; test stays locked until the test event.
+gate:
+- event_done: eda
+subgoals:
+- id: outputs_recorded
+  text: Split parameters and counts recorded
+  check:
+    type: output_exists
+    any_of:
+    - action: freeze_random
+      output: split.json
+    - action: freeze_group
+      output: split.json
+- id: split_frozen
+  text: Partitions hashed and test partition sealed
+  check:
+    type: split_frozen
+actions:
+- freeze_random
+- freeze_group
+default_options:
+- freeze_random
+done_when: all_subgoals
+custom_scope:
+  description: Split parameters only. A different split needs a new branch from before this event.
+  deny_patterns:
+  - (?i)\b(train|fit)\b.*\bmodel\b
+  - (?i)\btest (set|split|partition)\b
+  readable_inputs:
+  - registered_data
+max_options: 3

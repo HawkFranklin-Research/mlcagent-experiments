@@ -1,0 +1,48 @@
+# Content v0.2.0 (2026-10-06). Keep it short: see docs/templates.md, 'Writing content'.
+id: freeze_group
+event: split
+title: Group-disjoint split (no subject in two partitions)
+params:
+  method:
+    type: enum
+    enum:
+    - stratified
+    - random
+    - group
+    - time
+    default: group
+  train_fraction:
+    type: number
+    default: 0.6
+    minimum: 0.1
+    maximum: 0.9
+  val_fraction:
+    type: number
+    default: 0.2
+    minimum: 0.05
+    maximum: 0.8
+  seed:
+    type: integer
+    default: 42
+  group_column:
+    type: string
+    default: ''
+    required: false
+  time_column:
+    type: string
+    default: ''
+    required: false
+prompt: |
+  Do: engine split with method=group and the given group column.
+  Save: split.json.
+inputs:
+- ref: registered_data
+outputs:
+- name: split.json
+  kind: report
+  required: true
+fact_candidates: []
+reads_test: false
+timeout_s: 300
+methods_text: Partitions were frozen group-disjointly with a fixed seed; the test partition was encrypted.
+builtin: split

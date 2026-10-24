@@ -1,0 +1,3 @@
+features=10099 models=2
+primary=roc_auc best=07_model_train_logistic_RQ5H03SW val=0.9732
+youden_thresholds={'07_model_train_logistic_RQ5H03SW': 0.2147, '08_model_train_alternative_7HJK4116': 0.9791}

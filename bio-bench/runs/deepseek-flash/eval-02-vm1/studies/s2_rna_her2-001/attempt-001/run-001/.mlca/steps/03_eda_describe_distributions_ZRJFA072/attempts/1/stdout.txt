@@ -1,0 +1,1 @@
+rows=50 numeric=50 categorical=0

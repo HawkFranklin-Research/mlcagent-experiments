@@ -1,0 +1,2 @@
+rows=122 cols=10080 missing=62377
+saved schema.json with 10080 rows

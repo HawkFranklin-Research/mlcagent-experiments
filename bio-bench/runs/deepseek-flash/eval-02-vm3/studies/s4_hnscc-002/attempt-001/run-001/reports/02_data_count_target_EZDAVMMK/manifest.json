@@ -1,0 +1,1 @@
+{"facts": [], "fits": [], "metrics": [], "outputs": [{"caption": "Status counts and reverse Kaplan-Meier median follow-up", "kind": "table", "name": "target_counts.csv"}, {"caption": "Status counts and reverse Kaplan-Meier median follow-up", "kind": "table", "name": "target_counts.parquet"}]}

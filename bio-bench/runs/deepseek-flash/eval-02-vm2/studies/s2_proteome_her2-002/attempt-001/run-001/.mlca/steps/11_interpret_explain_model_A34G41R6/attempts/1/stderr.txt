@@ -1,0 +1,11 @@
+/home/vatsal1_hawk_franklin_research_c/mlca/mlcagent-experiments/bio-bench/runs/deepseek-flash/eval-02-vm2/studies/s2_proteome_her2-002/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/numpy/lib/_function_base_impl.py:3037: RuntimeWarning: invalid value encountered in divide
+  c /= stddev[:, None]
+/home/vatsal1_hawk_franklin_research_c/mlca/mlcagent-experiments/bio-bench/runs/deepseek-flash/eval-02-vm2/studies/s2_proteome_her2-002/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/numpy/lib/_function_base_impl.py:3038: RuntimeWarning: invalid value encountered in divide
+  c /= stddev[None, :]
+Traceback (most recent call last):
+  File "/home/vatsal1_hawk_franklin_research_c/mlca/mlcagent-experiments/bio-bench/runs/deepseek-flash/eval-02-vm2/studies/s2_proteome_her2-002/attempt-001/run-001/.mlca/steps/11_interpret_explain_model_A34G41R6/attempts/1/script.py", line 108, in <module>
+    base = score_df(Xval)
+  File "/home/vatsal1_hawk_franklin_research_c/mlca/mlcagent-experiments/bio-bench/runs/deepseek-flash/eval-02-vm2/studies/s2_proteome_her2-002/attempt-001/run-001/.mlca/steps/11_interpret_explain_model_A34G41R6/attempts/1/script.py", line 63, in score_df
+    pos = cls.index(1) if cls is not None and 1 in list(cls) else 1
+          ^^^^^^^^^
+AttributeError: 'numpy.ndarray' object has no attribute 'index'

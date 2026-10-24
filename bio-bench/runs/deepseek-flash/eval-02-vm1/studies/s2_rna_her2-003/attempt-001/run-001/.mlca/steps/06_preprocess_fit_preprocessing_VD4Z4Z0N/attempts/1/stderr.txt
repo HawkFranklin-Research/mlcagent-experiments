@@ -1,0 +1,4 @@
+/home/vatsal1_hawk_franklin_research_c/mlca/mlcagent-experiments/bio-bench/runs/deepseek-flash/eval-02-vm1/studies/s2_rna_her2-003/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/numpy/lib/_function_base_impl.py:3037: RuntimeWarning: invalid value encountered in divide
+  c /= stddev[:, None]
+/home/vatsal1_hawk_franklin_research_c/mlca/mlcagent-experiments/bio-bench/runs/deepseek-flash/eval-02-vm1/studies/s2_rna_her2-003/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/numpy/lib/_function_base_impl.py:3038: RuntimeWarning: invalid value encountered in divide
+  c /= stddev[None, :]

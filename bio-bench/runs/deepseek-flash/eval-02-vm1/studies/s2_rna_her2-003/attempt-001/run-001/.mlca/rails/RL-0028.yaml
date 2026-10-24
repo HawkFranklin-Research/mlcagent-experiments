@@ -1,0 +1,21 @@
+id: RL-0028
+kind: instruction
+roles:
+- worker
+events:
+- validate
+problem_types:
+- binary
+- multiclass
+- multilabel
+- regression
+- multioutput_regression
+- clustering
+- representation
+text: Record the selected fitted model's primary validation metric using exactly the key declared
+  in _protocol['task']['primary_metric'] and split val. Per-model metric names are additional and
+  do not satisfy the primary-metric check. Reuse fitted models without fitting during scoring.
+reason: Validation produced only per-model metric names and left the declared primary-metric
+  check unsatisfied, including after its bounded scoring-only recovery.
+ledger: L-0013
+added_in: rails-0.14

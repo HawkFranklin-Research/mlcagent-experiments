@@ -1,0 +1,3 @@
+train rows=73 val rows=24
+model_features=10079 permuted=50 repeats=5 method=top50_correlation_validation_permutation_limitation
+top_feature=MAP3K9

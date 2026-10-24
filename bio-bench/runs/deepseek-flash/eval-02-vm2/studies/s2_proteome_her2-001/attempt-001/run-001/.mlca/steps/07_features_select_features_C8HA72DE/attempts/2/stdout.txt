@@ -1,0 +1,2 @@
+features 10079, width 10079, k=20
+saved selector.pkl

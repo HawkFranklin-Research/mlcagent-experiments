@@ -1,0 +1,4 @@
+Traceback (most recent call last):
+  File "/home/vatsal1_hawk_franklin_research_c/mlca/mlcagent-experiments/bio-bench/runs/deepseek-flash/eval-02-vm3/studies/s4_hnscc-002/attempt-001/run-001/.mlca/steps/08_model_train_cox_V3YF8N02/attempts/1/script.py", line 27, in <module>
+    raise ValueError("Expected exactly one event target")
+ValueError: Expected exactly one event target

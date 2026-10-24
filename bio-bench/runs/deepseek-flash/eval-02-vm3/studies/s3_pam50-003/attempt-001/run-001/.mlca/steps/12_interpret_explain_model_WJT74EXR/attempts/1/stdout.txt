@@ -1,0 +1,2 @@
+train rows=586 val rows=194
+method=unavailable_no_reliable_ranking features=18242 repeats=0 top15=0

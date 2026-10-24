@@ -1,0 +1,2 @@
+feat_cols=10099 target=label primary=roc_auc
+best=logistic val_roc_auc=0.9732

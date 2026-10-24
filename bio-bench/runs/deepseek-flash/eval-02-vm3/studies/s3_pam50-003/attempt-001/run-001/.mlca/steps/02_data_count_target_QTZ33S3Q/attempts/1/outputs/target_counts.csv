@@ -1,0 +1,6 @@
+class,n,share,flag_under_5pct
+LumA,499,0.5087,False
+LumB,197,0.2008,False
+Basal,171,0.1743,False
+Her2,78,0.0795,False
+Normal,36,0.0367,True

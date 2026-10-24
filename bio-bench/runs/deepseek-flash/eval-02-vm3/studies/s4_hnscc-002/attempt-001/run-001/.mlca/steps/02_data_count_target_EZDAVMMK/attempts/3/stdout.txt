@@ -1,0 +1,2 @@
+rows=415, events=191, censored=224
+median_follow_up=35.05

@@ -1,0 +1,3 @@
+train rows: 73
+features in/out: 18244/18244, k=20
+saved selector.pkl

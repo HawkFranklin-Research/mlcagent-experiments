@@ -1,0 +1,9 @@
+Traceback (most recent call last):
+  File "/home/vatsal1_hawk_franklin_research_c/mlca/mlcagent-experiments/bio-bench/runs/deepseek-flash/eval-02-vm3/studies/s4_hnscc-002/attempt-001/run-001/.mlca/steps/02_data_count_target_EZDAVMMK/attempts/2/script.py", line 75, in <module>
+    mlca_runtime.record_metric("n_events", float(n_event), split="discovery")
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/vatsal1_hawk_franklin_research_c/mlca/mlcagent-experiments/bio-bench/runs/deepseek-flash/eval-02-vm3/studies/s4_hnscc-002/attempt-001/run-001/.mlca/env/lib/python3.13/site-packages/mlca_runtime/__init__.py", line 184, in record_metric
+    raise ValueError(
+    ...<2 lines>...
+    )
+ValueError: MLCA: Metric partition must be train, val, test or external; use sourced fact candidates for counts before the split, not event names.

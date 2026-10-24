@@ -1,0 +1,3 @@
+train rows=73 raw features=10079
+pre input=10079 sel input=10079 selector_wraps=True
+saved model.pkl steps=['selector_pipeline', 'clf']

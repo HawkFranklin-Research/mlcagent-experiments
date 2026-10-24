@@ -1,0 +1,2 @@
+Trained HistGradientBoostingClassifier on 73 rows, 10079 features
+Saved alternative_model.pkl

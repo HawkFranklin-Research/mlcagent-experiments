@@ -1,0 +1,3 @@
+train=(71, 10100) val=(23, 10100)
+raw_features=10099
+method=limitation: no reliable importance ranking features=0 repeats=0 top=unavailable

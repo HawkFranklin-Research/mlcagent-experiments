@@ -1,0 +1,3 @@
+val=24 features=18244 candidates=2
+primary=roc_auc best=logistic value=0.9524 pos_label=np.int64(1)
+wrote validation_metrics.csv rows=8

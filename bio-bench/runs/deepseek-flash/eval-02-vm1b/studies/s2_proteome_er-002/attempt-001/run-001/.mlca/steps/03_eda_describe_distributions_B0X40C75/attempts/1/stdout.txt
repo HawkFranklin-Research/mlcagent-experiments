@@ -1,0 +1,2 @@
+features: numeric=10099 categorical=0
+summary_rows=50 targets=['label'] group_col=None
