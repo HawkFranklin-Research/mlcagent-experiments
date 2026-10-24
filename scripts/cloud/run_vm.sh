@@ -84,7 +84,8 @@ backup() {
     local out="$1" name archive
     name="$(basename "$out")"
     archive="/tmp/$name-$HOST.tar.zst"
-    if grep -rIlE 'sk-[A-Za-z0-9]{20,}|hf_[A-Za-z0-9]{20,}|gh[ps]_[A-Za-z0-9]{20,}' "$out" >/dev/null 2>&1; then
+    # .enc split vaults are Fernet ciphertext (random base64), not text that can hold a key.
+    if grep --exclude='*.enc' -rIlE 'sk-[A-Za-z0-9]{20,}|hf_[A-Za-z0-9]{20,}|gh[ps]_[A-Za-z0-9]{20,}' "$out" >/dev/null 2>&1; then
         log "SECRET PATTERN FOUND in $out; not uploaded"
         return 1
     fi
