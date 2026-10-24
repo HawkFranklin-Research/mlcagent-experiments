@@ -4,10 +4,11 @@ Answers Reviewer 1, comment 5 (Expert Systems 4881730): which problems MLCA dete
 
 Flawed analysis scripts, each paired with a correct control, are submitted through MLCA's real step runner at `freeze-v2`. MLCA's scripted fake provider returns them verbatim. The test therefore makes **no model calls and no agent runs**; it measures the engine's enforced checks and the external leakage scorer, not the agent's choices. Author decision 24 October 2026; protocol in [`WORK_ORDER.md`](WORK_ORDER.md).
 
-Status (24 October 2026):
-- `flaws.yaml` (fixed before any run) and `run_flaws.py` are committed.
-- The first attempt failed in the harness (see the record below), and the harness has since been fixed.
-- The controls must be made to reach the report before the official run, `runs/<date>/` (`matrix.csv`, `MATRIX.md`, `environment.json`, one project folder per case).
+Status: **done** (24 October 2026). Official run: [`runs/2026-10-24-official/`](runs/2026-10-24-official/README.md), commit `199fb5df`.
+- 13 flaws and 13 controls; all 13 controls passed.
+- 9 flaws refused by enforced checks, 2 caught only by the external scorer (F4b), 2 undetected (F8, F9), 0 warned.
+- 0 model calls, 0 network attempts, no engine crash.
+- The first attempt (`runs/2026-10-24/`) failed in the harness; it is recorded below, not a result.
 
 ## Record: harness failure on 24 October 2026 (`runs/2026-10-24/`, partial, not a result)
 

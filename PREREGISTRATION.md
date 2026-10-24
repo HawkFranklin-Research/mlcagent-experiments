@@ -98,3 +98,4 @@ original and re-scored files are both kept (EVALUATION_SUMMARY.md, "Deviation").
 - Method: flawed analysis scripts (and a correct control for each) submitted through MLCA's step runner at `freeze-v2` with the scripted fake provider; no model calls, no agent runs, no change to MLCA. The flaw list (`safeguard-tests/flaws.yaml`) is committed before the first run and not changed after seeing outcomes.
 - Not an agent evaluation: it does not affect the stopping rule (eval-02 remains the last agent run).
 - Work order: `safeguard-tests/WORK_ORDER.md`.
+- Run (2026-10-24): `safeguard-tests/runs/2026-10-24-official/` (commit `199fb5df`); one amendment before any flaw was run (Heart Disease scripts impute missing values), recorded in `safeguard-tests/README.md`.
