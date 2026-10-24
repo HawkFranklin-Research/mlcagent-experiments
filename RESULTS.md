@@ -1,6 +1,6 @@
 # MLCA v2 results: what was run, in what order, and where it is
 
-Status on 22 October 2026. This file describes every set of agent runs in this repository. It is written to serve later as the dataset card for the raw-results upload. Main-study raw results are backed up privately at `HawkFranklin-Research/mlcagent-runs`, verified revision `d39aee54ed033c1ace8128aefec5a3e86f5f5255`. See [the offload and restore record](docs/storage/huggingface-offload-2026-10-22/README.md).
+Status on 24 October 2026 (eval-02 final). This file describes every set of agent runs in this repository. It is written to serve later as the dataset card for the raw-results upload. Main-study raw results are backed up privately at `HawkFranklin-Research/mlcagent-runs`, verified revision `d39aee54ed033c1ace8128aefec5a3e86f5f5255`. See [the offload and restore record](docs/storage/huggingface-offload-2026-10-22/README.md).
 
 ## 1. The study in one paragraph
 
@@ -62,9 +62,18 @@ These are the sets the paper reports. Model throughout: DeepSeek V4.1 Flash, tem
 | 9 | Development v2, batch-01 | `bench/dev-loop-v2/batch-01` | rails-0.14 | 15 | 10 | 12 tables plus 3 wide gene-expression tables (GLI-85, SMK-CAN-187, GCM). |
 | 10 | Development v2, batch-02 | `bench/dev-loop-v2/batch-02` | rails-0.15 | 9 (3 × 3) | 9 | Acceptance of the 3 wide tables, 3/3 each. The 12 v1 tables keep their acceptance; batch-01 is their regression check. |
 | — | **Freeze `freeze-v2`** | `../mlca-revized` tag | `7dc0aed`, rails-0.15 | — | — | |
-| — | eval-02 | `bio-bench/runs/deepseek-flash/eval-02` | freeze-v2 | — | — | To come. Repeats eval-01 exactly; the last agent run of this revision. |
+| 11 | Biomedical evaluation, arm A (eval-02) | `bio-bench/runs/deepseek-flash/eval-02`, `eval-02-vm1`, `eval-02-vm1b`, `eval-02-vm2`, `eval-02-vm3` | freeze-v2 (rails-0.15) | 27 (9 × 3) | 22 | Repeats eval-01 exactly; the last agent run of this revision. Agent failures (5): proteome PR runs 2 (`invalid_inference` at setup) and 3 (interpret, RuntimeError); HNSCC runs 1 (validate, AttributeError), 2 (model, KeyError), 3 (validate, EmptyDataError). The studies were split over the laptop and three cloud VMs (hardware recorded per attempt). |
 
-**Total in the main study so far:** 203 agent studies (sets 1–6, 8–10).
+**eval-02 infrastructure events.** These were not agent outcomes. Every attempt is kept, and each affected study was run again on the same frozen version:
+- the laptop internet dropped: 5 studies failed at their first request;
+- the first VM attempt had an empty package cache: 17 studies failed at the environment build (`eval-02-vm-envfail`);
+- the second VM attempt had the cache seeded with Python 3.12 wheels: 17 studies failed at the environment build (`_envfail-py312-2026-10-23`);
+- Ubuntu 24.04 blocked the sandbox on the VMs: 5 studies (`sandbox_setup_failure`);
+- the controller stopped 4 retry attempts after about 10 s because tracked run folders were counted as code changes (fixed in `689fea03`).
+
+The controller fixes are in `scripts/` and `docs/runbooks/CLOUD-RUN-MANUAL.md`; MLCA itself was not changed.
+
+**Total in the main study:** 230 agent studies (sets 1–6, 8–11), not counting attempts repeated after infrastructure events. The safeguard test and the AutoML comparisons are not agent runs.
 
 ## 4. Why there are two full acceptance batches (36 + 36)
 
