@@ -1,0 +1,14 @@
+{
+  "pricing": "deepseek-flash (DeepSeek-V4.1-Flash-1017), USD/1M: peak hit 0.006, miss 0.30, output 1.20; off-peak half",
+  "official_27_studies_usd": 2.08,
+  "per_successful_study_usd_median": 0.067,
+  "all_eval02_attempts_including_infrastructure_usd": 2.38,
+  "requests_official": 976,
+  "requests_all_attempts": 1059,
+  "tokens_official": {
+    "input_tokens": 9469209,
+    "cached_tokens": 7065850,
+    "output_tokens": 2367770,
+    "reasoning_tokens": 1974859
+  }
+}

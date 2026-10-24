@@ -1,0 +1,118 @@
+{
+  "s1_anemia-001": {
+    "mlca_ok": false,
+    "generated_scripts": 9,
+    "generated_scripts_reproduced": 9,
+    "engine_steps": [
+      [
+        "01_onboard_confirm_brief_X9HMGDPW",
+        "evidence consistency",
+        true
+      ],
+      [
+        "04_split_freeze_stratified_FSG98D48",
+        "split regeneration",
+        false
+      ],
+      [
+        "12_report_generate_reports_EV4EA66K",
+        "evidence consistency",
+        true
+      ]
+    ],
+    "differences": [],
+    "split_recheck": {
+      "rows": 534,
+      "partitions_identical": true,
+      "row_ids_as_stored": true,
+      "mlca_hash_check": false
+    }
+  },
+  "s2_rna_er-001": {
+    "mlca_ok": true,
+    "generated_scripts": 9,
+    "generated_scripts_reproduced": 9,
+    "engine_steps": [
+      [
+        "01_onboard_confirm_brief_NGRJ5EP4",
+        "evidence consistency",
+        true
+      ],
+      [
+        "04_split_freeze_stratified_S3W4E4ZD",
+        "split regeneration",
+        true
+      ],
+      [
+        "12_report_generate_reports_N4BJFKYB",
+        "evidence consistency",
+        true
+      ]
+    ],
+    "differences": [],
+    "split_recheck": {
+      "rows": 120,
+      "partitions_identical": true,
+      "row_ids_as_stored": true,
+      "mlca_hash_check": true
+    }
+  },
+  "s2_rna_pr-001": {
+    "mlca_ok": true,
+    "generated_scripts": 10,
+    "generated_scripts_reproduced": 10,
+    "engine_steps": [
+      [
+        "01_onboard_confirm_brief_S3H3VG8G",
+        "evidence consistency",
+        true
+      ],
+      [
+        "05_split_freeze_stratified_D3HK3D3T",
+        "split regeneration",
+        true
+      ],
+      [
+        "13_report_generate_reports_STRAYB70",
+        "evidence consistency",
+        true
+      ]
+    ],
+    "differences": [],
+    "split_recheck": {
+      "rows": 115,
+      "partitions_identical": true,
+      "row_ids_as_stored": true,
+      "mlca_hash_check": true
+    }
+  },
+  "s2_proteome_er-003": {
+    "mlca_ok": true,
+    "generated_scripts": 9,
+    "generated_scripts_reproduced": 9,
+    "engine_steps": [
+      [
+        "01_onboard_confirm_brief_T1TN11GX",
+        "evidence consistency",
+        true
+      ],
+      [
+        "04_split_freeze_stratified_R49F7Q33",
+        "split regeneration",
+        true
+      ],
+      [
+        "12_report_generate_reports_NM1C069N",
+        "evidence consistency",
+        true
+      ]
+    ],
+    "differences": [],
+    "split_recheck": {
+      "rows": 120,
+      "partitions_identical": true,
+      "row_ids_as_stored": true,
+      "mlca_hash_check": true
+    }
+  }
+}

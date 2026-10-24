@@ -1,0 +1,38 @@
+{
+  "rows": 1421,
+  "unique_rows": 534,
+  "label_counts": {
+    "0": 801,
+    "1": 620
+  },
+  "label_counts_unique_rows": {
+    "0": 287,
+    "1": 247
+  },
+  "random_80_20_split_of_all_rows": {
+    "test_rows_with_exact_copy_in_train_mean": 0.904,
+    "min": 0.849,
+    "max": 0.951,
+    "repeats": 200
+  },
+  "label_vs_haemoglobin_unique_rows": {
+    "gender_0": {
+      "rows": 255,
+      "best_cutoff_g_dl": 11.9,
+      "accuracy_of_Hb_below_cutoff": 1.0,
+      "max_Hb_anemic": 11.9,
+      "min_Hb_not_anemic": 12.0,
+      "rule": "Result = 1 exactly when Hemoglobin < 12.0"
+    },
+    "gender_1": {
+      "rows": 279,
+      "best_cutoff_g_dl": 13.4,
+      "accuracy_of_Hb_below_cutoff": 1.0,
+      "max_Hb_anemic": 13.4,
+      "min_Hb_not_anemic": 13.5,
+      "rule": "Result = 1 exactly when Hemoglobin < 13.5"
+    }
+  },
+  "sex_specific_Hb_rule_accuracy_unique_rows": 1.0,
+  "sex_specific_Hb_rule_accuracy_all_rows": 1.0
+}
