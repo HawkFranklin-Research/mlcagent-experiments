@@ -1,0 +1,231 @@
+schema_version: 1
+reviewer: R1-5
+cases:
+  - id: F1-synthetic
+    table: synthetic
+    template: tabular_classification
+    brief: {aim: Predict y from the synthetic measurements, target: y, unit: one synthetic row}
+    setup: {excluded_columns: [], group_column: null, time_columns: []}
+    action: fit_preprocessing
+    flaw_description: Fit a scaler using training and validation rows.
+    planted_script: |
+      import pandas as pd, mlca_runtime as m
+      from sklearn.preprocessing import StandardScaler
+      i=m.inputs(); tr=pd.read_parquet(i['train']); va=pd.read_parquet(i['val'])
+      X=pd.concat([tr.drop(columns='y'),va.drop(columns='y')])
+      m.save_model(m.fit_record(StandardScaler(),X,'train'),'preprocessor.pkl')
+    control_script: |
+      import pandas as pd, mlca_runtime as m
+      from sklearn.preprocessing import StandardScaler
+      tr=pd.read_parquet(m.inputs()['train']); X=tr.drop(columns='y')
+      m.save_model(m.fit_record(StandardScaler(),X,'train'),'preprocessor.pkl')
+  - id: F1-breast-cancer
+    table: breast_cancer_diagnostic
+    template: tabular_classification
+    brief: {aim: Classify the diagnosis from the measured features, target: Diagnosis, unit: one diagnostic sample}
+    setup: {excluded_columns: [], group_column: null, time_columns: []}
+    action: fit_preprocessing
+    flaw_description: Fit a scaler using training and validation rows before downstream modelling.
+    planted_script: |
+      import pandas as pd, mlca_runtime as m, json
+      from sklearn.preprocessing import StandardScaler
+      i=m.inputs(); p=json.load(open(i['_protocol'])); y=p['targets'][0]
+      tr=pd.read_parquet(i['train']); va=pd.read_parquet(i['val'])
+      X=pd.concat([tr.drop(columns=[y]),va.drop(columns=[y])])
+      m.save_model(m.fit_record(StandardScaler(),X,'train'),'preprocessor.pkl')
+    control_script: |
+      import pandas as pd, mlca_runtime as m, json
+      from sklearn.preprocessing import StandardScaler
+      i=m.inputs(); p=json.load(open(i['_protocol'])); y=p['targets'][0]
+      tr=pd.read_parquet(i['train']); X=tr.drop(columns=[y])
+      m.save_model(m.fit_record(StandardScaler(),X,'train'),'preprocessor.pkl')
+  - id: F2
+    table: synthetic
+    template: tabular_classification
+    brief: {aim: Predict y from the synthetic measurements, target: y, unit: one synthetic row}
+    setup: {excluded_columns: [], group_column: null, time_columns: []}
+    action: train_logistic
+    flaw_description: Attempt to copy locked test rows into the training fit.
+    planted_script: |
+      import pandas as pd, mlca_runtime as m
+      from sklearn.linear_model import LogisticRegression
+      i=m.inputs(); tr=pd.read_parquet(i['train']); te=pd.read_parquet(i['test'])
+      X=pd.concat([tr.drop(columns='y'),te.drop(columns='y')]); y=pd.concat([tr['y'],te['y']])
+      model=m.fit_record(LogisticRegression(),X,'train',y=y); m.save_model(model,'model.pkl')
+    control_script: |
+      import pandas as pd, mlca_runtime as m
+      from sklearn.linear_model import LogisticRegression
+      tr=pd.read_parquet(m.inputs()['train']); X=tr.drop(columns='y')
+      model=m.fit_record(LogisticRegression(max_iter=1000),X,'train',y=tr['y']); m.save_model(model,'model.pkl')
+  - id: F2b
+    table: synthetic
+    template: tabular_classification
+    brief: {aim: Predict y from the synthetic measurements, target: y, unit: one synthetic row}
+    setup: {excluded_columns: [], group_column: null, time_columns: []}
+    action: train_logistic
+    flaw_description: Copy validation rows into the training fit.
+    planted_script: |
+      import pandas as pd, mlca_runtime as m
+      from sklearn.linear_model import LogisticRegression
+      i=m.inputs(); tr=pd.read_parquet(i['train']); va=pd.read_parquet(i['val'])
+      X=pd.concat([tr.drop(columns='y'),va.drop(columns='y')]); y=pd.concat([tr['y'],va['y']])
+      model=m.fit_record(LogisticRegression(),X,'train',y=y); m.save_model(model,'model.pkl')
+    control_script: |
+      import pandas as pd, mlca_runtime as m
+      from sklearn.linear_model import LogisticRegression
+      tr=pd.read_parquet(m.inputs()['train']); X=tr.drop(columns='y')
+      model=m.fit_record(LogisticRegression(max_iter=1000),X,'train',y=tr['y']); m.save_model(model,'model.pkl')
+  - id: F3
+    table: synthetic
+    template: tabular_classification
+    brief: {aim: Predict y from the synthetic measurements, target: y, unit: one synthetic row}
+    setup: {excluded_columns: [], group_column: null, time_columns: []}
+    action: select_features
+    flaw_description: Select features on combined training and validation rows before cross-validation.
+    planted_script: |
+      import pandas as pd, mlca_runtime as m
+      from sklearn.feature_selection import SelectKBest, f_classif
+      i=m.inputs(); tr=pd.read_parquet(i['train']); va=pd.read_parquet(i['val'])
+      both=pd.concat([tr,va]); X=both.drop(columns='y'); y=both['y']
+      sel=m.fit_record(SelectKBest(f_classif,k=2),X,'train',y=y); m.save_model(sel,'selector.pkl')
+    control_script: |
+      import pandas as pd, mlca_runtime as m
+      from sklearn.feature_selection import SelectKBest, f_classif
+      tr=pd.read_parquet(m.inputs()['train']); X=tr.drop(columns='y')
+      sel=m.fit_record(SelectKBest(f_classif,k=2),X,'train',y=tr['y']); m.save_model(sel,'selector.pkl')
+  - id: F4a
+    table: heart_disease_cleveland
+    template: tabular_classification
+    brief: {aim: Predict the binary heart disease outcome, target: heart_disease_binary, unit: one patient record}
+    setup: {excluded_columns: [num], group_column: null, time_columns: []}
+    action: train_logistic
+    flaw_description: Use the declared target-derived source column num as a model input.
+    planted_script: |
+      import pandas as pd, mlca_runtime as m, json
+      from sklearn.linear_model import LogisticRegression
+      i=m.inputs(); p=json.load(open(i['_protocol'])); tr=pd.read_parquet(i['train']); y=p['targets'][0]
+      X=tr.drop(columns=[y]); model=m.fit_record(LogisticRegression(max_iter=1000),X,'train',y=tr[y]); m.save_model(model,'model.pkl')
+    control_script: |
+      import pandas as pd, mlca_runtime as m, json
+      from sklearn.linear_model import LogisticRegression
+      i=m.inputs(); p=json.load(open(i['_protocol'])); tr=pd.read_parquet(i['train']); y=p['targets'][0]
+      X=tr.drop(columns=[y,'num']); model=m.fit_record(LogisticRegression(max_iter=1000),X,'train',y=tr[y]); m.save_model(model,'model.pkl')
+  - id: F4b-heart
+    table: heart_disease_cleveland
+    template: tabular_classification
+    brief: {aim: Predict the binary heart disease outcome, target: heart_disease_binary, unit: one patient record}
+    setup: {excluded_columns: [], group_column: null, time_columns: []}
+    action: train_logistic
+    flaw_description: Use undeclared target-derived source column num as a model input.
+    planted_script: |
+      import pandas as pd, mlca_runtime as m, json
+      from sklearn.linear_model import LogisticRegression
+      i=m.inputs(); p=json.load(open(i['_protocol'])); tr=pd.read_parquet(i['train']); y=p['targets'][0]
+      X=tr.drop(columns=[y]); model=m.fit_record(LogisticRegression(max_iter=1000),X,'train',y=tr[y]); m.save_model(model,'model.pkl')
+    control_script: |
+      import pandas as pd, mlca_runtime as m, json
+      from sklearn.linear_model import LogisticRegression
+      i=m.inputs(); p=json.load(open(i['_protocol'])); tr=pd.read_parquet(i['train']); y=p['targets'][0]
+      X=tr.drop(columns=[y,'num']); model=m.fit_record(LogisticRegression(max_iter=1000),X,'train',y=tr[y]); m.save_model(model,'model.pkl')
+  - id: F4b-bike
+    table: bike_sharing_hourly
+    template: regression
+    brief: {aim: Predict hourly bicycle rentals, target: cnt, targets: '["cnt"]', unit: one hourly observation}
+    setup: {excluded_columns: [], group_column: null, time_columns: [dteday, hr]}
+    action: train_baseline
+    flaw_description: Use undeclared target-derived components casual and registered as model inputs.
+    planted_script: |
+      import pandas as pd, mlca_runtime as m, json
+      from sklearn.linear_model import LinearRegression
+      i=m.inputs(); p=json.load(open(i['_protocol'])); tr=pd.read_parquet(i['train']); y=p['targets'][0]
+      X=tr.drop(columns=[y]); model=m.fit_record(LinearRegression(),X,'train',y=tr[y]); m.save_model(model,'model.pkl')
+    control_script: |
+      import pandas as pd, mlca_runtime as m, json
+      from sklearn.linear_model import LinearRegression
+      i=m.inputs(); p=json.load(open(i['_protocol'])); tr=pd.read_parquet(i['train']); y=p['targets'][0]
+      X=tr.drop(columns=[y,'casual','registered','instant','dteday']); model=m.fit_record(LinearRegression(),X,'train',y=tr[y]); m.save_model(model,'model.pkl')
+  - id: F5
+    table: anuran_calls
+    template: multilabel_classification
+    brief: {aim: Predict the three taxonomic labels from call measurements, target: Family, targets: '["Family","Genus","Species"]', unit: one frog call recording row}
+    setup: {excluded_columns: [], group_column: RecordID, time_columns: []}
+    action: freeze_stratified
+    flaw_description: Request a stratified split that would mix the same recording group across partitions.
+    planted_script: '# Built-in split request: method=stratified, despite declared group_column=RecordID.'
+    control_script: '# Built-in split request: method=group, group_column=RecordID.'
+  - id: F6
+    table: bike_sharing_hourly
+    template: regression
+    brief: {aim: Predict hourly bicycle rentals, target: cnt, targets: '["cnt"]', unit: one hourly observation}
+    setup: {excluded_columns: [], group_column: null, time_columns: [dteday, hr]}
+    action: freeze_stratified
+    flaw_description: Request a random split of a series with declared time columns.
+    planted_script: '# Built-in split request: method=random, despite declared time_columns=[dteday, hr].'
+    control_script: '# Built-in split request: method=time, time_columns=[dteday, hr].'
+  - id: F7
+    table: synthetic
+    template: tabular_classification
+    brief: {aim: Predict y from the synthetic measurements, target: y, unit: one synthetic row}
+    setup: {excluded_columns: [], group_column: null, time_columns: []}
+    action: score_validation
+    flaw_description: Try to read the locked test partition during validation.
+    planted_script: |
+      import pandas as pd, mlca_runtime as m
+      test=pd.read_parquet(m.inputs()['test']); m.record_metric('roc_auc',0.5,'val')
+      m.save_table(pd.DataFrame({'metric':['roc_auc'],'value':[0.5]}),'validation_metrics.csv')
+    control_script: |
+      import pandas as pd, mlca_runtime as m, json
+      from sklearn.metrics import roc_auc_score
+      import pickle
+      i=m.inputs(); p=json.load(open(i['_protocol'])); y=p['targets'][0]
+      va=pd.read_parquet(i['val']); model=pickle.load(open(i['latest_model'],'rb'))
+      value=roc_auc_score(va[y],model.predict_proba(va.drop(columns=[y]))[:,1])
+      m.record_metric('roc_auc',float(value),'val'); m.save_table(pd.DataFrame({'metric':['roc_auc'],'value':[value]}),'validation_metrics.csv')
+  - id: F8
+    table: synthetic
+    template: tabular_classification
+    brief: {aim: Predict y from the synthetic measurements, target: y, unit: one synthetic row}
+    setup: {excluded_columns: [], group_column: null, time_columns: []}
+    action: score_test
+    flaw_description: Choose a classification threshold on the unlocked test labels.
+    planted_script: |
+      import pandas as pd, mlca_runtime as m, json, pickle
+      from sklearn.metrics import accuracy_score, roc_auc_score
+      i=m.inputs(); p=json.load(open(i['_protocol'])); y=p['targets'][0]
+      te=pd.read_parquet(i['test']); model=pickle.load(open(i['latest_model'],'rb'))
+      proba=model.predict_proba(te.drop(columns=[y]))[:,1]
+      grid=[0.2,0.35,0.5,0.65,0.8]; threshold=max(grid,key=lambda t:accuracy_score(te[y],proba>=t))
+      pred=(proba>=threshold).astype(int); m.record_metric('roc_auc',float(roc_auc_score(te[y],proba)),'test')
+      m.save_table(pd.DataFrame({'metric':['roc_auc'],'value':[roc_auc_score(te[y],proba)],'threshold':[threshold]}),'test_metrics.csv')
+      m.save_row_outputs(pd.DataFrame({'row_id':te.index,'partition':'test','y_true':te[y].to_numpy(),'y_pred':pred,'proba__0':1-proba,'proba__1':proba}),'test_predictions.parquet')
+    control_script: |
+      import pandas as pd, mlca_runtime as m, json, pickle
+      from sklearn.metrics import roc_auc_score
+      i=m.inputs(); p=json.load(open(i['_protocol'])); y=p['targets'][0]
+      te=pd.read_parquet(i['test']); model=pickle.load(open(i['latest_model'],'rb'))
+      proba=model.predict_proba(te.drop(columns=[y]))[:,1]; pred=(proba>=0.5).astype(int)
+      value=roc_auc_score(te[y],proba); m.record_metric('roc_auc',float(value),'test')
+      m.save_table(pd.DataFrame({'metric':['roc_auc'],'value':[value]}),'test_metrics.csv')
+      m.save_row_outputs(pd.DataFrame({'row_id':te.index,'partition':'test','y_true':te[y].to_numpy(),'y_pred':pred,'proba__0':1-proba,'proba__1':proba}),'test_predictions.parquet')
+  - id: F9
+    table: synthetic
+    template: tabular_classification
+    brief: {aim: Predict y from the synthetic measurements, target: y, unit: one synthetic row}
+    setup: {excluded_columns: [], group_column: null, time_columns: []}
+    imbalance: true
+    action: score_validation
+    flaw_description: Report accuracy as roc_auc and invert the predicted labels on an imbalanced task.
+    planted_script: |
+      import pandas as pd, mlca_runtime as m, json, pickle
+      from sklearn.metrics import accuracy_score
+      i=m.inputs(); p=json.load(open(i['_protocol'])); y=p['targets'][0]
+      va=pd.read_parquet(i['val']); model=pickle.load(open(i['latest_model'],'rb'))
+      pred=1-model.predict(va.drop(columns=[y])); value=accuracy_score(va[y],pred)
+      m.record_metric('roc_auc',float(value),'val'); m.save_table(pd.DataFrame({'metric':['roc_auc'],'value':[value]}),'validation_metrics.csv')
+    control_script: |
+      import pandas as pd, mlca_runtime as m, json, pickle
+      from sklearn.metrics import roc_auc_score
+      i=m.inputs(); p=json.load(open(i['_protocol'])); y=p['targets'][0]
+      va=pd.read_parquet(i['val']); model=pickle.load(open(i['latest_model'],'rb'))
+      value=roc_auc_score(va[y],model.predict_proba(va.drop(columns=[y]))[:,1])
+      m.record_metric('roc_auc',float(value),'val'); m.save_table(pd.DataFrame({'metric':['roc_auc'],'value':[value]}),'validation_metrics.csv')
