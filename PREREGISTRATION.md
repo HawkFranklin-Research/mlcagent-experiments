@@ -99,3 +99,11 @@ original and re-scored files are both kept (EVALUATION_SUMMARY.md, "Deviation").
 - Not an agent evaluation: it does not affect the stopping rule (eval-02 remains the last agent run).
 - Work order: `safeguard-tests/WORK_ORDER.md`.
 - Run (2026-10-24): `safeguard-tests/runs/2026-10-24-official/` (commit `199fb5df`); one amendment before any flaw was run (Heart Disease scripts impute missing values), recorded in `safeguard-tests/README.md`.
+
+## AutoML comparison on the biomedical tasks (2026-10-24, author-approved; after eval-02, before any biomedical AutoML result)
+
+- Question (R1-1, R2-3): on the same frozen splits as each eval-02 MLCA run, how do AutoGluon 1.5.0 and FLAML 2.7.0 compare on the primary test metric (ROC AUC; one-vs-rest ROC AUC for S3), and at what time?
+- Tasks: S1 anemia, S2 receptor tasks (6), S3 PAM50. S4 HNSCC (survival) has no AutoML counterpart and is not compared. Features: every column except targets and identifier/leakage/evaluation-only/group columns (S1 keeps Hemoglobin, as for MLCA).
+- Settings as the held-out comparison: 600 s search budget per framework, 2 CPUs, seed 42; AutoGluon medium quality without bagging, stacking, weighted ensemble or neural models, feature generator fitted on training rows only; FLAML default estimators. No LLM calls.
+- Every MLCA attempt is reported; attempts without a frozen split are export failures, not scores. No result is rerun. Spec: `automl/specs/biomedical.yaml`; protocol `automl/README.md`.
+

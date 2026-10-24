@@ -393,6 +393,11 @@ def batch(args):
     import yaml
 
     specs = yaml.safe_load(Path(args.spec).read_text())
+    if args.tasks:
+        unknown = set(args.tasks) - {spec["id"] for spec in specs}
+        if unknown:
+            raise SystemExit(f"Unknown task ids for this spec: {sorted(unknown)}")
+        specs = [spec for spec in specs if spec["id"] in args.tasks]
     for spec in specs:
         # Bound discovery to the public study layout, never recurse into environments.
         projects = sorted(
@@ -470,6 +475,7 @@ def main():
     parser.add_argument("--runs-root")
     parser.add_argument("--mlca-python")
     parser.add_argument("--work-root")
+    parser.add_argument("--tasks", nargs="*", help="Batch only: restrict to these spec ids")
     args = parser.parse_args()
     if args.batch:
         if not all([args.runs_root, args.mlca_python, args.work_root]):

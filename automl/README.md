@@ -108,3 +108,16 @@ Fast synthetic integrity tests and mocked adapter contracts only. **No training 
 ```bash
 PYTHONPATH=.:scripts:../mlca-revized/src ../mlca-revized/.venv/bin/pytest -q tests/test_automl.py tests/test_batch_queue.py
 ```
+
+## Biomedical comparison (author, 24 October 2026; R1-1, R2-3)
+
+- **Spec:** `specs/biomedical.yaml`, generated from `bio-bench/manifest.yaml` with the SHA-256 values checked. It covers 8 tasks: S1 anemia, the six S2 receptor tasks, and S3 PAM50 (multiclass). S4 HNSCC is a survival task, which AutoGluon and FLAML do not support, so it is not compared. S3 uses MLCA's internal test partition of the TCGA discovery table, not the external CPTAC cohort.
+- **Pairing:** every eval-02 MLCA attempt whose split was frozen (final freeze, rails 0.15) is paired with AutoGluon and FLAML on exactly that split. Attempts that stopped before a split are recorded as export failures, never scored.
+- **Settings:** the same as the held-out comparison: `--time-budget 600 --cpus 2 --seed 42`, with the protocol above unchanged.
+- **Output:** `bench/automl-bio/`. The private partitions in `bench/automl-bio/.work/` are git-ignored and never uploaded.
+- **Not repeated:** the development (`bench/automl`) and held-out (`bench/automl-heldout`) results stand as they are. Existing `result.json` files are never rerun.
+- **Run on four VMs:** `scripts/cloud/run_automl_vm.sh scripts/cloud/slices/automl-bio-vmN.sh` (lanes run in parallel). Pool with `MLCA_FETCH_UPDATE=1 scripts/cloud/fetch_cloud_runs.sh automl-bio bench`, then `automl/.venv/bin/python automl/summarize.py --out bench/automl-bio`.
+- **Local smoke check (24 October, scratch only, short budgets):**
+  - export verified on S1, S2 RNA ER and S3 PAM50;
+  - AutoGluon and FLAML completed on S1, S2 RNA ER (AutoGluon, 180 s) and S3 PAM50 (FLAML);
+  - with a 20 s budget, AutoGluon cannot finish the 12,623-column proteome tables, because preparing the features alone takes longer. Use the 600 s budget.

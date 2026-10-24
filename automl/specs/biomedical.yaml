@@ -1,0 +1,92 @@
+# Biomedical AutoML comparison (R1-1, R2-3), author-approved 2026-10-24. Generated from
+# bio-bench/manifest.yaml (sha256 checked against data_prep/hf-111de16). Same protocol and settings as
+# the held-out comparison (automl/README.md). Excluded: identifier/leakage/evaluation-only/group columns.
+# S4 HNSCC is survival: no AutoGluon/FLAML counterpart, not included. S3 uses MLCA's internal test
+# partition of the TCGA discovery table; the external CPTAC cohort is not used here. Binary labels are 0/1,
+# positive class 1. S1 keeps Hemoglobin as a feature (author decision 2026-10-22, as for MLCA).
+- id: s1_anemia
+  data: data_prep/hf-111de16/prepared/S1/anemia.csv
+  sha256: 705a9b88c01d56fa11f4670ef029a784fc6ab0e5124c8c9f7c01f1549bbb5017
+  problem_type: binary
+  targets:
+  - Result
+  label_from_one_hot: false
+  excluded: []
+  external: null
+  positive: 1
+- id: s2_rna_er
+  data: data_prep/hf-111de16/prepared/S2/rna_er.csv
+  sha256: b1c73a28b7073088e4da9b3b55dc39cbaef24b1756810a9daca8e308d7b6c169
+  problem_type: binary
+  targets:
+  - label
+  label_from_one_hot: false
+  excluded:
+  - sample_id
+  external: null
+  positive: 1
+- id: s2_rna_pr
+  data: data_prep/hf-111de16/prepared/S2/rna_pr.csv
+  sha256: 0e07190cf824b2243a9d3b5df26210c935a28e3cc2dea1a1617d292370a5defa
+  problem_type: binary
+  targets:
+  - label
+  label_from_one_hot: false
+  excluded:
+  - sample_id
+  external: null
+  positive: 1
+- id: s2_rna_her2
+  data: data_prep/hf-111de16/prepared/S2/rna_her2.csv
+  sha256: c6d67ecb7193455e6cfc5218e5d0921fbc4d809680f1566f29baa7932ecf48b8
+  problem_type: binary
+  targets:
+  - label
+  label_from_one_hot: false
+  excluded:
+  - sample_id
+  external: null
+  positive: 1
+- id: s2_proteome_er
+  data: data_prep/hf-111de16/prepared/S2/proteome_er.csv
+  sha256: dc7126fb1b2e4b1b21ff6de2a74b687c4f3d26a9bf34c435fc2a16b30b83927e
+  problem_type: binary
+  targets:
+  - label
+  label_from_one_hot: false
+  excluded:
+  - sample_id
+  external: null
+  positive: 1
+- id: s2_proteome_pr
+  data: data_prep/hf-111de16/prepared/S2/proteome_pr.csv
+  sha256: 3ff14dbdab9b1594110d55382556fc4614e5b4aef93d68380c9760f286bc2983
+  problem_type: binary
+  targets:
+  - label
+  label_from_one_hot: false
+  excluded:
+  - sample_id
+  external: null
+  positive: 1
+- id: s2_proteome_her2
+  data: data_prep/hf-111de16/prepared/S2/proteome_her2.csv
+  sha256: 9cdf81692da404bef73e53be3d0699100b0e210c6f72b90b68bee88f03723fab
+  problem_type: binary
+  targets:
+  - label
+  label_from_one_hot: false
+  excluded:
+  - sample_id
+  external: null
+  positive: 1
+- id: s3_pam50
+  data: data_prep/hf-111de16/prepared/S3/discovery.csv
+  sha256: 28b8b432e8698bd24fde48fd4ca695cbd276deb68f6de34e66d143f9b1f72b26
+  problem_type: multiclass
+  targets:
+  - PAM50
+  label_from_one_hot: false
+  excluded:
+  - sample_id
+  external: null
