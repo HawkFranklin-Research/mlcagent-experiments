@@ -121,3 +121,10 @@ PYTHONPATH=.:scripts:../mlca-revized/src ../mlca-revized/.venv/bin/pytest -q tes
   - export verified on S1, S2 RNA ER and S3 PAM50;
   - AutoGluon and FLAML completed on S1, S2 RNA ER (AutoGluon, 180 s) and S3 PAM50 (FLAML);
   - with a 20 s budget, AutoGluon cannot finish the 12,623-column proteome tables, because preparing the features alone takes longer. Use the 600 s budget.
+
+### Reading the biomedical results (checked 24 October 2026, commit `8c21467f`)
+
+- **Inputs are MLCA's frozen partitions,** including columns the agent excluded at setup. In S1 run 2 the agent excluded `Hemoglobin` as a suspected leak, so AutoML had 4 features in that run and 5 in runs 1 and 3. That run's low scores (MLCA 0.54, AutoGluon 0.65, FLAML 0.58) come from the agent's exclusion, not from the split.
+- **The three runs of a task share one split.** The engine's split was stratified, seed 42, 60/20/20, with identical test-set hashes across runs; S1 run 2 differs only by the excluded column. So AutoML's SD of 0 across runs is not stability, and MLCA's SD reflects only the agent's choices on the same data (R1-2a, decision consistency). It is not sampling uncertainty.
+- **The test sets are small** (S2: about 23–26 samples), so differences of a few hundredths of AUC can be one or two samples. Report comparable performance, with bootstrap intervals on the shared test set if numbers are compared. Do not state superiority.
+- **Unavailable:** 8 rows, which are 4 MLCA attempts without a frozen split (proteome PR 1 and 2, PAM50 1 and 2, all first attempts), × 2 frameworks.
