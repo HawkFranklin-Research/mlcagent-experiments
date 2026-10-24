@@ -1,0 +1,13 @@
+table,run,success,category,furthest_event,inferred_problem_type,inferred_targets,split_method,model_estimators,features_fitted,test_metrics
+bank_marketing,1,True,,report,binary,y,stratified,HistGradientBoostingClassifier|LogisticRegression,13|13,roc_auc=0.7771|pr_auc=0.4037|balanced_accuracy=0.5845|brier_score=0.0855|sensitivity=0.1841|specificity=0.9848
+bank_marketing,2,True,,report,binary,y,stratified,HistGradientBoostingClassifier|LogisticRegression,13|13,roc_auc=0.7771
+bank_marketing,3,True,,report,binary,y,stratified,HistGradientBoostingClassifier|LogisticRegression,13|13,roc_auc=0.7771
+steel_plates_faults,1,False,setup_disagreement,report,multilabel,Pastry|Z_Scratch|K_Scatch|Stains|Dirtiness|Bumps|Other_Faults,random,LogisticRegression|RandomForestClassifier,25|25,macro_f1=0.8479|hamming_loss=0.0727|subset_accuracy=0.6041
+steel_plates_faults,2,False,test_lock,data,multilabel,Pastry|Z_Scratch|K_Scatch|Stains|Dirtiness|Bumps|Other_Faults,,,,
+steel_plates_faults,3,False,setup_disagreement,report,multilabel,Pastry|Z_Scratch|K_Scatch|Stains|Dirtiness|Bumps|Other_Faults,random,LogisticRegression|RandomForestClassifier,27|27,macro_f1=0.8590|hamming_loss=0.0661|subset_accuracy=0.6478
+wholesale_customers,1,True,,report,clustering,,random,KMeans,6|6|6|6|6|6|6|6|6|6|6|6|6|6|6|6|6|6|6|6|6|6|6|6|6|6|6|6|6|6|6|6|6|6|6,silhouette=0.3546
+wholesale_customers,2,True,,report,clustering,,random,KMeans,6|6|6|6|6|6|6|6|6|6|6|6|6|6|6|6|6|6|6|6|6|6|6|6|6|6|6|6|6|6|6|6|6|6|6|6|6|6|6|6|6|6|6|6|6|6|6|6|6|6|6|6|6|6|6|6|6|6|6|6|6|6|6|6|6|6|6|6|6|6|6|6|6|6|6|6|6|6,silhouette=0.2119
+wholesale_customers,3,True,,report,clustering,,random,KMeans,6|6|6|6|6|6|6|6|6|6|6|6|6|6|6|6|6|6|6|6|6|6|6|6|6|6|6|6|6|6|6|6|6|6|6|6|6|6|6|6|6|6|6|6|6|6|6|6|6|6|6|6|6|6|6|6|6|6|6|6|6|6|6|6|6|6|6|6|6|6|6|6|6|6|6|6|6|6|6|6|6|6|6|6|6|6,calinski_harabasz=26.5810|davies_bouldin=1.6106|silhouette=0.2119
+wine_quality,1,False,setup_disagreement,report,multiclass,quality,stratified,HistGradientBoostingClassifier|LogisticRegression,12|12,roc_auc_ovr=0.7868|macro_f1=0.2368
+wine_quality,2,False,setup_disagreement,report,multiclass,quality,stratified,HistGradientBoostingClassifier|LogisticRegression,12|12,roc_auc_ovr=0.7868|f1_macro=0.2368
+wine_quality,3,False,setup_disagreement,report,multiclass,quality,stratified,HistGradientBoostingClassifier|LogisticRegression,12|12,roc_auc_ovr=0.7182|macro_f1=0.2545

@@ -1,0 +1,22 @@
+set,phase,requests,providers,input_tokens,cached_tokens,output_tokens,reasoning_tokens,cost_usd_known,requests_unpriced
+dev-b01,development,173,openrouter,378074,88192,714702,664452,0.74,0
+dev-b02,development,362,openrouter,793836,145408,1490998,1369764,1.47,0
+dev-b03,development,279,openrouter,663898,189888,1152202,1076403,1.17,0
+dev-b04,development,184,openrouter,433509,85760,769945,716958,0.74,0
+dev-b05,development,84,openrouter,200809,19328,215833,186651,0.24,0
+dev-b06,development,45,openrouter,130129,29568,103502,88400,0.12,0
+dev-b07,development,87,openrouter,250707,78592,202583,173463,0.22,0
+dev-b08,development,51,openrouter,151029,42624,170486,149638,0.1,0
+acc-01,acceptance,1116,deepseek,3023171,1006208,2607363,2175782,1.87,0
+dev-b09,development,249,deepseek,687246,211584,648674,547778,0.46,0
+acc-02,acceptance,1182,deepseek,3217904,1080175,3108931,2638334,2.19,0
+dev-b10,development,258,deepseek,690250,211709,660246,556340,0.94,0
+dev-b11,development,142,deepseek,377626,118269,301357,249192,0.22,0
+dev-b12,development,110,deepseek,283084,77440,287258,244064,0.2,0
+dev-b13,development,77,deepseek,209109,56320,183414,152052,0.27,0
+heldout-01,heldout (rails 0.13),443,deepseek,1157625,338048,992885,817184,1.44,0
+eval-01,evaluation (rails 0.13),182,deepseek,604416,243456,479999,407007,0.64,0
+v2-b01,development (after reopening),536,deepseek,1479456,438905,1368409,1148241,0.98,0
+v2-b02,development (after reopening),344,deepseek,925628,316288,850487,714568,0.63,0
+eval-02,evaluation (released),1017,deepseek,10221216,7759610,2446820,2041667,2.14,0
+heldout-02,heldout (released),435,deepseek,1188018,372852,936933,768680,0.69,0

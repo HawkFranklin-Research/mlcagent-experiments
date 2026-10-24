@@ -63,3 +63,45 @@ Script `bootstrap.py` → `bootstrap.csv`.
 - **Result:** **45 of 46 intervals include zero.** The exception is S1 run 2 with AutoGluon (+0.11, interval 0.01–0.20), where the agent had excluded Hemoglobin and AutoML received the same reduced data.
 - **Test-set sizes:** S1 108, S2 25–26, S3 201. The wide S2 intervals (up to ±0.15) show how little the small test sets can resolve.
 - **Reading:** comparable discrimination. No claim of superiority in either direction.
+
+## 5. Cost per phase and automatic recovery (`phases/`, for R1-4 and R2-2)
+
+Script `phases.py` → `phases.csv`, `recovery.csv`, `SUMMARY.md`. The cost covers every request of every agent run, including retries and failed attempts. DeepSeek API requests are priced as in section 1. OpenRouter requests (development batches 1–8) use the cost OpenRouter returned with each response; every request had one.
+
+**Whole study: US$ 17.47**:
+| Phase | Cost |
+|---|---:|
+| development | $6.89 |
+| acceptance | $4.06 |
+| held-out, rails 0.13 | $1.44 |
+| first biomedical run | $0.64 |
+| development after the reopening | $1.61 |
+| biomedical evaluation, released (all attempts in its folders) | $2.14 |
+| held-out, released | $0.69 |
+
+**Automatic recovery:** a step counts as recovered when it completed after at least one failed attempt, through MLCA's own repair. Recovery rate = recovered / (recovered + failed).
+- **Released biomedical evaluation:** 291 of 317 steps completed at the first attempt; 16 of 26 failing steps were recovered (62%).
+- **Released held-out tables:** 122 of 135 at the first attempt; 12 of 13 recovered (92%).
+- **Development:** the rate rose from 27% (batch 1) to 100% (batches 11–13).
+
+## 6. Held-out tables on the released version (`heldout02/`)
+
+Script `heldout02.py` → `decisions.csv`, `bootstrap.csv`.
+
+**Outcomes:** 6/12 successful (Bank Marketing 3/3, Wholesale 3/3, Steel 0/3, Wine 0/3). 11 of 12 studies completed.
+
+**All five completed failures inferred the declared targets but a different problem type:**
+- Steel: multi-label over the seven fault columns, where a 7-class label was declared;
+- Wine: 7-class classification of the 3–9 quality grade, where regression was declared.
+
+**Steel run 2** stopped at the data step. Before any split, the agent tried to record class shares as metrics:
+- first with partition "all", refused with the hint to use fact candidates;
+- then relabelled "external", refused by the test lock ("External metric is not permitted").
+
+**AutoML on the same split:**
+- Bank Marketing (test n = 9,044): AutoML higher by 0.011 ROC AUC (95% interval about 0.004–0.019; MLCA 0.777, AutoGluon 0.789, FLAML 0.788).
+- Wine: AutoML lower RMSE (0.69 vs 0.81). But MLCA solved it as classification, so its RMSE is computed on class predictions. This is not a like-for-like comparison.
+- Steel: no MLCA metric (multi-label).
+- Wholesale: no AutoML counterpart (clustering).
+
+As in the biomedical tasks, the three runs of a table share one split.

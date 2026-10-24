@@ -1,0 +1,22 @@
+set,phase,steps,first_try,recovered,failed,steps_needing_repair,recovery_rate
+dev-b01,development,49,38,3,8,11,0.273
+dev-b02,development,110,94,7,9,16,0.438
+dev-b03,development,84,73,7,4,11,0.636
+dev-b04,development,51,48,2,1,3,0.667
+dev-b05,development,25,20,3,2,5,0.6
+dev-b06,development,14,11,1,2,3,0.333
+dev-b07,development,24,21,3,0,3,1.0
+dev-b08,development,12,8,4,0,4,1.0
+acc-01,acceptance,341,314,20,7,27,0.741
+dev-b09,development,76,63,11,2,13,0.846
+acc-02,acceptance,365,335,23,7,30,0.767
+dev-b10,development,81,73,7,1,8,0.875
+dev-b11,development,45,39,6,0,6,1.0
+dev-b12,development,36,34,2,0,2,1.0
+dev-b13,development,24,19,5,0,5,1.0
+heldout-01,heldout (rails 0.13),144,137,6,1,7,0.857
+eval-01,evaluation (rails 0.13),52,46,4,2,6,0.667
+v2-b01,development (after reopening),166,149,12,5,17,0.706
+v2-b02,development (after reopening),110,102,8,0,8,1.0
+eval-02,evaluation (released),317,291,16,10,26,0.615
+heldout-02,heldout (released),135,122,12,1,13,0.923
