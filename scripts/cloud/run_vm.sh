@@ -55,6 +55,10 @@ for item in "${BATCHES[@]}"; do
     out="${item%%|*}"
     read -r -a extra <<<"${item#*|}"
     state="$(status_of "$out")"
+    # MLCA_FORCE_RESUME=1 resumes a finished batch anyway (to retry its infrastructure failures).
+    if [ "$state" = "complete" ] && [ "${MLCA_FORCE_RESUME:-}" = 1 ]; then
+        state="finished; resumed for retries"
+    fi
     if [ "$state" = "complete" ]; then
         log "$out already complete"
         continue
