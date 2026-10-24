@@ -52,6 +52,7 @@ These are the sets the paper reports. Model throughout: DeepSeek V4.1 Flash, tem
 |---|---|---|---:|---:|---|
 | 6 | Held-out tables | `bench/heldout/heldout-01` | 12 (4 × 3) | 5 | Phase 1b. Bank Marketing 2/3, Wholesale Customers 3/3. Steel Plates 0/3 and Wine Quality 0/3, all because of setup disagreements. |
 | 7 | AutoML comparison | `bench/automl`, `bench/automl-heldout` | — | — | AutoGluon 1.5.0 and FLAML 2.7.0 on the same splits as MLCA (7 development and 3 held-out tables). Not agent runs. |
+| — | Safeguard test (planned, author 2026-10-24) | `safeguard-tests/` | — | — | Deliberately flawed scripts against the frozen engine (`freeze-v2`) through the scripted fake provider, each with a correct control. Not agent runs; no model calls. Answers R1-5. |
 | 8 | Biomedical evaluation, arm A | `bio-bench/runs/deepseek-flash/eval-01` | 27 (9 × 3) | 1 | Phase 2. Failure causes and one scoring deviation in its `EVALUATION_SUMMARY.md`. Triggered the reopening rule. |
 
 ### Version 2: the reopening (rule 7), in progress

@@ -24,6 +24,7 @@ Phase 2 runs in two arms: **A, autonomous** (no human after the brief) and **B, 
 | `bench/` | Development and held-out tables (Phase 1 and 1b; name may change). Earlier: `mlca bench` agent metrics on six standard public tables, built-in workflow only | `../mlca-revized/benchmarks/datasets/` |
 | `bio-bench/` | Biomedical evaluation (Phase 2), studies S1–S4 (anemia CBC; CPTAC-BRCA receptors; BRCA PAM50 transfer TCGA→CPTAC; HNSCC subtype discovery and prognostic signature). Data preparation per study; starting briefs to be written | public cohorts prepared by each study's `prepare_data.py` into `data_prep/` (git-ignored) |
 | `data_prep/` | Prepared study tables (large, git-ignored, regenerated) | — |
+| `safeguard-tests/` | Planted-flaw test of the frozen engine (R1-5): deliberately flawed scripts, each with a correct control, sent through MLCA's step runner with the scripted fake provider; no model calls, no agent runs. Outcome per flaw: refused, warned, caught by the external scorer, or undetected | `safeguard-tests/WORK_ORDER.md` |
 | `paths.local.yaml` | Local paths (git-ignored); template `paths.local.yaml.example` | — |
 
 ## How a run is stored

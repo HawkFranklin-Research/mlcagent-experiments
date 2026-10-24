@@ -91,3 +91,10 @@ original and re-scored files are both kept (EVALUATION_SUMMARY.md, "Deviation").
 - Stopping rule (author, 2026-10-23): the 12 v1 tables keep their acceptance (batch-01 is their regression check); the 3 wide
   tables get at most one fix round after batch-02; eval-02 is the last agent run of this revision, whatever its result.
 - Work order: `docs/work-orders/reopening-v2.md`.
+
+## Safeguard test (2026-10-24, author-approved; added after eval-02 had started, before any safeguard result)
+
+- Question (R1-5): which flaws the frozen engine refuses, which only warn, which only the external scorer catches, and which go undetected.
+- Method: flawed analysis scripts (and a correct control for each) submitted through MLCA's step runner at `freeze-v2` with the scripted fake provider; no model calls, no agent runs, no change to MLCA. The flaw list (`safeguard-tests/flaws.yaml`) is committed before the first run and not changed after seeing outcomes.
+- Not an agent evaluation: it does not affect the stopping rule (eval-02 remains the last agent run).
+- Work order: `safeguard-tests/WORK_ORDER.md`.
