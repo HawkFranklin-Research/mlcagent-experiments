@@ -1,0 +1,33 @@
+{
+  "status": "unavailable",
+  "task": "s3_pam50",
+  "framework": "flaml",
+  "spec_sha256": "04a497feb9f416c8a1e3e03d6abda8980c147862fb685f9266c8d19e2b761e2b",
+  "time_budget_s": 600.0,
+  "cpus": 2,
+  "seed": 42,
+  "versions": {
+    "python": "3.13.17 (main, Oct 22 2026, 14:06:04) [GCC 13.3.0]",
+    "executable": "/home/vatsal1_hawk_franklin_research_c/mlca/mlcagent-experiments/automl/.venv/bin/python",
+    "autogluon.tabular": "1.5.0",
+    "flaml": "2.7.0",
+    "scikit-learn": "1.7.2",
+    "numpy": "2.3.5",
+    "pandas": "2.3.3",
+    "lightgbm": "4.6.0"
+  },
+  "run_label": "s3_pam50-001/attempt-001",
+  "split_hashes": null,
+  "mlca_recorded_metrics": [],
+  "mlca_code_commit": null,
+  "rails": null,
+  "split_id": null,
+  "split_parameters": null,
+  "mlca_log_verification": {
+    "ok": true,
+    "records": 103,
+    "head_sha256": "e1463eaf2bc27932431b57326d1f4762a54d52a72e2e950e7cc97e992de36418"
+  },
+  "reason": "no_mlca_split",
+  "export_error": null
+}

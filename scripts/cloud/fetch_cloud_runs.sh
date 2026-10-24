@@ -15,7 +15,14 @@ DEST="$(realpath "$2")"
 HF_REPO="HawkFranklin-Research/mlcagent-runs"
 TOKEN_FILE="${MLCA_HF_TOKEN_FILE:-$HOME/Documents/hugging-face-read-token.txt}"
 WORK="$(mktemp -d)"
-trap 'rm -rf "$WORK"' EXIT
+trap 'chmod -R u+w "$WORK" 2>/dev/null || true; rm -rf "$WORK"' EXIT
+
+first_line() {
+    local line
+    read -r line || true
+    echo "$line"
+    cat >/dev/null || true
+}
 
 HF_TOKEN="$(tr -d '\r\n[:space:]' <"$TOKEN_FILE")" \
     uvx --quiet --from huggingface_hub==1.13.0 hf download "$HF_REPO" --repo-type dataset \
@@ -28,7 +35,7 @@ for archive in "$WORK"/cloud/"$TAG"/*/*.tar.zst; do
     host="$(basename "$(dirname "$archive")")"
     (cd "$(dirname "$archive")" && sha256sum -c --quiet "$(basename "$archive").sha256") \
         || { echo "CHECKSUM MISMATCH: $host/$(basename "$archive")" >&2; exit 1; }
-    name="$(zstd -dc "$archive" | tar -t | head -1 | cut -d/ -f1)"
+    name="$(zstd -dc "$archive" | tar -t | first_line | cut -d/ -f1)"
     if [ -e "$DEST/$name" ]; then
         if [ "${MLCA_FETCH_UPDATE:-}" != 1 ]; then
             echo "kept existing $DEST/$name (from $host; not overwritten)"

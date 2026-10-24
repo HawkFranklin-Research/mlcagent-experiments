@@ -1,0 +1,195 @@
+{
+  "status": "completed",
+  "task": "s1_anemia",
+  "framework": "autogluon",
+  "spec_sha256": "d1d45fbf53bcd5892fa166388574647f8b71bdb9a543f68214868c423a1a784a",
+  "time_budget_s": 600.0,
+  "cpus": 2,
+  "seed": 42,
+  "versions": {
+    "python": "3.13.17 (main, Oct 22 2026, 14:06:04) [GCC 13.3.0]",
+    "executable": "/home/vatsal1_hawk_franklin_research_c/mlca/mlcagent-experiments/automl/.venv/bin/python",
+    "autogluon.tabular": "1.5.0",
+    "flaml": "2.7.0",
+    "scikit-learn": "1.7.2",
+    "numpy": "2.3.5",
+    "pandas": "2.3.3",
+    "lightgbm": "4.6.0"
+  },
+  "run_label": "s1_anemia-003/attempt-001",
+  "split_hashes": {
+    "data": "705a9b88c01d56fa11f4670ef029a784fc6ab0e5124c8c9f7c01f1549bbb5017",
+    "manifest": "7ae90cb5de16a758f3ca35b12013e54c542cc239289c37dbdccefc9b9a178628",
+    "train_index": "bab25fee3b2a2026edb3a42f50bd8fcfae98cbbde0dce04358409bd57661acf0",
+    "train": "95cc673f15c2e47188083fe67e137cc45f8dd6a7ebdefe4033ad555ac2c90454",
+    "val": "208185d6c69c32e3aeed0307e8d950888c78ec21faecd2c8f119d83e70e58a0f",
+    "test": "25b28f8cf13b6bffb793007fa24d5c183fb3c632b24508768a8d2c1872daa700"
+  },
+  "mlca_recorded_metrics": [
+    {
+      "ci": [
+        1.0,
+        1.0
+      ],
+      "name": "roc_auc",
+      "split": "test",
+      "value": 1.0,
+      "step_id": "10_test_score_test_R6PAE733",
+      "source": "recorded"
+    },
+    {
+      "ci": [
+        1.0,
+        1.0
+      ],
+      "name": "pr_auc",
+      "split": "test",
+      "value": 1.0,
+      "step_id": "10_test_score_test_R6PAE733",
+      "source": "recorded"
+    },
+    {
+      "ci": [
+        1.0,
+        1.0
+      ],
+      "name": "balanced_accuracy",
+      "split": "test",
+      "value": 1.0,
+      "step_id": "10_test_score_test_R6PAE733",
+      "source": "recorded"
+    },
+    {
+      "ci": [
+        0.0,
+        0.0
+      ],
+      "name": "brier_score",
+      "split": "test",
+      "value": 0.0,
+      "step_id": "10_test_score_test_R6PAE733",
+      "source": "recorded"
+    },
+    {
+      "ci": [
+        1.0,
+        1.0
+      ],
+      "name": "sensitivity",
+      "split": "test",
+      "value": 1.0,
+      "step_id": "10_test_score_test_R6PAE733",
+      "source": "recorded"
+    },
+    {
+      "ci": [
+        1.0,
+        1.0
+      ],
+      "name": "specificity",
+      "split": "test",
+      "value": 1.0,
+      "step_id": "10_test_score_test_R6PAE733",
+      "source": "recorded"
+    }
+  ],
+  "mlca_code_commit": "7dc0aedfb674e102f3cc96a92931a1a382eaaea0",
+  "rails": {
+    "sha256": "4fe378883a4cd7f8aa6b626dc5943d441a382d89e0be3081714bc0023debf03b",
+    "version": "rails-0.15"
+  },
+  "split_id": "04_split_freeze_stratified_H5Q9YCTX",
+  "split_parameters": {
+    "group_column": "",
+    "method": "stratified",
+    "seed": 42,
+    "time_column": "",
+    "train_fraction": 0.6,
+    "val_fraction": 0.2
+  },
+  "mlca_log_verification": {
+    "ok": true,
+    "records": 382,
+    "head_sha256": "6281ca20464870246eb6c8c8707281e80ee5c107bafe1e891d30c0d79b68c26d"
+  },
+  "comparison_metric": "roc_auc",
+  "mlca_primary_metric": "roc_auc",
+  "features": [
+    "Gender",
+    "Hemoglobin",
+    "MCH",
+    "MCHC",
+    "MCV"
+  ],
+  "feature_count": 5,
+  "excluded_absent": [],
+  "best_model": "LightGBM",
+  "settings": {
+    "eval_metric": "roc_auc",
+    "presets": "medium_quality",
+    "num_cpus": 2,
+    "refit_full": false,
+    "num_bag_folds": 0,
+    "num_stack_levels": 0,
+    "fit_weighted_ensemble": false,
+    "feature_generator_fit": "training_only",
+    "excluded_model_types": [
+      "NN_TORCH",
+      "FASTAI"
+    ],
+    "seed": 42,
+    "determinism": "AutoGluon may not be fully deterministic"
+  },
+  "fit_seconds": 114.7999863829998,
+  "classes": [
+    0,
+    1
+  ],
+  "positive": 1,
+  "predict_seconds": {
+    "val": 0.023848946999805776,
+    "test": 0.021426007999707508
+  },
+  "val": {
+    "primary": {
+      "name": "roc_auc",
+      "value": 1.0
+    },
+    "secondary": {
+      "balanced_accuracy": 1.0,
+      "macro_f1": 1.0,
+      "accuracy": 1.0
+    },
+    "n": 106,
+    "notes": []
+  },
+  "test": {
+    "primary": {
+      "name": "roc_auc",
+      "value": 1.0
+    },
+    "secondary": {
+      "balanced_accuracy": 1.0,
+      "macro_f1": 1.0,
+      "accuracy": 1.0
+    },
+    "n": 108,
+    "notes": []
+  },
+  "mlca": {
+    "source": "shared_scorer",
+    "score": {
+      "primary": {
+        "name": "roc_auc",
+        "value": 0.9999999999999999
+      },
+      "secondary": {
+        "balanced_accuracy": 1.0,
+        "macro_f1": 1.0,
+        "accuracy": 1.0
+      },
+      "n": 108,
+      "notes": []
+    }
+  }
+}

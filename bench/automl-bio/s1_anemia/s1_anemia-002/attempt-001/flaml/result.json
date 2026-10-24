@@ -1,0 +1,155 @@
+{
+  "status": "completed",
+  "task": "s1_anemia",
+  "framework": "flaml",
+  "spec_sha256": "d1d45fbf53bcd5892fa166388574647f8b71bdb9a543f68214868c423a1a784a",
+  "time_budget_s": 600.0,
+  "cpus": 2,
+  "seed": 42,
+  "versions": {
+    "python": "3.13.17 (main, Oct 22 2026, 14:06:04) [GCC 13.3.0]",
+    "executable": "/home/vatsal1_hawk_franklin_research_c/mlca/mlcagent-experiments/automl/.venv/bin/python",
+    "autogluon.tabular": "1.5.0",
+    "flaml": "2.7.0",
+    "scikit-learn": "1.7.2",
+    "numpy": "2.3.5",
+    "pandas": "2.3.3",
+    "lightgbm": "4.6.0"
+  },
+  "run_label": "s1_anemia-002/attempt-001",
+  "split_hashes": {
+    "data": "705a9b88c01d56fa11f4670ef029a784fc6ab0e5124c8c9f7c01f1549bbb5017",
+    "manifest": "7ae90cb5de16a758f3ca35b12013e54c542cc239289c37dbdccefc9b9a178628",
+    "train_index": "bab25fee3b2a2026edb3a42f50bd8fcfae98cbbde0dce04358409bd57661acf0",
+    "train": "5bfd8b9f4b21b5e7eeab19b69ccc787bee1a68a926f8c7ee1e0f3f3708d57081",
+    "val": "cfad575c2e63b95f03de866ca55dd18fa60eee0d8344c11e958404771e387786",
+    "test": "43e8455a117a640ad7fc7a1dcf525a16a28954afb2177a5e66c4b7344717e0a5"
+  },
+  "mlca_recorded_metrics": [
+    {
+      "ci": [
+        0.4353,
+        0.6527
+      ],
+      "name": "roc_auc",
+      "split": "test",
+      "value": 0.541,
+      "step_id": "10_test_score_test_4K1EES73",
+      "source": "recorded"
+    }
+  ],
+  "mlca_code_commit": "7dc0aedfb674e102f3cc96a92931a1a382eaaea0",
+  "rails": {
+    "sha256": "4fe378883a4cd7f8aa6b626dc5943d441a382d89e0be3081714bc0023debf03b",
+    "version": "rails-0.15"
+  },
+  "split_id": "04_split_freeze_stratified_0KSHQ3QE",
+  "split_parameters": {
+    "group_column": "",
+    "method": "stratified",
+    "seed": 42,
+    "time_column": "",
+    "train_fraction": 0.6,
+    "val_fraction": 0.2
+  },
+  "mlca_log_verification": {
+    "ok": true,
+    "records": 385,
+    "head_sha256": "cf4729b097e6f4addbb1e2647df5639e11e6c708133a592900b06773369ff4b1"
+  },
+  "comparison_metric": "roc_auc",
+  "mlca_primary_metric": "roc_auc",
+  "features": [
+    "Gender",
+    "MCH",
+    "MCHC",
+    "MCV"
+  ],
+  "feature_count": 4,
+  "excluded_absent": [],
+  "best_model": "xgboost",
+  "best_config": {
+    "n_estimators": 131,
+    "max_leaves": 4,
+    "min_child_weight": 0.1265081937219227,
+    "learning_rate": 0.47625336468496876,
+    "subsample": 0.10908662660372376,
+    "colsample_bylevel": 0.10138488110882517,
+    "colsample_bytree": 0.01,
+    "reg_alpha": 0.07048332145145308,
+    "reg_lambda": 0.006090269421155341
+  },
+  "validation_loss": 0.33959899749373434,
+  "settings": {
+    "task": "classification",
+    "metric": "roc_auc",
+    "time_budget": 600.0,
+    "n_jobs": 2,
+    "seed": 42,
+    "eval_method": "holdout",
+    "retrain_full": false,
+    "estimator_list": "auto",
+    "resolved_estimator_list": [
+      "lgbm",
+      "rf",
+      "xgboost",
+      "extra_tree",
+      "xgb_limitdepth",
+      "sgd",
+      "catboost",
+      "lrl1"
+    ]
+  },
+  "fit_seconds": 600.0243774170001,
+  "classes": [
+    0,
+    1
+  ],
+  "positive": 1,
+  "predict_seconds": {
+    "val": 0.025803316000065024,
+    "test": 0.024472546999959377
+  },
+  "val": {
+    "primary": {
+      "name": "roc_auc",
+      "value": 0.6604010025062657
+    },
+    "secondary": {
+      "balanced_accuracy": 0.6351593268886502,
+      "macro_f1": 0.635144927536232,
+      "accuracy": 0.6415094339622641
+    },
+    "n": 106,
+    "notes": []
+  },
+  "test": {
+    "primary": {
+      "name": "roc_auc",
+      "value": 0.5825862068965517
+    },
+    "secondary": {
+      "balanced_accuracy": 0.5475862068965517,
+      "macro_f1": 0.5455820476858345,
+      "accuracy": 0.5555555555555556
+    },
+    "n": 108,
+    "notes": []
+  },
+  "mlca": {
+    "source": "shared_scorer",
+    "score": {
+      "primary": {
+        "name": "roc_auc",
+        "value": 0.5410344827586206
+      },
+      "secondary": {
+        "balanced_accuracy": 0.5079310344827586,
+        "macro_f1": 0.4791489361702128,
+        "accuracy": 0.5277777777777778
+      },
+      "n": 108,
+      "notes": []
+    }
+  }
+}

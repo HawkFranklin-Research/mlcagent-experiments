@@ -1,0 +1,33 @@
+{
+  "status": "unavailable",
+  "task": "s2_proteome_pr",
+  "framework": "flaml",
+  "spec_sha256": "5729ae216b91f214b350043620f777e5b64af4f7cc4419c5ec2bf9f9400e3679",
+  "time_budget_s": 600.0,
+  "cpus": 2,
+  "seed": 42,
+  "versions": {
+    "python": "3.13.17 (main, Oct 22 2026, 14:06:04) [GCC 13.3.0]",
+    "executable": "/home/vatsal1_hawk_franklin_research_c/mlca/mlcagent-experiments/automl/.venv/bin/python",
+    "autogluon.tabular": "1.5.0",
+    "flaml": "2.7.0",
+    "scikit-learn": "1.7.2",
+    "numpy": "2.3.5",
+    "pandas": "2.3.3",
+    "lightgbm": "4.6.0"
+  },
+  "run_label": "s2_proteome_pr-001/attempt-001",
+  "split_hashes": null,
+  "mlca_recorded_metrics": [],
+  "mlca_code_commit": null,
+  "rails": null,
+  "split_id": null,
+  "split_parameters": null,
+  "mlca_log_verification": {
+    "ok": true,
+    "records": 15244,
+    "head_sha256": "dd1817613dc80943c206f3c69a69b707be8c107d9360c5869d4a13101fbd801d"
+  },
+  "reason": "no_mlca_split",
+  "export_error": null
+}
