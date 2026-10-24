@@ -13,7 +13,7 @@
 # Resume re-queues attempts lost with the machine automatically; it never retries other failures.
 # If the controller pauses for the operator (infrastructure or provider error), later batches are
 # not started. In every case the folders are archived to the private Hugging Face dataset and the
-# VM powers off. Set MLCA_NO_POWEROFF=1 to keep it running.
+# VM powers off. Set MLCA_NO_POWEROFF=1 to keep it running. MLCA_RESUME_ARGS and MLCA_UPGRADE_REASON add flags to a resume.
 #
 # Credentials are read from files and passed only through the environment, never as arguments:
 #   DeepSeek: MLCA_DEEPSEEK_KEY_FILE (default ~/Documents/cheap-seek.api-key.txt), via with_deepseek_key.sh
@@ -60,7 +60,12 @@ for item in "${BATCHES[@]}"; do
         continue
     fi
     mode=()
-    [ "$state" = "new" ] || mode=(--resume)
+    # On a resume only: MLCA_RESUME_ARGS adds flags (no spaces inside a flag, e.g.
+    # --retry-infrastructure-failures) and MLCA_UPGRADE_REASON adds --controller-upgrade "<reason>".
+    if [ "$state" != "new" ]; then
+        read -r -a mode <<<"--resume ${MLCA_RESUME_ARGS:-}"
+        [ -z "${MLCA_UPGRADE_REASON:-}" ] || mode+=(--controller-upgrade "$MLCA_UPGRADE_REASON")
+    fi
     log "start $out ($state) ${mode[*]} ${extra[*]}"
     scripts/with_deepseek_key.sh "$PY" scripts/run_batch.py "${COMMON[@]}" --out "$out" "${extra[@]}" "${mode[@]}" 2>&1 | tee -a "$LOG"
     state="$(status_of "$out")"

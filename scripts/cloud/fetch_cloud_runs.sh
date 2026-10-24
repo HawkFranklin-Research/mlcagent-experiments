@@ -4,7 +4,8 @@
 #
 # Usage: scripts/cloud/fetch_cloud_runs.sh RUN_TAG DEST_PARENT
 #   e.g. scripts/cloud/fetch_cloud_runs.sh eval-02 bio-bench/runs/deepseek-flash
-# An existing run folder is never overwritten. Token: MLCA_HF_TOKEN_FILE
+# An existing run folder is never overwritten, unless MLCA_FETCH_UPDATE=1: then a resumed folder is
+# copied over it without deleting anything (a resume only adds attempts). Token: MLCA_HF_TOKEN_FILE
 # (default ~/Documents/hugging-face-read-token.txt), passed only through the environment.
 set -euo pipefail
 
@@ -29,7 +30,14 @@ for archive in "$WORK"/cloud/"$TAG"/*/*.tar.zst; do
         || { echo "CHECKSUM MISMATCH: $host/$(basename "$archive")" >&2; exit 1; }
     name="$(zstd -dc "$archive" | tar -t | head -1 | cut -d/ -f1)"
     if [ -e "$DEST/$name" ]; then
-        echo "kept existing $DEST/$name (from $host; not overwritten)"
+        if [ "${MLCA_FETCH_UPDATE:-}" != 1 ]; then
+            echo "kept existing $DEST/$name (from $host; not overwritten)"
+            continue
+        fi
+        mkdir -p "$WORK/unpacked"
+        zstd -dc "$archive" | tar -x -C "$WORK/unpacked"
+        rsync -a "$WORK/unpacked/$name/" "$DEST/$name/"
+        echo "updated $name from $host without deleting ($(cut -d' ' -f1 "$archive.sha256"))"
         continue
     fi
     zstd -dc "$archive" | tar -x -C "$DEST"
