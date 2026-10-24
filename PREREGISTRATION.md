@@ -107,3 +107,15 @@ original and re-scored files are both kept (EVALUATION_SUMMARY.md, "Deviation").
 - Settings as the held-out comparison: 600 s search budget per framework, 2 CPUs, seed 42; AutoGluon medium quality without bagging, stacking, weighted ensemble or neural models, feature generator fitted on training rows only; FLAML default estimators. No LLM calls.
 - Every MLCA attempt is reported; attempts without a frozen split are export failures, not scores. No result is rerun. Spec: `automl/specs/biomedical.yaml`; protocol `automl/README.md`.
 
+## Amendment: held-out tables on the released version (2026-10-24, author-approved; before any rerun)
+
+- **Why:** the paper reports one released version of the agent (rails 0.15). The held-out tables were run only with the rails of that time (`bench/heldout/heldout-01`, rails 0.13, 5/12). Without a rerun, the released version has no held-out result. This changes the earlier decision that eval-02 was the last agent run, for this purpose only.
+- **Still unseen:** no change between rails 0.13 and 0.15 was based on the held-out tables. The rails ledger has no entry naming them. The commits from freeze-v1 to freeze-v2 are linked to eval-01 failures (E-W1, E-W2, E-M1, E-S1), the three wide development tables, and wide-table interpretation.
+- **Design:**
+  - same four tables (Bank Marketing, Steel Plates Faults, Wine Quality, Wholesale Customers), × 3 runs = 12 studies;
+  - the released version `freeze-v2` (`7dc0aed`, rails 0.15);
+  - DeepSeek V4.1 Flash, reasoning effort low, temperature 0, the same controller settings as heldout-01 (concurrency 2, threads 2, output cap 32,768, 60 rpm, study deadline 5,400 s), arm A;
+  - output `bench/heldout/heldout-02-vm1` and `-vm2`; heldout-01 is kept and reported as the development-time result.
+- **Then AutoML** (AutoGluon, FLAML; 600 s, 2 CPUs, seed 42) on the new frozen splits of Bank, Steel and Wine (Wholesale is clustering), output `bench/automl-heldout-02`.
+- **Success:** the same three conditions as every study. Infrastructure failures are recorded separately and retried once, as in eval-02.
+
