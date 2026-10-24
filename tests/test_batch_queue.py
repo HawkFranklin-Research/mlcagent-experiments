@@ -426,6 +426,23 @@ def test_untracked_runtime_still_blocks(identity_repositories, repository, relat
         batch.source_identity()
 
 
+def test_tracked_run_folders_do_not_block(identity_repositories):
+    # A resumed batch rewrites its own tracked batch.json and REPORT.md (eval-02 on the VMs).
+    _code, root = identity_repositories
+    expected = batch.source_identity()
+    record = root / "bio-bench/runs/x/batch.json"
+    record.parent.mkdir(parents=True)
+    record.write_text("{}\n")
+    subprocess.run(["git", "-C", str(root), "add", "."], check=True)
+    subprocess.run(["git", "-C", str(root), "-c", "user.name=t", "-c", "user.email=t@t", "commit", "-qm", "run"], check=True)
+    record.write_text('{"status": "running"}\n')
+    current = batch.source_identity()
+    assert {k: current[k] for k in ["code_commit", "controller_tree", "rails"]} == {
+        k: expected[k] for k in ["code_commit", "controller_tree", "rails"]
+    }
+
+
+
 @pytest.mark.parametrize(
     "repository,relative",
     [

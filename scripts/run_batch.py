@@ -171,9 +171,10 @@ def run_env_preflight():
 
 
 def source_identity():
-    for root in [CODE, ROOT]:
+    # Only the code that runs counts. Run folders are tracked evidence and change during a resume.
+    for root, paths in [(CODE, ["src", "templates", "rails"]), (ROOT, ["scripts"])]:
         if subprocess.run(
-            ["git", "-C", str(root), "diff", "--quiet", "HEAD"], check=False
+            ["git", "-C", str(root), "diff", "--quiet", "HEAD", "--", *paths], check=False
         ).returncode:
             raise ValueError(
                 "Tracked working tree must be clean before starting/resuming a batch"
@@ -570,7 +571,7 @@ def is_connection_failure(job):
     return False
 
 
-INTERRUPT_REASONS = {"interrupted_by_author", "machine_shutdown"}
+INTERRUPT_REASONS = {"interrupted_by_author", "machine_shutdown", "source_changed_during_batch"}
 ENVIRONMENT_FAILURE = ["Project environment command failed", "uv is required"]
 
 
@@ -1103,6 +1104,11 @@ def main():
             else:
                 if "controller_tree" not in state and identity.get("controller_tree"):
                     state["controller_tree"] = identity["controller_tree"]
+            if state.get("stop_reason"):
+                # The previous stop is kept in its jobs' attempts; this resume starts without it.
+                state.setdefault("stop_history", []).append(
+                    {"stop_reason": state.pop("stop_reason"), "resumed_at": utc()}
+                )
             pause_file = folder / ".control/PAUSE"
             if pause_file.exists():
                 pause_file.unlink()
@@ -1427,7 +1433,12 @@ def main():
         network_outage_start = None
         while any(j["status"] not in TERMINAL for j in state["jobs"]):
             try:
-                unchanged = source_identity() == identity
+                current = source_identity()
+                # Commits of evidence or documents by other agents move HEAD but not the code that runs.
+                unchanged = all(
+                    current.get(k) == identity.get(k)
+                    for k in ["code_commit", "controller_tree", "rails"]
+                )
             except ValueError:
                 unchanged = False
             if not unchanged:
@@ -1506,6 +1517,8 @@ def main():
                         if expired
                         else "machine_shutdown"
                         if shutdown[0]
+                        else "source_changed_during_batch"
+                        if state.get("stop_reason") == "source_changed_during_batch"
                         else "interrupted_by_author"
                     )
                     job["status"] = "stopping"
