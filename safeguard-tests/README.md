@@ -25,3 +25,7 @@ Fixed before any further run (harness only; `flaws.yaml` unchanged):
 - `--cases` and `--variants` options for harness checks.
 
 The folder `runs/2026-10-24/` is kept as this record. The official run uses a new folder.
+
+## Amendment before the official run (24 October 2026)
+
+During Phase A (controls only, no flaw variant run), the Heart Disease controls failed: the table has missing values (`ca` ×4, `thal` ×2), and the F4a and F4b-heart scripts fitted `LogisticRegression` on raw columns. The planted versions would have crashed the same way before any safeguard could act. All four scripts now impute (median, inside the fitted pipeline). The flaw is unchanged: the planted scripts use `num`, and the controls drop it. No other test table has missing values. Recorded at the top of `flaws.yaml`.

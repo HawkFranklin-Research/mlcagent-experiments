@@ -1,4 +1,8 @@
 schema_version: 1
+# Amendment 2026-10-24, before any flaw variant was run (no flaw outcome seen): the Heart Disease
+# table has missing values (ca x4, thal x2), so the F4a and F4b-heart scripts, planted and control,
+# now impute (median, inside the fitted pipeline) before LogisticRegression. The flaw is unchanged:
+# the planted scripts still use the target-derived column num as an input; the controls drop it.
 reviewer: R1-5
 cases:
   - id: F1-synthetic
@@ -103,13 +107,17 @@ cases:
     planted_script: |
       import pandas as pd, mlca_runtime as m, json
       from sklearn.linear_model import LogisticRegression
+      from sklearn.pipeline import make_pipeline
+      from sklearn.impute import SimpleImputer
       i=m.inputs(); p=json.load(open(i['_protocol'])); tr=pd.read_parquet(i['train']); y=p['targets'][0]
-      X=tr.drop(columns=[y]); model=m.fit_record(LogisticRegression(max_iter=1000),X,'train',y=tr[y]); m.save_model(model,'model.pkl')
+      X=tr.drop(columns=[y]); model=m.fit_record(make_pipeline(SimpleImputer(strategy='median'),LogisticRegression(max_iter=1000)),X,'train',y=tr[y]); m.save_model(model,'model.pkl')
     control_script: |
       import pandas as pd, mlca_runtime as m, json
       from sklearn.linear_model import LogisticRegression
+      from sklearn.pipeline import make_pipeline
+      from sklearn.impute import SimpleImputer
       i=m.inputs(); p=json.load(open(i['_protocol'])); tr=pd.read_parquet(i['train']); y=p['targets'][0]
-      X=tr.drop(columns=[y,'num']); model=m.fit_record(LogisticRegression(max_iter=1000),X,'train',y=tr[y]); m.save_model(model,'model.pkl')
+      X=tr.drop(columns=[y,'num']); model=m.fit_record(make_pipeline(SimpleImputer(strategy='median'),LogisticRegression(max_iter=1000)),X,'train',y=tr[y]); m.save_model(model,'model.pkl')
   - id: F4b-heart
     table: heart_disease_cleveland
     template: tabular_classification
@@ -120,13 +128,17 @@ cases:
     planted_script: |
       import pandas as pd, mlca_runtime as m, json
       from sklearn.linear_model import LogisticRegression
+      from sklearn.pipeline import make_pipeline
+      from sklearn.impute import SimpleImputer
       i=m.inputs(); p=json.load(open(i['_protocol'])); tr=pd.read_parquet(i['train']); y=p['targets'][0]
-      X=tr.drop(columns=[y]); model=m.fit_record(LogisticRegression(max_iter=1000),X,'train',y=tr[y]); m.save_model(model,'model.pkl')
+      X=tr.drop(columns=[y]); model=m.fit_record(make_pipeline(SimpleImputer(strategy='median'),LogisticRegression(max_iter=1000)),X,'train',y=tr[y]); m.save_model(model,'model.pkl')
     control_script: |
       import pandas as pd, mlca_runtime as m, json
       from sklearn.linear_model import LogisticRegression
+      from sklearn.pipeline import make_pipeline
+      from sklearn.impute import SimpleImputer
       i=m.inputs(); p=json.load(open(i['_protocol'])); tr=pd.read_parquet(i['train']); y=p['targets'][0]
-      X=tr.drop(columns=[y,'num']); model=m.fit_record(LogisticRegression(max_iter=1000),X,'train',y=tr[y]); m.save_model(model,'model.pkl')
+      X=tr.drop(columns=[y,'num']); model=m.fit_record(make_pipeline(SimpleImputer(strategy='median'),LogisticRegression(max_iter=1000)),X,'train',y=tr[y]); m.save_model(model,'model.pkl')
   - id: F4b-bike
     table: bike_sharing_hourly
     template: regression
