@@ -1,0 +1,4 @@
+Placeholder/missing-like tokens found in 0 text columns
+train/val rows: 320/106; features: 5
+numeric/categorical: 5/0; encoded width: 5
+Saved preprocessor.pkl

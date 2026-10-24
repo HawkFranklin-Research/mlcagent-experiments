@@ -1,0 +1,3 @@
+train rows=71 features=10099
+selector_included_preprocessing=True
+pipeline steps=['sel', 'clf']

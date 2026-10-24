@@ -1,0 +1,1 @@
+selector fitted: k=20, n_in=18209, n_out=18209

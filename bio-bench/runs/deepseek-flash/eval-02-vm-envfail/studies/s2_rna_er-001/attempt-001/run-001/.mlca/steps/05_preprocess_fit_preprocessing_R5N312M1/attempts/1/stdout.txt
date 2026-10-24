@@ -1,0 +1,3 @@
+Placeholders: none
+Features: 18252 (18252 numeric, 0 cat); dropped 0
+Fitted preprocessor; val shape (23, 18252)

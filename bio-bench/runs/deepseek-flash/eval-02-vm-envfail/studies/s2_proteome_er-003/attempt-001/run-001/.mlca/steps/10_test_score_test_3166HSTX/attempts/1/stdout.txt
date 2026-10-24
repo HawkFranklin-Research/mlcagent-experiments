@@ -1,0 +1,4 @@
+selected model: model.pkl
+threshold: 0.5
+test roc_auc: 0.9739
+predictions rows: 26

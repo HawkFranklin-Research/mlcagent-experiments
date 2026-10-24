@@ -1,0 +1,1 @@
+train rows 320 features 5 classes [np.int64(0), np.int64(1)] train roc_auc 1.0

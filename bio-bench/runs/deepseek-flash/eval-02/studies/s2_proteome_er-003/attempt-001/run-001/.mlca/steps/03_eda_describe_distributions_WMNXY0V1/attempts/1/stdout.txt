@@ -1,0 +1,3 @@
+placeholders found: ?, -, NA, N/A, empty in 0 text columns
+features=10099 numeric=10099 categorical=0
+rows saved=50

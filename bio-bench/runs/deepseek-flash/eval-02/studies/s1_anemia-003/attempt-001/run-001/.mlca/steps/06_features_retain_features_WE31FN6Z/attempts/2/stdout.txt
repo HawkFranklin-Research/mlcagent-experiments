@@ -1,0 +1,2 @@
+Train shape: (320, 6), feature cols: 5
+Saved selector_all.pkl

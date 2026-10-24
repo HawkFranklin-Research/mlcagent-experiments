@@ -1,0 +1,4 @@
+scope,n_rows,n_numeric_cols,num_mean_of_means,num_mean_of_sd,num_min,num_mean_of_median,num_max,num_mean_missing_frac,n_categorical_cols,cat_mean_n_levels,cat_mean_top_share
+all,115,18209,0.05151,1.368,-18.76,-0.002582,26.77,0.05047,0,,
+class_0,47,18209,0.02896,1.286,-16.55,-0.02148,21.63,0.05311,0,,
+class_1,68,18209,0.05924,1.362,-18.76,0.00623,26.77,0.04864,0,,

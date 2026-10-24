@@ -1,0 +1,3 @@
+train rows 68 feature columns 18209
+preprocessor input 18209 selector input 18209
+saved model.pkl

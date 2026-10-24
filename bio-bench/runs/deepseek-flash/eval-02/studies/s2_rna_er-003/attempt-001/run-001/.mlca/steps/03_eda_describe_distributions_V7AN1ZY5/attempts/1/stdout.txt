@@ -1,0 +1,3 @@
+Placeholder tokens in 0 text columns
+Saved distributions.csv with shape (50, 12)
+n_numeric=50, n_categorical=0

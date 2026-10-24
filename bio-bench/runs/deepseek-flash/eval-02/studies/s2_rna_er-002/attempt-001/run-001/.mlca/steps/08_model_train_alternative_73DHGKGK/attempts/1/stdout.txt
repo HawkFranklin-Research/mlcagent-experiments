@@ -1,0 +1,2 @@
+train roc_auc=1.0000
+rows=71 features=18252 saved alternative_model.pkl

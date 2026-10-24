@@ -1,0 +1,3 @@
+Frontend: selector-only
+Train shape: (71, 18252)
+Saved alternative_model.pkl

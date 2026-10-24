@@ -1,0 +1,2 @@
+train=320 val=106 features=5
+best_model=alternative roc_auc=1.0000 roc_auc=1.0000

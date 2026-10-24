@@ -1,0 +1,2 @@
+Placeholder tokens in 0 text columns
+features=5 numeric=5 categorical=0 rows=15

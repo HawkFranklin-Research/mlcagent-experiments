@@ -1,0 +1,3 @@
+train=68 val=22 n_model_inputs=18209
+method=permutation_top50_no_ranking budget=n_features=18209;permuted=50;n_repeats=5
+top_feature=A1BG

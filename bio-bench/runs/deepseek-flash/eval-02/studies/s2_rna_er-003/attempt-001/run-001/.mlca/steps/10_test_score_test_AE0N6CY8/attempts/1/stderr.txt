@@ -1,0 +1,5 @@
+Traceback (most recent call last):
+  File "/home/prime/Documents/github/mlca-paper-codebases/mlcagent-experiments/bio-bench/runs/deepseek-flash/eval-02/studies/s2_rna_er-003/attempt-001/run-001/.mlca/steps/10_test_score_test_AE0N6CY8/attempts/1/script.py", line 142, in <module>
+    predbin = (p1 >= threshold).astype(int).to_numpy()
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'numpy.ndarray' object has no attribute 'to_numpy'

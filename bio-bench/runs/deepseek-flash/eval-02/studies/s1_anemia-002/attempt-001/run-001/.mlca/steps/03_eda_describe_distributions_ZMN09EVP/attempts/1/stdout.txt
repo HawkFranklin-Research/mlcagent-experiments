@@ -1,0 +1,3 @@
+distributions rows=12 numeric=4 categorical=0
+placeholder tokens ?, -, NA, N/A, whitespace in 0 text columns
+saved distributions.csv

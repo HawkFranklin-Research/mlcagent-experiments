@@ -1,0 +1,3 @@
+candidates: ['logistic', 'alternative']
+primary: roc_auc | best: logistic = 0.5546
+val rows: 106 | metric rows: 8

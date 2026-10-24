@@ -1,0 +1,4 @@
+features=18252 numeric=18252 categorical=0 wide=True
+key_like_dropped=0 derived_excluded=0 corr_ge_098=0
+placeholder_text_cols=0
+val_transformed_shape=(23, 18252)

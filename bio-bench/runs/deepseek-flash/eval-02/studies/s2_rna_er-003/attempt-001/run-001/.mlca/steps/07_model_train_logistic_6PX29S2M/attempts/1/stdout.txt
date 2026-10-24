@@ -1,0 +1,2 @@
+steps=['selector', 'clf']
+n_features=18252 n_rows=71

@@ -1,0 +1,1 @@
+{"decisions":[{"actor":"user:policy/7ed354afd89e","effect":{"kind":"keep"},"question_id":"01M5KJQ4CZFGXCFREV7ENTPAPQ","rule":"train:leakage:MAPT-AS1"}],"source":"frozen training rows only","split_id":"04_split_freeze_stratified_1FKAT7PH"}

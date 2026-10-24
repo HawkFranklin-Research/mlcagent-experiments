@@ -1,0 +1,3 @@
+val=(22, 18210)
+best_model=logistic
+best_val_roc_auc=0.8462

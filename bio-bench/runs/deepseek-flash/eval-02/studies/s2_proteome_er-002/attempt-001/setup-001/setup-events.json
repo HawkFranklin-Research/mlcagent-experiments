@@ -1,0 +1,10 @@
+[
+  {
+    "type": "ProviderFailed",
+    "payload": {
+      "request_id": "01M5KR65ZBE430WHG8D0M0RXAZ",
+      "category": "provider_error",
+      "error_type": "MlcaUserError"
+    }
+  }
+]

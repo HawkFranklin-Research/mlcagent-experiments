@@ -1,0 +1,2 @@
+n_test=25 primary=roc_auc
+roc_auc=0.9600 thr=0.5000

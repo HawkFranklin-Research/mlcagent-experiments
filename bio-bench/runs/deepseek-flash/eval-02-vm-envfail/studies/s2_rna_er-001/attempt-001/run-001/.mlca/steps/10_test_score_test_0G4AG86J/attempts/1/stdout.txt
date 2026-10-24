@@ -1,0 +1,3 @@
+test rows=26 features=18252 model=model.pkl
+primary roc_auc=0.9542 ci=(0.8496,1.0)
+threshold=0.9805 positive=1

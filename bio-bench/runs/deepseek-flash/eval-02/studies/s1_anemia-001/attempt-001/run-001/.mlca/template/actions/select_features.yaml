@@ -1,0 +1,21 @@
+# Content v0.2.0 (2026-10-06). Keep it short: see docs/templates.md, 'Writing content'.
+id: select_features
+event: features
+title: Select features with a training-only filter
+params: {}
+prompt: |
+  Do: preprocessing + SelectKBest(mutual information, k=min(20, n_features)); fit with fit_record on train.
+  Save: selector.pkl.
+inputs:
+- ref: train
+- ref: val
+- ref: prior_outputs
+outputs:
+- name: selector.pkl
+  kind: model
+  required: true
+fact_candidates: []
+reads_test: false
+timeout_s: 300
+methods_text: Features were selected with a mutual-information filter fitted on training rows.
+builtin: null

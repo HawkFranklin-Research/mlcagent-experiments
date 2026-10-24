@@ -1,0 +1,3 @@
+test n=26 features=18252
+threshold=0.5 pos=np.int64(1)
+roc_auc=0.9608 CI=(0.875,1)

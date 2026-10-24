@@ -1,0 +1,2 @@
+saved alternative_model.pkl (71, 10099) n_feat 10099
+val_roc_auc 0.9554 pos_label 1

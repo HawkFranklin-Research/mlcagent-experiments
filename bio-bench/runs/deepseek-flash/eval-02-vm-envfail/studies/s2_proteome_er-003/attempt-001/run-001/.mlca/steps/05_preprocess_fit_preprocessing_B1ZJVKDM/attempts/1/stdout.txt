@@ -1,0 +1,2 @@
+No text placeholder tokens found in feature columns.
+Val transformed shape: (23, 10099)

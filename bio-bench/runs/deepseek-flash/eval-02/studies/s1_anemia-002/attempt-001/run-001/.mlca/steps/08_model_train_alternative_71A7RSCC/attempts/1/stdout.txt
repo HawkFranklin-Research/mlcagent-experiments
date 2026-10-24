@@ -1,0 +1,5 @@
+val_roc_auc 0.4551
+train (320, 4)
+features 4
+classes [0, 1]
+saved alternative_model.pkl

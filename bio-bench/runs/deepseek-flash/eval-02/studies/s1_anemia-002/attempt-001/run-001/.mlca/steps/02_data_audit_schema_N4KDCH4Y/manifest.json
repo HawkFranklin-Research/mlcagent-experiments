@@ -1,0 +1,1 @@
+{"facts": [{"key": "n_rows", "source": "schema.json", "unit": null, "value": 534}, {"key": "n_columns", "source": "schema.json", "unit": null, "value": 5}, {"key": "missing.total", "source": "schema.json", "unit": null, "value": 0}], "fits": [], "metrics": [], "outputs": [{"caption": "Per-column schema summary", "kind": "table", "name": "schema.json"}]}

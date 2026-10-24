@@ -1,0 +1,4 @@
+model=08_model_train_logistic_Z47S9AWS/model.pkl
+test_rows=25
+roc_auc=0.9667 CI=(0.8800,1.0000)
+threshold=0.8913

@@ -1,0 +1,4 @@
+rows=534 cols=6
+placeholder-like tokens in 0 columns
+features=5 key_like_dropped=0
+n_numeric=5 n_categorical=0 rows_saved=15

@@ -1,0 +1,2 @@
+table shape: 120 rows x 18253 columns
+missing cells total: 111879; columns with any missing: 7502

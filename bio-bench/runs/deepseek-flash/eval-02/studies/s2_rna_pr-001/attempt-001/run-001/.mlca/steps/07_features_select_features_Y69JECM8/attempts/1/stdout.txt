@@ -1,0 +1,3 @@
+train shape: (68, 18210)
+feature columns: 18209
+SelectKBest k: 20

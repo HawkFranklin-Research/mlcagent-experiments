@@ -1,0 +1,2 @@
+Features: 18252 input, 18252 numeric, 0 categorical, 0 high-card dropped
+Val transform shape: (23, 18252)

@@ -1,0 +1,2 @@
+train=(68, 18210) val=(22, 18210) features=18209
+val roc_auc=0.8462

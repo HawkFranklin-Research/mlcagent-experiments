@@ -1,0 +1,2 @@
+Placeholders found in 0 columns
+Saved distributions.csv with 50 rows; n_numeric=50, n_categorical=0

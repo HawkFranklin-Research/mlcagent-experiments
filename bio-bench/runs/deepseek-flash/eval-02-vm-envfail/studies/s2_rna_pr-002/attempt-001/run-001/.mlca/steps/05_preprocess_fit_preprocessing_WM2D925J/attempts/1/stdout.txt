@@ -1,0 +1,2 @@
+train rows=68 features=18209 encoded_width=18209 sparse=True
+val transformed shape=(22, 18209)

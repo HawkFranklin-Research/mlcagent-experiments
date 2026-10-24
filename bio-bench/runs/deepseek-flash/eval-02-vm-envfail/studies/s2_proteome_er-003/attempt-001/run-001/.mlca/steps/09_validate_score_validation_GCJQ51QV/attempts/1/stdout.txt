@@ -1,0 +1,4 @@
+val_rows=23 candidates=2
+best_model=logistic
+best_val_roc_auc=0.9732
+wrote validation_metrics.csv

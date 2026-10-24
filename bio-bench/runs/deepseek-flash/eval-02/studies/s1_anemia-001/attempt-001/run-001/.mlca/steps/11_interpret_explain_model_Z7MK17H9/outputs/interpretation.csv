@@ -1,0 +1,6 @@
+feature,importance_mean,importance_sd
+Hemoglobin,0.4715,0.0425
+Gender,0.06635,0.01533
+MCH,0.0,0.0
+MCHC,0.0,0.0
+MCV,0.0,0.0

@@ -1,0 +1,4 @@
+test rows: 108
+roc_auc: 1.0000 CI [1.0000, 1.0000]
+threshold: 0.5893
+metrics: 6

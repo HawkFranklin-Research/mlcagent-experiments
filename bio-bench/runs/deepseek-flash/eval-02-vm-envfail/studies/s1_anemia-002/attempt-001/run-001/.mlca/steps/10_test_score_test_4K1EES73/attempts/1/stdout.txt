@@ -1,0 +1,2 @@
+test rows 108 features 4
+primary roc_auc 0.541

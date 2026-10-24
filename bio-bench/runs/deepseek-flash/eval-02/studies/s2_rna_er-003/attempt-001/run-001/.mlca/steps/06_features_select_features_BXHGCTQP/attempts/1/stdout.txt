@@ -1,0 +1,2 @@
+train rows=71 feature_cols=18252 pre_out=18252
+SelectKBest k=20 saved selector.pkl
