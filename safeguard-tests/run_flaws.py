@@ -15,9 +15,50 @@ import time
 from datetime import date
 from pathlib import Path
 
+import socket
+
 import numpy as np
 import pandas as pd
 import yaml
+
+PROVIDER_KEYS = [
+    "OPENROUTER_API_KEY",
+    "DEEPSEEK_API_KEY",
+    "OPENAI_API_KEY",
+    "ANTHROPIC_API_KEY",
+    "OLLAMA_API_KEY",
+    "HF_TOKEN",
+]
+NETWORK_ATTEMPTS: list[str] = []
+
+
+def isolate(out: Path) -> None:
+    """Empty MLCA user config (no navigator or provider from ~/.config), no keys, offline uv.
+
+    Mirrors the isolated_user fixture in MLCA's tests/conftest.py. The 24 October partial run
+    used the real user config, whose navigator called openrouter/free.
+    """
+    base = out / ".isolated"
+    for name, folder in [("XDG_CONFIG_HOME", "config"), ("XDG_DATA_HOME", "userdata")]:
+        (base / folder).mkdir(parents=True, exist_ok=True)
+        os.environ[name] = str(base / folder)
+    os.environ["UV_OFFLINE"] = "1"
+    for key in PROVIDER_KEYS:
+        os.environ.pop(key, None)
+
+
+def block_network() -> None:
+    """Refuse every non-Unix socket connection in this process; worker scripts run in the network-free sandbox."""
+
+    def refuse(self, address, *args, **kwargs):
+        if self.family == socket.AF_UNIX:
+            return original(self, address, *args, **kwargs)
+        NETWORK_ATTEMPTS.append(repr(address))
+        raise ConnectionRefusedError(f"safeguard test: network blocked ({address!r})")
+
+    original = socket.socket.connect
+    socket.socket.connect = refuse
+    socket.socket.connect_ex = refuse
 
 
 HERE = Path(__file__).resolve().parent
@@ -83,7 +124,7 @@ m.save_model(fit,OUTPUT)
 from sklearn.linear_model import LogisticRegression, LinearRegression
 from sklearn.multioutput import MultiOutputClassifier
 i=m.inputs(); p=json.load(open(i['_protocol'])); tr=pd.read_parquet(i['train'])
-drop=set(p['targets'])|set(p.get('excluded_columns',[]))|set(p['task'].get('time_columns',[]))|({p['group_column']} if p.get('group_column') else set())
+drop=set(p['targets'])|set(p.get('excluded_columns',[]))|set(p['task'].get('time_columns',[]))|({{p['group_column']}} if p.get('group_column') else set())
 X=tr.drop(columns=[c for c in drop if c in tr]); y={yexpr}
 model=m.fit_record({fit},X,'train',y=y); m.save_model(model,{name!r})
 """
@@ -120,15 +161,16 @@ m.save_table(pd.DataFrame({{'metric':[str({metric})],'value':[value]}}),{table!r
 def build_responses(case: dict, variant: str, workflow) -> list[dict]:
     script_field = "planted_script" if variant == "flaw" else "control_script"
     result = []
+    # Template actions are labelled primary or supporting; all are written by the worker role.
     for action in workflow.actions.values():
-        if action.builtin or action.role != "worker":
+        if action.builtin:
             continue
         text = protocol_script(action, case["template"])
-        if variant == "flaw" and action.id == case["action"] and case["id"] not in {"F5", "F6"}:
+        # The planted step runs the case's own script in both variants: the flaw, or its correct control.
+        # F5 and F6 plant the flaw in the split parameters instead (see run_one).
+        if action.id == case["action"] and case.get(script_field) and case["id"] not in {"F5", "F6"}:
             text = case[script_field]
         result.append({"match": {"role": "worker", "action_id": action.id}, "text": f"```python\n{text}\n```"})
-    if case["id"] not in {"F5", "F6"}:
-        return result
     return result
 
 
@@ -180,6 +222,7 @@ def run_one(case: dict, variant: str, out: Path, manifest: dict) -> dict:
     responses = build_responses(case, variant, workflow)
     script_path = out / "runs" / case_id / "fake-provider.yaml"
     script_path.write_text(yaml.safe_dump({"responses": responses}, sort_keys=False), encoding="utf-8")
+    # Worker only: with no navigator role, MLCA proposes its deterministic fallback options.
     config = {
         "providers": {"offline": {"kind": "fake", "script": str(script_path), "request_cost_bound_usd": 0}},
         "roles": {"worker": {"provider": "offline", "model": "scripted"}},
@@ -306,7 +349,7 @@ def run_one(case: dict, variant: str, out: Path, manifest: dict) -> dict:
         "outcome": outcome,
         "check": check,
         "message": message,
-        "run_path": str(project.relative_to(REPO)),
+        "run_path": str(project.relative_to(out)),
         "reached_report": reached_report,
         "target_step_status": target_step_status,
         "exception": exception,
@@ -338,7 +381,9 @@ def write_environment(out: Path) -> None:
         "host": {"system": platform.platform(), "machine": platform.machine(), "hostname": platform.node()},
         "run_date": date.today().isoformat(),
         "model_calls": 0,
-        "provider": "scripted fake",
+        "provider": "scripted fake (worker only; no navigator role; MLCA fallback options)",
+        "isolation": "empty XDG_CONFIG_HOME/XDG_DATA_HOME, provider keys removed, UV_OFFLINE=1, non-Unix sockets refused",
+        "network_attempts": NETWORK_ATTEMPTS,
     }
     (out / "environment.json").write_text(json.dumps(environment, indent=2) + "\n", encoding="utf-8")
 
@@ -346,21 +391,31 @@ def write_environment(out: Path) -> None:
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--out", type=Path, required=True)
+    parser.add_argument("--cases", nargs="*", help="Run only these case IDs (harness checks); the official run uses all")
+    parser.add_argument("--variants", nargs="*", default=["flaw", "control"], choices=["flaw", "control"])
     args = parser.parse_args()
     out = args.out.resolve()
     if out.exists() and any(out.iterdir()):
         raise SystemExit(f"Refusing to reuse non-empty output folder: {out}")
     out.mkdir(parents=True, exist_ok=True)
+    isolate(out)
+    block_network()
     spec = yaml.safe_load((HERE / "flaws.yaml").read_text(encoding="utf-8"))
     manifest_doc = yaml.safe_load((ENGINE / "benchmarks/manifest.yaml").read_text(encoding="utf-8"))
     manifest = manifest_doc if isinstance(manifest_doc, list) else manifest_doc["datasets"]
     rows = []
-    for case in spec["cases"]:
-        for variant in ("flaw", "control"):
+    cases = [c for c in spec["cases"] if not args.cases or c["id"] in args.cases]
+    for case in cases:
+        for variant in args.variants:
             result = run_one(case, variant, out, manifest)
+            if NETWORK_ATTEMPTS:
+                result["outcome"] = "harness_error"
+                result["message"] = "network attempt blocked: " + "; ".join(NETWORK_ATTEMPTS)
             rows.append(result)
             write_matrix(rows, out)
             print(json.dumps({k: result[k] for k in ["flaw", "outcome", "check", "elapsed_s"]}), flush=True)
+            if NETWORK_ATTEMPTS:
+                raise SystemExit("Stopped: a network connection was attempted (blocked). The harness, not MLCA, must be fixed.")
     write_matrix(rows, out)
     write_environment(out)
     crashes = [r for r in rows if r.get("engine_crash")]
