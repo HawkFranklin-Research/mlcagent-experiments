@@ -1,0 +1,3 @@
+train rows: 249; transformed features: 20
+duration=Overall Survival (Months); event=Overall Survival Status; chain_pre=False
+train c-index: 0.6955

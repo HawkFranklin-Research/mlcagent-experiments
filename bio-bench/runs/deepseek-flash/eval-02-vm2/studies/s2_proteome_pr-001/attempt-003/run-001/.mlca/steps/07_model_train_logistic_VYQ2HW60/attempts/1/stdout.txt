@@ -1,0 +1,2 @@
+train rows=68, features=10096, target=label
+pipeline steps=['preprocessor', 'selector', 'model']

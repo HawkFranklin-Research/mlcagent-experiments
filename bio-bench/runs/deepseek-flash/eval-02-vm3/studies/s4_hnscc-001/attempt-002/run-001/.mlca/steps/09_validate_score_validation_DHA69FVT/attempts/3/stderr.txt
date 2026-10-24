@@ -1,0 +1,6 @@
+Traceback (most recent call last):
+  File "/home/vatsal1_hawk_franklin_research_c/mlca/mlcagent-experiments/bio-bench/runs/deepseek-flash/eval-02-vm3/studies/s4_hnscc-001/attempt-002/run-001/.mlca/steps/09_validate_score_validation_DHA69FVT/attempts/3/script.py", line 166, in <module>
+    r = risk(m, X)
+  File "/home/vatsal1_hawk_franklin_research_c/mlca/mlcagent-experiments/bio-bench/runs/deepseek-flash/eval-02-vm3/studies/s4_hnscc-001/attempt-002/run-001/.mlca/steps/09_validate_score_validation_DHA69FVT/attempts/3/script.py", line 130, in risk
+    raise AttributeError(f"no risk prediction method on {type(est).__name__}")
+AttributeError: no risk prediction method on dict

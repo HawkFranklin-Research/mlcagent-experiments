@@ -1,0 +1,2 @@
+candidates=['logistic', 'alternative'] n_features=18242
+best=alternative roc_auc_ovr=0.9697

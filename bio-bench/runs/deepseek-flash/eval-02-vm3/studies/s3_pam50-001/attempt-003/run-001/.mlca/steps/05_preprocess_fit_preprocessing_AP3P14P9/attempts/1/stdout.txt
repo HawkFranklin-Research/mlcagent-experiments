@@ -1,0 +1,2 @@
+derivation screen: categorical target, skipped numeric checks
+fit ok: 18242 feats -> 18242 encoded cols

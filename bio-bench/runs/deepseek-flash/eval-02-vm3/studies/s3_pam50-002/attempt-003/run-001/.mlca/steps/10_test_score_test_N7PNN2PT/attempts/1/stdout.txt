@@ -1,0 +1,1 @@
+selected=alternative n_test=201 roc_auc_ovr=0.9736 n_external=122 external_roc_auc_ovr=0.5312

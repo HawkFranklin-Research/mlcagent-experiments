@@ -1,0 +1,1 @@
+{"autonomous_inference":true,"kind":"independent_agent_runs","measurement_arm":"worker","mode":"driver","models_locked":false,"policy_principal":"user:policy/c48ac21519e3","runs":[{"project":"run-001","run":1,"setup_usage":null,"status":"failed"}],"schema_version":"1","task":"discovery","task_card_sha256":"c48ac21519e37e730236f84bd84a4258cb223fd07fee85b7e900e19a409d68b2"}

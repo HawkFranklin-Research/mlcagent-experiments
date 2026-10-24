@@ -1,0 +1,3 @@
+test rows 25 feature cols 10096
+selected alternative threshold 0.4661205208107757
+roc_auc 0.96 ci (0.873, 1.0)

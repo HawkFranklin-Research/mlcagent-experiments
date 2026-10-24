@@ -1,0 +1,2 @@
+test rows 201; features 18242; classes 5
+roc_auc_ovr test=0.9736 CI 0.9591-0.9850

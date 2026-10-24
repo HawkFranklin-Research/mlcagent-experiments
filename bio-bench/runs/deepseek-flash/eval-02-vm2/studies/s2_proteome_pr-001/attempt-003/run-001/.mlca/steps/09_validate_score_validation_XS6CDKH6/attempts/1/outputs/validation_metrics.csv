@@ -1,0 +1,9 @@
+model,metric,value,threshold
+logistic,roc_auc,0.8632,
+logistic,pr_auc,0.9113,
+logistic,balanced_accuracy,0.8291,0.7777
+logistic,brier_score,0.1607,
+alternative,roc_auc,0.9402,
+alternative,pr_auc,0.9663,
+alternative,balanced_accuracy,0.906,0.4661
+alternative,brier_score,0.1085,

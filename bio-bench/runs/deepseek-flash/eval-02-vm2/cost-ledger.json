@@ -1,1 +1,1 @@
-{"known":{"cost_usd":null,"input_tokens":2095692,"output_tokens":399435,"reasoning_tokens":330596},"models":{"deepseek-flash":173},"partial":true,"requests":173,"unknown":{"cost_usd":173,"input_tokens":0,"output_tokens":0}}
+{"known":{"cost_usd":null,"input_tokens":2874894,"output_tokens":495510,"reasoning_tokens":409663},"models":{"deepseek-flash":212},"partial":true,"requests":212,"unknown":{"cost_usd":212,"input_tokens":0,"output_tokens":0}}

@@ -1,0 +1,3 @@
+train shape: (249, 519) expected features: 517
+transformed features: 517
+selected covariates: 20

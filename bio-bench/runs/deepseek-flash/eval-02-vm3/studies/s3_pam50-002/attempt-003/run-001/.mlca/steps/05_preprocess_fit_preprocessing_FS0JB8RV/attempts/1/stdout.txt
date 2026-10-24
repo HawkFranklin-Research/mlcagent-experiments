@@ -1,0 +1,4 @@
+Placeholders: 0 columns; examples=[]
+Dropped: []
+Features: 18242 (18242 numeric, 0 categorical); wide=True
+Train (586, 18242); val transformed (194, 18242)

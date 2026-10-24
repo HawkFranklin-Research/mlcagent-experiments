@@ -1,0 +1,2 @@
+train=(586, 18243) val=(194, 18243) features=18242
+val_roc_auc_ovr_macro=0.9595 classes_present=5/5

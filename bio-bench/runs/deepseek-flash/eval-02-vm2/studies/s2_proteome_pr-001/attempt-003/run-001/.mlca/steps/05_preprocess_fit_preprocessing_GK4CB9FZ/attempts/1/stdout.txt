@@ -1,0 +1,3 @@
+Features: 10096 numeric, 0 categorical; width=10096, sparse=True
+Train rows=68, val rows=22, val transform shape=(22, 10096)
+Placeholder columns: 0; key-like dropped: 0

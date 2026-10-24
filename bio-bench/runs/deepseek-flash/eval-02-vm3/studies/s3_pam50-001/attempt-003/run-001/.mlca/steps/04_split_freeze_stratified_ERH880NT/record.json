@@ -1,0 +1,1 @@
+{"facts":[],"figures":[],"fits":[],"metrics":[],"outputs":[{"caption":"","kind":"report","name":"split.json","path":".mlca/steps/04_split_freeze_stratified_ERH880NT/outputs/split.json","sha256":"98ec0eab605eb720ac1d9aa62fcf7b893b2d1d22cbf0cf90118f8b2ab83d37dd","size":1135}],"step_id":"04_split_freeze_stratified_ERH880NT","wall_time_s":827.9901546070002}

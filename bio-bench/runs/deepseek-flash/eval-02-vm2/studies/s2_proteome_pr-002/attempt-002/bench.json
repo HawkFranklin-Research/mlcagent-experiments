@@ -1,0 +1,1 @@
+{"autonomous_inference":true,"kind":"independent_agent_runs","measurement_arm":"worker","mode":"driver","models_locked":false,"policy_principal":"user:policy/cd83e520aa6c","runs":[{"project":"run-001","run":1,"setup_usage":null,"status":"failed"}],"schema_version":"1","task":"proteome_pr","task_card_sha256":"cd83e520aa6c2ce23c571ab5af8330be54d84aef198c4f08161852e7edce3a14"}

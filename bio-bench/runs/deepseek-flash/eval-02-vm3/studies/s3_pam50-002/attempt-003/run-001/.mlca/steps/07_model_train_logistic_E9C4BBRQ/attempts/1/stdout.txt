@@ -1,0 +1,2 @@
+Features: 18242, Train rows: 586
+Pipeline steps: ['preprocess', 'select', 'clf']

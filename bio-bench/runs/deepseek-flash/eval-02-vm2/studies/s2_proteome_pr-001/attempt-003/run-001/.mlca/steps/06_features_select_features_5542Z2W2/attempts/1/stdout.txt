@@ -1,0 +1,5 @@
+train rows: 68
+raw features: 10096
+encoded features: 10096
+k: 20, selected: 20
+saved selector.pkl

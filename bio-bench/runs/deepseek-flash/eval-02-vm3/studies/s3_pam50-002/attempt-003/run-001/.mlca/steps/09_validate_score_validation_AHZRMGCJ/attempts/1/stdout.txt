@@ -1,0 +1,2 @@
+models: ['logistic', 'alternative']  val_rows: 194  features: 18242
+roc_auc_ovr best=alternative val=0.9697
