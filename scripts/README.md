@@ -116,3 +116,15 @@ is printed or passed in arguments. It does not access cloud compute, resume an
 old batch, launch the twelve-table queue, or delete failure evidence. Existing
 sandbox and disk preflights still apply. The longer timeouts need live smoke
 verification; generic provider errors may have another cause.
+
+## Cloud runs on several VMs
+
+See `docs/runbooks/CLOUD-RUN-MANUAL.md`.
+
+- `env_preflight.py` builds every study environment offline, with the controller's interpreter and MLCA's own `env.create`, and compares the versions with `bio-bench/env-reference/`. `--seed` fills the uv cache online with exactly those versions first. `run_batch.py` runs the offline check before launching (evaluation batches cannot skip it).
+- `cloud/run_vm.sh SLICE` runs one VM's slice (`cloud/slices/*.sh`) in tmux. It starts or resumes each batch, archives the folders to the private Hugging Face dataset `HawkFranklin-Research/mlcagent-runs` under `cloud/<RUN_TAG>/<host>/`, then powers the VM off.
+- `cloud/fetch_cloud_runs.sh RUN_TAG DEST` downloads those archives on the laptop, verifies SHA-256 and unpacks them without overwriting.
+- `run_batch.py`:
+  - Spot preemption (SIGTERM) marks running studies `machine_shutdown`; resume re-queues them, and studies lost without a result as `machine_lost`, as new attempts with a fresh study clock.
+  - An infrastructure failure or any provider error pauses the scheduler (`OPERATOR_NEEDED`).
+  - `--list-infrastructure-failures` and `--retry-infrastructure-failures` handle connection and environment failures, once per reason.

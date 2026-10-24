@@ -1,5 +1,7 @@
 # Cloud VM Continuation Runbook: eval-02 in tmux
 
+> **Superseded (24 October 2026)** by [`CLOUD-RUN-MANUAL.md`](CLOUD-RUN-MANUAL.md): parallel Spot VMs, environment preflight, results backup to Hugging Face. Kept as the record of the first single-VM attempt.
+
 This runbook documents the exact procedure for completing the `eval-02` biomedical evaluation batch on a Google Cloud Compute Engine virtual machine inside a persistent `tmux` session.
 
 Once the batch is running inside `tmux` on the VM, the local laptop/workstation can be completely shut down without interrupting the evaluation.

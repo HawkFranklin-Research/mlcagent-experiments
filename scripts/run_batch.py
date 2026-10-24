@@ -164,6 +164,12 @@ def probe_endpoint(endpoint_url, timeout=5.0):
         return False
 
 
+def run_env_preflight():
+    from env_preflight import preflight
+
+    return {**preflight(), "at": utc(), "host": get_host_info()}
+
+
 def source_identity():
     for root in [CODE, ROOT]:
         if subprocess.run(
@@ -527,7 +533,7 @@ def finish_job(folder, job, expected):
             atomic_json(prov_file, prov)
     job.update(
         status="interrupted"
-        if job.get("stop_reason") == "interrupted_by_author"
+        if job.get("stop_reason") in INTERRUPT_REASONS
         else "finished",
         finished_at=utc(),
         result=result,
@@ -562,6 +568,50 @@ def is_connection_failure(job):
         ):
             return True
     return False
+
+
+INTERRUPT_REASONS = {"interrupted_by_author", "machine_shutdown"}
+ENVIRONMENT_FAILURE = ["Project environment command failed", "uv is required"]
+
+
+def is_environment_failure(job):
+    res = job.get("result") or {}
+    return res.get("furthest_event") == "setup" and any(
+        text in str(res.get("message") or "") for text in ENVIRONMENT_FAILURE
+    )
+
+
+def infrastructure_reason(job):
+    """Failures caused by the machine or network, before agent work; None otherwise."""
+    if is_connection_failure(job):
+        return "connection_failure"
+    if is_environment_failure(job):
+        return "environment_failure"
+    return None
+
+
+def needs_operator(job):
+    """Finished jobs that pause the scheduler: infrastructure or any provider error."""
+    res = job.get("result") or {}
+    return bool(infrastructure_reason(job)) or res.get("category") == "provider_error"
+
+
+def requeue(job, reason):
+    """Queue a new attempt; the old attempt stays. The study deadline restarts for it."""
+    job.setdefault("retries", []).append(
+        {
+            "retry_of": job["attempts"][-1] if job.get("attempts") else None,
+            "reason": reason,
+            "at": utc(),
+            "prior_result": job.get("result"),
+        }
+    )
+    if "first_started" in job:
+        job.setdefault("first_started_original", job["first_started"])
+        job.pop("first_started")
+    job["status"] = "queued"
+    for key in ["result", "stop_reason", "stopping_at", "pid", "process_start", "cgroup"]:
+        job.pop(key, None)
 
 
 def record_resources(folder, state):
@@ -643,9 +693,9 @@ def write_report(folder, state):
     if retried_jobs:
         lines += [
             "",
-            "## Connection retries",
+            "## Retried attempts",
             "",
-            "The following jobs failed at the first setup request due to a connection error before any model response and were retried once:",
+            "These attempts ended for infrastructure reasons (connection or environment failure at setup, machine shutdown or loss, operator interrupt) and were run again as new attempts; the earlier attempts are kept and listed above:",
             "",
             "| Job | Dataset | Replicate | Retried attempt | Reason | Retried at |",
             "|---|---|---:|---|---|---|",
@@ -655,6 +705,29 @@ def write_report(folder, state):
                 lines.append(
                     f"| {j['id']} | {j['dataset']} | {j['replicate']} | {ret.get('retry_of')} | {ret.get('reason')} | {ret.get('at')} |"
                 )
+    if state.get("operator_pauses"):
+        lines += [
+            "",
+            "## Scheduler paused for the operator",
+            "",
+            "| Job | Reason | Message | At |",
+            "|---|---|---|---|",
+        ] + [
+            f"| {o['job']} | {o['reason']} | {o['message'][:200].replace('|', '/')} | {o['at']} |"
+            for o in state["operator_pauses"]
+        ]
+    if state.get("env_preflights"):
+        last = state["env_preflights"][-1]
+        lines += [
+            "",
+            "## Environment preflight",
+            "",
+            f"Last check {last['at']} on {last['host']['hostname']}, Python {last['python']}: "
+            + ", ".join(
+                f"{k} {v['lock_sha256'][:12]}" + (" (matches reference)" if v["matches_reference"] else "")
+                for k, v in last["sets"].items()
+            ),
+        ]
     lines += [
         "",
         "## Batch accounting",
@@ -803,6 +876,21 @@ def main():
         action="store_true",
         help="Re-queue eligible connection failures once (requires --resume)",
     )
+    parser.add_argument(
+        "--list-infrastructure-failures",
+        action="store_true",
+        help="List jobs whose last attempt failed for connection or environment reasons and exit",
+    )
+    parser.add_argument(
+        "--retry-infrastructure-failures",
+        action="store_true",
+        help="Re-queue connection and environment failures, once per reason (requires --resume)",
+    )
+    parser.add_argument(
+        "--skip-env-preflight",
+        action="store_true",
+        help="Do not build the offline study environments before launching (not for evaluation)",
+    )
     parser.add_argument("--worker", type=Path)
     args = parser.parse_args()
     if args.worker:
@@ -826,6 +914,17 @@ def main():
             err = (j.get("result") or {}).get("message") or ""
             print(f"{j['id']} ({j['dataset']} replicate {j['replicate']}): {err}")
         return
+    if args.list_infrastructure_failures:
+        state_file = args.out.resolve() / "batch.json"
+        if not state_file.exists():
+            raise FileNotFoundError(f"No batch.json found in {args.out.resolve()}")
+        for j in json.loads(state_file.read_text()).get("jobs", []):
+            if reason := infrastructure_reason(j):
+                err = (j.get("result") or {}).get("message") or ""
+                print(f"{j['id']} ({j['dataset']} replicate {j['replicate']}) {reason}: {err[:200]}")
+        return
+    if args.retry_infrastructure_failures and not args.resume:
+        raise ValueError("--retry-infrastructure-failures requires --resume")
     if args.retry_connection_failures and not args.resume:
         raise ValueError("--retry-connection-failures requires --resume")
     if args.controller_upgrade and not args.resume:
@@ -875,6 +974,9 @@ def main():
             )
     if args.role == "evaluation":
         validate_evaluation(all_entries, args.data_root, args.allow_draft)
+    if args.skip_env_preflight and args.role == "evaluation":
+        raise ValueError("Evaluation batches always run the environment preflight")
+    env_check = None if args.skip_env_preflight else run_env_preflight()
     plan = read_plan(args.comparison_plan) if args.comparison_plan else None
     if plan:
         validate_identity = (
@@ -917,13 +1019,19 @@ def main():
     folder.mkdir(parents=True, exist_ok=True)
     (folder / ".control").mkdir(exist_ok=True)
     interrupted = [False]
+    shutdown = [False]
 
     def _on_interrupt(*_):
         interrupted[0] = True
 
+    def _on_shutdown(*_):
+        # VM stop or Spot preemption: running attempts are re-queued on resume.
+        shutdown[0] = True
+        interrupted[0] = True
+
     signal.signal(signal.SIGINT, _on_interrupt)
     if hasattr(signal, "SIGTERM"):
-        signal.signal(signal.SIGTERM, _on_interrupt)
+        signal.signal(signal.SIGTERM, _on_shutdown)
     with FileLock(str(folder / ".control/controller.lock"), timeout=0):
         state_file = folder / "batch.json"
         if args.resume:
@@ -983,7 +1091,10 @@ def main():
             if args.retry_connection_failures:
                 for job in state["jobs"]:
                     if is_connection_failure(job):
-                        if job.get("retries"):
+                        if any(
+                            r.get("reason") == "connection_failure"
+                            for r in job.get("retries", [])
+                        ):
                             raise ValueError(
                                 f"Job {job['id']} already retried once; refusing second retry"
                             )
@@ -1055,17 +1166,28 @@ def main():
                     a == flag or a.startswith(flag + "=") for a in sys.argv[1:]
                 ) and getattr(args, attr) != state.get(attr):
                     raise ValueError("Resume cannot change recorded " + attr)
+            if args.retry_infrastructure_failures:
+                for job in state["jobs"]:
+                    reason = infrastructure_reason(job)
+                    if not reason:
+                        continue
+                    if any(r.get("reason") == reason for r in job.get("retries", [])):
+                        raise ValueError(
+                            f"Job {job['id']} already retried once for {reason}; refusing second retry"
+                        )
+                    requeue(job, reason)
             for job in state["jobs"]:
                 if job["status"] == "interrupted":
-                    job["status"] = "queued"
-                    job.pop("stop_reason", None)
+                    requeue(job, job.get("stop_reason") or "interrupted")
                 if job["status"] in {"running", "stopping"} and not alive(job):
                     attempt = folder / job["attempts"][-1]
                     if (attempt / "worker-result.json").exists():
                         finish_job(folder, job, by_id[job["dataset"]])
+                        if job["status"] == "interrupted":
+                            requeue(job, job.get("stop_reason") or "interrupted")
                     else:
-                        job["status"] = "queued"
-                        job.pop("stop_reason", None)
+                        # Controller and workers vanished together (VM lost or killed).
+                        requeue(job, "machine_lost")
         else:
             if state_file.exists() or (not plan and (not args.batch or not args.model)):
                 raise ValueError(
@@ -1273,6 +1395,8 @@ def main():
                 args.cgroup_root, "mlca-probe-" + str(os.getpid()), memory_mib
             )
             probe.rmdir()
+        if env_check:
+            state.setdefault("env_preflights", []).append(env_check)
         processes = {}
         network_outage_start = None
         while any(j["status"] not in TERMINAL for j in state["jobs"]):
@@ -1315,6 +1439,28 @@ def main():
                             },
                         )
                     processes.pop(job["id"], None)
+                    if job["status"] == "finished" and needs_operator(job):
+                        (folder / ".control/PAUSE").touch()
+                        state.setdefault("operator_pauses", []).append(
+                            {
+                                "job": job["id"],
+                                "reason": infrastructure_reason(job)
+                                or job["result"].get("category"),
+                                "message": str(job["result"].get("message") or "")[:500],
+                                "at": utc(),
+                                "host": get_host_info(),
+                            }
+                        )
+                        print(
+                            json.dumps(
+                                {
+                                    "OPERATOR_NEEDED": job["id"],
+                                    "reason": state["operator_pauses"][-1]["reason"],
+                                    "action": "scheduler paused; running studies finish",
+                                }
+                            ),
+                            flush=True,
+                        )
                     print(
                         json.dumps(
                             {
@@ -1330,7 +1476,11 @@ def main():
                 expired = time.time() - job["first_started"] > state["deadline_s"]
                 if job["status"] == "running" and (expired or interrupted[0]):
                     job["stop_reason"] = (
-                        "study_deadline" if expired else "interrupted_by_author"
+                        "study_deadline"
+                        if expired
+                        else "machine_shutdown"
+                        if shutdown[0]
+                        else "interrupted_by_author"
                     )
                     job["status"] = "stopping"
                     job["stopping_at"] = time.time()
